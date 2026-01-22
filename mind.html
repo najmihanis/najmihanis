@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro 3D Engineer Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- DO NOT include demolder.css -->
+  <link rel="stylesheet" href="assets/css/mind.css">
+</head>
+
+<body>
+  <svg style="display:none;">
+    <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+    </symbol>
+
+    <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+      <circle cx="14" cy="14" r="4"/>
+    </symbol>
+  </svg>
+
+  <div class="scale-stage" id="scaleStage">
+    <div class="device-casing" id="deviceCasing">
+      <div class="inner-casing">
+
+        <div class="screw tl"></div><div class="screw tr"></div>
+        <div class="screw bl"></div><div class="screw br"></div>
+
+        <!-- HEADER -->
+        <header class="panel-row header-panel">
+
+          <button class="nav-vent-toggle" type="button"
+                  aria-label="Open navigation"
+                  aria-controls="mobileNav"
+                  aria-expanded="false">
+            <span class="vent-bar"></span>
+            <span class="vent-bar"></span>
+            <span class="vent-bar"></span>
+          </button>
+
+          <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+        </header>
+
+        <!-- ===================== MIND PAGE CONTENT ===================== -->
+        <main class="mind-page">
+
+          <section class="mind-grid">
+
+            <!-- LEFT RAIL -->
+            <aside class="mind-rail">
+
+              <div class="mind-rail-block">
+                <div class="mind-rail-label">MISSION OVERVIEW</div>
+
+                <div class="mind-rail-sub">TARGET</div>
+                <p class="mind-rail-body">
+                  Designed a palm oil transplanting attachment concept for a farm buggy system focusing on
+                  retrieval, handling, and placement workflow constraints in the field.
+                </p>
+
+                <div class="mind-rail-sub">CONSTRAINTS</div>
+                <ul class="mind-rail-list">
+                  <li>Irregular polybag geometry at the seedling interface</li>
+                  <li>Bag-dependent opening force and insertion angles</li>
+                  <li>Variation in seedling size and mass affecting handling stability</li>
+                  <li>Harsh operating conditions with dirt and moisture exposure</li>
+                </ul>
+
+                <div class="mind-rail-sub">ROLE</div>
+                <div class="mind-kv">
+                  <div class="mind-kv-row"><span class="mind-k">Org</span><span class="mind-v">MInD Robotics</span></div>
+                  <div class="mind-kv-row"><span class="mind-k">Focus</span><span class="mind-v">Mechanism Design</span></div>
+                  <div class="mind-kv-row"><span class="mind-k">Work</span><span class="mind-v">CAD + Concepts</span></div>
+                  <div class="mind-kv-row"><span class="mind-k">Tools</span><span class="mind-v">SolidWorks</span></div>
+                </div>
+              </div>
+
+              <div class="mind-rail-block mind-rail-block--mini mind-rail-wh">
+
+  <div class="mind-rail-wh-col">
+    <div class="mind-rail-label">WHAT</div>
+    <p class="mind-rail-body">
+      Designed a conceptual transplanting attachment for automated transplanting of palm oil seedlings.         
+      </p>
+      <p class="mind-rail-body">System features: </p>
+      <ul class="mind-rail-list">
+      <li>Hydraulic-powered plant retriever to transfer seedlings to a central conveyor.</li>
+      <li>Integrated conveyor system for precise plant movement.</li>
+      <li>Polybag remover with self-closing, semi-flexible fingers to strip polybags after cutting.</li>
+      <li>Earth auger drilling mechanism for automated hole creation.</li>
+      <li>Fertilizer dispensing system integrated with planting mechanism for efficient seedling placement.</li>
+      </ul>
+    
+  </div>
+
+  <div class="mind-rail-wh-col">
+    <div class="mind-rail-label">HOW</div>
+    <ul class="mind-rail-list">
+      <li>Analyzed and worked with existing SolidWorks assemblies and parts.</li>
+      <li>Researched mechanisms and materials, including linear actuators, airless-tire-inspired structures, spring-loaded probe arrays, and compliant mechanisms.</li>
+      <li>Designed the mechanism by consolidating and refining multiple early concept directions.</li>
+      <li>Performed analysis to select motor, chain, sprocket, and hydraulic specifications based on design constraints.</li>
+      <li>Prototyped polybag remover fingers using various material options.</li>
+      <li>Created motion simulations and rendered demonstration videos in SolidWorks.</li>
+    </ul>
+  </div>
+
+</div>
+
+            </aside>
+
+            <!-- RIGHT HERO -->
+            <section class="mind-main">
+
+              <header class="mind-hero">
+                <div class="mind-hero-kicker">INTERNSHIP</div>
+                <h1 class="mind-hero-title">PALM OIL TRANSPLANTING ATTACHMENT</h1>
+
+                <p class="mind-hero-lede">
+                  A concept-to-mechanism design walkthrough for a palm oil transplanting workflow, addressing retrieval, handling, and placement constraints.
+                </p>
+
+                <div class="mind-hero-stats">
+                  <div class="mind-stat">
+                    <div class="mind-stat-label">TIMELINE</div>
+                    <div class="mind-stat-value">SUMMER 2024</div>
+                  </div>
+                  <div class="mind-stat">
+                    <div class="mind-stat-label">MODULE</div>
+                    <div class="mind-stat-value">RETRIEVE / PLACE</div>
+                  </div>
+                  <div class="mind-stat">
+                    <div class="mind-stat-label">GOAL</div>
+                    <div class="mind-stat-value">AUTOMATION</div>
+                  </div>
+                </div>
+
+                <!-- Single wide image (end-to-end with gutter) -->
+                <div class="mind-hero-media">
+                  <img src="project pics/mind/hero-mind.png" alt="MInD transplanting attachment hero">
+                </div>
+              </header>
+
+              <!-- MECHANISM SECTION (background-only) -->
+              <section class="mind-mech" id="mechanism">
+                <h2 class="mind-mech-title">MECHANISM</h2>
+
+                <div class="mind-mech-image">
+                  <img src="project pics/mind/Process-mind.png" alt="Mechanism overview (4:3)">
+                </div>
+              </section>
+
+            </section>
+
+          </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer-vent">
+          <div class="vent-screw"></div>
+          <div class="high-fi-grill"></div>
+          <div class="vent-screw"></div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

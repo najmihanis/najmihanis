@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 3D Engineer Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/machine.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+                
+                
+                <main class="mach-page">
+
+                    <!-- 1) HERO -->
+                    <section class="mach-panel mach-hero" id="machHero">
+                        <div class="mach-hero__text">
+                        <div class="mach-kicker">MACHINING</div>
+                        <h1 class="mach-title">MACHINING TRAINING</h1>
+
+                        <p class="mach-lede">
+                            Manual mill and lathe training centered on precision, drawing interpretation, and tolerance-driven part fabrication.
+                        </p>
+
+                        <div class="mach-stats">
+                            <div class="mach-stat">
+                            <div class="mach-stat__k">DURATION</div>
+                            <div class="mach-stat__v">50+ SHOP HOURS</div>
+                            </div>
+                            <div class="mach-stat">
+                            <div class="mach-stat__k">FOCUS</div>
+                            <div class="mach-stat__v">ACCURACY & FAMILIARITY</div>
+                            </div>
+                            <div class="mach-stat">
+                            <div class="mach-stat__k">OUTPUT</div>
+                            <div class="mach-stat__v">PRECISION PARTS</div>
+                            </div>
+                        </div>
+
+                        <div class="mach-cta">
+                            <a class="block-3d mach-btn" href="#lathe">Lathe</a>
+                            <a class="block-3d mach-btn" href="#mill">Mill</a>
+                        </div>
+                        </div>
+
+                        <div class="mach-hero__screen">
+                        <div class="mach-screen">
+                            <img class="mach-screen__img" src="project pics/IMG_8232.jpg" alt="Machining training hero image" style=" object-position: center 80%; ">
+                            <div class="mach-screen__scan"></div>
+                            <div class="mach-screen__glare"></div>
+                            <div class="mach-screen__vignette"></div>
+                        </div>
+                        </div>
+                    </section>
+
+                    <!-- ===================== LATHE ===================== -->
+                    <section class="mach-panel mach-stage" id="lathe">
+                    <div class="mach-stage__label">LATHE</div>
+
+                    <div class="mach-stage__bezel">
+                        <div class="mach-stage__valley">
+
+                        <div class="mach-cards mach-cards--6">
+                            <!-- Card 1 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/lathe1.png" alt="Lathe part 01" style="transform: scale(1.4);">
+                            </div>
+                            <div class="mach-card__text">
+                               <ul class="mach-card__list">
+                                    <li>Multi-grooved body with chamfered ends</li>
+                                    <li>Pocketed bore</li>
+                                    <li>Multi-staged diameter</li>
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 2 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/lathe2.png" alt="Lathe part 02">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>20° tapered side</li>
+                                    <li>Pocketed larger bore</li>
+                                    <li>Tapped smaller bore</li>
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 3 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/6.png" alt="Lathe part 03" style="object-position: center 80%;">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>Double-sided chamfered flange</li>
+                                    <li>Tapped bore</li>
+                                    
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 4 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/7.png" alt="Lathe part 04">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>Asymmetrical multi-staged diameter</li>
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 5 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/8.png" alt="Lathe part 05">
+                            </div>
+                            <div class="mach-card__text">
+                               <ul class="mach-card__list">
+                                    <li>Tolerance-critical interfaces with mating components</li>
+                                    <li>Surface finish controlled to prevent defects in molded parts</li>
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 6 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/9.png" alt="Lathe part 06">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>Concentric, tolerance-critical mating features</li>
+                                    <li>Controlled bore surface finish for smooth molding</li>
+                                    <li>Embossed alignment ring on lid</li>
+                                </ul>
+                            </div>
+                            </article>
+                        </div>
+
+                        </div>
+                    </div>
+                    </section>
+
+
+                    <!-- ===================== MILL ===================== -->
+                    <section class="mach-panel mach-stage" id="mill">
+                    <div class="mach-stage__label">MILL</div>
+
+                    <div class="mach-stage__bezel">
+                        <div class="mach-stage__valley">
+
+                        <div class="mach-cards mach-cards--3">
+                            <!-- Card 1 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/mill1.png" alt="Mill part 01" style="transform: scale(1.1);">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>Depth varying valley</li>
+                                    <li>Tapped smaller holes</li>
+                                    <li>Counter-bored larger clearance holes</li>
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 2 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/mill2.png" alt="Mill part 02" style="transform: scale(1.2);">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>Multi-depth surface</li>
+                                    <li>Filleted inner and outer corners</li>
+                                </ul>
+                            </div>
+                            </article>
+
+                            <!-- Card 3 -->
+                            <article class="mach-card">
+                            <div class="mach-card__media">
+                                <img src="project pics/machine/mill3.png" alt="Mill part 03" style="transform: scale(1.2);">
+                            </div>
+                            <div class="mach-card__text">
+                                <ul class="mach-card__list">
+                                    <li>Filleted square hole</li>
+                                    <li>Asymmetrical clearance holes</li>
+                                </ul>
+                            </div>
+                            </article>
+                        </div>
+
+                        </div>
+                    </div>
+                    </section>
+
+                </main>
+
+  
+
+            
+
+                <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

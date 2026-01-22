@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 3D Engineer Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/machine.css"> <!-- uses style from machine page-->
+    <link rel="stylesheet" href="assets/css/yonder.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+                <main class="mach-page">
+
+  <!-- HERO (same as machining hero, just change text + CTA target) -->
+  <section class="mach-panel mach-hero" id="yonderHero">
+    <div class="mach-hero__text">
+      <div class="mach-kicker">ROBOTS</div>
+      <h1 class="mach-title">YONDER DYNAMICS</h1>
+
+      <p class="mach-lede">
+        A subsystem-level robotic wrist project focused on turning motion requirements and analysis into a buildable, competition-ready mechanism.
+      </p>
+
+      <div class="mach-stats">
+        <div class="mach-stat">
+          <div class="mach-stat__k">ROLE</div>
+          <div class="mach-stat__v">MECH DESIGN</div>
+        </div>
+        <div class="mach-stat">
+          <div class="mach-stat__k">FOCUS</div>
+          <div class="mach-stat__v">WRIST / JOINT</div>
+        </div>
+        <div class="mach-stat">
+          <div class="mach-stat__k">OUTPUT</div>
+          <div class="mach-stat__v">CAD + ITERATIONS</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mach-hero__screen">
+      <div class="mach-screen">
+        <img class="mach-screen__img" src="project pics/yonder/hero.png" alt="Yonder hero image">
+        <div class="mach-screen__scan"></div>
+        <div class="mach-screen__glare"></div>
+        <div class="mach-screen__vignette"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SINGLE STAGE (same “Lathe/Mill” plate, but only one section) -->
+  <section class="mach-panel mach-stage yonder-stage" id="yonderStage">
+    <div class="mach-stage__label">ROVER WRIST</div>
+
+    <!-- keep the same structure you’re already using -->
+    <div class="mach-stage__bezel">
+      <div class="mach-stage__valley">
+
+        <div class="yonder-stack">
+
+          <!-- TOP BIG CARD (image) -->
+          <article class="yonder-card yonder-card--image">
+
+            <div class="yonder-card__media yonder-card__media--split">
+
+                <!-- LEFT -->
+                <div class="yonder-media-col">
+                <div class="yonder-media-label">Design Process</div>
+                <img src="project pics/yonder/process.png" alt="Design process sketches" >
+                </div>
+
+                <!-- RIGHT -->
+                <div class="yonder-media-col">
+                <div class="yonder-media-label">Final Design</div>
+                <img src="project pics/yonder/final.png" alt="Final wrist design">
+                </div>
+
+            </div>
+
+            </article>
+
+          <!-- BOTTOM BIG CARD (text, 2 columns: What / How) -->
+          <article class="yonder-card yonder-card--text">
+            <div class="yonder-what-how">
+              <div class="yonder-col">
+                <div class="yonder-col__h">What?</div>
+                <ul class="yonder-bullets">
+                  <li>Designed and fabricated a 3-axis robotic wrist for a Mars rover for the University Rover Challenge (URC).</li>
+                  <li>Engineered the wrist to deliver high output torque with low backlash, enabling stable and precise end-effector positioning.</li>
+                  <li>Developed the mechanism under strict packaging, load, and reliability constraints, with the expectation of real-world field operation.</li>
+                  <li>Iterated the design through multiple revisions to improve shaft support, bearing placement, and structural robustness.</li>
+                  <li>Collaborated with cross-disciplinary teams to integrate mechanical and electrical components</li>
+                </ul>
+              </div>
+
+              <div class="yonder-col">
+                <div class="yonder-col__h">How?</div>
+                <ul class="yonder-bullets">
+                  <li>Iterated the design through multiple revisions to improve shaft support, bearing placement, and structural robustness.</li>
+                  <li>Evaluated multiple transmission architectures before converging on a timing-belt–driven reduction for precision and reliability.</li>
+                  <li>Compared GT3 vs HTD belt profiles, selecting components based on backlash, load capacity, and manufacturability tradeoffs.</li>
+                  <li>Calculated pulley sizes, belt lengths, and center-to-center distances to achieve proper tension without idler pulleys.</li>
+                  <li>Designed and fabricated parts using SolidWorks (including sheet metal workflows) and laser cutting.</li>
+                  <li>Selected bearings, shafts, pulleys, and fasteners with attention to alignment, serviceability, and sourcing availability.</li>
+                  <li>Balanced precision, torque, backlash, manufacturability, and available off-the-shelf components in a constrained robotic subsystem.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+                
+                
+            
+
+  
+
+            
+
+                <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

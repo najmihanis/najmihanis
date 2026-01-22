@@ -1,0 +1,264 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- MIND PROJECT PAGE ---------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+.mind-page{
+  width: 100%;
+  padding: 18px 14px 6px; /* same feel as demolder */
+}
+
+/* 2-col briefing grid */
+.mind-grid{
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 18px;
+  align-items: stretch; /* ensures equal-height columns */
+}
+
+/* LEFT COLUMN stack */
+.mind-rail{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Rail blocks (matches demolder style) */
+.mind-rail-block{
+  background: var(--bg-paper);
+  border: var(--border-thin);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  box-shadow: inset 2px 2px 8px rgba(0,0,0,0.10);
+}
+
+.mind-rail-block + .mind-rail-block{
+  margin-top: 14px;
+}
+
+/* push deliverables to bottom */
+.mind-rail-block--mini{
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.mind-rail-label{
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.mind-rail-sub{
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.mind-rail-body{
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+.mind-rail-list{
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+/* KV table */
+.mind-kv{
+  margin-top: 6px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+  padding-top: 10px;
+}
+
+.mind-kv-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.mind-kv-row:last-child{ border-bottom: 0; }
+
+.mind-k{
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.mind-v{
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  text-align: right;
+}
+
+/* RIGHT COLUMN */
+.mind-main{
+  min-width: 0;
+  min-height: 0;
+}
+
+/* HERO PLATE (same plate language) */
+.mind-hero{
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  padding: 18px 18px 14px;
+  box-shadow: var(--shadow-hard);
+}
+
+.mind-hero-kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.mind-hero-title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 0.95;
+}
+
+.mind-hero-lede{
+  margin: 10px 0 0;
+  max-width: 70ch;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+.mind-hero-stats{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+}
+
+.mind-stat-label{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.mind-stat-value{
+  margin-top: 6px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  opacity: 0.86;
+}
+
+/* HERO MEDIA (single wide image, never overflow casing) */
+.mind-hero-media{
+  margin-top: 16px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: var(--border-thin);
+  background: var(--bg-paper);
+  box-shadow: inset 3px 3px 10px rgba(0,0,0,0.10);
+}
+
+.mind-hero-media img{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* ===================== MECHANISM (background-only, no plate) ===================== */
+
+.mind-mech{
+  margin-top: 18px;
+}
+
+.mind-mech-title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+}
+
+.mind-mech-image{
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--bg-paper);
+}
+
+.mind-mech-image img{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Optional: reduce bullet indent if you want it less “blobby” */
+.mind-rail-list{ padding-left: 16px; list-style-type: square; }
+
+/* ===================== WHAT / HOW rail block ===================== */
+
+.mind-rail-wh{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* keep columns visually distinct but subtle */
+.mind-rail-wh-col{
+  padding-top: 2px;
+}
+
+/* tighten WHAT / HOW body a bit */
+.mind-rail-wh .mind-rail-body{
+  font-size: 0.9rem;
+  line-height: 1.45;
+  opacity: 0.78;
+  padding-bottom: 10px;
+}
+
+/* slightly tighter bullets than mission constraints */
+.mind-rail-wh .mind-rail-list{
+  padding-left: 16px;
+  
+  font-size: 0.88rem;
+  opacity: 0.78;
+}
+
+.mind-rail-wh .mind-rail-list li{
+  margin-bottom: 6px;
+  list-style-type: square;
+}

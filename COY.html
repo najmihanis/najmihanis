@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 3D Engineer Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/COY.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+                
+                <!-- ===================== COY PROJECT PAGE ===================== -->
+<main class="coy-page">
+
+  <!-- 1) HERO -->
+  <section class="coy-panel coy-hero" id="coyHero">
+    <div class="coy-hero__text">
+      <div class="coy-kicker">PRODUCT</div>
+      <h1 class="coy-title">CRUTCH ON YOU</h1>
+      <p class="coy-lede">
+        A waist-supported crutch system exploring hands-free stability, gait relevance,
+        and comfort through iterative prototyping and clinical feedback.
+      </p>
+
+      <div class="coy-stats">
+        <div class="coy-stat">
+          <div class="coy-stat__k">Timeline</div>
+          <div class="coy-stat__v">2024–2026</div>
+        </div>
+        <div class="coy-stat">
+          <div class="coy-stat__k">Role</div>
+          <div class="coy-stat__v">Design + Build</div>
+        </div>
+        <div class="coy-stat">
+          <div class="coy-stat__k">Goal</div>
+          <div class="coy-stat__v">Hands-free mobility</div>
+        </div>
+      </div>
+
+      <div class="coy-cta">
+        <a class="block-3d coy-btn" href="https://ucsdcloud-my.sharepoint.com/:p:/g/personal/mmohammadhanis_ucsd_edu/IQAnWHRvMbz2Sp1GrKG-qGyCAS3Gx9XjQ_QRDZebo4gZQKM?e=uY0kZr">Pitch Deck</a>
+        <a class="block-3d coy-btn" href="https://www.youtube.com/watch?v=zxEllmFtAVU">Demo</a>
+      </div>
+    </div>
+
+    <div class="coy-hero__screen">
+      <div class="coy-screen">
+        <!-- swap this for your best COY image -->
+        <img class="coy-screen__img" src="project pics/COY/main.png" alt="Crutch On You hero image">
+        <div class="coy-screen__scan"></div>
+        <div class="coy-screen__glare"></div>
+        <div class="coy-screen__vignette"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1.5) OVERVIEW (no tile, printed on casing) -->
+<section class="coy-overview" id="coyOverview">
+
+  <div class="coy-overview__title">Overview</div>
+
+  <div class="coy-overview__grid" aria-label="Overview: what and how">
+
+    <!-- WHAT -->
+    <div class="coy-overview__col coy-overview__col--what">
+      <div class="coy-overview__sub">What</div>
+      <ul class="coy-overview__list">
+        <li>
+          Developed a waist-supported crutch system focused on stability,
+          comfort, and hands-free mobility.
+        </li>
+        <li>
+          Designed and built a functional MVP using 3D-printed components,
+          aluminum tubing, and a weightlifting belt anchor with a 2-DOF joint system.
+        </li>
+        <li>
+          Addressed key recovery challenges through iterative design,
+          prototyping, and user feedback.
+        </li>
+      </ul>
+    </div>
+
+    <!-- HOW -->
+    <div class="coy-overview__col coy-overview__col--how">
+      <div class="coy-overview__sub">How</div>
+      <ul class="coy-overview__list">
+        <li>
+          Conducted customer discovery with physical therapists, orthopedic surgeons,
+          and stakeholders to identify recovery needs, gait issues, and product requirements.
+        </li>
+        <li>
+          Developed three design iterations using mood boards, sketching,
+          CAD modeling, and rendering to converge on the final concept.
+        </li>
+        <li>
+          Prototyped custom joints and handles with 3D printing and integrated
+          adjustable pin slots into aluminum tubing.
+        </li>
+        <li>
+          Researched and tested walking and load-bearing mechanisms to reduce technical risk.
+        </li>
+        <li>
+          Performed cost analysis, identified target markets, assessed business risks,
+          and created a pitch deck to support startup viability.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+  <!-- 2) PROBLEM -->
+  <!-- ===================== PROBLEM (NO PANEL / NO TILE) ===================== -->
+<section class="coy-problem" id="coyProblem">
+
+
+  <div class="coy-problem__layout">
+        <!-- LEFT: illustration -->
+        <figure class="coy-problem__art">
+        <img
+            src="project pics/COY/illus.png"
+            alt="Blueprint illustration showing limitations of conventional crutches">
+        </figure>    
+    
+        <!-- RIGHT: text -->
+        <div class="coy-problem__text">
+            <div class="coy-problem__title">The Problem</div>
+            <p>
+                Conventional crutches shift body load to the hands and shoulders, forcing
+                users into compensatory gait patterns that increase fatigue and instability.
+            </p>
+
+            <ul>
+                <li>High upper-body strain over long recovery periods</li>
+                <li>Poor balance and reduced confidence while walking</li>
+                <li>Limited ability to carry objects or perform daily tasks</li>
+            </ul>
+
+            <p>
+                Crutch On You explores waist-based load transfer while preserving a
+                repeatable walking trajectory and adjustable fit across recovery phases.
+            </p>
+        </div>
+        
+  </div>
+
+</section>
+
+  <!-- 3) IDEATION (NO TILES, ONE BIG SKETCH + TEXT) -->
+<section class="coy-ideation" id="coyIdeation">
+
+  <div class="coy-ideation__layout">
+    <!-- LEFT: small text block -->
+    <div class="coy-ideation__copy">
+      <div class="coy-ideation__kicker">Ideation</div>
+      <p>
+        Early sketches explored how a waist-supported crutch could reproduce useful walking motion without relying on the circular swing of traditional crutches. Concepts focused on alternative mechanisms such as spring-slider joints, multi-bar linkages, and cam-driven systems with damping. The exploration centered on joint placement, walking trajectories, and keeping the system compact while remaining stable and adaptable across recovery phases.
+      </p>
+    </div>
+    <!-- RIGHT: big sketch canvas -->
+    <div class="coy-ideation__sketch">
+      <img src="project pics/COY/ideation.png" alt="Ideation sketches">
+    </div>
+  </div>
+
+</section>
+
+  <!-- 4) CUSTOMER DISCOVERY -->
+  <section class="coy-discovery" id="coyDiscovery">
+
+  <div class="coy-discovery__stage">
+
+    
+
+    <!-- RIGHT: clustered notes in a subtle crescent -->
+    <div class="note-cloud" aria-label="Customer discovery quotes">
+
+      <figure class="note n1">
+        <div class="note__tag">ORTHO</div>
+        <p class="note__text">Lack of clinical endorsement slows adoption.</p>
+      </figure>
+
+      <figure class="note n2">
+        <div class="note__tag">PT</div>
+        <p class="note__text">Long-term ergonomics matter more than short bursts.</p>
+      </figure>
+
+      <figure class="note n3">
+        <div class="note__tag">USER</div>
+        <p class="note__text">Stairs and transitions are the biggest pain points.</p>
+      </figure>
+
+      <figure class="note n4">
+        <div class="note__tag">PT</div>
+        <p class="note__text">Recovery needs change across phases.</p>
+      </figure>
+
+      <figure class="note n5">
+        <div class="note__tag">USER</div>
+        <p class="note__text">Upper-body pain and fatigue often become the dominant limitation during recovery, not the leg injury itself.</p>
+      </figure>
+
+      <figure class="note n6">
+        <div class="note__tag">ORTHO</div>
+        <p class="note__text">Discomfort reduces compliance, even if function is good.</p>
+      </figure>
+
+      <figure class="note n7">
+        <div class="note__tag">PT</div>
+        <p class="note__text">Stability is prioritized over speed in early recovery.</p>
+      </figure>
+
+      <figure class="note n8">
+        <div class="note__tag">ATHLETE</div>
+        <p class="note__text">Hands-free mobility increases independence.</p>
+      </figure>
+
+      <figure class="note n9">
+        <div class="note__tag">PT</div>
+        <p class="note__text">Asymmetric loading increases secondary injury risk.</p>
+      </figure>
+
+    </div>
+
+    <!-- LEFT: title anchored mid-height -->
+    <div class="coy-discovery__titleblock">
+      <h2 class="coy-discovery__title">Customer<br>Discovery</h2>
+      <p class="coy-discovery__sub">
+        Findings from PTs, orthos, athletes, and users that shaped what mattered.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- 5) RISK REDUCTION -->
+  <section class="coy-risk" id="coyRisk">
+
+  <h2 class="coy-risk__title">Risk Reduction</h2>
+  <div class="coy-risk__rail">
+  <!-- ROW 1: image left, text right -->
+  <div class="coy-risk__row">
+    <div class="coy-risk__image1">
+      <img src="project pics/COY/rr1.png" alt="Early prototype">
+    </div>
+
+    <div class="coy-risk__copy">
+      <h3>Prototype 01 — Load & Stability</h3>
+      <p>
+        The first prototype focused on understanding how a waist-supported system
+        distributes load on static conditions.
+      </p>
+      <p>
+        This was done to surface the riskiest assumptions early, validate them through testing, and reduce risk before committing to more complex motion.
+      </p>
+    </div>
+  </div>
+
+  <!-- ROW 2: text left, image right -->
+  <div class="coy-risk__row coy-risk__row--flip">
+    <div class="coy-risk__copy">
+      <h3>Prototype 02 — Joint & User Experience</h3>
+      <p>
+        The second prototype focused on the 2-DOF joint mechanism, exploring how the joint behaves in motion, how it feels to the user, and how loads act on the structure while walking. 
+      </p>
+      <p>
+        This validated that the system could stay supportive beyond static use.
+      </p>
+    </div>
+
+    <div class="coy-risk__image2">
+      <img src="project pics/COY/rr2.png" alt="Refined prototype">
+    </div>
+  </div>
+  </div>
+
+</section>
+
+</main>
+                  
+
+            
+
+                <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1304 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- MAIN PAGE --------------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+
+/* ------------------------------- SIDE PANEL NEXT TO HERO ------------------------------ */
+
+/* --- LAYOUT GRID: SIDE PANEL AT THE SIDE--- */
+.main-body-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+/* PANEL COMMON STYLE */
+.panel-section {
+    border: var(--border-thick);
+    border-radius: 15px;
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    /* The "Card" shadow */
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.1); 
+}
+
+/* SIDEBAR CONTROLS */
+.sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding-top: 30px;
+    background-color: #f4f4f4; /* Slightly darker to look like a different material */
+}
+
+/* --- HIGH FIDELITY GAUGE --- */
+.instrument-bezel {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    /* Outer metal ring gradient */
+    background: linear-gradient(145deg, #ffffff, #d0d0d0); 
+    border: 1px solid var(--ink);
+    padding: 4px;
+    box-shadow: 
+        3px 3px 6px rgba(0,0,0,0.15), /* Drop shadow */
+        inset 1px 1px 2px #fff; /* Highlight */
+    position: relative;
+}
+
+.gauge-housing {
+    width: 100%; height: 100%;
+    background: #fdfdfd;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    position: relative;
+    /* Inner shadow for depth */
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.gauge-bg {
+    width: 100%; height: 100%;
+    color: var(--ink);
+    opacity: 0.8;
+}
+
+.needle {
+    width: 45%; height: 3px;
+    background: var(--ink);
+    position: absolute; top: 50%; left: 50%;
+    transform-origin: left center; /* Pivot from the left tip of the div */
+    transform: rotate(-45deg); /* Default start pos */
+    border-radius: 50% 0 0 50%;
+    z-index: 2;
+    transition: transform 0.1s linear;
+}
+
+.gauge-center-cap {
+    width: 12px; height: 12px;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+/* The Glass Glare Effect */
+.gauge-glass-reflection {
+    position: absolute; top: 10%; left: 5%;
+    width: 90%; height: 40%;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* --- HIGH FIDELITY SLIDER --- */
+.slider-group {
+    display: flex; gap: 12px; height: 140px;
+    align-items: center;
+}
+.slider-track {
+    width: 14px; height: 100%;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    position: relative;
+    /* NEW: Heavy inset shadow for "trough" look */
+    box-shadow: inset 3px 3px 4px rgba(0,0,0,0.25);
+    background-color: #f0f0f0; /* Slightly darker inside */
+}
+
+.slider-labels .tick {
+    font-weight: normal;
+    color: #999;
+    font-size: 14px;
+}
+
+.slider-labels {
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-size: 10px; font-weight: bold; color: #888; padding: 5px 0;
+}
+
+.slider-track-housing {
+    width: 24px; height: 100%;
+    background: linear-gradient(90deg, #eee, #fff, #eee);
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* The dark slot line */
+.slider-slot {
+    position: absolute;
+    top: 10px; bottom: 10px; left: 50%;
+    width: 4px; transform: translateX(-50%);
+    background: #111;
+    border-radius: 2px;
+    box-shadow: inset 1px 1px 2px #000;
+}
+
+/* The Fader Handle */
+.retro-fader {
+    width: 36px; height: 24px;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    position: absolute;
+    left: 50%; top: 30%; /* Initial position */
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        4px 4px 0px rgba(0,0,0,0.2), /* Hard shadow */
+        inset 1px 1px 0px #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    cursor: grab;
+    z-index: 2;
+}
+
+/* The grip lines on the handle */
+.ribs span {
+    display: block; width: 20px; height: 2px;
+    background: var(--ink);
+    border-radius: 1px;
+}
+
+/* Add this to control the spacing of the slider handle lines */
+.ribs {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* <--- INCREASE THIS NUMBER to make the gap wider */
+}
+
+/* Switches */
+.switch-panel { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.rocker-switch {
+    width: 30px; height: 18px; border: 2px solid var(--ink); border-radius: 4px;
+    background: #fff; box-shadow: 2px 2px 0px var(--ink);
+}
+.rocker-switch.off { background: var(--ink); } /* Filled in look */
+.round-knob {
+    width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 50%;
+    background: #fff; 
+    /* NEW: This creates the "Raised Edge" ring effect */
+    /* Inner white highlight top-left, Inner dark shadow bottom-right */
+    box-shadow: 
+        inset 2px 2px 0px #fff, 
+        inset -2px -2px 0px rgba(0,0,0,0.15),
+        1px 1px 0px var(--ink); /* External shadow */
+    position: relative;
+}
+
+
+
+/* ------------------------------- HERO SECTION ------------------------------------- */
+
+/* HERO SECTION */
+.hero-panel {
+    display: flex;
+    gap: 30px;
+}
+.hero-content { flex: 1; }
+h2 { font-size: 2.2rem; margin: 0 0 10px 0; text-transform: uppercase; font-weight: 900; }
+.subhead{
+  margin-bottom: 14px;                 /* was 30px */
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;                  /* was 1.1rem */
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
+
+/* HERO headline: slightly smaller */
+.hero-panel .hero-content h2{
+  font-size: 1.95rem;
+  line-height: 1.06;
+  margin: 0 0 10px 0;
+}
+
+.hero-intro{
+  margin: 0 0 20px 0;
+  max-width: 70ch;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  opacity: 0.88;
+}
+
+.primary-btn.block-3d-lg, .secondary-btn.block-3d-lg {
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 5px 5px 0px var(--ink);
+    margin-right: 15px;
+}
+.secondary-btn { background: #eee; }
+
+.dashed-lines-group { margin-top: 30px; }
+.dash-row {
+    border-bottom: 2px dashed #ccc;
+    height: 15px; width: 100%;
+}
+
+/* 1. The Frame Container (Now frameless) */
+.hero-image-frame {
+    width: 400px;
+    height: 350px;
+    /* border: 3px solid var(--ink);   <-- REMOVED THE BORDER LINE */
+    border-radius: 15px;            /* Keep rounded corners */
+    overflow: hidden;               /* Keep image cropped to corners */
+    /* background: #fff;               <-- Not needed anymore */
+    /* box-shadow: 6px 6px 0px rgba(0,0,0,0.15); <-- REMOVED THE 3D SHADOW */
+    position: relative;
+}
+
+/* 2. The Actual Image (Keeps the retro filter) */
+.retro-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* The filter remains to match the aesthetic */
+    filter: grayscale(100%) contrast(120%) brightness(110%);
+}
+
+
+/* HERO: single CTA should be lean and not leave ghost spacing */
+.hero-panel .cta-group{ margin-top: 0; }
+
+.hero-panel .hero-contact-btn{
+  padding: 10px 18px;      /* leaner */
+  font-size: 0.85rem;      /* leaner */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;   /* since it's an <a> */
+  margin-right: 0;         /* override the old 15px */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------------------- NAV DIAL SECTION ------------------------------------- */
+
+.nav-station-panel{
+  margin-bottom: 25px;
+  padding: 22px 18px;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+--orbitScale: 1;
+
+  --hubY: 105%;
+
+  /* NEW: one source of truth for dial scale */
+  --dialSize: clamp(420px, 62vw, 720px);
+
+  overflow: hidden;
+}
+
+/* Inner viewport that crops the content */
+.nav-station-clip{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  clip-path: inset(0 0 calc(100% - var(--hubY)) 0);
+  overflow: hidden; /* fallback + prevents stray pixels */
+}
+
+.nav-station{
+  position:relative;
+  width:min(1100px, 100%);
+  height: clamp(520px, 65vw, 620px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color: var(--ink);
+}
+
+.nav-hub{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+/* =========================================================
+   DIAL
+   ========================================================= */
+
+.nav-dial{
+  position:absolute;
+  left:50%;
+  top: var(--hubY);
+  transform: translate(-50%, -50%);
+
+  /* UPDATED: uses shared variable (no behavior change on desktop) */
+  width: var(--dialSize);
+  height: var(--dialSize);
+
+  z-index: 2;
+}
+
+.nav-dial__svg{ width:100%; height:100%; display:block; }
+
+.nav-dial__arcText{
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 6px;
+  font-size: 26px;
+  fill: var(--ink);
+}
+
+/* =========================================================
+   KNOB
+   ========================================================= */
+
+.nav-knob{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  width: 44%;
+  height: 44%;
+  border-radius:50%;
+  background:#fff;
+  border: 4px solid var(--ink);
+  box-shadow: 10px 10px 0px rgba(0,0,0,0.10), inset 2px 2px 0px #fff;
+}
+
+.nav-knob__rim{
+  position:absolute;
+  inset: 8%;
+  border-radius:50%;
+  border: 2px solid rgba(0,0,0,0.35);
+}
+
+.nav-knob__inner{
+  position:absolute;
+  inset: 20%;
+  border-radius:50%;
+  border: 2px dashed rgba(0,0,0,0.22);
+}
+
+.nav-knob__pointer{
+  position:absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width:0; height:0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 18px solid var(--ink);
+}
+
+/* =========================================================
+   WINDOWS (layout + interaction)
+   ========================================================= */
+
+.nav-windows{
+  position:absolute;
+  left:50%;
+  top: var(--hubY);
+  transform: translate(-50%, -50%);
+  width:0;
+  height:0;
+  z-index: 10 !important;
+  pointer-events: none;
+}
+
+.nav-window{
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: auto;
+  cursor: pointer;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--ang))
+    translate(0, calc(-1 * var(--orbit)))
+    rotate(calc(-1 * var(--ang)));
+}
+
+/* Window sizes */
+.nav-window--left  { --w: clamp(120px, 14vw, 170px); }
+.nav-window--center{ --w: clamp(140px, 16vw, 200px); }
+.nav-window--right { --w: clamp(120px, 14vw, 170px); }
+
+/* Orbit + angle (desktop layout) */
+.nav-window--left{
+  --orbit: calc(clamp(430px, 480px, 570px) * var(--orbitScale));
+  --ang: -45deg;
+}
+
+.nav-window--center{
+  top: 35px;
+  --orbit: calc(clamp(460px, 510px, 610px) * var(--orbitScale));
+  --ang: 0deg;
+}
+
+.nav-window--right{
+  --orbit: calc(clamp(430px, 480px, 570px) * var(--orbitScale));
+  --ang: 45deg;
+}
+
+/* =========================================================
+   WINDOW FRAME (visual)
+   ========================================================= */
+
+.nav-window__frame{
+  position:relative;
+  width: var(--w);
+  height: var(--w);
+  border-radius:50%;
+  background:#fff;
+  display:grid;
+  place-items:center;
+
+  border: 3px solid var(--ink);
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 0 6px var(--ink);
+
+  overflow: visible;
+}
+
+/* Outer ring bezel */
+.nav-window__frame::before{
+  content:"";
+  position:absolute;
+  inset: -14%;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: transparent;
+  pointer-events:none;
+  z-index: 2;
+}
+
+/* Screws on the outer bezel (TX-button approach) */
+.nav-window__frame::after{
+  content: "";
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 6;
+
+  background:
+    radial-gradient(circle, #ddd 0 2px, var(--ink) 3px, transparent 4px)
+      13.5% 18% / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, var(--ink) 3px, transparent 4px)
+      86.5% 18% / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, var(--ink) 3px, transparent 4px)
+      85% 83% / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, var(--ink) 3px, transparent 4px)
+      15% 83% / 12px 12px no-repeat;
+}
+
+.nav-window__placeholder{
+  width: 72%;
+  height: 72%;
+  border-radius:50%;
+  border: 2px solid rgba(0,0,0,0.28);
+  background: transparent;
+}
+
+/* Curved labels */
+.nav-window__labelArc{
+  position:absolute;
+  inset: -35%;
+  width: 168%;
+  height: 168%;
+  pointer-events:none;
+}
+
+.nav-window__labelArc text{
+  font-family: var(--font-header);
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  fill: var(--ink);
+  font-size: 12px;
+}
+
+/* --- CLICKABLE-NESS --- */
+.nav-window[data-target="engineering"]{
+  cursor: pointer;
+}
+
+/* ------------------------------- HIGHLIGHTED PROJECT SECTION -------------------------- */
+
+/* --- Container & Panels --- */
+.tv-header-container {
+    display: flex; justify-content: center; align-items: center;
+    gap: 15px; width: 100%; max-width: 900px;
+    margin: 40px auto; padding: 20px; box-sizing: border-box;
+}
+
+.module-panel {
+    background: var(--paper);
+    border: var(--stroke-thick) solid var(--ink);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-hard);
+    position: relative; padding: 16px;
+    display: flex; flex-direction: column; box-sizing: border-box;
+}
+
+.side-module { width: 120px; height: 200px; z-index: 2; }
+.main-display { width: 420px; height: 230px; z-index: 10; padding: 18px; }
+
+/* --- NEW: Outline Screws --- */
+.screw-outline {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    position: absolute; z-index: 20;
+    /* Just an outline now */
+    border: 2px solid var(--ink);
+    background: transparent;
+}
+.screw-outline.tl { top: 8px; left: 8px; }
+.screw-outline.tr { top: 8px; right: 8px; }
+.screw-outline.bl { bottom: 8px; left: 8px; }
+.screw-outline.br { bottom: 8px; right: 8px; }
+
+
+/* --- CENTER: Bulging CRT Monitor --- */
+
+.monitor-casing {
+    flex: 1; display: flex; gap: 15px;
+    background: var(--metal);
+    border: var(--stroke-thick) solid var(--ink);
+    /* Subtle outer bulge */
+    border-radius: 16px / 24px;
+    padding: 12px;
+    box-shadow: inset 2px 2px 8px rgba(0,0,0,0.15);
+    height: 100%; box-sizing: border-box;
+}
+
+/* Common Barrel Distortion Shape */
+
+.monitor-bezel-inset {
+    flex: 1; background: #ababab;
+    padding: 6px;
+    box-shadow: inset 2px 2px 8px rgba(0,0,0,0.6);
+    display: flex;
+    /* Ensure children inherit the curve */
+    overflow: hidden;
+    /* Bezel curves: Slight curve on sides */
+    border-radius: 50% / 10%; 
+    
+    /* Ensure child (glass) doesn't bleed out */
+    overflow: hidden;
+}
+
+.monitor-glass {
+    flex: 1; background: #fff;
+   
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    /* Radial gradient to enhance the bulge effect (brighter center) */
+    background-image: radial-gradient(circle at center, #fff 40%, #eee 100%);
+    /* Inset shadow emphasizing curved edges */
+    box-shadow: inset 0px 0px 15px rgba(0,0,0,0.2);
+    /* Glass curves: Deeper curve on sides for the "Bubble" effect */
+    border-radius: 50% / 20%;
+}
+
+.glass-reflection-curved {
+    position: absolute; top: 0; left: 0; right: 0; height: 40%;
+    /* Curved reflection highlight */
+    background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, transparent 100%);
+    border-radius: 50% / 20%; /* Matches top curve */
+    pointer-events: none; z-index: 3;
+}
+
+.screen-content h2 {
+    font-weight: 900; font-size: 1.6rem; text-align: center;
+    line-height: 0.95; color: var(--ink); z-index: 2;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1); margin: 0;
+    /* Subtle perspective warp on text */
+    transform: perspective(500px) rotateX(5deg);
+}
+.scanline-overlay {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 3px);
+    z-index: 1; pointer-events: none;
+}
+.control-strip {
+    width: 30px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 5px 0;
+}
+
+
+/* --- RIGHT: Truncated Cone Dial --- */
+
+.cone-dial-assembly {
+    position: relative;
+    width: 70px; height: 70px;
+    display: flex; align-items: center; justify-content: center;
+    /* Hard shadow for the whole assembly */
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+    border-radius: 50%;
+}
+
+/* The sloping side of the cone */
+.cone-slope-ring {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    /* Thick border creates the slope area */
+    border: 3px solid var(--metal-dark);
+    box-sizing: border-box;
+    /* Radial ticks on the slope */
+    background-image: repeating-conic-gradient(var(--ink) 0deg 2deg, transparent 2deg 20deg);
+    /* Hard outer border */
+    outline: 3px solid var(--ink);
+
+    box-shadow: 
+        inset 2px 2px 4px rgba(255,255,255,0.8),
+        inset -3px -3px 6px rgba(0,0,0,0.3);
+}
+
+/* The flat top face */
+.cone-top-face {
+    position: relative;
+    width: 46px; height: 46px; /* Smaller than ring to sit inside/ontop */
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    z-index: 2;
+    /* Shadow cast DOWN onto the slope ring to show height */
+   
+}
+
+/* Indicator remains the same */
+.dial-indicator {
+    position: absolute; top: 4px; left: 50%;
+    width: 4px; height: 40%; background: var(--ink);
+    transform: translateX(-50%); border-radius: 2px;
+}
+
+/* --- L-SHAPE PIPE CONNECTOR --- */
+.l-pipe-connector {
+    position: absolute;
+    /* Pushed further left so it touches the border but doesn't overlap/erase it */
+    left: -64px; 
+    /* Align vertically with the top slider */
+    top: 30px;   
+    width: 60px;
+    height: 241px; /* Extended length */
+    z-index: 1; /* Sits alongside the panel */
+    overflow: visible;
+}
+
+/* --- MIRRORED R-SHAPE PIPE CONNECTOR --- */
+.r-pipe-connector {
+    position: absolute;
+    /* Pushed completely to the right of the panel */
+    right: -63px; 
+    /* Align vertically with the top slider */
+    top: 30px;   
+    width: 60px;
+    height: 241px;
+    z-index: 1; /* Sits alongside the panel */
+    overflow: visible;
+}
+
+/* --- Layout & Other Components --- */
+.module-content { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 5px 0; }
+.align-center { align-items: center; }
+.vertical-layout.space-between { justify-content: space-between; }
+.vertical-layout.v-center { justify-content: center; gap: 20px; align-items: center; }
+
+.high-fi-slider-group { display: flex; gap: 15px; height: 110px; justify-content: center; }
+.slider-wrapper { display: flex; gap: 8px; align-items: center; }
+.slider-marks { display: flex; flex-direction: column; justify-content: space-between; height: 80%; padding: 5px 0; }
+.slider-marks span { display: block; width: 6px; height: 2px; background: var(--ink); }
+.slider-track-housing { width: 24px; height: 100%; background: linear-gradient(90deg, #eee, #fff, #eee); border: 2px solid var(--ink); border-radius: 4px; position: relative; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
+.slider-slot { position: absolute; top: 8px; bottom: 8px; left: 50%; width: 4px; transform: translateX(-50%); background: #111; border-radius: 2px; box-shadow: inset 1px 1px 2px #000; }
+.slider-handle.retro-fader { width: 34px; height: 18px; background: #fff; border: 2px solid var(--ink); border-radius: 4px; position: absolute; left: 50%; transform: translate(-50%, -50%); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; cursor: grab; z-index: 2; }
+.ribs span { display: block; width: 20px; height: 2px; background: var(--ink); }
+
+.pop-knob-small { width: 24px; height: 24px; border: 2px solid var(--ink); border-radius: 50%; background: #fff; box-shadow: inset 1px 1px 0px #fff, inset -2px -2px 0px rgba(0,0,0,0.15), 2px 2px 0px var(--ink); }
+
+.speaker-grille { border: 2px solid var(--ink); background-color: #ddd; background-image: radial-gradient(circle at center, var(--ink) 1.5px, transparent 2px); background-size: 5px 5px; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3); }
+.round-grille { width: 60px; height: 60px; border-radius: 50%; }
+.vent-slots-high-fi.stretch { display: flex; flex-direction: column; gap: 6px; height: 100%; justify-content: space-evenly; }
+.vent-slots-high-fi span { width: 24px; height: 6px; border: 2px solid var(--ink); background: #222; border-radius: 3px; box-shadow: inset 1px 1px 2px #000; }
+
+
+/* --- PROJECT CARDS --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.project-card { padding: 15px; display: flex; flex-direction: column; }
+
+.card-header-pill {
+    align-self: flex-start;
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    padding: 5px 12px;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 15px;
+    background: #fff;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+.card-header-pill h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; }
+.mini-icon { width: 16px; height: 16px; }
+
+.card-body { flex: 1; display: flex; gap: 10px; margin-bottom: 15px; }
+.thumb-box {
+    width: 60px; height: 60px;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+}
+.text-lines { flex: 1; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+.line { height: 2px; background: #ddd; width: 100%; }
+.line.short { width: 60%; }
+
+.card-footer {
+    font-weight: bold; font-size: 0.9rem; text-transform: uppercase;
+}
+
+/* ------------------------------- CONTACT ME SECTION ----------------------------------- */
+
+.contact-plate{
+  position: relative;
+  margin: 22px 0 18px;
+  padding: 18px 22px 16px;
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 72px 72px 22px 22px;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.10);
+  text-align: center;
+}
+
+/* inner border line */
+.contact-plate::before{
+  content:"";
+  position:absolute;
+  inset: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 60px 60px 16px 16px;
+  pointer-events:none;
+  opacity: 1;
+}
+
+.contact-plate__title{
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: clamp(18px, 3vw, 32px);
+  line-height: 1.05;
+  margin: 2px 0 10px;
+}
+
+.contact-plate__rule{
+  position: relative;
+  z-index: 1;
+  height: 2px;
+  background: var(--ink);
+  opacity: 0.45;          /* slightly faded like your reference */
+  margin: 6px 0 12px;
+}
+
+.contact-plate__subtitleRow{
+  position: relative;
+  z-index: 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+}
+
+.contact-plate__subtitle{
+  font-family: var(--font-header);
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: clamp(12px, 2vw, 20px);
+  opacity: 0.85;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.contact-plate__dash{
+  width: clamp(28px, 8vw, 64px);
+  height: 2px;
+  background: var(--ink);
+  opacity: 0.35;
+  border-radius: 2px;
+}
+
+/* tiny screw dots bottom corners */
+.contact-plate__dot{
+  position:absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background:#fff;
+  z-index: 2;
+  opacity: 0.9;
+}
+.contact-plate__dot--bl{ left: 18px; bottom: 14px; }
+.contact-plate__dot--br{ right: 18px; bottom: 14px; }
+
+/* =========================================================
+   CONTACT MODULE (mounted banner + console fields)
+   ========================================================= */
+
+.contact-module{
+  position: relative;
+  margin: 22px 0 18px;
+}
+
+/* The main plate behind the banner */
+.contact-mainplate{
+  position: relative;
+  margin-top: -48px;              /* pulls plate up so banner feels mounted */
+  padding: 34px 26px 22px;
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.10);
+}
+
+/* inner border line like your other panels */
+.contact-mainplate::before{
+  content:"";
+  position:absolute;
+  inset: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  pointer-events:none;
+}
+
+/* Keep banner visually above the plate */
+.contact-plate{
+  position: relative;
+  z-index: 2;
+}
+.contact-mainplate{
+  z-index: 1;
+}
+
+/* The “console” form layout */
+.contact-console{
+  position: relative;
+  z-index: 2;
+  display: flex;               /* ← switch to vertical flow */
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+
+/* Retro console/terminal label (Illuminated Display with 3D Bezel) */
+.contact-label {
+  /* Layout: shrink to fit text */
+  display: inline-block;
+  width: fit-content; 
+  margin: 0 0 10px 2px;
+  padding: 6px 12px; /* Slightly more horizontal padding for the bezel */
+
+  /* Typography: Digital glow look */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  /*color: #7aff7a; /* Bright phosphor green */
+  /*text-shadow: 0 0 5px rgba(122, 255, 122, 0.6); /* Glow effect */
+  color: #ffffff; /* Bright phosphor green */
+  text-shadow: 0 0 5px rgba(122, 255, 122, 0.6); /* Glow effect */
+
+  /* The "Screen" Background */
+  background-color: #051a05; /* Deep dark green/black */
+  
+  /* 3D Metallic Bezel Structure */
+  border-radius: 20px; /* More rounded corners */
+  border-width: 3px;   /* Thicker border for bezel appearance */
+  border-style: solid;
+  /* Lighting effects on the metallic border ridges: */
+  /*border-top-color: #8a9a9a;    /* Light hits top edge */
+ /* border-left-color: #7a8a8a;   /* Light hits left edge */
+  /*border-bottom-color: #3a4a4a; /* Shadow on bottom edge */
+  /*border-right-color: #3a4a4a;  /* Shadow on right edge */
+
+  border-top-color: #d3d3d3;    /* Light hits top edge */
+  border-left-color: #a8a8a8;   /* Light hits left edge */
+  border-bottom-color: #686868; /* Shadow on bottom edge */
+  border-right-color: #464646;  /* Shadow on right edge */
+  
+  /* High Fidelity Depth Effects */
+  box-shadow: 
+    inset 0 0 8px rgba(0,0,0,1), /* Deep internal shadow to recess the screen */
+    2px 2px 3px rgba(0,0,0,0.2); /* External drop shadow for the whole unit */
+    
+  /* Glass Sheen reflecting on the screen surface */
+  background-image: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.07) 0%, 
+    rgba(255, 255, 255, 0) 50%
+  );
+}
+
+.contact-field{
+  width: 75%;                  /* ← reserve left side space */
+}
+
+.contact-field--message .contact-textarea{
+  min-height: 180px;
+}
+
+/* Inputs: mechanical “slot” look */
+.contact-input,
+.contact-textarea{
+  width: 100%;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 12px 12px;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+
+  /* recessed feel */
+  box-shadow:
+    inset 3px 3px 0px rgba(0,0,0,0.10);
+  outline: none;
+}
+
+/* Make the first two “thin enough for one line” */
+.contact-input{
+  height: 44px;
+}
+
+/* Message window */
+.contact-textarea{
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Focus state: keep it subtle + on-theme (no neon) */
+.contact-input:focus,
+.contact-textarea:focus{
+  box-shadow:
+    inset 3px 3px 0px rgba(0,0,0,0.10),
+    0 0 0 3px rgba(0,0,0,0.15);
+}
+
+
+/* =========================================================
+   CONTACT MAINPLATE LAYOUT (fields + button bay)
+   ========================================================= */
+
+.contact-mainplate__layout{
+  display: grid;
+  grid-template-columns: 1fr 260px; /* left = fields, right = button bay */
+  gap: 26px;
+  align-items: center;
+}
+
+/* keep your vertical form, but let it fill left column */
+.contact-console{
+  width: 100%;
+  align-items: flex-start;
+}
+
+.contact-field{
+  width: 100%; /* now the column controls width */
+}
+
+/* =========================================================
+   TRANSMISSION BUTTON (Pop-Art Depth Style)
+   ========================================================= */
+
+.tx-bay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+
+/* Base Container */
+.tx-btn {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent; 
+}
+
+/* 1. The Outer Metal Ring (Pop Art Housing) */
+.tx-btn__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  
+  /* Keep your original brushed metal look */
+  background: linear-gradient(145deg, #e6e6e6, #a0a0a0);
+  
+  /* UPDATE: Thick Pop-Art Border */
+  border: 2px solid #121212; 
+  
+  /* UPDATE: Hard Solid Shadow (Pop Art Depth) */
+  box-shadow: 8px 8px 0px #121212;
+    
+  z-index: 1;
+}
+
+/* 2. The Screws */
+.tx-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  
+  /* Screws kept as is, but slightly sharper contrast */
+  background: 
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 15% 18% / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 85% 18% / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 85% 83% / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 15% 83% / 12px 12px no-repeat;
+}
+
+/* 3. The Vintage Mesh (Inside the well) */
+.tx-btn__ring::after {
+  content: "";
+  position: absolute;
+  inset: 18px; 
+  border-radius: 50%;
+  background-color: #5c3a2a; 
+  
+  /* UPDATE: Hard border for the well */
+  border: 2px solid #121212;
+  
+  /* Crosshatch pattern */
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.3) 0, rgba(0,0,0,0.3) 2px, transparent 2px, transparent 6px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.3) 0, rgba(0,0,0,0.3) 2px, transparent 2px, transparent 6px);
+    
+  /* UPDATE: Hard inset shadow */
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+/* 4. The Orange Plastic Cap */
+.tx-btn__cap {
+  position: absolute;
+  inset: 28px; 
+  border-radius: 50%;
+  z-index: 3;
+  
+  /* Keep original orange gradient */
+  background: radial-gradient(circle at 35% 35%, #ffab73 0%, #ff7b30 40%, #c44e0e 100%);
+  
+  /* UPDATE: Thick Pop-Art Border */
+  border: 3px solid #121212;
+  
+  /* UPDATE: Hard Shadow onto the mesh */
+  box-shadow: 
+    /* Internal highlight (optional, keeps the glossy look) */
+    inset 3px 3px 0px rgba(255, 255, 255, 0.4),
+    /* External HARD shadow */
+    6px 6px 0px #121212;
+
+  display: grid;
+  place-items: center;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 5. The Icon */
+.tx-btn__icon {
+  width: 60px;
+  height: 60px;
+  color: #121212; /* Matched to border color */
+  opacity: 0.9;
+  /* Hard drop shadow for icon */
+  filter: drop-shadow(2px 2px 0px rgba(255,255,255,0.4));
+  transform: rotate(0deg);
+}
+
+/* 6. Interaction: Pressing the button */
+.tx-btn:active .tx-btn__cap {
+  /* Push down effect - moves diagonally to cover the hard shadow */
+  transform: translate(6px, 6px);
+  
+  /* Flatten the shadow */
+  box-shadow: 
+    inset 4px 4px 0px rgba(0, 0, 0, 0.1),
+    0px 0px 0px #121212; /* Shadow disappears */
+    
+  background: radial-gradient(circle at 35% 35%, #f0955b 0%, #e0601a 40%, #a83c05 100%);
+}
+
+/* Label styling (Keep as is or adjust if needed) */
+.tx-label{
+  margin-top: 20px; /* Increased slightly for the bigger shadow */
+  text-align: center;
+  font-family: var(--font-header); /* Ensure this var exists, or use sans-serif */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.tx-label__top{
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.05;
+}
+.tx-label__bot{
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.05;
+}
+
+/* =========================================================
+   RETRO SOCIAL BUTTONS (Pop-Art Style)
+   ========================================================= */
+
+.social-bay {
+  display: flex;
+  gap: 20px;            /* Space between buttons */
+  margin-bottom: 24px;  /* Space above the transmission label */
+  justify-content: center;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;         /* Chunky square size */
+  height: 54px;
+  
+  /* The "Sticker" Look */
+  background-color: #ffffff;
+  border: 2px solid #121212; /* Thick dark ink border */
+  border-radius: 14px;       /* "Slightly square with rounded corners" */
+  
+  /* Hard Solid Shadow (No blur) */
+  box-shadow: 4px 4px 0px #121212; 
+  
+  /* Icon styling */
+  color: #121212;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.social-btn svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+/* Hover: Tiny lift for feedback */
+.social-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #121212;
+}
+
+/* Active: Presses completely flat against the shadow */
+.social-btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px #121212;
+}
+
+/* ------------------------------- MOBILE RESPONSIVENESS SETTING --------------------------------------- */
+
+/* Mobile Responsive Fix - OVERALL (header, hero + side, nav dial, proj, contact me, footer) */
+@media (max-width: 900px) {
+    
+    
+
+    
+
+
+    
+
+
+    /* --- Nav Dial Section --- */
+    .nav-station-panel{
+    --hubY: 110%;
+    --orbitScale: 0.75;   /* KEY: bring the 3 windows inward radially */
+    /* KEY: allow side spill, but keep vertical cropping behavior */
+    overflow-x: visible;
+    overflow-y: hidden;
+    }
+    .nav-station{ height: 440px; }
+    .nav-dial{
+        width: clamp(360px, 78vw, 560px);
+        height: clamp(360px, 78vw, 560px);
+    }
+    .nav-dial__arcText{ font-size: 30px; letter-spacing: 5px; }
+    .nav-window--center{
+        top: 12px; /* smaller mobile nudge */
+    }
+
+
+    /* --- Projects Section --- */
+    .l-pipe-connector,
+    .r-pipe-connector {
+        /*display: none !important;*/
+        top: 18px;
+    }
+    .tv-header-container {
+        /* Reduce bottom margin (was approx 40px-60px) */
+        margin-bottom: 10px; 
+        /* Optional: Tweak top margin if needed */
+        margin-top: 20px;
+    }
+    .tv-header-container { transform: scale(0.9); flex-direction: row; align-items: center; gap: 20px; }
+    .side-module { width: 80%; max-width: 130px;  padding: 20px; }
+    .main-display { width: 100%; max-width: 420px; height: 230px; }
+    .vertical-layout.space-between { flex-direction: column; align-items: center; }
+    .high-fi-slider-group { height: 100px; }  
+    .projects-grid { grid-template-columns: 1fr; }
+    .cone-dial-assembly {
+        transform: scale(0.9);
+        justify-content: center;
+    }
+    .cone-slope-ring{transform: scale(0.9)
+    }
+    .round-grille{transform: scale(0.8); justify-content:end}
+    
+
+    /* --- Contact Me Section --- */
+    .contact-console{
+    grid-template-columns: 1fr;
+    }
+    
+    .tx-bay{
+        padding-top: 10px;
+    }
+    
+}
+
+
+
+
+
+
+/* =========================================================
+   HIDE WIP
+   ========================================================= */
+
+   .wip-hidden{
+  display: none !important;
+}

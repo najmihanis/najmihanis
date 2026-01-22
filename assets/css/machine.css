@@ -1,0 +1,366 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- MACHINING PROJECT PAGE ----------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+/* ===================== MACHINING PAGE: HERO (COY-LIKE) ===================== */
+
+.mach-page{
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Panel shell (matches COY) */
+.mach-panel{
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: var(--shadow-hard);
+  padding: 14px;
+  position: relative;
+}
+
+/* Hero layout */
+.mach-hero{
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.mach-kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.mach-title{
+  margin: 0;
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+}
+
+.mach-lede{
+  margin: 10px 0 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  opacity: 0.78;
+  max-width: 70ch;
+}
+
+/* Stats strip */
+.mach-stats{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+}
+
+.mach-stat__k{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.mach-stat__v{
+  margin-top: 6px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  opacity: 0.86;
+}
+
+/* CTA */
+.mach-cta{
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: flex-start;
+}
+
+.mach-btn{
+  text-decoration: none;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 18px;
+  text-transform: none;
+  letter-spacing: 0.5px; /* or 0 */
+  width: auto;
+  flex: 0 0 auto;
+}
+
+/* Screen window (same glass stack logic as COY) */
+.mach-screen{
+  position: relative;
+  border: var(--border-thin);
+  border-radius: 18px;
+  background: #f6f6f6;
+  overflow: hidden;
+  box-shadow: inset 3px 3px 10px rgba(0,0,0,0.10);
+  min-height: 260px;
+}
+
+.mach-screen__img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  
+  transform: scale(1.02);
+}
+
+.mach-screen__scan{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 3px);
+  opacity: 0.55;
+}
+
+
+
+
+
+/* Optional: smooth scroll when clicking Mill/Lathe */
+html{
+  scroll-behavior: smooth;
+}
+
+
+/* ===================== MACHINING: STAGE SECTIONS (LATHE / MILL) ===================== */
+
+.mach-stage{
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+/* pill header label */
+/* BIG centered header plate (straddles outside + hangs into grille) */
+.mach-stage__label{
+  position: absolute;
+  left: 50%;
+  top: -18px;                    /* top edge OUTSIDE the plate */
+  transform: translateX(-50%);
+  z-index: 20;
+
+  padding: 14px 34px 13px;       /* bigger */
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+
+  /* NOT button-y: no hard shadow */
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.85),
+    0 2px 0 rgba(0,0,0,0.10);
+
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+/* 2 rivets on both sides */
+.mach-stage__label::before,
+.mach-stage__label::after{
+  content:"";
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #d8d8d8 55%, #bcbcbc 100%);
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.85);
+  opacity: 0.95;
+}
+
+.mach-stage__label::before{ left: 12px; }
+.mach-stage__label::after{ right: 12px; }
+
+/* Section plate becomes the bezel */
+.mach-stage.mach-panel{
+  position: relative;
+  padding: 18px;                 /* bezel thickness lives here */
+  border-radius: 22px;
+}
+
+
+
+/* KILL the intermediate bezel layer (make it “invisible”) */
+.mach-stage__bezel{
+  margin-top: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Depressed grille valley (darker + deeper) */
+.mach-stage__valley{
+  position: relative;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 18px;
+  overflow: hidden;
+
+  /* darker metal base */
+  background-color: #bdbdbd;
+
+  /* grille dots */
+  background-image: radial-gradient(circle at center, rgba(0,0,0,0.95) 1.6px, transparent 2px);
+  background-size: 6px 6px;
+
+  /* deeper recess */
+  box-shadow:
+    inset 6px 6px 16px rgba(0,0,0,0.38),
+    inset -3px -3px 0 rgba(255,255,255,0.20);
+}
+
+/* make edges feel like a throat */
+.mach-stage__valley::before{
+  content:"";
+  position:absolute;
+  inset: 8px;
+  border-radius: 12px;
+  border: 2px solid rgba(0,0,0,0.18);
+  box-shadow: inset 0 0 0 999px rgba(0,0,0,0.06);
+  pointer-events:none;
+  opacity: 0.9;
+}
+
+/* soften highlight so it doesn’t look flat */
+.mach-stage__valley::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.28), transparent 55%);
+  opacity: 0.6;
+}
+
+/* cards grid */
+.mach-cards{
+  position: relative;
+  z-index: 2; /* above grille */
+  display: grid;
+  gap: 14px;
+}
+
+/* Lathe: 2 rows x 3 columns */
+.mach-cards--6{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Mill: 1 row x 3 columns */
+.mach-cards--3{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* project card plate: mounted look */
+.mach-card{
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+
+  box-shadow:
+    6px 6px 0 rgba(0,0,0,0.28),   /* main hard mount shadow */
+    10px 10px 18px rgba(0,0,0,0.18); /* soft depth shadow */
+
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 260px;
+}
+
+/* media window */
+.mach-card__media{
+  position: relative;
+  overflow: hidden;
+  background: #f6f6f6;
+  border-bottom: 2px solid rgba(0,0,0,0.12);
+}
+
+/* image */
+.mach-card__media img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  
+  transform: scale(1.03);
+}
+
+.mach-card__img img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  /* 🔑 Blend the image with the card surface */
+  mix-blend-mode: multiply;
+
+  /* Prevent washed-out look */
+  opacity: 0.95;
+}
+
+/* subtle screen-y overlay so it matches your vibe (optional) */
+.mach-card__media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.45), transparent 55%),
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 4px);
+  opacity: 0.55;
+}
+
+/* text area under image */
+.mach-card__text{
+  padding: 10px 18px 10px;
+  flex: 1; /* lets text expand naturally */
+}
+
+.mach-card__list{
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.85rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.mach-card__list li{
+  list-style-type: square;
+    margin-bottom: 6px;
+}
+
+/* ensure pill isn’t tangent to bezel edges visually */
+.mach-stage{
+  position: relative;
+}
+
+.mach-stage__valley{
+  overflow: visible !important;
+}

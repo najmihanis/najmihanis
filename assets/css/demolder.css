@@ -1,0 +1,496 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- DEMOLDER PROJECT PAGE------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+/* ===================== DEMOLDER PAGE LAYOUT ===================== */
+/* Make sure header sits above page content */
+.header-panel{
+  position: relative;
+  z-index: 99990;
+}
+
+/* Mobile dropdown should always be on top */
+body.nav-open .nav-plate{
+  position: fixed;
+  z-index: 99999;
+}
+
+.demolder-page{
+  width: 100%;
+  padding: 0;
+}
+
+/* 2-col briefing grid */
+.brief-grid{
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* ---------- LEFT RAIL ---------- */
+.brief-rail .rail-block{
+  background: var(--bg-paper);
+  border: var(--border-thin);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  box-shadow: inset 2px 2px 8px rgba(0,0,0,0.10);
+}
+
+.brief-rail .rail-block + .rail-block{
+  margin-top: 14px;
+}
+
+.rail-block--mini{
+  padding-top: 12px;
+}
+
+.rail-label{
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.rail-sub{
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.rail-body{
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+.rail-list{
+  list-style-type: square;
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+.rail-kv{
+  margin-top: 6px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+  padding-top: 10px;
+}
+
+.kv-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.kv-row:last-child{ border-bottom: 0; }
+
+.kv-k{
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.kv-v{
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  text-align: right;
+}
+
+/* ---------- MAIN COLUMN ---------- */
+.brief-main{
+  min-width: 0; /* important for overflow handling */
+}
+
+.brief-hero{
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  padding: 18px 18px 14px;
+  box-shadow: var(--shadow-hard);
+}
+
+.hero-kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.hero-title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 0.95;
+}
+
+.hero-lede{
+  margin: 10px 0 0;
+  max-width: 70ch;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+.hero-stats{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+}
+
+.stat-label{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.stat-value{
+  margin-top: 6px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  opacity: 0.86;
+}
+
+/* Iteration chips */
+.iter-nav{
+  display: flex;
+  gap: 10px;
+  margin: 14px 0 12px;
+  padding-left: 2px;
+}
+
+.iter-chip{
+  width: 44px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--ink);
+
+  font-weight: 900;
+  font-family: var(--font-header);
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.iter-chip:active{
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* ---------- Iteration cards ---------- */
+.iter-card{
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: var(--shadow-hard);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.iter-head{
+  padding: 12px 12px 10px;
+  
+  border-radius: 16px;
+  background: #fff;
+  
+  margin-bottom: 12px;
+}
+
+.iter-num{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.iter-name{
+  margin-top: 4px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.05rem;
+  line-height: 1.05;
+}
+
+.iter-one{
+  margin-top: 6px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+/* ---------- Wide image bay (CAD board friendly) ---------- */
+.image-bay{
+  position: relative;
+  border: var(--border-thin);
+  border-radius: 18px;
+  background: #f6f6f6;
+  overflow: auto;                 /* key: allow pan if needed */
+  
+  box-shadow: inset 3px 3px 10px rgba(0,0,0,0.10);
+}
+
+/* subtle “viewport” glass */
+.image-bay::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 18px;
+  
+  opacity: 0.9;
+  z-index: 1;
+}
+
+/* small pan hint (only shows if you want it; purely aesthetic) */
+.image-bay::after{
+  
+  position: sticky;
+  left: 10px;
+  bottom: 8px;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(6px);
+  font-weight: 900;
+  font-family: var(--font-header);
+  letter-spacing: 1px;
+  font-size: 0.55rem;
+  opacity: 0.55;
+  z-index: 2;
+}
+
+/* The image: keep crisp, allow natural width */
+.image-bay img{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;     /* important: allow shrinking */
+  border-radius: 12px;
+}
+
+/* Notes under each image */
+.iter-notes{
+  margin: 12px 0 0;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  opacity: 0.82;
+}
+
+.iter-notes b{
+  font-weight: 900;
+  font-family: var(--font-header);
+  letter-spacing: 0.5px;
+}
+
+.image-bay,
+.image-bay img,
+.process-block,
+.process-card {
+  opacity: 1;
+}
+
+/* === Iteration 2: make image bay shorter (crop instead of squish) === */
+#iter2 .image-bay{
+  max-height: 420px;   /* <-- tune this number */
+  overflow: hidden;    /* crops vertically */
+}
+
+#iter2 .image-bay img{
+  height: 50%;
+  width: 100%;
+  object-fit: cover;          /* fill width, crop excess height */
+  object-position: center top;/* keep top content visible */
+}
+
+/* ---------- LEFT RAIL: TALL ILLUSTRATION ---------- */
+/* Make casing clip ANY oversized backgrounds */
+.inner-casing{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Giant illustration layer (clipped by casing) */
+.casing-illustration{
+   position: absolute;
+
+  left: -280px;     /* MUCH further left → clipped by casing */
+  top: 1000px;       /* roughly aligns with bottom of Deliverables */
+
+  width: 820px;     /* slightly bigger helps sell scale */
+  height: 920px;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* The illustration itself */
+.casing-illustration img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.55;
+
+  /* Make white bg blend into your casing paper */
+  mix-blend-mode: multiply;
+
+  transform: scaleX(-1) rotate(1deg); 
+}
+
+/* Ensure your real content stays above it */
+.demolder-page,
+.footer-vent{
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ===================== HERO RESULT PREVIEW ===================== */
+
+.hero-results{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 14px;
+
+  border-top: 2px solid rgba(0,0,0,0.10);
+}
+
+/* Individual result window */
+.result-frame{
+  position: relative;
+  border-radius: 16px;
+  background: #f6f6f6;
+  overflow: hidden;
+}
+
+/* Glass / viewport feel (consistent with image-bay) */
+.result-frame::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius: 16px;
+  
+  z-index: 1;
+}
+
+/* Image behavior */
+.result-frame img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 220px;      /* controls hero dominance */
+  object-fit: cover;     /* fill width, crop vertically */
+  border-radius: 10px;
+  position: relative;
+  z-index: 0;
+}
+
+/* Zoom in FIRST hero result image slightly */
+.hero-results .result-frame:first-child img{
+  transform: scale(1.4);
+  transform-origin: center;
+  object-position: 50% 10%; /* x y */
+}
+
+
+/* ===================== FREE SECTIONS (ON CASING BG) ===================== */
+
+.demolder-free{
+  margin-top: 26px;
+}
+
+/* Section heading (match COY ideation / discovery style) */
+.free-heading{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.15rem;
+  margin: 0 0 14px;
+  opacity: 0.9;
+}
+
+/* extra spacing before iteration section */
+.free-heading--spaced{
+  margin-top: 34px;
+}
+
+/* Image sits directly on casing */
+.free-image{
+  margin: 0 0 14px;
+  background: var(--bg-paper);
+}
+
+.free-image img{
+  display: block;
+  width: 100%;
+  height: 20%;
+  max-width: 100%;
+
+  /* blend white background */
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+/* Body text */
+.free-text{
+  margin: 0;
+  max-width: 70ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+
+
+
+
+
+

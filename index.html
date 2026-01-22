@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 3D Engineer Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+                <!-- --------------------------------- SIDE CONSOLE & HERO SECTION ------------------------------- -->
+                <div class="main-body-grid">
+                    
+                    <!-- SIDE CONSOLE -->
+                    <aside class="panel-section sidebar-panel">
+                        <div class="corner-deco c-tl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-tr"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-bl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-br"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+
+                        <div class="instrument-bezel">
+                            <div class="gauge-housing">
+                                <svg class="gauge-bg" viewBox="0 0 100 100">
+                                    <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="1, 4" />
+                                    <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="1, 14" opacity="0.5"/>
+                                    <text x="50" y="30" text-anchor="middle" font-size="8" font-weight="bold" fill="currentColor">RPM</text>
+                                    <text x="28" y="75" text-anchor="middle" font-size="6" fill="currentColor">0</text>
+                                    <text x="72" y="75" text-anchor="middle" font-size="6" fill="currentColor">10</text>
+                                </svg>
+                                <div class="needle"></div>
+                                <div class="gauge-center-cap"></div>
+                                <div class="gauge-glass-reflection"></div>
+                            </div>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-track-housing">
+                                <div class="slider-slot"></div>
+                                <div class="slider-handle retro-fader">
+                                    <div class="ribs"><span></span><span></span><span></span></div>
+                                </div>
+                            </div>
+                            <div class="slider-labels">
+                                <span>MAX</span>
+                                <span class="tick">-</span>
+                                <span class="tick">-</span>
+                                <span class="tick">-</span>
+                                <span class="tick">-</span>
+                                <span class="tick">-</span>
+                                <span>MIN</span>
+                            </div>
+                        </div>
+
+                        <div class="switch-panel">
+                            <div class="rocker-switch"></div>
+                            <div class="rocker-switch off"></div>
+                            <div class="round-knob"></div>
+                            <div class="round-knob"></div>
+                        </div>
+                    </aside>
+
+                    <!-- HERO SECTION -->
+                    <main class="panel-section hero-panel" id="hero" >
+                        <div class="corner-deco complex c-tl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+                        <div class="corner-deco complex c-tr"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+                        <div class="corner-deco complex c-bl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+                        <div class="corner-deco complex c-br"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+
+                        <div class="hero-content">
+                            <h2>MECHANICAL SYSTEMS, DESIGNED WITH FEELING</h2>
+                            <p class="subhead">mechanical engineering • robotics • design • art</p>
+                            
+                            <!-- NEW: intro block (under meta, before CTA) -->
+                            <p class="hero-intro">
+                                I design and build mechanical systems with an emphasis on clarity, in function, feel, and intent. With a background in mechanical engineering and robotics, my work blends engineering, industrial design, and visual storytelling. I sketch extensively and prototype often, drawn to projects where form, proportion, and user interaction help reliable mechanics feel intuitive.
+                            </p>
+                            <!-- UPDATED: single CTA only 
+                            <div class="cta-group">
+                                <a class="primary-btn block-3d-lg hero-contact-btn" href="#contact">CONTACT ME</a>
+                            </div>-->
+                        </div>
+
+                        <div class="hero-image-frame">
+                            <img src="profile.png" alt="Profile Picture" class="retro-photo">
+                        </div>
+                    </main>
+                </div>
+
+                <!-- --------------------------------- NAV DIAL SECTION ------------------------------- -->
+                <section class="panel-section nav-station-panel">
+                    <div class="screw tl"></div><div class="screw tr"></div>
+                    <div class="screw bl"></div><div class="screw br"></div>
+
+                    <div class="nav-station">
+                        <!-- ONE HUB so everything shares the same center -->
+                        <div class="nav-hub">
+
+                            <!-- 3 CIRCULAR WINDOWS arranged on an arc -->
+                            <div class="nav-windows">
+                                <div class="nav-window nav-window--left" data-angle="-45" style="cursor: pointer;">
+                                <div class="nav-window__frame">
+                                    <!-- curved label following window circle -->
+                                    <svg class="nav-window__labelArc" viewBox="0 0 120 120" aria-hidden="true">
+                                    <path id="arc-art" d="M 14 58 A 46 46 0 0 1 106 58" fill="none"></path>
+                                    <text>
+                                        <textPath href="#arc-art" startOffset="50%" text-anchor="middle">ART & DESIGN</textPath>
+                                    </text>
+                                    </svg>
+
+                                    <div class="nav-window__placeholder"></div>
+                                </div>
+                                </div>
+
+                                <div class="nav-window nav-window--center" data-angle="0" style="cursor: pointer;" data-target="engineering">
+                                <div class="nav-window__frame">
+                                    <svg class="nav-window__labelArc" viewBox="0 0 140 140" aria-hidden="true">
+                                    <path id="arc-eng" d="M 16 64 A 46 46 0 0 1 124 64" fill="none"></path>
+                                    <text>
+                                        <textPath href="#arc-eng" startOffset="50%" text-anchor="middle">ENGINEERING</textPath>
+                                    </text>
+                                    </svg>
+
+                                    <div class="nav-window__placeholder"></div>
+                                </div>
+                                </div>
+
+                                <div class="nav-window nav-window--right" data-angle="45" style="cursor: pointer;">
+                                <div class="nav-window__frame">
+                                    <svg class="nav-window__labelArc" viewBox="0 0 160 160" aria-hidden="true">
+                                    <path id="arc-photo" d="M 18 72 A 46 46 0 0 1 142 72" fill="none"></path>
+                                    <text>
+                                        <textPath href="#arc-photo" startOffset="50%" text-anchor="middle">PHOTOGRAPHY</textPath>
+                                    </text>
+                                    </svg>
+
+                                    <div class="nav-window__placeholder"></div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- MAIN CENTRAL SELECTION DIAL -->
+                            <div class="nav-dial">
+                                <svg class="nav-dial__svg" viewBox="0 0 400 400" aria-hidden="true">
+                                    <path id="navArc" d="M 40 125 A 180 180 0 0 1 360 125" fill="none"></path>
+                                    <text class="nav-dial__arcText"><textPath href="#navArc" startOffset="50%" text-anchor="middle">NAVIGATION</textPath></text>
+                                    <circle cx="200" cy="200" r="160" fill="none" stroke="currentColor" stroke-width="4"></circle>
+                                    <circle cx="200" cy="200" r="148" fill="none" stroke="currentColor" stroke-width="2"></circle>
+
+                                    <g id="nav-outer-ring" style="transform-origin: 200px 200px; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);">
+                                        <circle cx="200" cy="200" r="138" fill="none" stroke="currentColor" stroke-width="10" stroke-dasharray="2 14" opacity="0.95"></circle>
+                                        <circle cx="200" cy="200" r="118" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="2 6" opacity="0.35"></circle>
+                                        <path d="M200 45 L207 60 L193 60 Z" fill="currentColor" opacity="0.9"></path>
+                                    </g>
+
+                                    <g id="nav-inner-ring" style="transform-origin: 200px 200px; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                                        <circle cx="200" cy="200" r="92" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 4" opacity="0.7"></circle>
+                                    </g>
+                                </svg>
+
+                                <div class="nav-knob" id="nav-knob" style="transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                                    <div class="nav-knob__rim"></div>
+                                    <div class="nav-knob__inner"></div>
+                                    <div class="nav-knob__pointer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- --------------------------------- HIGHLIGHTED PROJECT SECTION ----------------------------------- -->
+                <!-- CONSOLE-LIKE HEADER -->
+                <div class="tv-header-container wip-hidden">
+                    <!-- LEFT PANEL -->
+                    <div class="module-panel side-module">
+                        <!-- LEFT PIPES ASSEMBLY -->
+                        <svg class="l-pipe-connector" viewBox="0 0 60 241">
+                            <path d="M 60,20 H 30 A 20,20 0 0 0 10,40 V 241 H 23 V 40 A 7,7 0 0 1 30,33 H 60 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 60,20 H 30 A 20,20 0 0 0 10,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 60,33 H 30 A 7,7 0 0 0 23,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <path d="M 60,60 H 47 A 20,20 0 0 0 27,80 V 241 H 40 V 80 A 7,7 0 0 1 47,73 H 60 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 60,60 H 47 A 20,20 0 0 0 27,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 60,73 H 47 A 7,7 0 0 0 40,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <rect x="8" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            <rect x="25" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+
+                            <rect x="54" y="18" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            
+                            <rect x="54" y="58" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                        </svg>
+
+                        <div class="screw-outline tl"></div><div class="screw-outline tr"></div>
+                        <div class="screw-outline bl"></div><div class="screw-outline br"></div>
+                    
+                        <!-- CONTROLS IN LEFT PANEL: 2 SLIDERS & 1 SMALL KNOB -->
+                        <div class="module-content vertical-layout v-center">
+                            <div class="high-fi-slider-group">
+                                <div class="slider-wrapper">
+                                    <div class="slider-marks"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="slider-track-housing">
+                                        <div class="slider-slot"></div>
+                                        <div class="slider-handle retro-fader" style="top: 30%">
+                                            <div class="ribs"><span></span><span></span><span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-wrapper">
+                                    <div class="slider-marks"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="slider-track-housing">
+                                        <div class="slider-slot"></div>
+                                        <div class="slider-handle retro-fader" style="top: 60%">
+                                            <div class="ribs"><span></span><span></span><span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pop-knob-small"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- CENTRAL PANEL -->
+                    <div class="module-panel main-display">
+
+                        <div class="screw-outline tl"></div><div class="screw-outline tr"></div>
+                        <div class="screw-outline bl"></div><div class="screw-outline br"></div>
+
+                        <div class="monitor-casing">
+                            <div class="monitor-bezel-inset barrel-shape">
+                                <div class="monitor-glass barrel-shape">
+                                    <div class="scanline-overlay"></div>
+                                    <div class="glass-reflection-curved"></div>
+                                    <div class="screen-content">
+                                        <h2>HIGHLIGHTED<br>PROJECTS</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-strip">
+                                <div class="vent-slots-high-fi stretch">
+                                    <span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT PANEL -->
+                    <div class="module-panel side-module">
+                        <!-- RIGHT PIPES ASSEMBLY -->
+                        <svg class="r-pipe-connector" viewBox="0 0 60 241">
+                            <path d="M 0,20 H 30 A 20,20 0 0 1 50,40 V 241 H 37 V 40 A 7,7 0 0 1 30,33 H 0 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 0,20 H 30 A 20,20 0 0 1 50,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 0,33 H 30 A 7,7 0 0 1 37,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <path d="M 0,60 H 13 A 20,20 0 0 1 33,80 V 241 H 20 V 80 A 7,7 0 0 1 13,73 H 0 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 0,60 H 13 A 20,20 0 0 1 33,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 0,73 H 13 A 7,7 0 0 1 20,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <rect x="35" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            <rect x="18" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+
+                            <rect x="0" y="18" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            <rect x="0" y="58" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                        </svg>
+
+                        <div class="screw-outline tl"></div><div class="screw-outline tr"></div>
+                        <div class="screw-outline bl"></div><div class="screw-outline br"></div>
+
+                        <!-- CONTROLS IN RIGHT PANEL: 1 KNOB & 1 SPEAKER -->
+                        <div class="module-content vertical-layout space-between align-center">
+                            <div class="cone-dial-assembly">
+                                <div class="cone-slope-ring"></div>
+                                <div class="cone-top-face">
+                                    <div class="dial-indicator"></div>
+                                </div>
+                            </div> 
+                            <div class="speaker-grille round-grille"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- PROJECT CARDS -->
+                <div class="projects-grid wip-hidden">
+                    <!-- CARD 1 -->
+                    <div class="panel-section project-card">
+                        <div class="corner-deco c-tl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-tr"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-bl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-br"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+
+                        <div class="card-header-pill">
+                            <svg class="mini-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                            <h3>Project Section</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="thumb-box hatch-bg"></div>
+                            <div class="text-lines">
+                                <div class="line"></div><div class="line"></div><div class="line short"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">Project Title</div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="panel-section project-card">
+                        <div class="corner-deco c-tl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-tr"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-bl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-br"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+
+                        <div class="card-header-pill">
+                            <svg class="mini-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/></svg>
+                            <h3>Project Title</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="thumb-box hatch-bg"></div>
+                            <div class="text-lines">
+                                <div class="line"></div><div class="line"></div><div class="line short"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">Project Title</div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="panel-section project-card">
+                        <div class="corner-deco c-tl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-tr"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-bl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+                        <div class="corner-deco c-br"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
+
+                        <div class="card-header-pill">
+                            <svg class="mini-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/></svg>
+                            <h3>Project Title</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="thumb-box hatch-bg"></div>
+                            <div class="text-lines">
+                                <div class="line"></div><div class="line"></div><div class="line short"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">Project Title</div>
+                    </div>
+
+                </div>
+
+                <!-- --------------------------------- CONTACT ME SECTION ----------------------------------- -->
+                <section class="contact-module" id="contact" aria-label="Contact module">
+
+                    <!-- BANNER-LIKE HEADER -->
+                    <div class="contact-plate" aria-label="Contact section">
+                        <div class="contact-plate__title">COMMUNICATION INTERFACE</div>
+                        <div class="contact-plate__rule" aria-hidden="true"></div>
+                        <div class="contact-plate__subtitleRow">
+                        <span class="contact-plate__dash" aria-hidden="true"></span>
+                        <div class="contact-plate__subtitle">TRANSMISSION MODULE</div>
+                        <span class="contact-plate__dash" aria-hidden="true"></span>
+                        </div>
+
+                        <span class="contact-plate__dot contact-plate__dot--bl" aria-hidden="true"></span>
+                        <span class="contact-plate__dot contact-plate__dot--br" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- MAIN BODY BACKGROUND PLATE -->
+                    <div class="contact-mainplate">
+                        <!-- LAYOUT: TYPEBOX + BUTTONS BAY -->
+                        <div class="contact-mainplate__layout">
+
+                            <!-- FORM TYPEBOX -->
+                            <form class="contact-console" autocomplete="on">
+                                <div class="contact-field">
+                                    <label class="contact-label" for="sender_id">> SENDER_ID</label>
+                                    <input class="contact-input" id="sender_id" name="sender_id" type="text" placeholder="Enter your name…" />
+                                </div>
+
+                                <div class="contact-field">
+                                    <label class="contact-label" for="comm_channel">> COMM_CHANNEL</label>
+                                    <input class="contact-input" id="comm_channel" name="comm_channel" type="email" placeholder="your@email.com" />
+                                </div>
+
+                                <div class="contact-field contact-field--message">
+                                    <label class="contact-label" for="message_data">> MESSAGE_DATA</label>
+                                    <textarea class="contact-textarea" id="message_data" name="message_data" rows="6" placeholder="Type your message…"></textarea>
+                                </div>
+                            </form>
+
+                            <!-- TRANSMISSION BUTTON BAY: SOCIAL MEDIA BUTTONS & SEND TRANSMISSION BUTTON -->
+                            <div class="tx-bay" aria-hidden="true">
+                                <!-- SOCIAL MEDIA BUTTONS -->
+                                <div class="social-bay">
+                                    <a href="https://www.linkedin.com/in/najmi-hanis/" target="_blank" class="social-btn" aria-label="LinkedIn">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                        </svg>
+                                    </a>
+                                        
+                                    <a href="https://github.com/najmihanis" target="_blank" class="social-btn" aria-label="GitHub">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                                        </svg>
+                                    </a>
+
+                                    <a href="https://www.instagram.com/najmi_hanis/" target="_blank" class="social-btn" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 3.8 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.8-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <!-- TRANSMISSION BUTTON -->
+                                <button class="tx-btn" id="sendTx" type="button" aria-label="Send transmission">
+                                    <span class="tx-btn__ring"></span>
+                                    <span class="tx-btn__cap">
+                                        <svg class="tx-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                <div class="tx-label">
+                                    <div class="tx-label__top">SEND</div>
+                                    <div class="tx-label__bot">TRANSMISSION</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

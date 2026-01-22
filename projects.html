@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 3D Engineer Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/projects.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+                <!-- --------------------------------- HIGHLIGHTED PROJECT SECTION ----------------------------------- -->
+                <!-- CONSOLE-LIKE HEADER -->
+                <div class="tv-header-container">
+                    <!-- LEFT PANEL -->
+                    <div class="module-panel side-module">
+                        <!-- LEFT PIPES ASSEMBLY -->
+                        <svg class="l-pipe-connector" viewBox="0 0 60 241">
+                            <path d="M 60,20 H 30 A 20,20 0 0 0 10,40 V 241 H 23 V 40 A 7,7 0 0 1 30,33 H 60 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 60,20 H 30 A 20,20 0 0 0 10,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 60,33 H 30 A 7,7 0 0 0 23,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <path d="M 60,60 H 47 A 20,20 0 0 0 27,80 V 241 H 40 V 80 A 7,7 0 0 1 47,73 H 60 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 60,60 H 47 A 20,20 0 0 0 27,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 60,73 H 47 A 7,7 0 0 0 40,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <rect x="8" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            <rect x="25" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+
+                            <rect x="54" y="18" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            
+                            <rect x="54" y="58" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                        </svg>
+
+                        <div class="screw-outline tl"></div><div class="screw-outline tr"></div>
+                        <div class="screw-outline bl"></div><div class="screw-outline br"></div>
+                    
+                        <!-- CONTROLS IN LEFT PANEL: 2 SLIDERS & 1 SMALL KNOB -->
+                        <div class="module-content vertical-layout v-center">
+                            <div class="high-fi-slider-group">
+                                <div class="slider-wrapper">
+                                    <div class="slider-marks"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="slider-track-housing">
+                                        <div class="slider-slot"></div>
+                                        <div class="slider-handle retro-fader" style="top: 30%">
+                                            <div class="ribs"><span></span><span></span><span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-wrapper">
+                                    <div class="slider-marks"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="slider-track-housing">
+                                        <div class="slider-slot"></div>
+                                        <div class="slider-handle retro-fader" style="top: 60%">
+                                            <div class="ribs"><span></span><span></span><span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pop-knob-small"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- CENTRAL PANEL -->
+                    <div class="module-panel main-display">
+
+                        <div class="screw-outline tl"></div><div class="screw-outline tr"></div>
+                        <div class="screw-outline bl"></div><div class="screw-outline br"></div>
+
+                        <div class="monitor-casing">
+                            <div class="monitor-bezel-inset barrel-shape">
+                                <div class="monitor-glass barrel-shape">
+                                    <div class="scanline-overlay"></div>
+                                    <div class="glass-reflection-curved"></div>
+                                    <div class="screen-content">
+                                        <h2>ENGINEERING<br>PROJECTS</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-strip">
+                                <div class="vent-slots-high-fi stretch">
+                                    <span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT PANEL -->
+                    <div class="module-panel side-module">
+                        <!-- RIGHT PIPES ASSEMBLY -->
+                        <svg class="r-pipe-connector" viewBox="0 0 60 241">
+                            <path d="M 0,20 H 30 A 20,20 0 0 1 50,40 V 241 H 37 V 40 A 7,7 0 0 1 30,33 H 0 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 0,20 H 30 A 20,20 0 0 1 50,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 0,33 H 30 A 7,7 0 0 1 37,40 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <path d="M 0,60 H 13 A 20,20 0 0 1 33,80 V 241 H 20 V 80 A 7,7 0 0 1 13,73 H 0 Z" fill="#f4f4f4" stroke="none" />
+                            <path d="M 0,60 H 13 A 20,20 0 0 1 33,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+                            <path d="M 0,73 H 13 A 7,7 0 0 1 20,80 V 241" fill="none" stroke="#121212" stroke-width="2" />
+
+                            <rect x="35" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            <rect x="18" y="235" width="17" height="6" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+
+                            <rect x="0" y="18" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                            <rect x="0" y="58" width="6" height="17" fill="#f4f4f4" stroke="#121212" stroke-width="2" />
+                        </svg>
+
+                        <div class="screw-outline tl"></div><div class="screw-outline tr"></div>
+                        <div class="screw-outline bl"></div><div class="screw-outline br"></div>
+
+                        <!-- CONTROLS IN RIGHT PANEL: 1 KNOB & 1 SPEAKER -->
+                        <div class="module-content vertical-layout space-between align-center">
+                            <div class="cone-dial-assembly">
+                                <div class="cone-slope-ring"></div>
+                                <div class="cone-top-face">
+                                    <div class="dial-indicator"></div>
+                                </div>
+                            </div> 
+                            <div class="speaker-grille round-grille"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- --------------------------------- BENTO SECTION ----------------------------------- -->
+                <!-- --------------------------------- BENTO SECTION ----------------------------------- -->
+    <section class="project-bento" id="projectBento">
+
+        <!-- ===================== PROJECT CRT TILES (15) ===================== -->
+
+        <!-- 1 -->
+        <a class="bento-tile bento-crt span-2x2" data-tile-id="p8" href="https://github.com/UCSD-ECEMAE-148/fall-2025-final-project-team-14">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_9860.jpg" alt="MAE 148 DonkeyCar thumbnail" style="object-position: center 100%;">  
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">ROBOTS</div>
+                <div class="crt-title">AUTONOMOUS GROUND VEHICLE</div>
+                <div class="crt-meta">ROS2 • Embedded Linux • OpenCV • PID</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><div class="bento-tile ctrl-tile tile-random span-3x1" data-tile-id="c8" aria-hidden="true">
+        <div class="ctrl-frame">
+            <div class="ctrl-vent" style="grid-template-columns: repeat(12, 1fr);">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="ctrl-row">
+            <div class="ctrl-mini-dots"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="ctrl-mini-dots"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <!-- NEW: vent slots row -->
+            <div class="ctrl-vent-side">
+            <div class="ctrl-vent-col">
+                <span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="ctrl-vent-col">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            </div>
+            <!-- NEW: 4-knob bank -->
+            <div class="knob-bank" aria-hidden="true">
+            <div class="micro-knob pos-a"><div class="micro-knob__dial"></div></div>
+            <div class="micro-knob pos-b"><div class="micro-knob__dial"></div></div>
+            <div class="micro-knob pos-c"><div class="micro-knob__dial"></div></div>
+            <div class="micro-knob pos-d"><div class="micro-knob__dial"></div></div>
+            </div>
+            
+        </div>
+        </div><a class="bento-tile bento-crt span-2x3" data-tile-id="p7" href="COY.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_1940.jpg" alt="Crutch On You" >  
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">PRODUCT</div>
+                <div class="crt-title">CRUTCH ON YOU</div>
+                <div class="crt-meta">Medical Device Design • Prototyping • User Research • MVP Testing</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><div class="bento-tile ctrl-tile tile-random span-1x1" data-tile-id="c6" aria-hidden="true">
+        <div class="ctrl-frame ctrl-frame--tight">
+            <div class="ctrl-mini-dots"><i></i><i></i><i></i><i></i><i></i></div>
+            <!-- NEW: circular louver vent -->
+        <div class="c6-vent" aria-hidden="true">
+        <div class="c6-vent__mesh"></div>
+        <div class="c6-vent__slats">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+        </div>
+        </div><a class="bento-tile bento-crt span-2x2" data-tile-id="p14" href="demolder.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_8432.jpg" alt="GelPoint" style="object-position: center 30%;">
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">INTERNSHIP</div>
+                <div class="crt-title">GELPOINT<sup> ®</sup> DEMOLDER</div>
+                <div class="crt-meta">Automation • Pneumatics • Fixture Design • Test Setup</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-3x2" data-tile-id="p4" href="mind.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/Screenshot 2024-09-17 142726.png" alt="MiND" > 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">INTERNSHIP</div>
+                <div class="crt-title">PALM OIL TRANSPLANTING</div>
+                <div class="crt-meta">Automation • Prototyping • Mechanism Design • CAD</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-2x3" data-tile-id="p10" href="yonder.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_7952.jpg" alt="Yonder Dynamics Wrist" > 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">ROBOTS</div>
+                <div class="crt-title">ROVER ROBOTIC WRIST</div>
+                <div class="crt-meta">Mechanical Design • Kinematics • CAD</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-3x1" data-tile-id="p9" href="https://github.com/najmihanis/Flight_Sector_Safety_Study/blob/master/FinalProject_Group139_SP25.ipynb">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/flight.png" alt="Flight Safety" > 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">ANALYSIS</div>
+                <div class="crt-title">AIRPLANE CRASH DATA ANALYSIS</div>
+                <div class="crt-meta">Python • EDA • Statistical Reasoning • Data Visualization</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-2x2" data-tile-id="p11" href="machine.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_8232.jpg" alt="Machining" >  
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">MACHINING</div>
+                <div class="crt-title">MACHINING TRAINING</div>
+                <div class="crt-meta">Lathe • Mill • Tolerencing</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><div class="bento-tile ctrl-tile tile-random span-2x2" data-tile-id="c1" aria-hidden="true">
+            <div class="ctrl-frame">
+            <div class="ctrl-top">
+                <div class="ctrl-label">HI</div>
+                <div class="ctrl-label">LOW</div>
+            </div>
+            <div class="ctrl-row">
+                <div class="ctrl-knob">
+                <span class="ctrl-knob__tick"></span><span class="ctrl-knob__tick"></span><span class="ctrl-knob__tick"></span>
+                </div>
+                <div class="ctrl-knob">
+                <span class="ctrl-knob__tick"></span><span class="ctrl-knob__tick"></span><span class="ctrl-knob__tick"></span>
+                </div>
+            </div>
+            <div class="c1-scope" aria-hidden="true">
+            <div class="c1-scope__bezel">
+                <div class="c1-screw tl"></div><div class="c1-screw tr"></div>
+                <div class="c1-screw bl"></div><div class="c1-screw br"></div>
+                <div class="c1-scope__glass">
+                <div class="c1-scope__grid"></div>
+                <svg class="c1-scope__wave" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path id="c1WaveTrail" fill="none"></path>
+                <path id="c1WavePath"  fill="none"></path>
+                <path id="c1WaveHead"  fill="none"></path>
+                </svg>
+                <div class="c1-scope__scan"></div>
+                <div class="c1-scope__reflect"></div>
+                <div class="c1-scope__vignette"></div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div><a class="bento-tile bento-crt span-3x1" data-tile-id="p5" href="https://github.com/najmihanis/Drowsiness_Detection">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/drowsy.jpg" alt="Drowsiness Detection" style=" object-position: center 30%; "> 
+                <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">INTERNSHIP</div>
+                <div class="crt-title">DROWSINESS DETECTION</div>
+                <div class="crt-meta">Computer Vision • Python • Model Deployment</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><div class="bento-tile ctrl-tile tile-random span-2x2" data-tile-id="c5" aria-hidden="true">
+            <div class="ctrl-frame">
+            <div class="c5-toprow" aria-hidden="true">
+            <div class="c5-station">
+                <div class="c5-dial">
+                <div class="c5-tab">GAIN</div>
+                <div class="c5-ring"><div class="c5-cap c5-cap--knob"></div></div>    
+                </div>
+            </div>
+
+            <div class="c5-station">
+                <div class="c5-dial">
+                <div class="c5-tab">PHASE</div>
+                <div class="c5-ring"><div class="c5-cap c5-cap--knob c5-cap--alt"></div></div>
+                </div>
+            </div>
+
+            <div class="c5-station">
+                <div class="c5-dial">
+                <div class="c5-tab">CHANNEL</div>
+                <div class="c5-ring"><div class="c5-cap c5-cap--btn"></div></div>
+                </div>
+            </div>
+
+            <div class="c5-station">
+                <div class="c5-dial">
+                <div class="c5-tab">AUX</div>
+                <div class="c5-ring"><div class="c5-cap c5-cap--btn c5-cap--lamp"></div></div>
+                </div>
+            </div>
+            </div>
+            <!-- NEW: twin gauges -->
+            <div class="c5-gauge-plate" aria-hidden="true">
+                <div class="c5-plate-screw tl"></div><div class="c5-plate-screw tr"></div>
+                <div class="c5-plate-screw bl"></div><div class="c5-plate-screw br"></div>
+
+                <div class="c5-gauges" aria-hidden="true">
+                    <div class="c5-instrument-bezel">
+                        <div class="c5-gauge-housing">
+                        <svg class="c5-gauge-bg" viewBox="0 0 100 100" aria-hidden="true">
+                            <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="1, 4" />
+                            <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="1, 14" opacity="0.45"/>
+                            <text x="50" y="30" text-anchor="middle" font-size="8" font-weight="900" fill="currentColor">LEVEL</text>
+                            <text x="28" y="75" text-anchor="middle" font-size="6" fill="currentColor">0</text>
+                            <text x="72" y="75" text-anchor="middle" font-size="6" fill="currentColor">100</text>
+                        </svg>
+
+                        <div class="c5-needle" style="--ang:-55deg"></div>
+                        <div class="c5-gauge-center-cap"></div>
+                        <div class="c5-gauge-glass-reflection"></div>
+                        </div>
+                    </div>
+
+                    <div class="c5-instrument-bezel">
+                        <div class="c5-gauge-housing">
+                        <svg class="c5-gauge-bg" viewBox="0 0 100 100" aria-hidden="true">
+                            <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="1, 4" />
+                            <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="1, 14" opacity="0.45"/>
+                            <text x="50" y="30" text-anchor="middle" font-size="8" font-weight="900" fill="currentColor">TEMP</text>
+                            <text x="28" y="75" text-anchor="middle" font-size="6" fill="currentColor">-20</text>
+                            <text x="72" y="75" text-anchor="middle" font-size="6" fill="currentColor">60</text>
+                        </svg>
+
+                        <div class="c5-needle" style="--ang:15deg"></div>
+                        <div class="c5-gauge-center-cap"></div>
+                        <div class="c5-gauge-glass-reflection"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div><a class="bento-tile bento-crt span-3x2" data-tile-id="p12" href="https://drive.google.com/file/d/1pWbLAp96FcAulEKt-evbMmTJAg83u39W/view?pli=1">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/full with annotation.png" alt="MAE 3 Robot" style="object-position: center 1%;"> 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">ROBOTS</div>
+                <div class="crt-title">3-AXIS ROBOTIC ARM</div>
+                <div class="crt-meta">Mechanism Design • Prototyping • DFM/DFA • Analysis</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><div class="bento-tile ctrl-tile tile-random span-1x2" data-tile-id="c7" aria-hidden="true">
+        <div class="ctrl-frame">
+            <div class="ctrl-fader" style="min-height: 0;">
+            <div class="ctrl-fader__track"></div>
+            <div class="ctrl-fader__notches"></div>
+            <div class="ctrl-fader__handle" style="top: 30%;"></div>
+            </div>
+        </div>
+        </div><a class="bento-tile bento-crt span-4x2" data-tile-id="p1" href="https://github.com/najmihanis/satellite-orbit-maneuver/tree/main">
+            <div class="monitor-casing">
+            <div class="monitor-bezel-inset">
+                <div class="monitor-glass">
+                    <img class="crt-thumb" src="project pics/untitled6.png" alt="MAE 180" style="object-position: center 45%;"> 
+                    <div class="crt-media" aria-hidden="true"></div>
+                <div class="scanline-overlay"></div>
+                <div class="glass-reflection-curved"></div>
+
+                <div class="crt-content">
+                    <div class="crt-kicker">ANALYSIS</div>
+                    <div class="crt-title">SATALLITE DYNAMICS MODELLING</div>
+                    <div class="crt-meta">MATLAB • Orbital Mechanics • Simulation</div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </a><div class="bento-tile ctrl-tile tile-random span-2x2" data-tile-id="c2" aria-hidden="true">
+            <div class="ctrl-frame">
+            <div class="ctrl-row">
+                <div class="ctrl-meter">
+                <div class="ctrl-meter__arc"></div>
+                <!-- NEW: tick ring -->
+                <div class="ctrl-meter__ticks" aria-hidden="true"></div>
+                <div class="ctrl-meter__needle"></div>
+                </div>
+                <div class="ctrl-stack">
+                <div class="ctrl-pill"></div>
+                <div class="ctrl-pill"></div>
+                <div class="ctrl-pill"></div>
+                </div>
+            </div>
+            <div class="ctrl-slider">
+                <div class="ctrl-slider__track"></div>
+                <div class="ctrl-slider__thumb"></div>
+            </div>
+            <!-- NEW: Radio tuning meter (c2) -->
+            <div class="radio-tuner" aria-hidden="true">
+            <div class="radio-scale" style="--tuner-pos: 32%;">
+                <div class="radio-pointer"></div>
+                <div class="radio-window"></div>
+            </div>
+            <div class="radio-buttons" aria-hidden="true">
+            <span class="radio-btn"></span>
+            <span class="radio-btn"></span>
+            <span class="radio-btn"></span>
+            <span class="radio-btn"></span>
+            </div>
+            </div>
+            </div>
+        </div><div class="bento-tile ctrl-tile tile-random span-2x2" data-tile-id="c4" aria-hidden="true">
+            <div class="ctrl-frame ctrl-frame--tight">
+            <div class="ctrl-toggle-row">
+                <div class="ctrl-toggle"></div>
+                <div class="ctrl-toggle"></div>
+                <div class="ctrl-toggle"></div>
+            </div>
+            <div class="ctrl-vent ctrl-vent--mini">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <!-- NEW: Radar module -->
+            <div class="c4-radar">
+            <div class="c4-screw tl"></div><div class="c4-screw tr"></div>
+            <div class="c4-screw bl"></div><div class="c4-screw br"></div>
+
+            <div class="c4-led"></div>
+
+            <div class="c4-radar-dish">
+                <div class="c4-radar-grid"></div>
+                <div class="c4-radar-sweep"></div>
+                <div class="c4-radar-rings"></div>
+                <div class="c4-radar-cross"></div>
+            </div>
+
+            <div class="c4-slots">
+                <span></span><span></span><span></span>
+            </div>
+            </div>
+            </div>
+        </div><div class="bento-tile ctrl-tile tile-random span-2x2" data-tile-id="c9" aria-hidden="true">
+        <div class="ctrl-frame ctrl-frame--tight">
+            <div class="ctrl-toggle-row">
+            <div class="ctrl-toggle"></div>
+            <div class="ctrl-toggle"></div>
+            <div class="ctrl-toggle"></div>
+            </div>
+            <div class="ctrl-vent ctrl-vent--mini"><span></span><span></span><span></span><span></span></div>
+
+<!-- NEW: 2-column middle layout -->
+<div class="c9-mid" aria-hidden="true">
+
+  <!-- LEFT: keypad -->
+  <div class="c9-keypad">
+    <div class="c9-key">1</div><div class="c9-key">2</div><div class="c9-key">3</div>
+    <div class="c9-key">4</div><div class="c9-key">5</div><div class="c9-key">6</div>
+    <div class="c9-key">7</div><div class="c9-key">8</div><div class="c9-key">9</div>
+    <div class="c9-key">✳</div><div class="c9-key">0</div><div class="c9-key">⏎</div>
+  </div>
+
+  <!-- RIGHT: two mini toggle plates stacked -->
+  <div class="c9-toggleplate c9-toggleplate--dual" aria-hidden="true">
+  <div class="c9-screw tl"></div><div class="c9-screw tr"></div>
+  <div class="c9-screw bl"></div><div class="c9-screw br"></div>
+
+  <div class="c9-dual-stack">
+    <!-- Toggle A -->
+    
+    <div class="c9-toggleunit is-mirrored">
+      <div class="c9-togglecore">
+        <div class="c9-hex"></div>
+        <div class="c9-icon">
+          <div class="c9-icon-ring"></div>
+          <svg class="c9-lever-svg" viewBox="0 0 60 120" aria-hidden="true">
+            <path class="c9-lever-shape" d="M30 10 C38 10 44 16 44 24 L44 68 C44 84 36 94 30 98 C24 94 16 84 16 68 L16 24 C16 16 22 10 30 10 Z"/>
+            <path class="c9-lever-tip-shape" d="M30 118 C18 118 10 110 10 98 C10 86 18 78 30 78 C42 78 50 86 50 98 C50 110 42 118 30 118 Z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Toggle B -->
+    <div class="c9-toggleunit">
+      <div class="c9-togglecore">
+        <div class="c9-hex"></div>
+        <div class="c9-icon">
+          <div class="c9-icon-ring"></div>
+          <svg class="c9-lever-svg" viewBox="0 0 60 120" aria-hidden="true">
+            <path class="c9-lever-shape" d="M30 10 C38 10 44 16 44 24 L44 68 C44 84 36 94 30 98 C24 94 16 84 16 68 L16 24 C16 16 22 10 30 10 Z"/>
+            <path class="c9-lever-tip-shape" d="M30 118 C18 118 10 110 10 98 C10 86 18 78 30 78 C42 78 50 86 50 98 C50 110 42 118 30 118 Z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- footer chevron tape stays -->
+<div class="c9-footer-tape" aria-hidden="true"></div>
+        </div>
+        </div><div class="bento-tile ctrl-tile tile-random span-3x1" data-tile-id="c3" aria-hidden="true">
+            <div class="ctrl-frame">
+            <div class="ctrl-grid-buttons">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="ctrl-row">
+                <div class="ctrl-mini-dots"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="ctrl-mini-dots"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            </div>
+        </div><a class="bento-tile bento-crt span-2x2" data-tile-id="p6" href="pcb.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/Screenshot 2024-12-17 at 1.50.20 AM.png" alt="Yonder Dynamics PCB" style="transform: scale(0.7) scale(1.03);"> 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">ELECTRONICS</div>
+                <div class="crt-title">CUSTOM PCB</div>
+                <div class="crt-meta">Altium • Systems Integration • PCB Design</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-3x1" data-tile-id="p15" href="https://github.com/najmihanis/OTA-OBD2-WS">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/obd.JPG" alt="Vehicle Telemetry" style="object-position: center 40%;"> 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">INTERNSHIP</div>
+                <div class="crt-title">VEHICLE TELEMETRY PARSING</div>
+                <div class="crt-meta">OTA Systems • OBD-II • Embedded Software</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-2x2" data-tile-id="p13" href="canon.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_0605.jpg" alt="Canon Toy" style="object-position: center 100%;">
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">MACHINING</div>
+                <div class="crt-title">CANON DESK TOY</div>
+                <div class="crt-meta">CNC Lathe/Mill • Manual Lathe/Mill • Tolerencing</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-2x2" data-tile-id="p3" href="https://github.com/najmihanis/free-kick">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/untitled1.jpg" alt="Free Kick" style="transform: translateY(-35%) scale(0.98) scale(1.03);"> 
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">ANALYSIS</div>
+                <div class="crt-title">SOCCER PERFORMANCE ANALYSIS</div>
+                <div class="crt-meta">MATLAB • Dynamics • Visualization</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><a class="bento-tile bento-crt span-2x2" data-tile-id="p2" href="trocar.html">
+            <div class="monitor-casing"><div class="monitor-bezel-inset"><div class="monitor-glass">
+            <img class="crt-thumb" src="project pics/IMG_8275.jpg" alt="Trocar Seal" style="object-position: center 80%;">
+            <div class="scanline-overlay"></div><div class="glass-reflection-curved"></div>
+            <div class="crt-content">
+                <div class="crt-kicker">INTERNSHIP</div>
+                <div class="crt-title">TROCAR SEAL R&amp;D</div>
+                <div class="crt-meta">R&D Testing • Material Analysis • Elastomer Mechanics</div>
+            </div>
+            <div class="crt-media" aria-hidden="true"></div>
+            </div></div></div>
+        </a><div class="bento-tile ctrl-tile span-1x4" data-tile-id="c10" aria-hidden="true">
+  <div class="ctrl-frame ctrl-frame--tight c10-handlever">
+
+    <div class="c10-slot-bank" aria-hidden="true">
+      <div class="c10-slot">
+        <div class="c10-stick"></div>
+      </div>
+
+      <div class="c10-slot">
+        <div class="c10-stick"></div>
+      </div>
+
+      <!-- handle overlaps sticks -->
+      <div class="c10-handle"></div>
+    </div>
+
+    <div class="c10-label">THRUST</div>
+
+  </div>
+</div>
+    </section>
+    <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer></div>
+
+            </div>
+        </div>
+
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

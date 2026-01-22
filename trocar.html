@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro 3D Engineer Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/trocar.css">
+</head>
+
+<body>
+  <svg style="display:none;">
+    <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+    </symbol>
+    <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+      <circle cx="14" cy="14" r="4"/>
+    </symbol>
+  </svg>
+
+  <div class="scale-stage" id="scaleStage">
+    <div class="device-casing" id="deviceCasing">
+      <div class="inner-casing">
+
+        <div class="screw tl"></div><div class="screw tr"></div>
+        <div class="screw bl"></div><div class="screw br"></div>
+
+        <!-- HEADER -->
+        <header class="panel-row header-panel">
+          <button class="nav-vent-toggle" type="button"
+                  aria-label="Open navigation"
+                  aria-controls="mobileNav"
+                  aria-expanded="false">
+            <span class="vent-bar"></span>
+            <span class="vent-bar"></span>
+            <span class="vent-bar"></span>
+          </button>
+
+          <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+        </header>
+
+        
+
+        <!-- MAIN -->
+        <main class="trocar-page">
+
+          <!-- HERO (COY-like, no CTA) -->
+          <section class="trocar-panel trocar-hero" id="trocarHero">
+            <div class="trocar-hero__text">
+              <div class="trocar-kicker">INTERNSHIP</div>
+              <h1 class="trocar-title">TROCAR SEAL R&amp;D</h1>
+              <p class="trocar-lede">
+                Iterative seal development focused on material choice, mold design, and test-driven validation
+                to reduce leakage and improve repeatability.
+              </p>
+
+              <div class="trocar-stats">
+                <div class="trocar-stat">
+                  <div class="trocar-stat__k">ORG</div>
+                  <div class="trocar-stat__v">APPLIED MEDICAL</div>
+                </div>
+                <div class="trocar-stat">
+                  <div class="trocar-stat__k">FOCUS</div>
+                  <div class="trocar-stat__v">SEALING + TESTING</div>
+                </div>
+                <div class="trocar-stat">
+                  <div class="trocar-stat__k">OUTPUT</div>
+                  <div class="trocar-stat__v">PROTOTYPES + TEST DATA</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="trocar-hero__screen">
+              <div class="trocar-screen">
+                <!-- swap this for your best result photo -->
+                <img class="trocar-screen__img" src="project pics/trocar/15.png" alt="Trocar seal hero image">
+                <div class="trocar-screen__scan"></div>
+                <div class="trocar-screen__glare"></div>
+                <div class="trocar-screen__vignette"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- OVERVIEW (no tile, on casing) -->
+          <section class="trocar-overview" id="trocarOverview">
+            <div class="trocar-overview__title">Overview</div>
+
+            <div class="trocar-overview__grid" aria-label="Overview: what and how">
+              <div class="trocar-overview__col">
+                <div class="trocar-overview__sub">What</div>
+                <ul class="trocar-bullets">
+                  <li>Led R&amp;D for an elastomer seal used in pneumatic trocar leakage test systems.</li>
+                  <li>Developed a repeatable sealing solution balancing conformity, durability, and test consistency.</li>
+                  <li>Benchmarked in-house seal performance against FDA-approved commercial references.</li>
+                </ul>
+              </div>
+
+              <div class="trocar-overview__col">
+                <div class="trocar-overview__sub">How</div>
+                <ul class="trocar-bullets">
+                  <li>Evaluated elastomer behavior by relating durometer to elastic modulus and deformation under known pressure conditions.</li>
+                  <li>Narrowed viable materials by comparing gas permeability, compression set, abrasion resistance, and surface conformity.</li>
+                  <li>Iterated across material selection, mold design, fabrication, and testing to converge on a stable seal design.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- CONTENT STACK (zig-zag sections sit on top of faint sketch image) -->
+          <section class="trocar-flow" id="trocarFlow">
+
+            <!-- faint background sketch (starts here, behind sections) -->
+            <div class="trocar-bg" aria-hidden="true">
+              <img src="project pics/trocar/bg.png" alt="">
+            </div>
+
+            <!-- 1) Material selection (TEXT RIGHT first) -->
+            <section class="trocar-step trocar-step--text-right" id="materials">
+              <div class="trocar-step__media">
+                <img src="project pics/trocar/17.png" alt="Material selection thumbnails / samples">
+              </div>
+              <div class="trocar-step__card">
+                <h2 class="trocar-step__title">Material Selection</h2>
+                <ul class="trocar-bullets">
+                  <li>Analyzed durometer–modulus relationships to predict radial deformation and sealing interference.</li>
+                  <li>Compared silicone, polyurethane, and rubber variants across key sealing and mechanical performance metrics.</li>
+                  <li>Reduced candidates to elastomers balancing compliance with dimensional stability.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- 2) Mold design (TEXT LEFT) -->
+            <section class="trocar-step trocar-step--text-left" id="mold">
+              <div class="trocar-step__card">
+                <h2 class="trocar-step__title">Mold Design</h2>
+                <ul class="trocar-bullets">
+                  <li>Designed precision seal molds with tolerance stack-up analysis to control final seal height.</li>
+                  <li>Simplified mold geometry to reduce defects on critical sealing features.</li>
+                  <li>Applied surface finish considerations and clear dimension control to improve repeatability.</li>
+                </ul>
+              </div>
+              <div class="trocar-step__media">
+                <img src="project pics/trocar/16.png" alt="Mold CAD / drawings">
+              </div>
+            </section>
+
+            <!-- 3) Seal fabrication (TEXT RIGHT) -->
+            <section class="trocar-step trocar-step--text-right" id="fabrication">
+              <div class="trocar-step__media">
+                <img src="project pics/trocar/18.png" alt="Seal fabrication process">
+              </div>
+              <div class="trocar-step__card">
+                <h2 class="trocar-step__title">Seal Fabrication</h2>
+                <ul class="trocar-bullets">
+                  <li>Fabricated seals using silicone, polyurethane, and rubber with material-specific processing workflows.</li>
+                  <li>Controlled degassing and curing conditions to minimize bubbles and surface defects.</li>
+                  <li>Adapted procedures to material sensitivities including viscosity changes and working-time limits.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- 4 + 5: cards-only row (no images) -->
+<section class="trocar-step trocar-step--pair" id="testing-and-challenges">
+
+  <div class="trocar-step__card">
+    <h2 class="trocar-step__title">Seal Testing</h2>
+    <ul class="trocar-bullets">
+      <li>Benchmarked seal performance using a differential pressure leak test rig.</li>
+      <li>Established reference baselines using glued trocars and FDA-approved seals.</li>
+      <li>Evaluated consistency and repeatability across materials and fabrication variants.</li>
+    </ul>
+  </div>
+
+  <div class="trocar-step__card">
+    <h2 class="trocar-step__title">Challenges</h2>
+    <ul class="trocar-bullets">
+      <li>Leak readings were highly sensitive to setup variables, increasing measurement variability.</li>
+      <li>Polyurethane processing had tight working-time limits and higher sensitivity to process conditions.</li>
+      <li>Bubble formation during degassing was amplified by small mold geometry and venting constraints.</li>
+    </ul>
+  </div>
+
+</section>
+
+          </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer-vent">
+          <div class="vent-screw"></div>
+          <div class="high-fi-grill"></div>
+          <div class="vent-screw"></div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

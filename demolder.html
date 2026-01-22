@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 3D Engineer Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/demolder.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+
+                <!-- BIG SIDE ILLUSTRATION (clipped by casing) -->
+                <div class="casing-illustration" aria-hidden="true">
+                <img src="project pics/demolder/side.png" alt="Demolder mechanism illustration">
+                </div>
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+                <!-- ===================== DEMOLDER PROJECT BRIEF ===================== -->
+                
+                <main class="demolder-page">
+
+                <section class="brief-grid">
+
+                    <!-- LEFT RAIL -->
+                    <aside class="brief-rail">
+                    <div class="rail-block">
+                        <div class="rail-label">MISSION OVERVIEW</div>
+
+                        <div class="rail-sub">TARGET</div>
+                        <p class="rail-body">
+                        Designed an automated demolding fixture for laparoscopic access platforms to reduce operator task time while maintaining compatibility with existing production machines.
+                        </p>
+
+                        <div class="rail-sub">CONSTRAINTS</div>
+                        <ul class="rail-list">
+                        <li>Non-uniform mold body geometry</li>
+                        <li>Strict alignment requirements with hard mechanical stops</li>
+                        <li>Limited gripping surface for secure extraction</li>
+                        <li>Tight tolerances and intricate geometric features</li>
+                        <li>Required compatibility with existing claw machine interface</li>
+                        <li>High extraction force required to remove luer pins</li>
+                        </ul>
+
+                        <div class="rail-sub">ROLE</div>
+                        <div class="rail-kv">
+                        <div class="kv-row"><span class="kv-k">Org</span><span class="kv-v">Applied Medical</span></div>
+                        <div class="kv-row"><span class="kv-k">Focus</span><span class="kv-v">Automation</span></div>
+                        <div class="kv-row"><span class="kv-k">Work</span><span class="kv-v">CAD + Prototyping</span></div>
+                        <div class="kv-row"><span class="kv-k">Tools</span><span class="kv-v">SolidWorks</span></div>
+                        </div>
+                    </div>
+
+                    <div class="rail-block rail-block--mini">
+                        <div class="rail-sub">DELIVERABLES</div>
+                        <ul class="rail-list">
+                        <li>Concept iterations</li>
+                        <li>Operator-friendly ergonomic design</li>
+                        <li>Clearance-driven geometry updates</li>
+                        </ul>
+                    </div>
+
+                
+
+                    </aside>
+
+                    <!-- MAIN COLUMN -->
+                    <section class="brief-main">
+
+                    <!-- HERO -->
+                    <header class="brief-hero">
+                        <div class="hero-kicker">INTERNSHIP</div>
+                        <h1 class="hero-title">GELPOINT<sup>®</sup> DEMOLDER</h1>
+
+                        <p class="hero-lede">
+                        A refinement walkthrough from early locking concepts to a low-profile, clearance-safe gripping mechanism designed to be intuitive to use and ergonomic for high-volume, repeatable demolding.
+                        </p>
+
+                        <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-label">TIMELINE</div>
+                            <div class="stat-value">SUMMER 2025</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">MODULE</div>
+                            <div class="stat-value">DEMOLD / RELEASE</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">GOAL</div>
+                            <div class="stat-value">REPEATABILITY</div>
+                        </div>
+                        </div>
+
+                        <!-- FINAL RESULT PREVIEW -->
+                        <div class="hero-results">
+                        <div class="result-frame">
+                            <img src="project pics/demolder/final_demolder.png" alt="Final demolder result – angle A">
+                        </div>
+                        <div class="result-frame">
+                            <img src="project pics/demolder/final-cad.png" alt="Final demolder result – angle B">
+                        </div>
+                        </div>
+                    </header>
+
+                    <!-- ===================== IDEATION ===================== -->
+                    <section class="demolder-free demolder-ideation">
+
+                    <h2 class="free-heading">Ideation</h2>
+
+                    <div class="free-image">
+                        <img src="project pics/demolder/process2.png" alt="Early ideation sketches">
+                    </div>
+
+                    <p class="free-text">
+                        Initial concepts explored how to work within the constrained geometry using purely mechanical locking mechanisms such as push-push. Evaluating the operator workflow revealed that the manual sequence per part would be impractical at scale, prompting a transition to pneumatic actuation.
+                    </p>
+
+                    </section>
+
+                    <!-- ===================== ITERATION ===================== -->
+                    <h2 class="free-heading free-heading--spaced">Iteration</h2>
+
+                    <!-- QUICK NAV (optional but nice) -->
+                    <nav class="iter-nav" aria-label="Iteration navigation">
+                        <a class="iter-chip" href="#iter1">01</a>
+                        <a class="iter-chip" href="#iter2">02</a>
+                        <a class="iter-chip" href="#iter3">03</a>
+                        <a class="iter-chip" href="#iter4">04</a>
+                    </nav>
+
+                    <!-- ITERATION 01 -->
+                    <article class="iter-card" id="iter1">
+                        <header class="iter-head">
+                        <div class="iter-num">ITERATION 01</div>
+                        <div class="iter-name">Manual Twist-Lock Mechanism</div>
+                        <div class="iter-one">Using the tab as a cam feature to drive the locking prong outward.</div>
+                        </header>
+
+                        <div class="image-bay" data-pan-hint="DRAG TO PAN">
+                        <img src="project pics/demolder/concept 1/process1.jpg" alt="Iteration 01 CAD board">
+                        </div>
+
+                        <ul class="iter-notes">
+                        <li><b>Problem:</b> Purely mechanical locking was hard to reset and relied heavily on operator precision, making it unsuitable for high-volume use.</li>
+                        <li><b>Change:</b> Introduced a spring-loaded side lock and rotational latch to guarantee full prong extension before release.</li>
+                        <li><b>Result:</b> Mechanism proved functionally viable but was too manual and ergonomically inefficient for production workflows. </li>
+                        </ul>
+                    </article>
+
+                    <!-- ITERATION 02 -->
+                    <article class="iter-card" id="iter2">
+                        <header class="iter-head">
+                        <div class="iter-num">ITERATION 02</div>
+                        <div class="iter-name">PNEUMATIC-ASSISTED LOCKING</div>
+                        <div class="iter-one">Replacing manual rotation with pneumatic actuation to reduce operator effort.</div>
+                        </header>
+
+                        <div class="image-bay" data-pan-hint="DRAG TO PAN">
+                        <img src="project pics/demolder/concept 2/process2.png" alt="Iteration 02 CAD board">
+                        </div>
+
+                        <ul class="iter-notes">
+                        <li><b>Problem:</b> Manual actuation and rotational motion created fatigue and orientation issues for operators.</li>
+                        <li><b>Change:</b> Replaced spring-ejected prongs with pneumatic actuation while retaining mechanical tab anchoring.</li>
+                        <li><b>Result:</b> Improved actuation force consistency, but rotational ergonomics and missing pin-extraction capability surfaced as critical gaps.</li>
+                        </ul>
+                    </article>
+
+                    <!-- ITERATION 03 -->
+                    <article class="iter-card" id="iter3">
+                        <header class="iter-head">
+                        <div class="iter-num">ITERATION 03</div>
+                        <div class="iter-name">FULLY PNEUMATIC RELEASE SYSTEM</div>
+                        <div class="iter-one">Automating prong release and pin extraction for repeatable operation.</div>
+                        </header>
+
+                        <div class="image-bay" data-pan-hint="DRAG TO PAN">
+                        <img src="project pics/demolder/concept 3/process3.jpg" alt="Iteration 03 CAD board">
+                        </div>
+
+                        <ul class="iter-notes">
+                        <li><b>Problem:</b> Previous concepts lacked an automated way to extract vertical luer pins and required too much operator alignment.</li>
+                        <li><b>Change:</b> Integrated dual pneumatic actuation for both tab anchoring and prong deployment, plus a vertical pin-removal cylinder.</li>
+                        <li><b>Result:</b> Achieved full automation and compatibility, but tight clearances and bulky 3D-printed geometry revealed usability and cost concerns.</li>
+                        </ul>
+                    </article>
+
+                    <!-- ITERATION 04 -->
+                    <article class="iter-card" id="iter4">
+                        <header class="iter-head">
+                        <div class="iter-num">ITERATION 04</div>
+                        <div class="iter-name">LOW-PROFILE, OPERATOR-GUIDED DESIGN</div>
+                        <div class="iter-one">Reducing bulk while improving clearance and ease of use.</div>
+                        </header>
+
+                        <div class="image-bay" data-pan-hint="DRAG TO PAN">
+                        <img src="project pics/demolder/concept 4/process4.jpg" alt="Iteration 04 CAD board">
+                        </div>
+
+                        <ul class="iter-notes">
+                        <li><b>Problem:</b> Concept 3 worked mechanically but was unforgiving to load, manufacture at scale, and lacks alignment assistance.</li>
+                        <li><b>Change:</b> Simplified structure, increased clearances, removed unnecessary embosses, and added guiding features to support intuitive drop-in loading.</li>
+                        <li><b>Result:</b> Delivered a low-profile, clearance-safe demolder that reduced operator effort, improved reliability, and supported repeatable high-volume use.</li>
+                        </ul>
+                    </article>
+
+                    </section>
+                </section>
+                </main>
+
+                <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

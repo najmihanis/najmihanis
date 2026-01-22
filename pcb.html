@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCB Design Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/pcb.css">
+</head>
+
+<body>
+
+<div class="scale-stage" id="scaleStage">
+  <div class="device-casing" id="deviceCasing">
+    <div class="inner-casing">
+
+      <!-- screws -->
+      <div class="screw tl"></div><div class="screw tr"></div>
+      <div class="screw bl"></div><div class="screw br"></div>
+
+      <!-- HEADER -->
+      <header class="panel-row header-panel">
+        <button class="nav-vent-toggle" type="button"
+          aria-label="Open navigation"
+          aria-controls="mobileNav"
+          aria-expanded="false">
+          <span class="vent-bar"></span>
+          <span class="vent-bar"></span>
+          <span class="vent-bar"></span>
+        </button>
+
+        <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+      </header>
+
+      <!-- MAIN CONTENT -->
+      <main class="pcb-page">
+
+        <!-- ===================== HERO ===================== -->
+        <section class="pcb-hero">
+          <div class="pcb-hero__text">
+            <div class="pcb-kicker">ELECTRONICS</div>
+            <h1 class="pcb-title">MULTI-MODAL SPECTROSCOPY CONTROL PCB</h1>
+
+            <p class="pcb-lede">
+              A custom control PCB designed to coordinate lighting, motion, and sensing for a rover-mounted science module, enabling controlled sample positioning and multi-wavelength optical analysis.
+            </p>
+
+            <div class="pcb-stats">
+              <div class="pcb-stat">
+                <div class="pcb-stat__k">ROLE</div>
+                <div class="pcb-stat__v">DESIGN + LAYOUT</div>
+              </div>
+              <div class="pcb-stat">
+                <div class="pcb-stat__k">TOOLS</div>
+                <div class="pcb-stat__v">ALTIUM</div>
+              </div>
+              <div class="pcb-stat">
+                <div class="pcb-stat__k">FOCUS</div>
+                <div class="pcb-stat__v">EMBEDDED CONTROL</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pcb-hero__screen">
+            <div class="pcb-screen">
+              <img src="project pics/pcb.png" alt="PCB layout hero image">
+              <div class="pcb-screen__scan"></div>
+              <div class="pcb-screen__glare"></div>
+              <div class="pcb-screen__vignette"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== OVERVIEW ===================== -->
+        <section class="pcb-overview">
+
+          <div class="pcb-overview__title">
+            Overview
+          </div>
+
+          <div class="pcb-overview__content">
+            <div class="pcb-overview__col">
+              <div class="pcb-overview__sub">What</div>
+              <ul>
+                <li>Controls a rover science module for sample inspection and spectroscopy.</li>
+                <li>Drives a stepper motor to index a rotating sample wheel with position feedback.</li>
+                <li>Actuates two servos: one for sample interaction and one for light positioning.</li>
+                <li>Switches and powers multiple light sources (LED, UV LED, laser) for fluorescence analysis.</li>
+                <li>Supports optical alignment between light source and spectrometer for color change detection.</li>
+              </ul>
+            </div>
+
+            <div class="pcb-overview__divider"></div>
+
+            <div class="pcb-overview__col">
+              <div class="pcb-overview__sub">How</div>
+              <ul>
+                <li>Designed a custom PCB integrating motor control, lighting control, sensing, and power regulation.</li>
+                <li>Used an Arduino Nano as the central controller for motion sequencing and I/O.</li>
+                <li>Integrated a stepper motor driver with a rotary encoder to track sample wheel position.</li>
+                <li>Implemented MOSFET switching to safely control high-current loads (lights, laser, motor power).</li>
+                <li>Designed onboard power regulation to step 12V input down to 7V and 5V for mixed-voltage components.</li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer-vent">
+        <div class="vent-screw"></div>
+        <div class="high-fi-grill"></div>
+        <div class="vent-screw"></div>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

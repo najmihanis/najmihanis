@@ -1,0 +1,88 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- CANON PROJECT PAGE ----------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+/*  NOTE: This recycles the layout and style of hero and main section from machine.html page */
+
+/* ===================== CANON TOY: stage interior (2 big cards) ===================== */
+
+.mach-screen{
+  border: none;
+}
+
+.canon-stage .mach-stage__valley{
+  padding-top: 34px; /* keep clearance for the big title plate, if you use it */
+}
+
+.canon-stack{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* reuse the mounted card language */
+.canon-card{
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  overflow: hidden;
+
+  box-shadow:
+    7px 7px 0 rgba(0,0,0,0.28),
+    12px 12px 22px rgba(0,0,0,0.16);
+}
+
+/* TOP PHOTO (simple, no zoom tricks) */
+.canon-photo{
+  position: relative;
+  height: 380px;          /* tune if needed */
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.canon-photo img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  height: 100%;
+  width: auto;
+
+  transform: translate(-50%, -50%);
+  object-fit: contain; /* harmless but fine to keep */
+}
+
+/* BOTTOM TEXT */
+.canon-card--text{
+  padding: 16px 18px 18px;
+}
+
+.canon-what-how{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.canon-col__h{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.canon-bullets{
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+.canon-bullets li{
+  list-style-type: square;
+  margin-bottom: 8px;
+}

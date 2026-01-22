@@ -1,0 +1,276 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- TROCAR SEAL R&D PAGE -------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+.trocar-page{
+  width: 100%;
+  padding: 18px 14px 10px;
+}
+
+/* ===================== HERO (COY-like, no CTA) ===================== */
+
+.trocar-panel{
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: var(--shadow-hard);
+}
+
+.trocar-hero{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
+  padding: 18px;
+  align-items: center;
+}
+
+.trocar-kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.trocar-title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 0.95;
+}
+
+.trocar-lede{
+  margin: 10px 0 0;
+  max-width: 70ch;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+.trocar-stats{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+}
+
+.trocar-stat__k{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.trocar-stat__v{
+  margin-top: 6px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  opacity: 0.86;
+}
+
+/* screen (same language as COY) */
+.trocar-screen{
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  
+ 
+  min-height: 280px;
+}
+
+.trocar-screen__img{
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.trocar-screen__scan{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(0,0,0,0.05) 3px 4px
+  );
+  opacity: 0.35;
+}
+
+
+
+/* ===================== OVERVIEW (no tile) ===================== */
+
+.trocar-overview{
+  margin: 26px 0 28px;
+  padding-left: 30px;     /* same offset feel as your COY ideation */
+  padding-right: 16px;
+}
+
+.trocar-overview__title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  margin: 0 0 14px;
+}
+
+.trocar-overview__grid{
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 26px;
+  align-items: start;
+}
+
+.trocar-overview__grid::before{
+  content:"";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-0.5px);
+  background: rgba(0,0,0,0.18);
+}
+
+.trocar-overview__sub{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin: 0 0 8px;
+}
+
+/* bullets used in overview + steps */
+.trocar-bullets{
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.92rem;
+  line-height: 1.55;  /* matches your ideation spacing feel */
+  opacity: 0.82;
+  list-style-type: square;
+}
+.trocar-bullets li{ margin-bottom: 8px; }
+
+/* ===================== FLOW: background sketch + zig-zag sections ===================== */
+
+.trocar-flow{
+  position: relative;
+  margin-top: 10px;
+  padding-bottom: 18px;
+}
+
+/* faint centered sketch behind everything */
+.trocar-bg{
+  position: absolute;
+  left: 50%;
+  top: 0;                      /* starts right after overview */
+  transform: translateX(-50%);
+  width: 80%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.trocar-bg img{
+  width: 100%;
+  height: auto;
+  display: block;
+
+  mix-blend-mode: multiply;
+  opacity: 0.2;               /* very faint */
+  filter: contrast(1.05);
+}
+
+/* sections stack above the bg */
+.trocar-step{
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* alternate: starting with TEXT RIGHT */
+.trocar-step--text-right .trocar-step__media{ order: 1; }
+.trocar-step--text-right .trocar-step__card{  order: 2; }
+.trocar-step--text-left  .trocar-step__card{  order: 1; }
+.trocar-step--text-left  .trocar-step__media{ order: 2; }
+
+/* image side (no heavy tile) */
+.trocar-step__media{
+  border-radius: 18px;
+  overflow: hidden;
+  background: color-mix(
+  in srgb,
+  /*var(--bg-paper) 80%,*/
+  transparent 15%
+  );
+}
+
+.trocar-step__media img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+/* text card (plate) */
+.trocar-step__card{
+  background: rgba(255, 255, 255, 0.70);
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: var(--shadow-hard);
+  padding: 16px 16px 14px;
+}
+
+.trocar-step__kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.trocar-step__title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  line-height: 1.05;
+}
+
+/* ===================== Step variant: cards-only pair row ===================== */
+.trocar-step--pair{
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+/* optional: give a bit more breathing room since there's no media */
+.trocar-step--pair .trocar-step__card{
+  height: 100%;
+}

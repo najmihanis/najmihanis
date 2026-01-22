@@ -1,0 +1,667 @@
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- COY PROJECT PAGE ----------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+.coy-page{
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* -------- Panel Shell (matches your mechanical plates) -------- */
+.coy-panel{
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: var(--shadow-hard);
+  padding: 14px;
+  position: relative;
+}
+
+.coy-panelhead{
+  background: var(--bg-paper);
+  border: var(--border-thin);
+  border-radius: 16px;
+  padding: 12px 12px 10px;
+  box-shadow: inset 2px 2px 8px rgba(0,0,0,0.10);
+  margin-bottom: 12px;
+}
+
+.coy-panelhead__k{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.coy-panelhead__t{
+  margin-top: 4px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  line-height: 1.05;
+}
+
+/* -------- Hero -------- */
+.coy-hero{
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.coy-kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.coy-title{
+  margin: 0;
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+}
+
+.coy-lede{
+  margin: 10px 0 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  opacity: 0.78;
+  max-width: 70ch;
+}
+
+
+.coy-stats{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 2px solid rgba(0,0,0,0.10);
+}
+
+.coy-stat__k{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.coy-stat__v{
+  margin-top: 6px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  opacity: 0.86;
+}
+
+.coy-cta{
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.coy-btn{
+  text-decoration: none;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 18px;
+}
+
+.coy-btn {
+  text-transform: none;
+  letter-spacing: 0.5px; /* or 0 */
+}
+
+.coy-cta {
+  align-items: flex-start;
+}
+
+.coy-btn {
+  width: auto;
+  flex: 0 0 auto;
+}
+
+/* -------- Screen / Glass window (reusable) -------- */
+.coy-screen{
+  position: relative;
+  
+  border-radius: 18px;
+  background: #f6f6f6;
+  overflow: hidden;
+  
+  min-height: 260px;
+}
+
+.coy-screen--large{
+  min-height: 360px;
+  border-radius: 22px;
+}
+
+.coy-screen__img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.98;
+  filter: grayscale(0.1) contrast(1.05) saturate(0.9) brightness(1.02);
+  transform: scale(1.02);
+}
+
+.coy-screen__scan{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 3px);
+  opacity: 0.55;
+}
+
+.coy-screen__glare{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44%;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.70), transparent 80%);
+  opacity: 0.75;
+}
+
+
+
+.coy-screen__caption{
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--bg-paper);
+  border: var(--border-thin);
+  border-radius: 16px;
+  box-shadow: inset 2px 2px 8px rgba(0,0,0,0.10);
+}
+
+.cap-k{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  opacity: 0.55;
+}
+
+.cap-v{
+  margin-top: 4px;
+  font-size: 0.92rem;
+  opacity: 0.78;
+}
+
+/* ===================== COY OVERVIEW ===================== */
+
+.coy-overview{
+  margin: 30px 0 32px;
+  padding-left: 30px;   /* aligns with ideation */
+  padding-right: 16px;
+}
+
+.coy-overview__title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  margin: 0 0 14px;
+}
+
+/* two-column layout */
+.coy-overview__grid{
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  column-gap: 26px;
+}
+
+/* thin center divider */
+.coy-overview__grid::before{
+  content:"";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  background: rgba(0,0,0,0.18);
+}
+
+/* spacing away from divider */
+.coy-overview__col--what{ padding-right: 10px; }
+.coy-overview__col--how{  padding-left: 10px; }
+
+/* WHAT / HOW label */
+.coy-overview__sub{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.82rem;
+  opacity: 0.55;
+  margin: 0 0 10px;
+}
+
+/* bullet list styling */
+.coy-overview__list{
+  margin: 0;
+  padding-left: 16px;
+  max-width: 52ch;
+}
+
+.coy-overview__list li{
+  list-style-type: square;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  opacity: 0.82;
+}
+
+/* ===================== COY PROBLEM (PRINTED-ON-CASING STYLE) ===================== */
+
+.coy-problem{
+  margin: 30px 0 32px;
+}
+
+/* Section title — looks printed, not boxed */
+.coy-problem__title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  margin: 0 0 14px;
+  opacity: 1;
+}
+
+/* Two-column layout, no background */
+.coy-problem__layout{
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+/* Illustration: clipped by casing only */
+.coy-problem__art{
+  margin: 0;
+  overflow: hidden;
+  align-self: center;
+}
+
+/* Blueprint-style image treatment */
+.coy-problem__art img{
+  background: var(--bg-paper);
+  display: block;
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;         /* fills area, clips edges */
+  transform: scale(1.08);
+  transform-origin: center;
+
+  mix-blend-mode: multiply;
+  filter: grayscale(1) contrast(1.1);
+  
+  opacity: 0.9;
+}
+
+/* Text block: no background, no border */
+.coy-problem__text{
+  font-size: 0.95rem;
+  line-height: 1.55;
+  opacity: 0.85;
+  margin-left: -20px;
+}
+
+/* Tight bullet indent so it doesn’t feel like a “card” */
+.coy-problem__text ul{
+  margin: 10px 0;
+  padding-left: 16px;
+}
+
+.coy-problem__text li{
+  margin: 4px 0;
+}
+
+/* ===================== COY IDEATION (ONE BIG SKETCH + TEXT) ===================== */
+
+.coy-ideation{
+  margin: 10px 0 10px;
+}
+
+.coy-ideation{
+  padding-left: 30px;
+  padding-right: 16px;
+}
+
+.coy-ideation__layout{
+  display: grid;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr); /* text left, image right */
+  gap: 18px;
+  align-items: center;
+}
+
+/* Big sketch area — no frame, just on casing */
+.coy-ideation__sketch{
+  background: var(--bg-paper);
+  overflow: hidden;
+  min-height: 320px; /* tune this */
+}
+
+.coy-ideation__sketch img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* key: fills, crops */
+  mix-blend-mode: darken;
+  transform: scale(1.02);
+  transform-origin: center;
+}
+
+/* Text block */
+.coy-ideation__copy{
+  padding-top: 10px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  opacity: 0.82;
+  max-width: 42ch;           /* less “huggy” */
+}
+
+.coy-ideation__kicker{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  margin: 0 0 14px;
+  opacity: 1;
+}
+
+.coy-ideation__copy p{
+  margin: 0 0 10px;
+}
+
+/* ===================== COY — CUSTOMER DISCOVERY (CRESCENT NOTE CLOUD) ===================== */
+
+.coy-discovery{
+  margin: 30px 0 44px;
+}
+
+/* tighter stage so everything feels “composed” */
+.coy-discovery__stage{
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr; /* left cloud, right title */
+  gap: 10px;
+  align-items: center;
+  min-height: 420px; /* was 520-ish */
+}
+
+.coy-discovery__stage{
+  max-width: 100%;
+  overflow: visible;   /* prevents anything from spilling out */
+}
+
+/* title block: keep it centered vertically, pulled a hair left */
+.coy-discovery__titleblock{
+  justify-self: start;        /* IMPORTANT: not end */
+  max-width: 20ch;
+  transform: none;            /* remove translateX */
+  padding-left: 6px;
+}
+
+/* cloud: smaller bounding box + pushed toward the title (to the right) */
+.note-cloud{
+  position: relative;
+  width: min(620px, 100%);
+  height: 460px;              /* more room = visible crescent */
+  justify-self: center;
+  transform: translateX(30px);   /* remove global shove */
+}
+
+.coy-discovery__title{
+  margin: 0;
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+}
+
+.coy-discovery__sub{
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+
+/* Sticky note base (same as before, just used in absolute layout) */
+.note{
+  position: absolute;
+   width: 165px;
+  padding: 10px 12px 10px;
+  border-radius: 2px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.12);
+  background: #f6f0a8;
+  border: 1px solid var(--ink);
+  transform-origin: center;
+  margin:0;
+}
+
+
+.note__tag{
+  display: inline-block;
+  margin-left: 5px;
+  padding: 3px 9px 2px;
+  
+  border-radius: 5px;
+  background: rgba(255,255,255,0.55);
+  font-family: 'Caveat', cursive;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.64rem;
+  opacity: 0.85;
+}
+
+.note__text{
+  margin: 10px 0 0;
+  font-family: 'Caveat', cursive;
+  font-size: 0.98rem;
+  line-height: 1.15;
+  opacity: 0.92;
+}
+
+/* ---------- Crescent placement (subtle “wrap” around title) ----------
+   These are tuned to surround the left title block but bias right. */
+
+/* Crescent that opens to the RIGHT (toward the title) */
+
+/* OUTER ARC (forms the crescent shape) */
+.note.n1{ left: 6%;  top: 12%; transform: rotate(-6deg); z-index: 1; }
+.note.n2{ left: 26%; top: 2%;  transform: rotate(4deg);  z-index: 1; }
+.note.n3{ left: 48%; top: 12%; transform: rotate(-3deg); z-index: 1; }
+
+.note.n4{ left: 0%;  top: 42%; transform: rotate(2deg);  z-index: 1; }
+.note.n5{ left: 22%; top: 38%; transform: rotate(4deg); z-index: 1; }
+.note.n6{ left: 46%; top: 54%; transform: rotate(3deg);  z-index: 1; }
+
+.note.n7{ left: 8%;  top: 74%; transform: rotate(-2deg); z-index: 1; }
+.note.n8{ left: 32%; top: 82%; transform: rotate(2deg);  z-index: 1; }
+
+/* INNER ARC (the “inside” of the crescent, closer to title) */
+.note.n9{ left: 56%; top: 34%; transform: rotate(-2deg); z-index: 2; }
+/* Optional: keep the collage from going too far left */
+.note-cloud{
+  overflow: visible;
+}
+
+/* ===================== COY — RISK REDUCTION ===================== */
+
+.coy-risk{
+  margin: 32px 0 40px;
+  padding-top: 1px;
+  padding-bottom: 10px;
+}
+
+/* Section title */
+.coy-risk__title{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  margin: 0 0 14px;
+  opacity: 1;
+  
+  padding-left: 50px;
+  margin-bottom: 1px;   /* try 6–10px */
+}
+
+/* Centered content rail so flipped row doesn't run to edges */
+.coy-risk__rail{
+  width: min(920px, 88%);     /* was min(920px, 100%) */
+  margin-inline: auto;
+}
+
+/* Each row */
+.coy-risk__row{
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+
+.coy-risk__row--flip{
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.coy-risk__row--flip .coy-risk__image{
+  justify-self: start;
+}
+
+.coy-risk__row:not(.coy-risk__row--flip) .coy-risk__image{
+  justify-self: end;
+}
+
+/* Image column */
+.coy-risk__image1,
+.coy-risk__image2{
+  overflow: visible;
+}
+
+.coy-risk__image1 img{
+  display: block;
+  width: 100%;
+  height: 50%;
+
+  /* blend white background into casing */
+  mix-blend-mode: darken;
+
+  /* subtle zoom for presence */
+  transform: scale(0.8);
+  transform-origin: center;
+}
+
+.coy-risk__image2 img{
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* blend white background into casing */
+  mix-blend-mode: darken;
+
+  /* subtle zoom for presence */
+  transform: scale(1.3);
+  transform-origin: center;
+}
+
+
+.coy-risk__row--flip .coy-risk__image{
+  justify-self: start;
+}
+
+.coy-risk__row:not(.coy-risk__row--flip) .coy-risk__image{
+  justify-self: end;
+}
+
+/* Text column */
+.coy-risk__copy{
+  max-width: 48ch;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  opacity: 0.82;
+}
+
+/* Row subtitles */
+.coy-risk__copy h3{
+  font-family: var(--font-header);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.05rem;
+  margin: 0 0 10px;
+  opacity: 0.9;
+}
+
+/* Paragraph spacing */
+.coy-risk__copy p{
+  margin: 0 0 10px;
+}
+
+
+/* ---- Optional: basic responsiveness (keeps layout, but lets grids reduce columns) 
+@media (max-width: 1100px){
+  .coy-board__grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 820px){
+  .coy-hero{ grid-template-columns: 1fr; }
+  .coy-split__grid{ grid-template-columns: 1fr; }
+  .coy-discovery__grid{ grid-template-columns: 1fr; }
+  .coy-mvp__grid{ grid-template-columns: 1fr; }
+
+  .coy-board__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .coy-risk__gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .coy-shot.wide{ grid-column: span 2; }
+}
+
+@media (max-width: 520px){
+  .coy-board__grid{ grid-template-columns: 1fr; }
+  .coy-tile.span-2{ grid-column: span 1; }
+  .coy-risk__gallery{ grid-template-columns: 1fr; }
+  .coy-shot.big,
+  .coy-shot.wide{ grid-column: span 1; }
+
+  .coy-title{ font-size: 1.7rem; }
+}---- */
