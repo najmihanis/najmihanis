@@ -158,7 +158,7 @@ const NAV_ROUTES = {
   home: "index.html",
   about: "index.html#hero",
   projects: "projects.html",
-  resume: "resume.html",
+  resume: "https://drive.google.com/file/d/1H5tKhDrfGviwmIypsKUIibejHXK6Hu-X/view?usp=sharing",
   contact: "index.html#contact"
 };
 
@@ -169,6 +169,12 @@ document.querySelectorAll("[data-nav]").forEach(el => {
     const key = el.dataset.nav;
     const target = NAV_ROUTES[key];
     if (!target) return;
+
+    // External links (Google Drive, etc.)
+    if (target.startsWith("http")) {
+      window.open(target, "_blank", "noopener,noreferrer");
+      return;
+    }
 
     // If we're already on index and it's a hash jump, smooth scroll
     if (target.includes("#")) {
