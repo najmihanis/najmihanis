@@ -267,6 +267,5 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
     .sketchbook { width: 95vw; height: 29vw; }
-    
     .urban-meta-grid { grid-template-columns: 1fr; gap: 15px; }
 }
