@@ -1,0 +1,260 @@
+/* IMPORT FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700;900&family=Patrick+Hand&display=swap');
+
+/* --- LAYOUT CONTAINER --- */
+.editorial-section {
+    width: 100%;
+    height: 100vh;
+    background-color:--var(--bg-paper); 
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Jost', sans-serif;
+}
+
+/* THE DIVIDER LINE */
+.editorial-divider {
+    position: absolute;
+    left: 30%;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background-color: rgba(44, 62, 80, 0.1); 
+    z-index: 0;
+}
+
+/* --- COLUMN 1: TYPOGRAPHY --- */
+.type-column {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
+    position: relative;
+    z-index: 1;
+}
+
+.medium-lockup {
+    font-size: 3rem; 
+    font-weight: 900;
+    line-height: 0.9; 
+    letter-spacing: -1px;
+    color: #2c3e50;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.indent {
+    margin-left: 40px; 
+    color: #444;
+    font-size: 4rem;
+}
+
+.giant-amp {
+    position: absolute;
+    font-family: 'Baskerville', serif;
+    font-style: italic;
+    font-size: 20rem;
+    color: #e6b800; 
+    opacity: 0.4; 
+    top: 50%;
+    left: -5px;
+    transform: translateY(-50%);
+    z-index: -1;
+
+    /* --- THE FIXES --- */
+    width: max-content; /* Forces the box to fit the full glyph size */
+    padding-right: 100px; /* Adds extra buffer room for the italic tail */
+    line-height: 1; /* Prevents vertical clipping */
+    pointer-events: none;
+    overflow: visible; /* Ensures the tail isn't cut by the bounding box */
+}
+
+.subtitle-group {
+    margin-top: 30px;
+    border-left: 3px solid #b93b3b;
+    padding-left: 15px;
+}
+
+.gallery-subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #b93b3b;
+    margin: 0 0 5px 0;
+}
+
+.accent-text {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+}
+
+/* --- COLUMN 2: VISUALS --- */
+.visual-column {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    perspective: 1000px;
+}
+
+/* --- THE STACK WRAPPER --- */
+.stack-wrapper {
+    position: relative;
+    width: auto;
+    height: 80vh;
+    aspect-ratio: 4 / 5;
+    z-index: 10;
+}
+
+/* --- INDIVIDUAL PAPER SHEETS --- */
+.paper-sheet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.15);
+    border-radius: 2px;
+    
+    /* Default Messy Rotation */
+    transform: rotate(var(--rotation));
+    
+    /* Smooth movement */
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ANIMATION: Active (Top) */
+.paper-sheet.active {
+    z-index: 10;
+    transform: rotate(var(--rotation)) translate(0, 0) scale(1);
+}
+
+/* ANIMATION: Next (Underneath) */
+.paper-sheet.next {
+    z-index: 9;
+    transform: rotate(var(--rotation)) translate(10px, 10px) scale(0.98);
+    filter: brightness(0.95);
+}
+
+/* ANIMATION: Fly Out Right */
+.paper-sheet.fly-out-right {
+    transform: rotate(15deg) translateX(120%) !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ANIMATION: Fly Out Left */
+.paper-sheet.fly-out-left {
+    transform: rotate(-15deg) translateX(-120%) !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* TORN EDGE STYLING */
+.torn-edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    background: #f0f0f0;
+    -webkit-mask-image: linear-gradient(-45deg, transparent 6px, black 6px), linear-gradient(45deg, transparent 6px, black 6px);
+    -webkit-mask-size: 15px 15px;
+    mask-image: linear-gradient(-45deg, transparent 6px, black 6px), linear-gradient(45deg, transparent 6px, black 6px);
+    mask-size: 15px 15px;
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.sheet-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(105%);
+    pointer-events: none;
+}
+
+/* --- NEW NAVIGATION BUTTONS --- */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50%; /* Perfect Circle */
+    
+    /* Typography */
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    line-height: 1;
+    
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 200; /* Extremely high to ensure clickability */
+    
+    /* Visuals */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover State */
+.nav-arrow:hover {
+    background: #2c3e50;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-color: #2c3e50;
+}
+
+/* Active/Click State */
+.nav-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Position Left/Right relative to the Visual Column */
+.prev-btn { 
+    left: 20px; 
+}
+
+.next-btn { 
+    right: 20px; 
+}
+
+/* HIDE buttons on mobile (since we will have Swipe) */
+@media (max-width: 768px) {
+    .nav-arrow {
+        display: none; 
+    }
+}
+
+/* NOTE */
+.handwritten-note {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    font-family: 'Patrick Hand', cursive;
+    color: #555;
+    background: rgba(255,255,255,0.9);
+    padding: 5px 12px;
+    transform: rotate(-3deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+

@@ -68,10 +68,23 @@
                         <div class="speed-lines"></div>
                     </div>
 
-                    <!-- NAV PLATE -->
+                    <!-- NAV PLATE (NEW DESIGN) -->
                     <nav class="nav-plate" id="mobileNav">
+    
+                        <button class="nav-close-btn" aria-label="Close Menu">✕</button>
+
                         <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
-                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        
+                        <div class="nav-dropdown-wrapper">
+                            <button class="nav-btn block-3d dropdown-trigger" type="button">PROJECTS <span class="dropdown-arrow">▼</span></button>
+                            
+                            <div class="sub-nav-plate">
+                                <button class="nav-btn block-3d-small" type="button" data-nav="art-design">ART & DESIGN</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="engineering">ENGINEERING</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="photography">PHOTOGRAPHY</button>
+                            </div>
+                        </div>
+
                         <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
                         <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
                         
@@ -172,7 +185,7 @@
 
                             <!-- 3 CIRCULAR WINDOWS arranged on an arc -->
                             <div class="nav-windows">
-                                <div class="nav-window nav-window--left" data-angle="-45" style="cursor: pointer;">
+                                <div class="nav-window nav-window--left" data-angle="-45" style="cursor: pointer;" data-target="art">
                                 <div class="nav-window__frame">
                                     <!-- curved label following window circle -->
                                     <svg class="nav-window__labelArc" viewBox="0 0 120 120" aria-hidden="true">

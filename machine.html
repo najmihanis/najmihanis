@@ -64,10 +64,23 @@
                         <div class="speed-lines"></div>
                     </div>
 
-                    <!-- NAV PLATE -->
+                    <!-- NAV PLATE (NEW DESIGN) -->
                     <nav class="nav-plate" id="mobileNav">
+    
+                        <button class="nav-close-btn" aria-label="Close Menu">✕</button>
+
                         <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
-                        <button class="nav-btn block-3d" type="button" data-nav="projects">PROJECTS</button>
+                        
+                        <div class="nav-dropdown-wrapper">
+                            <button class="nav-btn block-3d dropdown-trigger" type="button">PROJECTS <span class="dropdown-arrow">▼</span></button>
+                            
+                            <div class="sub-nav-plate">
+                                <button class="nav-btn block-3d-small" type="button" data-nav="art-design">ART & DESIGN</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="engineering">ENGINEERING</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="photography">PHOTOGRAPHY</button>
+                            </div>
+                        </div>
+
                         <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
                         <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
                         

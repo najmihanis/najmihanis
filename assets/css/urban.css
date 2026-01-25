@@ -1,0 +1,272 @@
+/* URBAN SKETCHING PAGE STYLES */
+
+.urban-gallery-section {
+    width: 100%;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: --var(--bg-paper); /* Matches Body */
+    padding-bottom: 60px;
+}
+
+/* --- A. TYPOGRAPHY HEADER --- */
+.urban-header-container {
+    text-align: center;
+    margin-bottom: 0; 
+    margin-top: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.urban-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #b93b3b; 
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.urban-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: #1a2a3a;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.urban-amp {
+    font-family: 'Baskerville', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #e6b800;
+    font-size: 1.1em;
+    margin: 0 5px;
+}
+
+.urban-light { font-weight: 300; color: #7f8c8d; }
+
+.urban-header-line {
+    width: 60px; height: 4px;
+    background: #1a2a3a;
+    margin: 25px auto 0 auto;
+}
+
+/* 1. THE SCENE */
+.book-scene {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    perspective: 2500px;
+    position: relative;
+    padding-top: 30px;
+}
+
+/* 2. THE SKETCHBOOK (8x5 Ratio Landscape) */
+/* Page Width = 480px, Height = 300px. Total Width = 960px */
+.sketchbook {
+    width: 960px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    /* Tilted slightly to show it's laying flat */
+    transform: rotateX(25deg);
+}
+
+/* BACK COVER (Pentalic Black) */
+.cover {
+    position: absolute;
+    top: -4px; bottom: -4px; right: -4px; left: -4px;
+    background: #1a1a1a; /* Pentalic Black */
+    border-radius: 14px; /* Slightly larger than pages */
+    box-shadow: 
+        0 20px 30px rgba(0,0,0,0.5),
+        inset 0 0 20px rgba(0,0,0,0.8);
+    transform: translateZ(-2px); 
+}
+
+/* 3. THE PAGES */
+.page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; /* 480px */
+    height: 100%; /* 300px */
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: pointer;
+}
+
+/* PAGE FACES */
+.page-face {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fdfbf7; /* Warm white paper */
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    border: 1px solid #dcdcdc;
+    
+    /* ROUNDED CORNERS (Outer edges) */
+    border-radius: 0 12px 12px 0;
+}
+
+/* FRONT (Right Side) */
+.page-face.front {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BACK (Left Side) */
+.page-face.back {
+    z-index: 1;
+    transform: rotateY(180deg);
+    border-radius: 12px 0 0 12px; /* Mirror corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* IMAGES */
+.page-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+}
+
+/* 4. FLIPPED STATE */
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+.page.flipped .page-face {
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 5. SPINE SHADOW */
+.spine-shadow {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 30px;
+    pointer-events: none;
+    z-index: 10;
+}
+.front .spine-shadow {
+    left: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
+}
+.back .spine-shadow {
+    right: 0;
+    background: linear-gradient(to left, rgba(0,0,0,0.15), transparent);
+}
+
+/* PAGE NUMBERS */
+.page-number {
+    position: absolute;
+    bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    color: #999;
+    z-index: 20;
+}
+.page-number.right { right: 15px; }
+
+/* 6. PENTALIC DETAILS */
+.elastic-band {
+    position: absolute;
+    right: 20px;
+    top: -4px; bottom: -4px;
+    width: 8px;
+    background: #111;
+    z-index: 0; 
+    box-shadow: 1px 0 3px rgba(0,0,0,0.5);
+}
+
+.bookmark-ribbon {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 12px;
+    height: 350px;
+    background: #000; /* Black ribbon */
+    transform: translateX(-50%) translateZ(2px);
+    z-index: 20;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+/* CONTROLS */
+.book-controls {
+    margin-top: 50px; display: flex; gap: 20px;
+}
+
+.control-btn {
+    font-weight: 700; background: transparent; border: 2px solid #1a1a1a;
+    padding: 10px 20px; cursor: pointer; transition: 0.2s;
+}
+.control-btn:hover { background: #1a1a1a; color: #fff; }
+
+/* --- C. EDITORIAL BODY TEXT --- */
+.urban-body-container {
+    width: 100%;
+    display: flex; justify-content: center;
+    margin-top: 60px;
+}
+
+.urban-text-column {
+    max-width: 600px; text-align: left; color: #333;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.urban-text-column h3 {
+    font-family: 'Montserrat', sans-serif; font-size: 1.2rem;
+    font-weight: 700; letter-spacing: 2px;
+    color: #1a2a3a; margin-bottom: 20px;
+    text-transform: uppercase; text-align: center;
+}
+
+.urban-text-column p {
+    font-size: 1.05rem; line-height: 1.7; margin-bottom: 25px; color: #444;
+}
+
+.drop-cap {
+    float: left; font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem; line-height: 0.8; font-weight: 900;
+    color: #1a2a3a; margin-right: 10px; margin-top: 5px;
+}
+
+.urban-meta-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 40px; padding-top: 30px;
+    border-top: 1px solid #ccc;
+}
+
+.meta-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.meta-label {
+    font-family: 'Montserrat', sans-serif; font-size: 0.7rem;
+    font-weight: 700; letter-spacing: 1px; color: #999;
+    margin-bottom: 5px; text-transform: uppercase;
+}
+.meta-value {
+    font-family: 'Helvetica Neue', serif; font-size: 0.9rem;
+    font-weight: 500; color: #1a2a3a; font-style: italic;
+}
+
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .sketchbook { width: 95vw; height: 29vw; }
+    
+    .urban-meta-grid { grid-template-columns: 1fr; gap: 15px; }
+}

@@ -1,0 +1,254 @@
+/* ===================== GEMINI 1 ===================== */
+
+/* Container settings */
+.bookshelf-container {
+  display: flex;
+  width: 100%;
+  height: 400px; /* Adjust height based on preference */
+  gap: 2px; /* Small gap between books */
+  background: #f4f4f4;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+/* Individual Book */
+.book-item {
+  flex: 1; /* Default state: all share equal narrow width */
+  min-width: 40px; /* Ensure spine is always visible */
+  height: 100%;
+  background-color: #ddd; /* Default spine color */
+  position: relative;
+  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  box-shadow: -1px 0 5px rgba(0,0,0,0.1); /* Subtle depth */
+}
+
+/* Specific Colors to match video vibe */
+.book-item.accent-red { background-color: #b93b3b; color: white; }
+.book-item.accent-yellow { background-color: #e8c643; color: black; }
+.book-item.accent-blue { background-color: #3b4d80; color: white; }
+
+/* The Hover / Active State */
+.book-item.is-expanded {
+  flex: 6; /* Grow significantly when active */
+}
+
+/* SPINE CONTENT (Vertical Text) */
+.book-spine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  writing-mode: vertical-rl; /* Makes text vertical */
+  text-orientation: mixed;
+  transform: rotate(180deg); /* Fixes rotation direction */
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* COVER CONTENT (Hidden by default) */
+.book-cover {
+  opacity: 0;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translateY(20px);
+  transition: opacity 0.4s 0.2s, transform 0.4s 0.2s; /* Delay allows expansion first */
+  min-width: 300px; /* Prevents text squishing during animation */
+}
+
+/* When Expanded: Hide Spine, Show Cover */
+.book-item.is-expanded .book-spine {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.book-item.is-expanded .book-cover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fonts */
+.spine-title { font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
+.spine-author { font-size: 0.8rem; opacity: 0.7; }
+.book-cover h1 { font-size: 2.5rem; line-height: 1; margin-bottom: 10px; }
+.book-cover h2 { font-size: 2rem; margin-bottom: 5px; }
+
+/* ===================== FROM PORTRAIT ===================== */
+
+/* IMPORT FONTS: Jost (Main) & Space Mono (Technical) */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* --- PAGE CONTAINER --- */
+.archive-section {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f9f9f9; /* Cream Paper Tone */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Jost', sans-serif;
+    color: #222;
+}
+
+.archive-grid {
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    height: 85vh; /* Fixed height for the "Poster" feel */
+    gap: 60px;
+}
+
+/* --- COL 1: SIDEBAR (VERTICAL TITLE) --- */
+.archive-sidebar {
+    flex: 0 0 100px; /* Fixed width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 1px solid rgba(0,0,0,0.1); /* Subtle divider */
+    padding-right: 40px;
+}
+
+.archive-title {
+    writing-mode: vertical-rl; /* Text runs vertically */
+    transform: rotate(180deg); /* Text reads bottom-to-top */
+    font-size: 8rem; /* Massive Scale */
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 0.1em;
+    color: #2c3e50;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.sidebar-line {
+    width: 2px;
+    height: 100px;
+    background: #d35400; /* Burnt Orange Accent */
+}
+
+.sidebar-meta {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 2px;
+    display: flex;
+    gap: 20px;
+}
+
+/* --- COL 2: MAIN EXHIBIT --- */
+.archive-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* THE 3D BOARD WRAPPER */
+.specimen-wrapper {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 40px auto; /* Centered with bottom space */
+    perspective: 1000px; /* Setup for 3D tilt */
+    cursor: crosshair; /* Interactive feel */
+}
+
+/* THE IMAGE "MATTE" */
+.specimen-matte {
+    position: relative;
+    background: #fff;
+    padding: 20px; /* White border thickness */
+    border: 1px solid #eee;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Deep shadow to lift it */
+    z-index: 2; /* Sits on top */
+    transition: transform 0.1s ease-out; /* For smooth JS tilt */
+}
+
+.specimen-image {
+    display: block;
+    max-height: 60vh; /* Prevents it from being too tall */
+    width: auto;
+    max-width: 100%;
+    filter: grayscale(10%) contrast(105%); /* Slight vintage pop */
+}
+
+/* THE COLORED ACCENT BLOCK (BEHIND) */
+.specimen-accent-block {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 100%;
+    height: 100%;
+    background-color: #d35400; /* Burnt Orange */
+    z-index: 1; /* Behind the image */
+    transition: transform 0.2s ease-out; /* Moves slightly slower for parallax */
+}
+
+/* CORNER MARKS (Diagrammatic) */
+.mark-tl, .mark-br {
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #d35400;
+    z-index: 3;
+    pointer-events: none;
+}
+.mark-tl { top: -30px; left: -30px; }
+.mark-br { bottom: -30px; right: -30px; }
+
+/* --- DATA BLOCK (DOSSIER STYLE) --- */
+.archive-data-block {
+    align-self: flex-start; /* Aligns strictly left */
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #555;
+    border-top: 2px solid #2c3e50;
+    padding-top: 15px;
+    width: 300px;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 4px;
+}
+
+.data-label {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.status-live {
+    color: #d35400; /* Orange text for status */
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}

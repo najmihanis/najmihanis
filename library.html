@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najmi Hanis Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/library.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE (NEW DESIGN) -->
+                    <nav class="nav-plate" id="mobileNav">
+    
+                        <button class="nav-close-btn" aria-label="Close Menu">✕</button>
+
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        
+                        <div class="nav-dropdown-wrapper">
+                            <button class="nav-btn block-3d dropdown-trigger" type="button">PROJECTS <span class="dropdown-arrow">▼</span></button>
+                            
+                            <div class="sub-nav-plate">
+                                <button class="nav-btn block-3d-small" type="button" data-nav="art-design">ART & DESIGN</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="engineering">ENGINEERING</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="photography">PHOTOGRAPHY</button>
+                            </div>
+                        </div>
+
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+    <!-- --------------------------------- MAIN BODY SECTION -------------------------------- -->
+
+<!-- --------------------------------- GEMINI 1 SECTION -------------------------------- -->
+<div class="bookshelf-container">
+  <div class="book-item">
+    <div class="book-spine">
+      <span class="spine-title">New Utilitarian</span>
+      <span class="spine-author">J. Smith</span>
+    </div>
+    <div class="book-cover">
+      <h2>New Utilitarian</h2>
+      <p>Modern architecture in the 21st century</p>
+    </div>
+  </div>
+
+  <div class="book-item accent-red">
+    <div class="book-spine">
+      <span class="spine-title">Design by Accident</span>
+      <span class="spine-author">Alexandra Midal</span>
+    </div>
+    <div class="book-cover">
+      <h1>Design by Accident</h1>
+      <h3>For a New History of Design</h3>
+      <p>Alexandra Midal</p>
+    </div>
+  </div>
+
+  <div class="book-item accent-yellow">
+    <div class="book-spine">
+      <span class="spine-title">Design & Illustration</span>
+      <span class="spine-author">Hey Studio</span>
+    </div>
+    <div class="book-cover">
+      <h2>Design & Illustration</h2>
+      <p>Explorations in color</p>
+    </div>
+  </div>
+
+  <div class="book-item accent-blue">
+    <div class="book-spine">
+      <span class="spine-title">Visible Signs</span>
+      <span class="spine-author">David Crow</span>
+    </div>
+    <div class="book-cover">
+      <h2>Visible Signs</h2>
+      <p>An introduction to semiotics</p>
+    </div>
+  </div>
+  
+   <div class="book-item">
+    <div class="book-spine">
+      <span class="spine-title">Printable</span>
+      <span class="spine-author">Unknown</span>
+    </div>
+    <div class="book-cover">
+      <h2>Printable</h2>
+      <p>The art of physical media</p>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------- FROM PORTRAIT SECTION ----------------------------------- -->
+<section class="archive-section">
+    <div class="archive-grid">
+        
+        <div class="archive-sidebar">
+            <div class="sidebar-line"></div>
+            <h1 class="archive-title">PORTRAITURE</h1>
+            <div class="sidebar-meta">
+                <span>REF: 2026-A</span>
+                <span>COLLECTION 04</span>
+            </div>
+        </div>
+
+        <div class="archive-main">
+            
+            <div class="specimen-wrapper" id="portraitBoard">
+                <div class="specimen-matte">
+                    <img src="project pics/portraits.png" alt="Portrait Collection" class="specimen-image">
+                </div>
+                <div class="specimen-accent-block"></div>
+                <div class="mark-tl">+</div>
+                <div class="mark-br">+</div>
+            </div>
+
+            <div class="archive-data-block">
+                <div class="data-row">
+                    <span class="data-label">SUBJECT</span>
+                    <span class="data-value">HUMAN INTEREST // FACES</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">DEVICE</span>
+                    <span class="data-value">FUJIFILM XE5 // 35MM</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">STATUS</span>
+                    <span class="data-value status-live">ARCHIVED &bull; VIEWABLE</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer></div>
+
+            </div>
+        </div>
+
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

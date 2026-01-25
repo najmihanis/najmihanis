@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najmi Hanis Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/portraits.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE -->
+                    <nav class="nav-plate" id="mobileNav">
+    
+                        <button class="nav-close-btn" aria-label="Close Menu">✕</button>
+
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        
+                        <div class="nav-dropdown-wrapper">
+                            <button class="nav-btn block-3d dropdown-trigger" type="button">PROJECTS <span class="dropdown-arrow">▼</span></button>
+                            
+                            <div class="sub-nav-plate">
+                                <button class="nav-btn block-3d-small" type="button" data-nav="art-design">ART & DESIGN</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="engineering">ENGINEERING</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="photography">PHOTOGRAPHY</button>
+                            </div>
+                        </div>
+
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+    <!-- --------------------------------- MAIN BODY SECTION -------------------------------- -->
+
+<section class="editorial-section">
+    
+    <div class="editorial-divider"></div>
+
+        <div class="type-column" id="parallaxText">
+        
+        <div class="giant-amp">&</div>
+
+        <div class="title-group">
+            <h1 class="gallery-title medium-lockup">GRAPHITE</h1>
+            
+            <h1 class="gallery-title medium-lockup indent">GAZE</h1>
+        </div>
+
+        <div class="subtitle-group">
+            <h2 class="gallery-subtitle">THE PORTRAIT ARCHIVE</h2>
+            <p class="accent-text" id="dynamicLabel">FIG 01. // VISUAL STUDY</p>
+        </div>
+
+    </div>
+
+    <div class="visual-column" id="parallaxImage">
+        
+        <button class="nav-arrow prev-btn" aria-label="Previous">←</button>
+        <button class="nav-arrow next-btn" aria-label="Next">→</button>
+
+        <div class="stack-wrapper">
+            
+            <!--<button class="nav-arrow prev-btn" aria-label="Previous">←</button>
+            <button class="nav-arrow next-btn" aria-label="Next">→</button>-->
+
+
+            <div class="paper-sheet active" style="--rotation: 2deg;">
+                <div class="torn-edge"></div>
+                <img src="project pics/portraits/4.png" alt="Portrait 1" class="sheet-image">
+                <div class="handwritten-note">Study No. 1</div>
+            </div>
+
+            <div class="paper-sheet" style="--rotation: -1deg;">
+                <div class="torn-edge"></div>
+                <img src="project pics/portraits/5.png" alt="Portrait 2" class="sheet-image">
+                <div class="handwritten-note">Study No. 2</div>
+            </div>
+
+            <div class="paper-sheet" style="--rotation: 4deg;">
+                <div class="torn-edge"></div>
+                <img src="project pics/portraits/6.png" alt="Portrait 3" class="sheet-image">
+                <div class="handwritten-note">Study No. 3</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer></div>
+
+            </div>
+        </div>
+
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>

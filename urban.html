@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ---------------------------------SETUP / HEADER------------------------------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najmi Hanis Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/urban.css">
+</head>
+
+<body>
+    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
+    <svg style="display: none;">
+        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+        </symbol>
+        
+        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+            <circle cx="14" cy="14" r="4"/>
+        </symbol>
+    </svg>
+    <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
+    <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
+        <div class="device-casing" id="deviceCasing">
+            <!-- INNER CASING-->
+            <div class="inner-casing">
+                
+                <div class="screw tl"></div><div class="screw tr"></div>
+                <div class="screw bl"></div><div class="screw br"></div>
+                
+                <!-- --------------------------------- HEADER SECTION: BRANDING LOGO &  NAV PALTE ------------------------------- -->
+                <header class="panel-row header-panel">
+
+                    <!-- HAMBURGER BUTTON (ONLY VISIBLE AT SMALLED SCREENS) -->
+                    <button class="nav-vent-toggle" type="button"
+                        aria-label="Open navigation"
+                        aria-controls="mobileNav"
+                        aria-expanded="false">
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                        <span class="vent-bar"></span>
+                    </button>
+
+                    <!-- BRANDING PLATE -->
+                    <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+        
+                        <div class="branding-grille-area">
+                            
+                            <div class="branding-inner-badge">
+                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="speed-lines"></div>
+                    </div>
+
+                    <!-- NAV PLATE (NEW DESIGN) -->
+                    <nav class="nav-plate" id="mobileNav">
+    
+                        <button class="nav-close-btn" aria-label="Close Menu">✕</button>
+
+                        <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+                        
+                        <div class="nav-dropdown-wrapper">
+                            <button class="nav-btn block-3d dropdown-trigger" type="button">PROJECTS <span class="dropdown-arrow">▼</span></button>
+                            
+                            <div class="sub-nav-plate">
+                                <button class="nav-btn block-3d-small" type="button" data-nav="art-design">ART & DESIGN</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="engineering">ENGINEERING</button>
+                                <button class="nav-btn block-3d-small" type="button" data-nav="photography">PHOTOGRAPHY</button>
+                            </div>
+                        </div>
+
+                        <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+                        <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+                        
+                        <div class="toggle-switch-group">
+                            <div class="toggle-btn"></div>
+                            <div class="toggle-btn"></div>
+                        </div>
+                    </nav>
+
+                </header>
+
+    <!-- --------------------------------- MAIN BODY SECTION -------------------------------- -->
+    <section class="urban-gallery-section">          
+    
+    <div class="urban-header-container">
+        <h2 class="urban-subtitle">TRAVEL SKETCHBOOK</h2>
+        <h1 class="urban-title">
+            URBAN <span class="urban-amp">&</span> TRAVEL 
+            <span class="urban-light">PAGES</span>
+        </h1>
+        <div class="urban-header-line"></div>
+    </div>
+    
+    <div class="book-scene">
+   
+   <div class="sketchbook">
+       
+       <div class="cover back-cover"></div>
+       
+       <div class="pages-stack">
+           
+           <div class="page flipped" style="z-index: 1;">
+               <div class="page-face front">
+                   </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/1.jpg" alt="Urban Sketch 1">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 9;">
+               <div class="page-face front">
+                   <img src="project pics/urban/2.jpg" alt="Urban Sketch 2">
+                   <div class="page-number right">02</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/3.jpg" alt="Urban Sketch 3">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 8;">
+               <div class="page-face front">
+                   <img src="project pics/urban/4.jpg" alt="Urban Sketch 4">
+                   <div class="page-number right">04</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/5.jpg" alt="Urban Sketch 5">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 7;">
+               <div class="page-face front">
+                   <img src="project pics/urban/6.jpg" alt="Urban Sketch 6">
+                   <div class="page-number right">06</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/7.jpg" alt="Urban Sketch 7">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 6;">
+               <div class="page-face front">
+                   <img src="project pics/urban/8.jpg" alt="Urban Sketch 8">
+                   <div class="page-number right">08</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/9.jpg" alt="Urban Sketch 9">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 5;">
+               <div class="page-face front">
+                   <img src="project pics/urban/10.jpg" alt="Urban Sketch 10">
+                   <div class="page-number right">10</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/11.jpg" alt="Urban Sketch 11">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 4;">
+               <div class="page-face front">
+                   <img src="project pics/urban/12.jpg" alt="Urban Sketch 12">
+                   <div class="page-number right">12</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/13.jpg" alt="Urban Sketch 13">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 3;">
+               <div class="page-face front">
+                   <img src="project pics/urban/14.jpg" alt="Urban Sketch 14">
+                   <div class="page-number right">14</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/15.jpg" alt="Urban Sketch 15">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+
+           <div class="page" style="z-index: 2;">
+               <div class="page-face front">
+                   <img src="project pics/urban/16.jpg" alt="Urban Sketch 16">
+                   <div class="page-number right">16</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                   <img src="project pics/urban/17.jpg" alt="Urban Sketch 17">
+                   <div class="spine-shadow"></div>
+               </div>
+           </div>
+           
+           <div class="page" style="z-index: 1;">
+               <div class="page-face front">
+                   <img src="project pics/urban/18.jpg" alt="Urban Sketch 18">
+                   <div class="page-number right">18</div>
+                   <div class="spine-shadow"></div>
+               </div>
+               <div class="page-face back">
+                    </div>
+           </div>
+
+       </div>
+
+       <div class="bookmark-ribbon"></div>
+       <div class="elastic-band"></div>
+
+   </div>
+
+   <div class="book-controls">
+       <button id="prevBtn" class="control-btn">← PREV</button>
+       <button id="nextBtn" class="control-btn">NEXT →</button>
+   </div>
+
+</div>
+
+<div class="urban-body-container">
+        <div class="urban-text-column">
+            <h3>CAPTURING THE MOMENT</h3>
+            <p>
+                <span class="drop-cap">T</span>he world moves fast, but ink creates a permanent pause. 
+                This archive contains little pauses I took in <strong>Europe, Yellowstone, San Diego and New York</strong>, 
+                recording how each city feels while I’m moving through it.
+            </p>
+            <p>
+                Each sketch was drawn on site with a fountain pen and a small travel watercolor set. No photos, no tracing. Just me, the city, and the time it took to stay present.
+            </p>
+            
+            <div class="urban-meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">TOOLS</span>
+                    <span class="meta-value">Lamy Safari / Waterbrush</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">PAPER</span>
+                    <span class="meta-value">140lb Cold Press</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">DATE</span>
+                    <span class="meta-value">2024 — 2026</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  
+
+
+
+
+    <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+                <footer class="footer-vent">
+                    <div class="vent-screw"></div>
+                    <div class="high-fi-grill"></div>
+                    <div class="vent-screw"></div>
+                </footer></div>
+
+            </div>
+        </div>
+
+
+    <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
+    <script src="script.js"></script>
+
+</body>
+</html>
