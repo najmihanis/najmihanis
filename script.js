@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (targetPage === 'engineering') setTimeout(() => { window.location.href = 'projects.html'; }, 450);
           if (targetPage === 'art') setTimeout(() => { window.location.href = 'art-lobby.html'; }, 450);
+          if (targetPage === 'photo') setTimeout(() => { window.location.href = 'photography.html'; }, 450);
         });
       });
   }
@@ -352,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         });
-        
+
       });
   }
 
@@ -539,7 +540,125 @@ document.addEventListener('DOMContentLoaded', () => {
         updateZIndexes();
     }
   }
-  
+
+  // ------------------------------------------------------------------------------------ //
+// ------------------------------- PHOTOGRAPHY PAGE ----------------------------------- //
+// ------------------------------------------------------------------------------------ //
+
+{
+    const track = document.getElementById('track');
+    // Robust selection: Try ID first, then fallback to class
+    const stage = document.getElementById('cameraStage') || document.querySelector('.camera-stage-container');
+    const nextBtn = document.getElementById('photoNext');
+    const prevBtn = document.getElementById('photoPrev');
+    const controls = document.querySelector('.carousel-controls');
+    const modeBtns = document.querySelectorAll('.filter-btn[data-mode]');
+
+    // Safety check: Only run if essential elements exist
+    if (track && stage && nextBtn && prevBtn) {
+
+        const CONFIG = {
+            landscape: {
+                folder: 'project pics/photography/horizontal/',
+                count: 8,
+                ext: '.JPG' // Case Sensitive
+            },
+            portrait: {
+                folder: 'project pics/photography/vertical/',
+                count: 29,
+                ext: '.JPG'
+            }
+        };
+
+        let currentMode = 'landscape';
+        let currentIndex = 0;
+        let slides = [];
+
+        function loadSlides(mode) {
+            track.innerHTML = '';
+            const cfg = CONFIG[mode];
+            
+            for (let i = 1; i <= cfg.count; i++) {
+                const div = document.createElement('div');
+                div.className = 'c-slide';
+                
+                const img = document.createElement('img');
+                img.src = `${cfg.folder}${i}${cfg.ext}`;
+                img.onerror = function() { this.style.display = 'none'; };
+                
+                div.appendChild(img);
+                track.appendChild(div);
+                
+                div.addEventListener('click', () => {
+                    const idx = slides.indexOf(div);
+                    const distance = idx - currentIndex;
+                    if (distance === 1) nextBtn.click();
+                    if (distance === -1) prevBtn.click();
+                });
+            }
+            
+            slides = Array.from(track.querySelectorAll('.c-slide'));
+            currentIndex = 0;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                const distance = index - currentIndex;
+                if (Math.abs(distance) <= 2) {
+                    slide.setAttribute('data-pos', distance);
+                    slide.style.opacity = ''; 
+                    slide.style.pointerEvents = 'auto';
+                } else {
+                    slide.removeAttribute('data-pos'); 
+                    slide.style.opacity = 0;
+                    slide.style.pointerEvents = 'none';
+                }
+            });
+            prevBtn.style.opacity = currentIndex === 0 ? "0.3" : "1";
+            nextBtn.style.opacity = currentIndex === slides.length - 1 ? "0.3" : "1";
+        }
+
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const newMode = btn.dataset.mode;
+                if (currentMode === newMode) return;
+                
+                modeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                if (newMode === 'portrait') {
+                    stage.classList.add('mode-portrait');
+                    if (controls) controls.classList.add('mode-portrait');
+                } else {
+                    stage.classList.remove('mode-portrait');
+                    if (controls) controls.classList.remove('mode-portrait');
+                }
+                
+                currentMode = newMode;
+                // Delay slightly to let rotation start
+                setTimeout(() => loadSlides(newMode), 50);
+            });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        // Initialize
+        loadSlides('landscape');
+    }
+}
   // ------------------------------------------------------------------------------------ //
   // --------------------------- ARCHIVED ASSETS LIBRARY -------------------------------- //
   // ------------------------------------------------------------------------------------ //
