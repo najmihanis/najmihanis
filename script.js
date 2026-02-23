@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "art-design": "art-lobby.html",      
     "engineering": "projects.html",      
     "photography": "photography.html",   
-    resume: "https://drive.google.com/file/d/1H5tKhDrfGviwmIypsKUIibejHXK6Hu-X/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1E3eRwUqXictVi2r_QweSRdBd3mN3Z95Z/view?usp=sharing",
     contact: "index.html#contact"
   };
 
