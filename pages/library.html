@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/portraits.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/library.css">
 </head>
 
 <body>
@@ -54,7 +54,7 @@
                         <div class="branding-grille-area">
                             
                             <div class="branding-inner-badge">
-                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <img src="../assets/images/branding/logo.png" alt="Najmi Hanis Logo" class="custom-logo">
                                 <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
                                 <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
                             </div>
@@ -64,7 +64,7 @@
                         <div class="speed-lines"></div>
                     </div>
 
-                    <!-- NAV PLATE -->
+                    <!-- NAV PLATE (NEW DESIGN) -->
                     <nav class="nav-plate" id="mobileNav">
     
                         <button class="nav-close-btn" aria-label="Close Menu">✕</button>
@@ -94,61 +94,108 @@
 
     <!-- --------------------------------- MAIN BODY SECTION -------------------------------- -->
 
-<section class="editorial-section">
-    
-    <div class="editorial-divider"></div>
-
-        <div class="type-column" id="parallaxText">
-        
-        <div class="giant-amp">&</div>
-
-        <div class="title-group">
-            <h1 class="gallery-title medium-lockup">GRAPHITE</h1>
-            
-            <h1 class="gallery-title medium-lockup indent">GAZE</h1>
-        </div>
-
-        <div class="subtitle-group">
-            <h2 class="gallery-subtitle">THE PORTRAIT ARCHIVE</h2>
-            <p class="accent-text" id="dynamicLabel">FIG 01. // VISUAL STUDY</p>
-        </div>
-
+<!-- --------------------------------- GEMINI 1 SECTION -------------------------------- -->
+<div class="bookshelf-container">
+  <div class="book-item">
+    <div class="book-spine">
+      <span class="spine-title">New Utilitarian</span>
+      <span class="spine-author">J. Smith</span>
     </div>
+    <div class="book-cover">
+      <h2>New Utilitarian</h2>
+      <p>Modern architecture in the 21st century</p>
+    </div>
+  </div>
 
-    <div class="visual-column" id="parallaxImage">
+  <div class="book-item accent-red">
+    <div class="book-spine">
+      <span class="spine-title">Design by Accident</span>
+      <span class="spine-author">Alexandra Midal</span>
+    </div>
+    <div class="book-cover">
+      <h1>Design by Accident</h1>
+      <h3>For a New History of Design</h3>
+      <p>Alexandra Midal</p>
+    </div>
+  </div>
+
+  <div class="book-item accent-yellow">
+    <div class="book-spine">
+      <span class="spine-title">Design & Illustration</span>
+      <span class="spine-author">Hey Studio</span>
+    </div>
+    <div class="book-cover">
+      <h2>Design & Illustration</h2>
+      <p>Explorations in color</p>
+    </div>
+  </div>
+
+  <div class="book-item accent-blue">
+    <div class="book-spine">
+      <span class="spine-title">Visible Signs</span>
+      <span class="spine-author">David Crow</span>
+    </div>
+    <div class="book-cover">
+      <h2>Visible Signs</h2>
+      <p>An introduction to semiotics</p>
+    </div>
+  </div>
+  
+   <div class="book-item">
+    <div class="book-spine">
+      <span class="spine-title">Printable</span>
+      <span class="spine-author">Unknown</span>
+    </div>
+    <div class="book-cover">
+      <h2>Printable</h2>
+      <p>The art of physical media</p>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------- FROM PORTRAIT SECTION ----------------------------------- -->
+<section class="archive-section">
+    <div class="archive-grid">
         
-        <button class="nav-arrow prev-btn" aria-label="Previous">←</button>
-        <button class="nav-arrow next-btn" aria-label="Next">→</button>
+        <div class="archive-sidebar">
+            <div class="sidebar-line"></div>
+            <h1 class="archive-title">PORTRAITURE</h1>
+            <div class="sidebar-meta">
+                <span>REF: 2026-A</span>
+                <span>COLLECTION 04</span>
+            </div>
+        </div>
 
-        <div class="stack-wrapper">
+        <div class="archive-main">
             
-            <!--<button class="nav-arrow prev-btn" aria-label="Previous">←</button>
-            <button class="nav-arrow next-btn" aria-label="Next">→</button>-->
-
-
-            <div class="paper-sheet active" style="--rotation: 2deg;">
-                <div class="torn-edge"></div>
-                <img src="project pics/portraits/4.png" alt="Portrait 1" class="sheet-image">
-                <div class="handwritten-note">Study No. 1</div>
+            <div class="specimen-wrapper" id="portraitBoard">
+                <div class="specimen-matte">
+                    <img src="../assets/images/library/portraits-cover.png" alt="Portrait Collection" class="specimen-image">
+                </div>
+                <div class="specimen-accent-block"></div>
+                <div class="mark-tl">+</div>
+                <div class="mark-br">+</div>
             </div>
 
-            <div class="paper-sheet" style="--rotation: -1deg;">
-                <div class="torn-edge"></div>
-                <img src="project pics/portraits/5.png" alt="Portrait 2" class="sheet-image">
-                <div class="handwritten-note">Study No. 2</div>
-            </div>
-
-            <div class="paper-sheet" style="--rotation: 4deg;">
-                <div class="torn-edge"></div>
-                <img src="project pics/portraits/6.png" alt="Portrait 3" class="sheet-image">
-                <div class="handwritten-note">Study No. 3</div>
+            <div class="archive-data-block">
+                <div class="data-row">
+                    <span class="data-label">SUBJECT</span>
+                    <span class="data-value">HUMAN INTEREST // FACES</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">DEVICE</span>
+                    <span class="data-value">FUJIFILM XE5 // 35MM</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">STATUS</span>
+                    <span class="data-value status-live">ARCHIVED &bull; VIEWABLE</span>
+                </div>
             </div>
 
         </div>
-
     </div>
-
 </section>
+
 
     <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
                 <footer class="footer-vent">
@@ -162,7 +209,7 @@
 
 
     <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
-    <script src="script.js"></script>
+    <script src="../assets/js/script.js"></script>
 
 </body>
 </html>

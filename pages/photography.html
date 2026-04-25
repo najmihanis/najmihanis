@@ -9,10 +9,10 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/machine.css"> <!-- uses style from machine page-->
-    <link rel="stylesheet" href="assets/css/canon.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/photography.css">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
                         <div class="branding-grille-area">
                             
                             <div class="branding-inner-badge">
-                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <img src="../assets/images/branding/logo.png" alt="Najmi Hanis Logo" class="custom-logo">
                                 <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
                                 <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
                             </div>
@@ -93,106 +93,64 @@
 
                 </header>
 
-                <!-- --------------------------------- MAIN CONTENT SECTION ----------------------------------- -->
-                <main class="mach-page canon-page">
+    <!-- --------------------------------- MAIN BODY SECTION -------------------------------- -->
+   
+<section class="photo-gallery-section">
 
-          <!-- HERO (same layout as Yonder/Machining hero) -->
-          <section class="mach-panel mach-hero" id="canonHero">
-            <div class="mach-hero__text">
-              <div class="mach-kicker">MACHINING</div>
-              <h1 class="mach-title">CANON TOY</h1>
+    <div class="gallery-header">
+        <h1 class="gallery-title">THROUGH <br> <span class="gallery-title-light">THE LENS</span></h1>
+        <div class="gallery-intro">
+            <p>
+                <strong>STUDY: COMPOSITION</strong><br>
+                Device: Fujifilm X-E5<br>
+                Status: Published
+            </p>
+        </div>
+    </div>
+    
+    <div class="gallery-filter-bar">
+        <button class="filter-btn active" data-mode="landscape">LANDSCAPE</button>
+        <button class="filter-btn" data-mode="portrait">PORTRAIT</button>
+    </div>
 
-              <p class="mach-lede">
-                A machining project exploring CNC programming, part setup, and mixed-process fabrication through a compact mechanical system.
-              </p>
-
-              <div class="mach-stats">
-                <div class="mach-stat">
-                  <div class="mach-stat__k">ROLE</div>
-                  <div class="mach-stat__v">BUILD</div>
-                </div>
-                <div class="mach-stat">
-                  <div class="mach-stat__k">FOCUS</div>
-                  <div class="mach-stat__v">MACHINING OPERATIONS</div>
-                </div>
-                <div class="mach-stat">
-                  <div class="mach-stat__k">OUTPUT</div>
-                  <div class="mach-stat__v">A FUNCTIONAL MECHANISM</div>
-                </div>
-              </div>
-
+    <div class="camera-stage-container" id="cameraStage">
+    
+    <div class="carousel-3d-scene">
+        <div class="carousel-track" id="track">
             </div>
+    </div>
 
-            <div class="mach-hero__screen">
-              <div class="mach-screen">
-                <img class="mach-screen__img" src="project pics/canon/hero canon.png" alt="Canon toy hero image" style="transform: scale(1.5);">
-                <div class="mach-screen__scan"></div>
-                <div class="mach-screen__glare"></div>
-                <div class="mach-screen__vignette"></div>
-              </div>
-            </div>
-          </section>
+    <img src="../assets/images/projects/photography/xe5-horizontal.png" 
+         alt="Camera Horizontal" 
+         class="camera-overlay overlay-landscape">
 
-          <!-- SINGLE STAGE (same as Yonder, one plate only) -->
-          <section class="mach-panel mach-stage canon-stage" id="canonStage">
-            <div class="mach-stage__label">CANON BUILD</div>
+    <img src="../assets/images/projects/photography/xe5-vertical.png" 
+         alt="Camera Vertical" 
+         class="camera-overlay overlay-portrait">
+    
+</div>
 
-            <div class="mach-stage__bezel">
-              <div class="mach-stage__valley">
+    <div class="carousel-controls">
+        <button id="photoPrev" class="cine-btn">PREV FRAME</button>
+        <button id="photoNext" class="cine-btn">NEXT FRAME</button>
+    </div>
 
-                <div class="canon-stack">
+</section>
 
-                  <!-- TOP: ONE PHOTO PLATE (simple) -->
-                  <article class="canon-card canon-card--image">
-                    <div class="canon-photo">
-                      <img src="project pics/canon/main.png" alt="Canon toy main photo">
-                    </div>
-                  </article>
 
-                  <!-- BOTTOM: TEXT (What / How) -->
-                  <article class="canon-card canon-card--text">
-                    <div class="canon-what-how">
-                      <div class="canon-col">
-                        <div class="canon-col__h">What?</div>
-                        <ul class="canon-bullets"><li>Manufactured and machined a small desk toy that shoots bearing balls.</li></ul>
-                      </div>
-
-                      <div class="canon-col">
-                        <div class="canon-col__h">How?</div>
-                        <ul class="canon-bullets">
-                          <li>Generated G-codes for CNC lathe and mills using Fusion 360.</li>
-                          <li>Machined an acrylic block into the body shape using CNC milling.</li>
-                          <li>Shaped the cannon barrel with precision CNC lathing.</li>
-                          <li>Utilized manual mills, drill presses, and lathe for base plate, uprights, and shooting mechanism fabrication.</li>
-                          <li>Cut aluminum sheets with precision using a band saw.</li>
-                          <li>Learned and applied safety protocols and shop etiquettes through hands-on practice during the manufacturing process.</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </article>
-
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-        </main>
-                
-
-                <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
+    <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
                 <footer class="footer-vent">
                     <div class="vent-screw"></div>
                     <div class="high-fi-grill"></div>
                     <div class="vent-screw"></div>
-                </footer>
+                </footer></div>
 
             </div>
         </div>
-    </div>
+
 
     <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
-    <script src="script.js"></script>
+    <script src="../assets/js/script.js"></script>
 
 </body>
 </html>

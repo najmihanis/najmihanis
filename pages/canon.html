@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/machine.css"> <!-- uses style from machine page-->
-    <link rel="stylesheet" href="assets/css/yonder.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/machine.css"> <!-- uses style from machine page-->
+    <link rel="stylesheet" href="../assets/css/canon.css">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
                         <div class="branding-grille-area">
                             
                             <div class="branding-inner-badge">
-                                <img src="branding-logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                                <img src="../assets/images/branding/logo.png" alt="Najmi Hanis Logo" class="custom-logo">
                                 <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
                                 <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
                             </div>
@@ -93,120 +93,92 @@
 
                 </header>
 
-                <main class="mach-page">
+                <!-- --------------------------------- MAIN CONTENT SECTION ----------------------------------- -->
+                <main class="mach-page canon-page">
 
-  <!-- HERO (same as machining hero, just change text + CTA target) -->
-  <section class="mach-panel mach-hero" id="yonderHero">
-    <div class="mach-hero__text">
-      <div class="mach-kicker">ROBOTS</div>
-      <h1 class="mach-title">YONDER DYNAMICS</h1>
+          <!-- HERO (same layout as Yonder/Machining hero) -->
+          <section class="mach-panel mach-hero" id="canonHero">
+            <div class="mach-hero__text">
+              <div class="mach-kicker">MACHINING</div>
+              <h1 class="mach-title">CANON TOY</h1>
 
-      <p class="mach-lede">
-        A subsystem-level robotic wrist project focused on turning motion requirements and analysis into a buildable, competition-ready mechanism.
-      </p>
+              <p class="mach-lede">
+                A machining project exploring CNC programming, part setup, and mixed-process fabrication through a compact mechanical system.
+              </p>
 
-      <div class="mach-stats">
-        <div class="mach-stat">
-          <div class="mach-stat__k">ROLE</div>
-          <div class="mach-stat__v">MECH DESIGN</div>
-        </div>
-        <div class="mach-stat">
-          <div class="mach-stat__k">FOCUS</div>
-          <div class="mach-stat__v">WRIST / JOINT</div>
-        </div>
-        <div class="mach-stat">
-          <div class="mach-stat__k">OUTPUT</div>
-          <div class="mach-stat__v">CAD + ITERATIONS</div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mach-hero__screen">
-      <div class="mach-screen">
-        <img class="mach-screen__img" src="project pics/yonder/hero.png" alt="Yonder hero image">
-        <div class="mach-screen__scan"></div>
-        <div class="mach-screen__glare"></div>
-        <div class="mach-screen__vignette"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- SINGLE STAGE (same “Lathe/Mill” plate, but only one section) -->
-  <section class="mach-panel mach-stage yonder-stage" id="yonderStage">
-    <div class="mach-stage__label">ROVER WRIST</div>
-
-    <!-- keep the same structure you’re already using -->
-    <div class="mach-stage__bezel">
-      <div class="mach-stage__valley">
-
-        <div class="yonder-stack">
-
-          <!-- TOP BIG CARD (image) -->
-          <article class="yonder-card yonder-card--image">
-
-            <div class="yonder-card__media yonder-card__media--split">
-
-                <!-- LEFT -->
-                <div class="yonder-media-col">
-                <div class="yonder-media-label">Design Process</div>
-                <img src="project pics/yonder/process.png" alt="Design process sketches" >
+              <div class="mach-stats">
+                <div class="mach-stat">
+                  <div class="mach-stat__k">ROLE</div>
+                  <div class="mach-stat__v">BUILD</div>
                 </div>
-
-                <!-- RIGHT -->
-                <div class="yonder-media-col">
-                <div class="yonder-media-label">Final Design</div>
-                <img src="project pics/yonder/final.png" alt="Final wrist design">
+                <div class="mach-stat">
+                  <div class="mach-stat__k">FOCUS</div>
+                  <div class="mach-stat__v">MACHINING OPERATIONS</div>
                 </div>
+                <div class="mach-stat">
+                  <div class="mach-stat__k">OUTPUT</div>
+                  <div class="mach-stat__v">A FUNCTIONAL MECHANISM</div>
+                </div>
+              </div>
 
             </div>
 
-            </article>
-
-          <!-- BOTTOM BIG CARD (text, 2 columns: What / How) -->
-          <article class="yonder-card yonder-card--text">
-            <div class="yonder-what-how">
-              <div class="yonder-col">
-                <div class="yonder-col__h">What?</div>
-                <ul class="yonder-bullets">
-                  <li>Designed and fabricated a 3-axis robotic wrist for a Mars rover for the University Rover Challenge (URC).</li>
-                  <li>Engineered the wrist to deliver high output torque with low backlash, enabling stable and precise end-effector positioning.</li>
-                  <li>Developed the mechanism under strict packaging, load, and reliability constraints, with the expectation of real-world field operation.</li>
-                  <li>Iterated the design through multiple revisions to improve shaft support, bearing placement, and structural robustness.</li>
-                  <li>Collaborated with cross-disciplinary teams to integrate mechanical and electrical components</li>
-                </ul>
-              </div>
-
-              <div class="yonder-col">
-                <div class="yonder-col__h">How?</div>
-                <ul class="yonder-bullets">
-                  <li>Iterated the design through multiple revisions to improve shaft support, bearing placement, and structural robustness.</li>
-                  <li>Evaluated multiple transmission architectures before converging on a timing-belt–driven reduction for precision and reliability.</li>
-                  <li>Compared GT3 vs HTD belt profiles, selecting components based on backlash, load capacity, and manufacturability tradeoffs.</li>
-                  <li>Calculated pulley sizes, belt lengths, and center-to-center distances to achieve proper tension without idler pulleys.</li>
-                  <li>Designed and fabricated parts using SolidWorks (including sheet metal workflows) and laser cutting.</li>
-                  <li>Selected bearings, shafts, pulleys, and fasteners with attention to alignment, serviceability, and sourcing availability.</li>
-                  <li>Balanced precision, torque, backlash, manufacturability, and available off-the-shelf components in a constrained robotic subsystem.</li>
-                </ul>
+            <div class="mach-hero__screen">
+              <div class="mach-screen">
+                <img class="mach-screen__img" src="../assets/images/projects/canon/hero.png" alt="Canon toy hero image" style="transform: scale(1.5);">
+                <div class="mach-screen__scan"></div>
+                <div class="mach-screen__glare"></div>
+                <div class="mach-screen__vignette"></div>
               </div>
             </div>
-          </article>
+          </section>
 
-        </div>
+          <!-- SINGLE STAGE (same as Yonder, one plate only) -->
+          <section class="mach-panel mach-stage canon-stage" id="canonStage">
+            <div class="mach-stage__label">CANON BUILD</div>
 
-      </div>
-    </div>
-  </section>
+            <div class="mach-stage__bezel">
+              <div class="mach-stage__valley">
 
-</main>
+                <div class="canon-stack">
+
+                  <!-- TOP: ONE PHOTO PLATE (simple) -->
+                  <article class="canon-card canon-card--image">
+                    <div class="canon-photo">
+                      <img src="../assets/images/projects/canon/main.png" alt="Canon toy main photo">
+                    </div>
+                  </article>
+
+                  <!-- BOTTOM: TEXT (What / How) -->
+                  <article class="canon-card canon-card--text">
+                    <div class="canon-what-how">
+                      <div class="canon-col">
+                        <div class="canon-col__h">What?</div>
+                        <ul class="canon-bullets"><li>Manufactured and machined a small desk toy that shoots bearing balls.</li></ul>
+                      </div>
+
+                      <div class="canon-col">
+                        <div class="canon-col__h">How?</div>
+                        <ul class="canon-bullets">
+                          <li>Generated G-codes for CNC lathe and mills using Fusion 360.</li>
+                          <li>Machined an acrylic block into the body shape using CNC milling.</li>
+                          <li>Shaped the cannon barrel with precision CNC lathing.</li>
+                          <li>Utilized manual mills, drill presses, and lathe for base plate, uprights, and shooting mechanism fabrication.</li>
+                          <li>Cut aluminum sheets with precision using a band saw.</li>
+                          <li>Learned and applied safety protocols and shop etiquettes through hands-on practice during the manufacturing process.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </article>
+
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+        </main>
                 
-                
-            
-
-  
-
-            
 
                 <!-- --------------------------------- FOOTER SECTION ----------------------------------- -->
                 <footer class="footer-vent">
@@ -220,7 +192,7 @@
     </div>
 
     <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
-    <script src="script.js"></script>
+    <script src="../assets/js/script.js"></script>
 
 </body>
 </html>

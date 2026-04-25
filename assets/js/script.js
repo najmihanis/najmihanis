@@ -66,14 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // --------------------------------- NAV BAR BUTTONS MAPPING ---------------------------------
+  // Path helper: HTML pages live in /pages/ except index.html at site root.
+  // Detect context once so the same routes work whether script is loaded from
+  // root index.html or from any /pages/*.html.
+  const __IS_PAGES   = window.location.pathname.includes('/pages/');
+  const __ROOT_PFX   = __IS_PAGES ? '../' : '';
+  const __PAGES_PFX  = __IS_PAGES ? '' : 'pages/';
+
   const NAV_ROUTES = {
-    home: "index.html",
-    about: "index.html#hero",
-    "art-design": "art-lobby.html",      
-    "engineering": "projects.html",      
-    "photography": "photography.html",   
-    resume: "https://drive.google.com/file/d/1E3eRwUqXictVi2r_QweSRdBd3mN3Z95Z/view?usp=sharing",
-    contact: "index.html#contact"
+    home:           __ROOT_PFX  + "index.html",
+    about:          __ROOT_PFX  + "index.html#hero",
+    "art-design":   __PAGES_PFX + "art-lobby.html",
+    "engineering":  __PAGES_PFX + "projects.html",
+    "photography":  __PAGES_PFX + "photography.html",
+    resume:         "https://drive.google.com/file/d/1E3eRwUqXictVi2r_QweSRdBd3mN3Z95Z/view?usp=sharing",
+    contact:        __ROOT_PFX  + "index.html#contact"
   };
 
   // DROPDOWN LOGIC
@@ -161,9 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (knob) knob.style.transform = `translate(-50%, -50%) rotate(${targetAngle}deg)`;
           }
 
-          if (targetPage === 'engineering') setTimeout(() => { window.location.href = 'projects.html'; }, 450);
-          if (targetPage === 'art') setTimeout(() => { window.location.href = 'art-lobby.html'; }, 450);
-          if (targetPage === 'photo') setTimeout(() => { window.location.href = 'photography.html'; }, 450);
+          if (targetPage === 'engineering') setTimeout(() => { window.location.href = __PAGES_PFX + 'projects.html'; }, 450);
+          if (targetPage === 'art')         setTimeout(() => { window.location.href = __PAGES_PFX + 'art-lobby.html'; }, 450);
+          if (targetPage === 'photo')       setTimeout(() => { window.location.href = __PAGES_PFX + 'photography.html'; }, 450);
         });
       });
   }
@@ -557,16 +564,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Safety check: Only run if essential elements exist
     if (track && stage && nextBtn && prevBtn) {
 
+        // Photography carousel only runs on /pages/photography.html, so
+        // images live one level up under assets/images/projects/photography/.
+        // Filenames are zero-padded (01.jpg .. 29.jpg) and lowercase.
         const CONFIG = {
             landscape: {
-                folder: 'project pics/photography/horizontal/',
+                folder: __ROOT_PFX + 'assets/images/projects/photography/horizontal/',
                 count: 8,
-                ext: '.JPG' // Case Sensitive
+                ext: '.jpg'
             },
             portrait: {
-                folder: 'project pics/photography/vertical/',
+                folder: __ROOT_PFX + 'assets/images/projects/photography/vertical/',
                 count: 29,
-                ext: '.JPG'
+                ext: '.jpg'
             }
         };
 
@@ -583,7 +593,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 div.className = 'c-slide';
                 
                 const img = document.createElement('img');
-                img.src = `${cfg.folder}${i}${cfg.ext}`;
+                // zero-pad index to match filename convention (01.jpg, 02.jpg, ...)
+                const idxStr = String(i).padStart(2, '0');
+                img.src = `${cfg.folder}${idxStr}${cfg.ext}`;
                 img.onerror = function() { this.style.display = 'none'; };
                 
                 div.appendChild(img);

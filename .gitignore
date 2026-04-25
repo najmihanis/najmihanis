@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / build artifacts
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Filesystem temp files
+.fuse_hidden*
