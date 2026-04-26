@@ -266,6 +266,12 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
-    .sketchbook { width: 95vw; height: 29vw; }
+    /* NOTE: .sketchbook intentionally has NO mobile size override.
+       The whole .device-casing is already visually shrunk on mobile via
+       transform: scale(--ui-scale) (see assets/js/script.js). The previous
+       override (width: 95vw; height: 29vw) caused double-scaling, making
+       the book tiny relative to the bookmark ribbon. Letting the sketchbook
+       inherit its desktop 960×300px size keeps proportions consistent with
+       the desktop view. */
     .urban-meta-grid { grid-template-columns: 1fr; gap: 15px; }
 }
