@@ -22,21 +22,58 @@ document.addEventListener('DOMContentLoaded', () => {
     
   function updateUIScale() {
     if (!deviceCasing) return;
+    // Reset compensating margin and scale BEFORE measuring, so we always
+    // read the casing's true natural height/width (not a previously-shrunken
+    // version of it).
+    deviceCasing.style.marginBottom = '';
     document.documentElement.style.setProperty('--ui-scale', 1);
+
     const vw = window.innerWidth;
     const gutter = Math.max(6, Math.min(18, Math.round(vw * 0.02)));
     document.documentElement.style.setProperty('--page-gutter', `${gutter}px`);
+
     const casingW = deviceCasing.getBoundingClientRect().width;
+    const naturalH = deviceCasing.offsetHeight;
     const availableW = vw - gutter * 2;
     let scale = availableW / casingW;
     scale = Math.max(0.25, Math.min(scale, 1.15));
     document.documentElement.style.setProperty('--ui-scale', scale);
+
+    // Compensate for transform:scale being VISUAL-only. The casing's layout
+    // box stays at full naturalH × 1000px, but the user only sees naturalH×scale
+    // worth of pixels — without compensation the document reserves the unscaled
+    // height, letting users scroll into empty space below the visibly-shrunken
+    // casing on mobile (and stopping short of the visual on supersized desktops
+    // where scale > 1).
+    //
+    // Setting margin-bottom = naturalH × (scale − 1) makes the casing's outer
+    // (margin) box equal to naturalH × scale, exactly matching the visual.
+    //   • scale < 1 (mobile) → negative margin, pulls layout end up
+    //   • scale = 1          → 0, no-op (identical to pre-fix behavior)
+    //   • scale > 1          → positive, pushes layout end down
+    //
+    // Margin does NOT affect offsetHeight or the ResizeObserver content-box,
+    // so this can't create a feedback loop the way height-pinning the flex
+    // parent did.
+    const compensate = Math.round(naturalH * (scale - 1));
+    deviceCasing.style.marginBottom = `${compensate}px`;
+
     updateNavOverlayEdges();
   }
 
   updateUIScale();
   window.addEventListener('resize', updateUIScale);
   window.addEventListener('load', updateUIScale);
+
+  // Recompute when the casing's content size changes — image loads, font
+  // swaps, dropdowns expanding, etc. Without this, naturalH read at first
+  // call gets stale once images render, and the compensation drifts off.
+  // Setting marginBottom does not change the content-box, so observing
+  // .device-casing here does NOT loop back into our own writes.
+  if (window.ResizeObserver && deviceCasing) {
+    const ro = new ResizeObserver(() => updateUIScale());
+    ro.observe(deviceCasing);
+  }
 
   // --------------------------------- MOBILE NAV TOGGLE ---------------------------------
   const navToggle = document.querySelector('.nav-vent-toggle');
