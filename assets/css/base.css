@@ -68,6 +68,8 @@ h1, h2, h3, .nav-btn, .primary-btn, .secondary-btn, .card-footer, .slider-labels
 .device-casing {
     width: 1000px;   
     max-width: none; 
+    /*width: max(1000px, calc(100vw - 2 * var(--page-gutter, 18px)));
+    max-width: none;*/
     flex-shrink: 0;  
     background: var(--bg-paper);
     border: var(--border-thick);
