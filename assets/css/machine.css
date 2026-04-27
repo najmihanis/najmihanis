@@ -6,7 +6,7 @@
 
 .mach-page{
   width: 100%;
-  margin-top: 16px;
+  margin-top: var(--space-7);
 }
 
 /* Panel shell (matches COY) */
@@ -23,7 +23,7 @@
 .mach-hero{
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 14px;
+  gap: var(--space-6);
   align-items: stretch;
 }
 
@@ -31,10 +31,10 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
-  margin-bottom: 6px;
+  margin-bottom: var(--space-2);
 }
 
 .mach-title{
@@ -42,25 +42,25 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
 }
 
 .mach-lede{
   margin: 10px 0 0;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: var(--text-lede);
+  line-height: var(--leading-body);
   opacity: 0.78;
   max-width: 70ch;
 }
 
 /* Stats strip */
 .mach-stats{
-  margin-top: 12px;
+  margin-top: var(--space-5);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: var(--space-4);
   padding-top: 12px;
   border-top: 2px solid rgba(0,0,0,0.10);
 }
@@ -69,26 +69,26 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
 }
 
 .mach-stat__v{
-  margin-top: 6px;
+  margin-top: var(--space-2);
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.95rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-body);
   opacity: 0.86;
 }
 
 /* CTA */
 .mach-cta{
-  margin-top: 12px;
+  margin-top: var(--space-5);
   display: flex;
-  gap: 10px;
+  gap: var(--space-4);
   flex-wrap: flex-start;
 }
 
@@ -121,7 +121,7 @@
   height: 100%;
   object-fit: cover;
   opacity: 1;
-  
+
   transform: scale(1.02);
 }
 
@@ -146,8 +146,8 @@ html{
 /* ===================== MACHINING: STAGE SECTIONS (LATHE / MILL) ===================== */
 
 .mach-stage{
-  margin-top: 50px;
-  margin-bottom: 25px;
+  margin-top: var(--space-14);
+  margin-bottom: var(--space-10);
 }
 
 /* pill header label */
@@ -172,9 +172,9 @@ html{
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 1.05rem;
-  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-sm);
+  line-height: var(--leading-flat);
 }
 
 /* 2 rivets on both sides */
@@ -263,7 +263,7 @@ html{
   position: relative;
   z-index: 2; /* above grille */
   display: grid;
-  gap: 14px;
+  gap: var(--space-6);
 }
 
 /* Lathe: 2 rows x 3 columns */
@@ -309,7 +309,7 @@ html{
   height: 100%;
   object-fit: cover;
 
-  
+
   transform: scale(1.03);
 }
 
@@ -346,14 +346,14 @@ html{
 .mach-card__list{
   margin: 0;
   padding-left: 16px;
-  font-size: 0.85rem;
-  line-height: 1;
+  font-size: var(--text-caption);
+  line-height: var(--leading-flat);
   opacity: 0.85;
 }
 
 .mach-card__list li{
   list-style-type: square;
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 /* ensure pill isn’t tangent to bezel edges visually */

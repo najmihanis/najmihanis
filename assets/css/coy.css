@@ -4,10 +4,10 @@
 
 .coy-page{
   width: 100%;
-  margin-top: 16px;
+  margin-top: var(--space-7);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-7);
 }
 
 /* -------- Panel Shell (matches your mechanical plates) -------- */
@@ -26,33 +26,33 @@
   border-radius: 16px;
   padding: 12px 12px 10px;
   box-shadow: inset 2px 2px 8px rgba(0,0,0,0.10);
-  margin-bottom: 12px;
+  margin-bottom: var(--space-5);
 }
 
 .coy-panelhead__k{
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
 }
 
 .coy-panelhead__t{
-  margin-top: 4px;
+  margin-top: var(--space-1);
   font-family: var(--font-header);
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  font-size: 1.05rem;
-  line-height: 1.05;
+  font-size: var(--text-title-sm);
+  line-height: var(--leading-snug);
 }
 
 /* -------- Hero -------- */
 .coy-hero{
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 14px;
+  gap: var(--space-6);
   align-items: stretch;
 }
 
@@ -60,10 +60,10 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
-  margin-bottom: 6px;
+  margin-bottom: var(--space-2);
 }
 
 .coy-title{
@@ -71,25 +71,25 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
 }
 
 .coy-lede{
   margin: 10px 0 0;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: var(--text-lede);
+  line-height: var(--leading-body);
   opacity: 0.78;
   max-width: 70ch;
 }
 
 
 .coy-stats{
-  margin-top: 12px;
+  margin-top: var(--space-5);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: var(--space-4);
   padding-top: 12px;
   border-top: 2px solid rgba(0,0,0,0.10);
 }
@@ -98,25 +98,25 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
 }
 
 .coy-stat__v{
-  margin-top: 6px;
+  margin-top: var(--space-2);
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.95rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-body);
   opacity: 0.86;
 }
 
 .coy-cta{
-  margin-top: 12px;
+  margin-top: var(--space-5);
   display: flex;
-  gap: 10px;
+  gap: var(--space-4);
   flex-wrap: wrap;
 }
 
@@ -144,11 +144,11 @@
 /* -------- Screen / Glass window (reusable) -------- */
 .coy-screen{
   position: relative;
-  
+
   border-radius: 18px;
   background: #f6f6f6;
   overflow: hidden;
-  
+
   min-height: 260px;
 }
 
@@ -190,7 +190,7 @@
 
 
 .coy-screen__caption{
-  margin-top: 10px;
+  margin-top: var(--space-4);
   padding: 10px 12px;
   background: var(--bg-paper);
   border: var(--border-thin);
@@ -202,14 +202,14 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
 }
 
 .cap-v{
-  margin-top: 4px;
-  font-size: 0.92rem;
+  margin-top: var(--space-1);
+  font-size: var(--text-body-sm);
   opacity: 0.78;
 }
 
@@ -225,10 +225,10 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
-  margin: 0 0 14px;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-6);
 }
 
 /* two-column layout */
@@ -259,10 +259,10 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.82rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-caption);
   opacity: 0.55;
-  margin: 0 0 10px;
+  margin: 0 0 var(--space-4);
 }
 
 /* bullet list styling */
@@ -274,9 +274,9 @@
 
 .coy-overview__list li{
   list-style-type: square;
-  margin-bottom: 10px;
-  font-size: 0.92rem;
-  line-height: 1.55;
+  margin-bottom: var(--space-4);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-relaxed);
   opacity: 0.82;
 }
 
@@ -291,10 +291,10 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
-  margin: 0 0 14px;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-6);
   opacity: 1;
 }
 
@@ -326,14 +326,14 @@
 
   mix-blend-mode: multiply;
   filter: grayscale(1) contrast(1.1);
-  
+
   opacity: 0.9;
 }
 
 /* Text block: no background, no border */
 .coy-problem__text{
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
   opacity: 0.85;
   margin-left: -20px;
 }
@@ -362,7 +362,7 @@
 .coy-ideation__layout{
   display: grid;
   grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr); /* text left, image right */
-  gap: 18px;
+  gap: var(--space-8);
   align-items: center;
 }
 
@@ -386,8 +386,8 @@
 /* Text block */
 .coy-ideation__copy{
   padding-top: 10px;
-  font-size: 0.92rem;
-  line-height: 1.55;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-relaxed);
   opacity: 0.82;
   max-width: 42ch;           /* less “huggy” */
 }
@@ -396,15 +396,15 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
-  margin: 0 0 14px;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-6);
   opacity: 1;
 }
 
 .coy-ideation__copy p{
-  margin: 0 0 10px;
+  margin: 0 0 var(--space-4);
 }
 
 /* ===================== COY — CUSTOMER DISCOVERY (CRESCENT NOTE CLOUD) ===================== */
@@ -417,7 +417,7 @@
 .coy-discovery__stage{
   display: grid;
   grid-template-columns: 1.35fr 0.65fr; /* left cloud, right title */
-  gap: 10px;
+  gap: var(--space-4);
   align-items: center;
   min-height: 420px; /* was 520-ish */
 }
@@ -449,15 +449,15 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
 }
 
 .coy-discovery__sub{
   margin: 12px 0 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
   opacity: 0.75;
 }
 
@@ -480,22 +480,22 @@
   display: inline-block;
   margin-left: 5px;
   padding: 3px 9px 2px;
-  
+
   border-radius: 5px;
   background: rgba(255,255,255,0.55);
   font-family: 'Caveat', cursive;
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  font-size: 0.64rem;
+  font-size: var(--text-label-xs);
   opacity: 0.85;
 }
 
 .note__text{
   margin: 10px 0 0;
   font-family: 'Caveat', cursive;
-  font-size: 0.98rem;
-  line-height: 1.15;
+  font-size: var(--text-lede);
+  line-height: var(--leading-note);
   opacity: 0.92;
 }
 
@@ -536,12 +536,12 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.1rem;
-  line-height: 0.95;
-  margin: 0 0 14px;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-6);
   opacity: 1;
-  
+
   padding-left: 50px;
   margin-bottom: 1px;   /* try 6–10px */
 }
@@ -556,7 +556,7 @@
 .coy-risk__row{
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  
+
   align-items: center;
   margin-bottom: 15px;
   margin-top: 0px;
@@ -618,8 +618,8 @@
 /* Text column */
 .coy-risk__copy{
   max-width: 48ch;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
   opacity: 0.82;
 }
 
@@ -628,19 +628,19 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 1.05rem;
-  margin: 0 0 10px;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-sm);
+  margin: 0 0 var(--space-4);
   opacity: 0.9;
 }
 
 /* Paragraph spacing */
 .coy-risk__copy p{
-  margin: 0 0 10px;
+  margin: 0 0 var(--space-4);
 }
 
 
-/* ---- Optional: basic responsiveness (keeps layout, but lets grids reduce columns) 
+/* ---- Optional: basic responsiveness (keeps layout, but lets grids reduce columns)
 @media (max-width: 1100px){
   .coy-board__grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -663,5 +663,5 @@
   .coy-shot.big,
   .coy-shot.wide{ grid-column: span 1; }
 
-  .coy-title{ font-size: 1.7rem; }
+  .coy-title{ font-size: var(--text-title-lg); }
 }---- */

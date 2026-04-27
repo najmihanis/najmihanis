@@ -60,15 +60,15 @@
     /* Ensure children inherit the curve */
     overflow: hidden;
     /* Bezel curves: Slight curve on sides */
-    border-radius: 50% / 10%; 
-    
+    border-radius: 50% / 10%;
+
     /* Ensure child (glass) doesn't bleed out */
     overflow: hidden;
 }
 
 .monitor-glass {
     flex: 1; background: #fff;
-   
+
     position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
     /* Radial gradient to enhance the bulge effect (brighter center) */
@@ -88,8 +88,8 @@
 }
 
 .screen-content h2 {
-    font-weight: 900; font-size: 1.6rem; text-align: center;
-    line-height: 0.95; color: var(--ink); z-index: 2;
+    font-weight: 900; font-size: var(--text-title-lg); text-align: center;
+    line-height: var(--leading-tight); color: var(--ink); z-index: 2;
     text-shadow: 2px 2px 0px rgba(0,0,0,0.1); margin: 0;
     /* Subtle perspective warp on text */
     transform: perspective(500px) rotateX(5deg);
@@ -128,7 +128,7 @@
     /* Hard outer border */
     outline: 3px solid var(--ink);
 
-    box-shadow: 
+    box-shadow:
         inset 2px 2px 4px rgba(255,255,255,0.8),
         inset -3px -3px 6px rgba(0,0,0,0.3);
 }
@@ -142,7 +142,7 @@
     border-radius: 50%;
     z-index: 2;
     /* Shadow cast DOWN onto the slope ring to show height */
-   
+
 }
 
 /* Indicator remains the same */
@@ -156,9 +156,9 @@
 .l-pipe-connector {
     position: absolute;
     /* Pushed further left so it touches the border but doesn't overlap/erase it */
-    left: -64px; 
+    left: -64px;
     /* Align vertically with the top slider */
-    top: 30px;   
+    top: 30px;
     width: 60px;
     height: 241px; /* Extended length */
     z-index: 1; /* Sits alongside the panel */
@@ -169,9 +169,9 @@
 .r-pipe-connector {
     position: absolute;
     /* Pushed completely to the right of the panel */
-    right: -63px; 
+    right: -63px;
     /* Align vertically with the top slider */
-    top: 30px;   
+    top: 30px;
     width: 60px;
     height: 241px;
     z-index: 1; /* Sits alongside the panel */
@@ -182,7 +182,7 @@
 .module-content { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 5px 0; }
 .align-center { align-items: center; }
 .vertical-layout.space-between { justify-content: space-between; }
-.vertical-layout.v-center { justify-content: center; gap: 20px; align-items: center; }
+.vertical-layout.v-center { justify-content: center; gap: var(--space-9); align-items: center; }
 
 .high-fi-slider-group { display: flex; gap: 15px; height: 110px; justify-content: center; }
 .slider-wrapper { display: flex; gap: 8px; align-items: center; }
@@ -205,7 +205,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: 120px;
-  gap: 16px;
+  gap: var(--space-7);
   grid-auto-flow: dense;
 
   /* KEY: fills holes created by spans */
@@ -362,14 +362,14 @@
 
 /* Typography */
 .bento-tile.bento-crt .crt-kicker{
-  font-size: 0.55rem;
-  letter-spacing: 1px;
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-label);
   opacity: 0.8;
 }
 
 .bento-tile.bento-crt .crt-title{
-  font-size: 0.78rem;
-  line-height: 1.02;
+  font-size: var(--text-compact);
+  line-height: var(--leading-micro);
    text-shadow:
     0 0 2px rgba(0,0,0,0.45),
     0 0 6px rgba(0,0,0,0.35),
@@ -377,7 +377,7 @@
 }
 
 .bento-tile.bento-crt .crt-meta{
-  font-size: 0.62rem;
+  font-size: var(--text-label-xs);
   opacity: 0.7;
 }
 
@@ -427,7 +427,7 @@
   /* keep it behind overlays */
   z-index: 0;
 
-  
+
 }
 
 /* Ensure overlays are above thumbnail */
@@ -459,7 +459,7 @@
   box-shadow: inset 2px 2px 6px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-4);
   box-sizing: border-box;
 }
 
@@ -469,21 +469,21 @@
   display:flex;
   align-items:center;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--space-4);
 }
 
 .ctrl-top{
   display:flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-4);
 }
 
 .ctrl-label{
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.7rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-sm);
   opacity: 0.7;
 }
 
@@ -752,7 +752,7 @@ mask-image: radial-gradient(circle,
 .ctrl-toggle-row{
   display:flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--space-4);
 }
 .ctrl-toggle{
   flex: 1;
@@ -874,7 +874,7 @@ mask-image: radial-gradient(circle,
 .bento-tile[data-tile-id="c8"] .knob-bank{
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--space-4);
   margin-top: 2px;
 }
 
@@ -983,7 +983,7 @@ mask-image: radial-gradient(circle,
 .bento-tile[data-tile-id="c8"] .knob-bank{
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--space-4);
   margin-top: 2px;
 
   transform: translateY(-20px) scale(0.6);
@@ -1032,7 +1032,7 @@ mask-image: radial-gradient(circle,
 /* ===================== C2: RADIO TUNING BAND ===================== */
 
 .bento-tile[data-tile-id="c2"] .radio-tuner{
-  margin-top: 8px;
+  margin-top: var(--space-3);
   padding: 10px;
   border: 2px solid var(--ink);
   border-radius: 16px;
@@ -1133,8 +1133,8 @@ mask-image: radial-gradient(circle,
 .bento-tile[data-tile-id="c2"] .radio-buttons{
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  margin-top: 10px;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
 }
 
 /* Outer bezel */
@@ -1351,10 +1351,10 @@ mask-image: radial-gradient(circle,
 .bento-tile[data-tile-id="c9"] .c9-mid{
   display: grid;
   grid-template-columns: 1fr 0.95fr;
-  gap: 10px;
+  gap: var(--space-4);
   align-items: start;
 
-  margin-top: 8px;
+  margin-top: var(--space-3);
   padding-bottom: 24px; /* keep clear of footer tape */
 }
 
@@ -1383,16 +1383,16 @@ mask-image: radial-gradient(circle,
   box-shadow: 2px 2px 0 rgba(0,0,0,0.9),
               inset 1px 1px 0 rgba(255,255,255,0.85);
 
-  font-size: 0.7rem;
+  font-size: var(--text-label-sm);
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.9;
   user-select: none;
 }
 /* RIGHT: two mini toggles stacked */
 .bento-tile[data-tile-id="c9"] .c9-switch-stack{
   display: grid;
-  gap: 10px;
+  gap: var(--space-4);
 }
 
 /* ===================== C9: ON/OFF TOGGLE (outline icon inside hex) ===================== */
@@ -1401,7 +1401,7 @@ mask-image: radial-gradient(circle,
   position: relative;
   width: 100%;
   height: 128px;
-  margin-top: 8px;
+  margin-top: var(--space-3);
   margin-bottom: 18px; /* leaves room for footer tape */
 
   border: 2px solid var(--ink);
@@ -1594,7 +1594,7 @@ mask-image: radial-gradient(circle,
   inset: 10px 10px 10px 10px;  /* padding inside the plate */
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
+  gap: var(--space-4);
   align-items: center;
   justify-items: center;
 }
@@ -1836,7 +1836,7 @@ mask-image: radial-gradient(circle,
 }
 
 .bento-tile[data-tile-id="c6"] .c6-vent{
-  
+
   aspect-ratio: auto;         /* stop relying on aspect-ratio */
 
   margin: 1px auto 0;         /* center it */
@@ -1844,8 +1844,8 @@ mask-image: radial-gradient(circle,
 
   border-radius: 50%;
   border: 2px solid var(--ink);
-  
-  
+
+
   overflow: hidden;
 }
 
@@ -1897,7 +1897,7 @@ mask-image: radial-gradient(circle,
   height: 4px;           /* slat thickness */
   border-radius: 999px;
   border: 2px solid rgba(0,0,0,0.8);
-  
+
 }
 
 /* C6: FORCE perfect circle (override any stretching) */
@@ -1931,7 +1931,7 @@ mask-image: radial-gradient(circle,
       #f7f7f7 61% 100%            /* outer rim */
     );
 
-  
+
 }
 
 /* ===================== C10: HAND LEVER (deep slots + protruding sticks) ===================== */
@@ -1952,7 +1952,7 @@ mask-image: radial-gradient(circle,
 
   display: grid;
   grid-template-columns: 15px 15px; /* narrower slots */
-  gap: 10px;
+  gap: var(--space-4);
   justify-content: center;          /* center the pair */
   align-items: stretch;
 }
@@ -2032,12 +2032,12 @@ mask-image: radial-gradient(circle,
 
 /* C10: centered bottom label */
 .bento-tile[data-tile-id="c10"] .c10-label{
-  margin-top: 6px;          /* space from slots */
+  margin-top: var(--space-2);          /* space from slots */
   text-align: center;
 
-  font-size: 0.8rem;
+  font-size: var(--text-eyebrow);
   font-weight: 500;
-  letter-spacing: 1.6px;
+  letter-spacing: var(--tracking-micro);
   text-transform: uppercase;
 
   opacity: 0.65;
@@ -2055,8 +2055,8 @@ mask-image: radial-gradient(circle,
 .bento-tile[data-tile-id="c5"] .c5-toprow{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
   align-items: start;
 }
 
@@ -2086,9 +2086,9 @@ mask-image: radial-gradient(circle,
   justify-content: center;
   padding-top: 3px;
 
-  font-size: 0.42rem;
+  font-size: var(--text-nano);
   font-weight: 900;
-  letter-spacing: 0.6px;
+  letter-spacing: var(--tracking-fine);
   text-transform: uppercase;
   color: var(--ink);
   opacity: 0.85;
@@ -2204,7 +2204,7 @@ overflow: hidden;            /* ensure the rounding actually clips */
 .bento-tile[data-tile-id="c5"] .c5-gauges{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: var(--space-6);
   margin: 6px 0 10px;
   justify-items: center;
 }
@@ -2332,9 +2332,9 @@ overflow: hidden;            /* ensure the rounding actually clips */
 
 /* Mobile Responsive Fix - OVERALL (header, hero + side, nav dial, proj, contact me, footer) */
 @media (max-width: 900px) {
-    
+
     .main-body-grid { grid-template-columns: 1fr; }
-    
+
     /* --- Projects Section --- */
     .l-pipe-connector,
     .r-pipe-connector {
@@ -2343,15 +2343,15 @@ overflow: hidden;            /* ensure the rounding actually clips */
     }
     .tv-header-container {
         /* Reduce bottom margin (was approx 40px-60px) */
-        margin-bottom: 10px; 
+        margin-bottom: var(--space-4);
         /* Optional: Tweak top margin if needed */
-        margin-top: 20px;
+        margin-top: var(--space-9);
     }
-    .tv-header-container { transform: scale(0.9); flex-direction: row; align-items: center; gap: 20px; }
+    .tv-header-container { transform: scale(0.9); flex-direction: row; align-items: center; gap: var(--space-9); }
     .side-module { width: 80%; max-width: 130px;  padding: 20px; }
     .main-display { width: 100%; max-width: 420px; height: 230px; }
     .vertical-layout.space-between { flex-direction: column; align-items: center; }
-    .high-fi-slider-group { height: 100px; }  
+    .high-fi-slider-group { height: 100px; }
     .projects-grid { grid-template-columns: 1fr; }
     .cone-dial-assembly {
         transform: scale(0.9);
@@ -2360,5 +2360,5 @@ overflow: hidden;            /* ensure the rounding actually clips */
     .cone-slope-ring{transform: scale(0.9)
     }
     .round-grille{transform: scale(0.8); justify-content:end}
-    
+
 }

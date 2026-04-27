@@ -17,7 +17,7 @@
 .canon-stack{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: var(--space-7);
 }
 
 /* reuse the mounted card language */
@@ -60,7 +60,7 @@
 .canon-what-how{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: var(--space-8);
   align-items: start;
 }
 
@@ -68,21 +68,21 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-body-sm);
   opacity: 0.85;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-4);
 }
 
 .canon-bullets{
   margin: 0;
   padding-left: 16px;
-  font-size: 0.95rem;
-  line-height: 1.35;
+  font-size: var(--text-body);
+  line-height: var(--leading-dense);
   opacity: 0.82;
 }
 
 .canon-bullets li{
   list-style-type: square;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-3);
 }

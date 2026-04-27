@@ -1,16 +1,13 @@
-/* IMPORT FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700;900&family=Patrick+Hand&display=swap');
-
 /* --- LAYOUT CONTAINER --- */
 .editorial-section {
     width: 100%;
     height: 100vh;
-    background-color:--var(--bg-paper); 
+    background-color:--var(--bg-paper);
     display: flex;
     align-items: center;
     overflow: hidden;
     position: relative;
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-ui);
 }
 
 /* THE DIVIDER LINE */
@@ -20,7 +17,7 @@
     top: 10%;
     bottom: 10%;
     width: 1px;
-    background-color: rgba(44, 62, 80, 0.1); 
+    background-color: rgba(44, 62, 80, 0.1);
     z-index: 0;
 }
 
@@ -37,28 +34,28 @@
 }
 
 .medium-lockup {
-    font-size: 3rem; 
+    font-size: var(--text-display-md);
     font-weight: 900;
-    line-height: 0.9; 
-    letter-spacing: -1px;
+    line-height: var(--leading-display);
+    letter-spacing: 0;
     color: #2c3e50;
     margin: 0;
     text-transform: uppercase;
 }
 
 .indent {
-    margin-left: 40px; 
+    margin-left: 40px;
     color: #444;
-    font-size: 4rem;
+    font-size: var(--text-display);
 }
 
 .giant-amp {
     position: absolute;
     font-family: 'Baskerville', serif;
     font-style: italic;
-    font-size: 20rem;
-    color: #e6b800; 
-    opacity: 0.4; 
+    font-size: var(--text-display-amp);
+    color: #e6b800;
+    opacity: 0.4;
     top: 50%;
     left: -5px;
     transform: translateY(-50%);
@@ -67,7 +64,7 @@
     /* --- THE FIXES --- */
     width: max-content; /* Forces the box to fit the full glyph size */
     padding-right: 100px; /* Adds extra buffer room for the italic tail */
-    line-height: 1; /* Prevents vertical clipping */
+    line-height: var(--leading-flat); /* Prevents vertical clipping */
     pointer-events: none;
     overflow: visible; /* Ensures the tail isn't cut by the bounding box */
 }
@@ -79,15 +76,15 @@
 }
 
 .gallery-subtitle {
-    font-size: 0.85rem;
+    font-size: var(--text-caption);
     font-weight: 700;
-    letter-spacing: 0.3em;
+    letter-spacing: var(--tracking-subtitle);
     color: #b93b3b;
     margin: 0 0 5px 0;
 }
 
 .accent-text {
-    font-size: 0.8rem;
+    font-size: var(--text-eyebrow);
     color: #666;
     margin: 0;
 }
@@ -123,13 +120,13 @@
     padding: 20px;
     box-shadow: 5px 5px 20px rgba(0,0,0,0.15);
     border-radius: 2px;
-    
+
     /* Default Messy Rotation */
     transform: rotate(var(--rotation));
-    
+
     /* Smooth movement */
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,21 +192,21 @@
     background: #fff;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 50%; /* Perfect Circle */
-    
+
     /* Typography */
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-ui);
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: var(--text-title-lg);
     color: #2c3e50;
-    line-height: 1;
-    
+    line-height: var(--leading-flat);
+
     /* Layout */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 200; /* Extremely high to ensure clickability */
-    
+
     /* Visuals */
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -230,18 +227,18 @@
 }
 
 /* Position Left/Right relative to the Visual Column */
-.prev-btn { 
-    left: 20px; 
+.prev-btn {
+    left: 20px;
 }
 
-.next-btn { 
-    right: 20px; 
+.next-btn {
+    right: 20px;
 }
 
 /* HIDE buttons on mobile (since we will have Swipe) */
 @media (max-width: 768px) {
     .nav-arrow {
-        display: none; 
+        display: none;
     }
 }
 
@@ -257,4 +254,3 @@
     transform: rotate(-3deg);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-

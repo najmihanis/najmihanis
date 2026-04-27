@@ -85,15 +85,12 @@
 }
 
 /* Fonts */
-.spine-title { font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
-.spine-author { font-size: 0.8rem; opacity: 0.7; }
-.book-cover h1 { font-size: 2.5rem; line-height: 1; margin-bottom: 10px; }
-.book-cover h2 { font-size: 2rem; margin-bottom: 5px; }
+.spine-title { font-weight: bold; font-size: var(--text-title-md); letter-spacing: var(--tracking-label); }
+.spine-author { font-size: var(--text-eyebrow); opacity: 0.7; }
+.book-cover h1 { font-size: var(--text-book-title); line-height: var(--leading-flat); margin-bottom: var(--space-4); }
+.book-cover h2 { font-size: var(--text-card-title); margin-bottom: var(--space-1); }
 
 /* ===================== FROM PORTRAIT ===================== */
-
-/* IMPORT FONTS: Jost (Main) & Space Mono (Technical) */
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* --- PAGE CONTAINER --- */
 .archive-section {
@@ -104,7 +101,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-ui);
     color: #222;
 }
 
@@ -130,12 +127,12 @@
 .archive-title {
     writing-mode: vertical-rl; /* Text runs vertically */
     transform: rotate(180deg); /* Text reads bottom-to-top */
-    font-size: 8rem; /* Massive Scale */
+    font-size: var(--text-display-xl); /* Massive Scale */
     font-weight: 900;
     margin: 0;
     letter-spacing: 0.1em;
     color: #2c3e50;
-    line-height: 1;
+    line-height: var(--leading-flat);
     text-transform: uppercase;
 }
 
@@ -149,11 +146,11 @@
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+    font-size: var(--text-label-sm);
     color: #888;
-    letter-spacing: 2px;
+    letter-spacing: var(--tracking-label);
     display: flex;
-    gap: 20px;
+    gap: var(--space-9);
 }
 
 /* --- COL 2: MAIN EXHIBIT --- */
@@ -210,7 +207,7 @@
 .mark-tl, .mark-br {
     position: absolute;
     font-family: 'Space Mono', monospace;
-    font-size: 2rem;
+    font-size: var(--text-card-title);
     font-weight: 300;
     color: #d35400;
     z-index: 3;
@@ -223,7 +220,7 @@
 .archive-data-block {
     align-self: flex-start; /* Aligns strictly left */
     font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
+    font-size: var(--text-caption);
     color: #555;
     border-top: 2px solid #2c3e50;
     padding-top: 15px;
@@ -233,7 +230,7 @@
 .data-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-3);
     border-bottom: 1px solid rgba(0,0,0,0.05);
     padding-bottom: 4px;
 }

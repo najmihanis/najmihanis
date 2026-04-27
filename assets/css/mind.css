@@ -11,7 +11,7 @@
 .mind-grid{
   display: grid;
   grid-template-columns: 290px 1fr;
-  gap: 18px;
+  gap: var(--space-8);
   align-items: stretch; /* ensures equal-height columns */
 }
 
@@ -33,7 +33,7 @@
 }
 
 .mind-rail-block + .mind-rail-block{
-  margin-top: 14px;
+  margin-top: var(--space-6);
 }
 
 /* push deliverables to bottom */
@@ -45,41 +45,41 @@
 .mind-rail-label{
   font-family: var(--font-header);
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  font-size: 0.95rem;
-  margin-bottom: 12px;
+  font-size: var(--text-body);
+  margin-bottom: var(--space-5);
 }
 
 .mind-rail-sub{
   font-family: var(--font-header);
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  font-size: 0.62rem;
+  font-size: var(--text-label-xs);
   opacity: 0.55;
-  margin-top: 12px;
-  margin-bottom: 6px;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
 }
 
 .mind-rail-body{
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-copy);
   opacity: 0.78;
 }
 
 .mind-rail-list{
   margin: 0;
   padding-left: 18px;
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-copy);
   opacity: 0.78;
 }
 
 /* KV table */
 .mind-kv{
-  margin-top: 6px;
+  margin-top: var(--space-2);
   border-top: 2px solid rgba(0,0,0,0.10);
   padding-top: 10px;
 }
@@ -87,7 +87,7 @@
 .mind-kv-row{
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--space-4);
   padding: 5px 0;
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
@@ -95,15 +95,15 @@
 
 .mind-k{
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  font-size: 0.62rem;
+  font-size: var(--text-label-xs);
   opacity: 0.55;
 }
 
 .mind-v{
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: var(--text-caption);
   opacity: 0.8;
   text-align: right;
 }
@@ -127,35 +127,35 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
-  margin-bottom: 6px;
+  margin-bottom: var(--space-2);
 }
 
 .mind-hero-title{
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   margin: 0;
-  font-size: 2.2rem;
-  line-height: 0.95;
+  font-size: var(--text-title-project);
+  line-height: var(--leading-tight);
 }
 
 .mind-hero-lede{
   margin: 10px 0 0;
   max-width: 70ch;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: var(--text-lede);
+  line-height: var(--leading-body);
   opacity: 0.78;
 }
 
 .mind-hero-stats{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 14px;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
   padding-top: 14px;
   border-top: 2px solid rgba(0,0,0,0.10);
 }
@@ -164,24 +164,24 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.62rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
   opacity: 0.55;
 }
 
 .mind-stat-value{
-  margin-top: 6px;
+  margin-top: var(--space-2);
   font-family: var(--font-header);
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  font-size: 1.05rem;
+  font-size: var(--text-title-sm);
   opacity: 0.86;
 }
 
 /* HERO MEDIA (single wide image, never overflow casing) */
 .mind-hero-media{
-  margin-top: 16px;
+  margin-top: var(--space-7);
   border-radius: 18px;
   overflow: hidden;
   border: var(--border-thin);
@@ -199,15 +199,15 @@
 /* ===================== MECHANISM (background-only, no plate) ===================== */
 
 .mind-mech{
-  margin-top: 18px;
+  margin-top: var(--space-8);
 }
 
 .mind-mech-title{
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 1.25rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-title-md);
   margin: 0 0 12px;
 }
 
@@ -234,7 +234,7 @@
 .mind-rail-wh{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: var(--space-6);
 }
 
 /* keep columns visually distinct but subtle */
@@ -244,8 +244,8 @@
 
 /* tighten WHAT / HOW body a bit */
 .mind-rail-wh .mind-rail-body{
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-copy);
   opacity: 0.78;
   padding-bottom: 10px;
 }
@@ -253,12 +253,12 @@
 /* slightly tighter bullets than mission constraints */
 .mind-rail-wh .mind-rail-list{
   padding-left: 16px;
-  
-  font-size: 0.88rem;
+
+  font-size: var(--text-body-sm);
   opacity: 0.78;
 }
 
 .mind-rail-wh .mind-rail-list li{
-  margin-bottom: 6px;
+  margin-bottom: var(--space-2);
   list-style-type: square;
 }

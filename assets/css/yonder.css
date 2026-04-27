@@ -20,7 +20,7 @@
 .yonder-stack{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: var(--space-7);
 }
 
 /* big mounted cards (same language as mach-card but scaled up) */
@@ -40,7 +40,7 @@
 .yonder-card__media--split{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;                /* gutter between the two images */
+  gap: var(--space-5);                /* gutter between the two images */
   padding: 12px;
 }
 
@@ -58,12 +58,12 @@
 
   font-family: var(--font-header);
   font-weight: 900;
-  
-  letter-spacing: 1px;
-  font-size: 0.65rem;
+
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-label-xs);
 
   opacity: 0.7;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-3);
 }
 
 /* image behavior */
@@ -99,7 +99,7 @@
   position:absolute;
   inset:0;
   pointer-events:none;
- 
+
   opacity: 0.55;
 }
 
@@ -112,7 +112,7 @@
 .yonder-what-how{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: var(--space-8);
   align-items: start;
 }
 
@@ -121,24 +121,24 @@
   font-family: var(--font-header);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--text-body-sm);
   opacity: 0.85;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-4);
 }
 
 /* bullets (match your current card bullet vibe, but roomier) */
 .yonder-bullets{
   margin: 0;
   padding-left: 16px;
-  font-size: 0.95rem;
-  line-height: 1.35;
+  font-size: var(--text-body);
+  line-height: var(--leading-dense);
   opacity: 0.82;
 }
 
 .yonder-bullets li{
   list-style-type: square;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-3);
 }
 
 /* ===================== SPLIT IMAGES: SHOW FULL IMAGE (no crop) ===================== */
