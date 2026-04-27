@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.setProperty('--nav-left', `${left}px`);
     document.documentElement.style.setProperty('--nav-right', `${right}px`);
   }
-    
+
   function updateUIScale() {
     if (!deviceCasing) return;
     // Reset compensating margin and scale BEFORE measuring, so we always
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setNavOpen(false);
     });
   }
-  
+
   // --------------------------------- NAV BAR BUTTONS MAPPING ---------------------------------
   // Path helper: HTML pages live in /pages/ except index.html at site root.
   // Detect context once so the same routes work whether script is loaded from
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (dropdownWrapper && dropdownTrigger) {
     dropdownTrigger.addEventListener('click', (e) => {
-        e.stopPropagation(); 
+        e.stopPropagation();
         dropdownWrapper.classList.toggle('active');
     });
     document.addEventListener('click', () => {
@@ -157,10 +157,91 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --------------------------------- DEMOLDER ITERATION SWITCHER ---------------------------------
+  const iterationButtons = document.querySelectorAll('[data-iteration-target]');
+  const iterationCards = document.querySelectorAll('[data-iteration-card]');
+
+  if (iterationButtons.length && iterationCards.length) {
+    let activeCard = document.querySelector('[data-iteration-card].is-active') || iterationCards[0];
+    let swapTimer;
+
+    function setActiveIteration(targetId) {
+      const nextCard = document.getElementById(targetId);
+      if (!nextCard || nextCard === activeCard) return;
+
+      window.clearTimeout(swapTimer);
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+
+      iterationButtons.forEach(button => {
+        const isActive = button.dataset.iterationTarget === targetId;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      const outgoingCard = activeCard;
+      outgoingCard.classList.add('is-exiting');
+
+      swapTimer = window.setTimeout(() => {
+        outgoingCard.hidden = true;
+        outgoingCard.classList.remove('is-active', 'is-exiting');
+
+        nextCard.hidden = false;
+        nextCard.classList.add('is-active');
+        activeCard = nextCard;
+        updateUIScale();
+        window.scrollTo(scrollX, scrollY);
+        window.requestAnimationFrame(() => window.scrollTo(scrollX, scrollY));
+      }, 180);
+    }
+
+    iterationCards.forEach((card, index) => {
+      const isInitial = card === activeCard || (!activeCard && index === 0);
+      card.hidden = !isInitial;
+      card.classList.toggle('is-active', isInitial);
+    });
+
+    iterationButtons.forEach(button => {
+      const isInitial = button.dataset.iterationTarget === activeCard.id;
+      button.classList.toggle('is-active', isInitial);
+      button.setAttribute('aria-pressed', String(isInitial));
+
+      button.addEventListener('click', () => {
+        setActiveIteration(button.dataset.iterationTarget);
+      });
+    });
+  }
+
+  // --------------------------------- COY SCROLL REVEAL ---------------------------------
+  const coyPage = document.querySelector('.coy-page');
+
+  if (coyPage) {
+    const revealSections = coyPage.querySelectorAll('section:not(.coy-hero)');
+    coyPage.classList.add('coy-reveal-ready');
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -18% 0px',
+        threshold: 0.16
+      });
+
+      revealSections.forEach(section => revealObserver.observe(section));
+    } else {
+      revealSections.forEach(section => section.classList.add('is-visible'));
+    }
+  }
+
   // ------------------------------------------------------------------------------------ //
   // ------------------------------- INDEX.HTML PAGE ------------------------------------ //
   // ------------------------------------------------------------------------------------ //
-  
+
   // Wrapped in a check to prevent errors on other pages
   if (document.querySelector('.nav-dial')) {
       const outerRing = document.getElementById('nav-outer-ring');
@@ -177,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const rotation = -130 + ((e.clientX / screenWidth) * 175);
           needle.style.transform = `rotate(${rotation}deg)`;
         }
-            
+
         if (isLocked || !navDial) return;
 
         const rect = navDial.getBoundingClientRect();
@@ -197,9 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
         windowEl.addEventListener('click', () => {
           const targetAngle = windowEl.getAttribute('data-angle');
           const targetPage  = windowEl.dataset.target;
-                
+
           if (targetAngle) {
-            isLocked = true; 
+            isLocked = true;
             if (outerRing) outerRing.style.transform = `rotate(${targetAngle}deg)`;
             if (innerRing) innerRing.style.transform = `rotate(${targetAngle}deg)`;
             if (knob) knob.style.transform = `translate(-50%, -50%) rotate(${targetAngle}deg)`;
@@ -227,9 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const FORM_ID = "1FAIpQLSdlSe516OWIK0t9A-3PBpN6TU8YJh3QRGHamS5HXvuEJkUVLw";
       const endpoint = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
       const data = new URLSearchParams();
-      data.append("entry.1406986934", name); 
+      data.append("entry.1406986934", name);
       data.append("entry.654459799", email);
-      data.append("entry.846955755", msg);   
+      data.append("entry.846955755", msg);
 
       fetch(endpoint, {
         method: "POST",
@@ -315,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.bento-tile[data-tile-id="c5"] .c5-needle').forEach(needle => {
         const base = parseFloat(getComputedStyle(needle).getPropertyValue('--ang').replace('deg',''));
         setInterval(() => {
-          const jitter = (Math.random() - 0.5) * 4; 
+          const jitter = (Math.random() - 0.5) * 4;
           needle.style.transform = `rotate(${base + jitter}deg)`;
         }, 120);
       });
@@ -324,17 +405,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------------------ //
   // ------------------------------- ART LOBBY PAGE ------------------------------------- //
   // ------------------------------------------------------------------------------------ //
-  
+
   if (document.querySelector('.locked-book-wrapper')) {
       const bookElements = document.querySelectorAll('.locked-book-wrapper');
-      
+
       const bookConfig = [
-        { height: 320, width: 45, angle: 0 },   
-        { height: 340, width: 40, angle: 0, customGap: 10 },   
-        { height: 300, width: 50, angle: 8, customGap: 5 },    
-        { height: 310, width: 38, angle: 5, customGap: 54 },    
-        { height: 350, width: 42, angle: -4 },  
-        { height: 290, width: 35, angle: 0 }    
+        { height: 320, width: 45, angle: 0 },
+        { height: 340, width: 40, angle: 0, customGap: 10 },
+        { height: 300, width: 50, angle: 8, customGap: 5 },
+        { height: 310, width: 38, angle: 5, customGap: 54 },
+        { height: 350, width: 42, angle: -4 },
+        { height: 290, width: 35, angle: 0 }
       ];
 
       bookElements.forEach((book, index) => {
@@ -353,10 +434,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (config.angle > 0) pivot.style.transformOrigin = 'bottom right';
         else if (config.angle < 0) pivot.style.transformOrigin = 'bottom left';
         else pivot.style.transformOrigin = 'bottom center';
-        
+
         pivot.style.transform = `rotateZ(${config.angle}deg)`;
 
-        let gap = 2; 
+        let gap = 2;
         if (config.customGap !== undefined) {
           gap = config.customGap;
         } else if (nextConfig) {
@@ -385,12 +466,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Click Navigation (NEW)
         book.addEventListener('click', () => {
           const link = book.dataset.link;
-            
+
           if (link) {
             // If it starts with http, open in new tab
             if (link.startsWith('http')) {
               window.open(link, '_blank', 'noopener,noreferrer');
-            } 
+            }
             // Otherwise, treat as internal page navigation
             else {
               window.location.href = link;
@@ -411,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.next-btn'); // Class selector
     const prevBtn = document.querySelector('.prev-btn'); // Class selector
     const label = document.getElementById('dynamicLabel');
-    
+
     // Check if we are on the Portraits page before running this
     if (sheets.length > 0 && nextBtn && prevBtn) {
         let currentIndex = 0;
@@ -435,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sheet.style.opacity = 1;
                 } else {
                     sheet.style.zIndex = 10 - position;
-                    sheet.style.opacity = 0; 
+                    sheet.style.opacity = 0;
                 }
             });
         }
@@ -449,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentIndex = (currentIndex + 1) % totalSheets;
                 updateStack();
                 isAnimating = false;
-            }, 300); 
+            }, 300);
         });
 
         prevBtn.addEventListener('click', () => {
@@ -459,9 +540,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const prevSheet = sheets[prevIndex];
             prevSheet.style.transition = 'none';
             prevSheet.classList.add('fly-out-left');
-            prevSheet.style.opacity = 1; 
-            void prevSheet.offsetWidth; 
-            prevSheet.style.transition = ''; 
+            prevSheet.style.opacity = 1;
+            void prevSheet.offsetWidth;
+            prevSheet.style.transition = '';
             prevSheet.classList.remove('fly-out-left');
             currentIndex = prevIndex;
             updateStack();
@@ -499,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initial Setup
         updateStack();
-        
+
         // PARALLAX (If applicable)
         const textCol = document.getElementById('parallaxText');
         const imgCol = document.getElementById('parallaxImage');
@@ -517,16 +598,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------------------ //
   // ------------------------------- URBAN SKETCH PAGE ---------------------------------- //
   // ------------------------------------------------------------------------------------ //
-    
+
   // !!! ISOLATED SCOPE !!!
   {
     const pages = document.querySelectorAll('.page');
     const urbanNext = document.getElementById('nextBtn');
     const urbanPrev = document.getElementById('prevBtn');
-    
+
     if (pages.length > 0 && urbanNext && urbanPrev) {
-        
-        // START AT 1 
+
+        // START AT 1
         // Index 0 is the "Left Side Start Page" (Already flipped in HTML)
         // Index 1 is the "Right Side Start Page" (Visible)
         let currentPage = 1;
@@ -535,13 +616,13 @@ document.addEventListener('DOMContentLoaded', () => {
             pages.forEach((page, index) => {
                 if (page.classList.contains('flipped')) {
                     // LEFT STACK
-                    page.style.zIndex = index + 1; 
+                    page.style.zIndex = index + 1;
                 } else {
                     // RIGHT STACK
                     page.style.zIndex = pages.length - index;
                 }
             });
-            
+
             // Optional: Dim buttons if at start/end limits
             urbanPrev.style.opacity = currentPage <= 1 ? "0.3" : "1";
             urbanNext.style.opacity = currentPage >= pages.length - 1 ? "0.3" : "1";
@@ -573,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Click Right Page -> Next (Only if allowed)
                 if (index === currentPage) {
                      if (currentPage < pages.length - 1) urbanNext.click();
-                } 
+                }
                 // Click Left Page -> Prev (Only if allowed)
                 else if (index === currentPage - 1) {
                      if (currentPage > 1) urbanPrev.click();
@@ -624,20 +705,20 @@ document.addEventListener('DOMContentLoaded', () => {
         function loadSlides(mode) {
             track.innerHTML = '';
             const cfg = CONFIG[mode];
-            
+
             for (let i = 1; i <= cfg.count; i++) {
                 const div = document.createElement('div');
                 div.className = 'c-slide';
-                
+
                 const img = document.createElement('img');
                 // zero-pad index to match filename convention (01.jpg, 02.jpg, ...)
                 const idxStr = String(i).padStart(2, '0');
                 img.src = `${cfg.folder}${idxStr}${cfg.ext}`;
                 img.onerror = function() { this.style.display = 'none'; };
-                
+
                 div.appendChild(img);
                 track.appendChild(div);
-                
+
                 div.addEventListener('click', () => {
                     const idx = slides.indexOf(div);
                     const distance = idx - currentIndex;
@@ -645,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (distance === -1) prevBtn.click();
                 });
             }
-            
+
             slides = Array.from(track.querySelectorAll('.c-slide'));
             currentIndex = 0;
             updateCarousel();
@@ -656,10 +737,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const distance = index - currentIndex;
                 if (Math.abs(distance) <= 2) {
                     slide.setAttribute('data-pos', distance);
-                    slide.style.opacity = ''; 
+                    slide.style.opacity = '';
                     slide.style.pointerEvents = 'auto';
                 } else {
-                    slide.removeAttribute('data-pos'); 
+                    slide.removeAttribute('data-pos');
                     slide.style.opacity = 0;
                     slide.style.pointerEvents = 'none';
                 }
@@ -672,10 +753,10 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 const newMode = btn.dataset.mode;
                 if (currentMode === newMode) return;
-                
+
                 modeBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
+
                 if (newMode === 'portrait') {
                     stage.classList.add('mode-portrait');
                     if (controls) controls.classList.add('mode-portrait');
@@ -683,7 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     stage.classList.remove('mode-portrait');
                     if (controls) controls.classList.remove('mode-portrait');
                 }
-                
+
                 currentMode = newMode;
                 // Delay slightly to let rotation start
                 setTimeout(() => loadSlides(newMode), 50);
@@ -721,7 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           book.classList.add('is-expanded');
         });
-        
+
         book.parentElement.addEventListener('mouseleave', () => {
            book.classList.remove('is-expanded');
         });
@@ -735,8 +816,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     board.addEventListener('mousemove', (e) => {
         const rect = board.getBoundingClientRect();
-        const x = e.clientX - rect.left; 
-        const y = e.clientY - rect.top;  
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         const rotateX = ((y - centerY) / centerY) * -5;
@@ -751,5 +832,5 @@ document.addEventListener('DOMContentLoaded', () => {
         accent.style.transform = 'translateZ(0) rotateX(0) rotateY(0)';
     });
   }
-    
+
 });

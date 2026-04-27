@@ -10,6 +10,32 @@
   gap: var(--space-7);
 }
 
+.coy-page.coy-reveal-ready > section:not(.coy-hero){
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  filter: blur(6px);
+  transition:
+    opacity 520ms ease,
+    transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 620ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.coy-page.coy-reveal-ready > section:not(.coy-hero).is-visible{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .coy-page.coy-reveal-ready > section:not(.coy-hero){
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
 /* -------- Panel Shell (matches your mechanical plates) -------- */
 .coy-panel{
   background: #fff;

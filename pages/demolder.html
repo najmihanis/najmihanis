@@ -204,14 +204,15 @@
 
                     <!-- QUICK NAV (optional but nice) -->
                     <nav class="iter-nav" aria-label="Iteration navigation">
-                        <a class="iter-chip" href="#iter1">01</a>
-                        <a class="iter-chip" href="#iter2">02</a>
-                        <a class="iter-chip" href="#iter3">03</a>
-                        <a class="iter-chip" href="#iter4">04</a>
+                        <button class="iter-chip is-active" type="button" data-iteration-target="iter1" aria-controls="iter1" aria-pressed="true">01</button>
+                        <button class="iter-chip" type="button" data-iteration-target="iter2" aria-controls="iter2" aria-pressed="false">02</button>
+                        <button class="iter-chip" type="button" data-iteration-target="iter3" aria-controls="iter3" aria-pressed="false">03</button>
+                        <button class="iter-chip" type="button" data-iteration-target="iter4" aria-controls="iter4" aria-pressed="false">04</button>
                     </nav>
 
+                    <div class="iter-stage">
                     <!-- ITERATION 01 -->
-                    <article class="iter-card" id="iter1">
+                    <article class="iter-card is-active" id="iter1" data-iteration-card>
                         <header class="iter-head">
                         <div class="iter-num">ITERATION 01</div>
                         <div class="iter-name">Manual Twist-Lock Mechanism</div>
@@ -230,7 +231,7 @@
                     </article>
 
                     <!-- ITERATION 02 -->
-                    <article class="iter-card" id="iter2">
+                    <article class="iter-card" id="iter2" data-iteration-card hidden>
                         <header class="iter-head">
                         <div class="iter-num">ITERATION 02</div>
                         <div class="iter-name">PNEUMATIC-ASSISTED LOCKING</div>
@@ -249,7 +250,7 @@
                     </article>
 
                     <!-- ITERATION 03 -->
-                    <article class="iter-card" id="iter3">
+                    <article class="iter-card" id="iter3" data-iteration-card hidden>
                         <header class="iter-head">
                         <div class="iter-num">ITERATION 03</div>
                         <div class="iter-name">FULLY PNEUMATIC RELEASE SYSTEM</div>
@@ -268,7 +269,7 @@
                     </article>
 
                     <!-- ITERATION 04 -->
-                    <article class="iter-card" id="iter4">
+                    <article class="iter-card" id="iter4" data-iteration-card hidden>
                         <header class="iter-head">
                         <div class="iter-num">ITERATION 04</div>
                         <div class="iter-name">LOW-PROFILE, OPERATOR-GUIDED DESIGN</div>
@@ -285,6 +286,7 @@
                         <li><b>Result:</b> Delivered a low-profile, clearance-safe demolder that reduced operator effort, improved reliability, and supported repeatable high-volume use.</li>
                         </ul>
                     </article>
+                    </div>
 
                     </section>
                 </section>
