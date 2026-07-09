@@ -219,17 +219,25 @@
 .span-4x2{ grid-column: span 4; grid-row: span 2; }
 .span-3x2{ grid-column: span 3; grid-row: span 2; }
 .span-2x2{ grid-column: span 2; grid-row: span 2; }
+.span-4x3{ grid-column: span 4; grid-row: span 3; }
 .span-3x1{ grid-column: span 3; grid-row: span 1; }
 .span-2x1{ grid-column: span 2; grid-row: span 1; }
 /* Extra fillers (use these on control tiles) */
 .span-1x1{ grid-column: span 1; grid-row: span 1; }
 .span-1x2{ grid-column: span 1; grid-row: span 2; }
+.span-1x3{ grid-column: span 1; grid-row: span 3; }
 .span-2x3{ grid-column: span 2; grid-row: span 3; }
 
 .span-1x1{ grid-column: span 1; grid-row: span 1; }
 .span-1x2{ grid-column: span 1; grid-row: span 2; }
+.span-1x3{ grid-column: span 1; grid-row: span 3; }
 .span-2x1{ grid-column: span 2; grid-row: span 3; }
 .span-1x4{ grid-column: span 1; grid-row: span 4; }
+
+.bento-spacer{
+  visibility: hidden;
+  pointer-events: none;
+}
 
 /* Common tile skin (keeps your thick outline + hard shadow language) */
 .bento-tile{
@@ -448,6 +456,11 @@
 .bento-tile[data-tile-id="p11"] .crt-thumb{
   transform: scaleX(-1) scale(1.03);
 }
+
+.bento-tile[data-tile-id="p16"] .crt-thumb{
+  object-fit: cover;
+  object-position: center 74%;
+}
 /* ===================== CONTROL PANEL TILES (HI-FIDELITY) ===================== */
 .ctrl-tile{ padding: 12px; }
 .ctrl-frame{
@@ -464,6 +477,136 @@
 }
 
 .ctrl-frame--tight{ padding: 8px; gap: 8px; }
+
+.ctrl-frame--blank{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.45), rgba(0,0,0,0.04)),
+    #f7f7f7;
+}
+
+/* ---------- c12: dual knob + dual fader panel ---------- */
+.c12-panel{
+  gap: var(--space-4);
+  align-items: center;
+  justify-content: center;
+}
+.c12-knob-row{
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+.c12-knob-unit{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- c11: meter + dash-ring dial panel ---------- */
+.c11-panel{
+  position: relative;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.c11-screw{
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: transparent;
+}
+.c11-screw.tl{ top: 8px; left: 8px; }
+.c11-screw.tr{ top: 8px; right: 8px; }
+.c11-screw.bl{ bottom: 8px; left: 8px; }
+.c11-screw.br{ bottom: 8px; right: 8px; }
+
+.c11-meter{
+  flex-shrink: 0;
+}
+
+.c11-dial-row{
+  display: flex;
+  flex: 0 0 auto;
+  width: 100%;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Knob: circle face + pointy pointer, with a tick ring sitting OUTSIDE
+   the knob body (gap left open from 5 o'clock ccw to 7 o'clock) */
+.c11-dial{
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+.c11-dial__ticks{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.c11-dial__ticks line{
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+.c11-dial__face{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e9e9e9 55%, #cfcfcf 100%);
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.85),
+    inset -2px -3px 6px rgba(0,0,0,0.14),
+    1px 1px 0 rgba(0,0,0,0.12);
+}
+.c11-dial__pointer{
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--dial-angle, 0deg));
+  pointer-events: none;
+}
+.c11-dial__pointer::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 9%;
+  width: 0;
+  height: 0;
+  border-left: 2.5px solid transparent;
+  border-right: 2.5px solid transparent;
+  border-bottom: 8px solid var(--ink);
+  transform: translateX(-50%);
+}
+
+/* 3x2 tactile button array */
+.c11-btn-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+}
+.c11-btn{
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--ink);
+  background: linear-gradient(180deg, #ffffff, #dcdcdc);
+  box-shadow:
+    2px 2px 0 rgba(0,0,0,0.85),
+    inset 1px 1px 0 rgba(255,255,255,0.9),
+    inset -1px -2px 2px rgba(0,0,0,0.18);
+}
 
 .ctrl-row{
   display:flex;
