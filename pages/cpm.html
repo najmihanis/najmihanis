@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPM Project | Najmi Hanis Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/cpm.css">
+</head>
+
+<body>
+  <svg style="display: none;">
+     <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
+    </symbol> 
+
+    <!--<symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 34V14a12 12 0 0 1 12-12h20"/>
+      <circle cx="14" cy="14" r="4"/>
+    </symbol> -->
+  </svg>
+
+  <div class="scale-stage" id="scaleStage">
+    <div class="device-casing" id="deviceCasing">
+      <div class="inner-casing">
+        <div class="screw tl"></div><div class="screw tr"></div>
+        <div class="screw bl"></div><div class="screw br"></div>
+
+        <header class="panel-row header-panel">
+          <button class="nav-vent-toggle" type="button"
+            aria-label="Open navigation"
+            aria-controls="mobileNav"
+            aria-expanded="false">
+            <span class="vent-bar"></span>
+            <span class="vent-bar"></span>
+            <span class="vent-bar"></span>
+          </button>
+
+          <div class="branding-plate image-mode" data-nav="home" role="button" tabindex="0">
+            <div class="branding-grille-area">
+              <div class="branding-inner-badge">
+                <img src="../assets/images/branding/logo.png" alt="Najmi Hanis Logo" class="custom-logo">
+                <div class="badge-rivet tl"></div><div class="badge-rivet tr"></div>
+                <div class="badge-rivet bl"></div><div class="badge-rivet br"></div>
+              </div>
+            </div>
+
+            <div class="speed-lines"></div>
+          </div>
+
+          <nav class="nav-plate" id="mobileNav">
+            <button class="nav-close-btn" aria-label="Close Menu">✕</button>
+
+            <button class="nav-btn block-3d" type="button" data-nav="about">ABOUT</button>
+
+            <div class="nav-dropdown-wrapper">
+              <button class="nav-btn block-3d dropdown-trigger" type="button">PROJECTS <span class="dropdown-arrow">▼</span></button>
+
+              <div class="sub-nav-plate">
+                <button class="nav-btn block-3d-small" type="button" data-nav="art-design">ART & DESIGN</button>
+                <button class="nav-btn block-3d-small" type="button" data-nav="engineering">ENGINEERING</button>
+                <button class="nav-btn block-3d-small" type="button" data-nav="photography">PHOTOGRAPHY</button>
+              </div>
+            </div>
+
+            <button class="nav-btn block-3d" type="button" data-nav="resume">RESUME</button>
+            <button class="nav-btn block-3d" type="button" data-nav="contact">CONTACT</button>
+
+            <div class="toggle-switch-group">
+              <div class="toggle-btn"></div>
+              <div class="toggle-btn"></div>
+            </div>
+          </nav>
+        </header>
+
+        <main class="cpm-page">
+          <section class="cpm-hero" data-cpm-reveal>
+            <div class="corner-deco complex c-tl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+            <div class="corner-deco complex c-tr"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+            <div class="corner-deco complex c-bl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+            <div class="corner-deco complex c-br"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+
+            <div class="cpm-hero__copy">
+              <div class="cpm-eyebrow">SENIOR CAPSTONE PROJECT</div>
+              <h1>Continuous Passive Motion Device</h1>
+              <p>
+                A CT-compatible device that repeatedly actuates an ex-vivo rat knee for dynamic micro-CT imaging.
+              </p>
+              <div class="cpm-actions">
+                <a class="cpm-pill cpm-pill--dark" href="https://www.youtube.com/watch?v=eY4R4_4MP_g" target="_blank" rel="noopener noreferrer">Summary Video</a>
+                <a class="cpm-pill" href="#cpmBrief">Project Brief</a>
+              </div>
+            </div>
+
+            <div class="cpm-hero__object" aria-label="Interactive CPM product illustration">
+              <div class="cpm-orbit cpm-orbit--slow"></div>
+              <div class="cpm-orbit cpm-orbit--fast"></div>
+              <button class="cpm-hotspot cpm-hotspot--two" type="button" data-cpm-note="A dual crank–slider mechanism">02</button>
+              <button class="cpm-hotspot cpm-hotspot--three" type="button" data-cpm-note="An <em>ex-vivo</em> rat&#39;s hindlimb">01</button>
+              <img class="cpm-hero__render" src="../assets/images/projects/cpm/hero-render.png" alt="CPM device assembly render">
+              <p class="cpm-note" id="cpmNote">Tap a numbered detail.</p>
+            </div>
+          </section>
+
+          <section class="cpm-scroll-film" data-cpm-scroll-film aria-label="Scroll-controlled rat animation">
+            <div class="cpm-scroll-film__sticky">
+              <div class="cpm-scroll-film__copy">
+                <div class="cpm-eyebrow">A proof of concept</div>
+                <h2>Moving Beyond Static Imaging.</h2>
+                <p>
+                  Enabling researchers to study how cartilage, ligaments, and bones interact throughout joint motion, rather than at a single static position.
+                </p>
+              </div>
+
+              <div class="cpm-scroll-film__stage">
+                <video
+                  id="cpmScrollFilmVideo"
+                  src="../assets/videos/projects/cpm/rat-cycle.mp4"
+                  preload="auto"
+                  muted
+                  playsinline
+                  aria-hidden="true"></video>
+              </div>
+            </div>
+          </section>
+
+          <section class="cpm-brief-axis" id="cpmBrief" data-cpm-reveal>
+            <div class="cpm-brief-axis__header">
+              <h2>Project Brief</h2>
+            </div>
+
+            <article class="cpm-brief-diagonal">
+              <div class="cpm-brief-diagonal__copy cpm-brief-diagonal__copy--goal">
+                <h2>Goal</h2>
+                <p>
+                  Design a compact continuous passive motion (CPM) device that repeatedly actuates an ex-vivo rat knee inside a micro-CT scanner, enabling dynamic imaging of the joint throughout controlled flexion and extension.
+                </p>
+              </div>
+              <figure class="cpm-brief-diagonal__image">
+                <img src="../assets/images/projects/cpm/brief/xray-diagonal.png" alt="Diagonal xray reference">
+              </figure>
+              <div class="cpm-brief-diagonal__copy cpm-brief-diagonal__copy--problem">
+                <h2>Problem</h2>
+                <p>
+                  Conventional micro-CT captures only static snapshots of biological tissue. Understanding how cartilage, ligaments, and bones interact during movement requires a system capable of producing repeatable knee motion while fitting within the scanner’s tightly constrained imaging bore.
+                </p>
+              </div>
+            </article>
+
+            <article class="cpm-brief-axis__panel cpm-brief-axis__panel--constraint">
+              <div class="cpm-brief-axis__text">
+                <h2>Constraints</h2>
+                <p>
+                  The mechanism had to fit within a 10 cm micro-CT bore while remaining CT-compatible, producing smooth and repeatable knee motion without introducing imaging artifacts. It also needed to securely accommodate rat specimens of varying sizes and operate reliably for extended scan durations.
+                </p>
+              </div>
+              <figure class="cpm-brief-axis__image">
+                <img src="../assets/images/projects/cpm/brief/ct-cropped.png" alt="Cropped CT machine reference">
+              </figure>
+            </article>
+
+            <article class="cpm-brief-axis__panel cpm-brief-axis__panel--deliverables">
+              <figure class="cpm-brief-axis__image">
+                <img src="../assets/images/projects/cpm/brief/cpm-cropped.png" alt="Cropped CPM prototype">
+              </figure>
+              <div class="cpm-brief-axis__text">
+                <h2>Deliverables</h2>
+                <p>
+                  A fully functional continuous passive motion (CPM) device, accompanied by a graphical user interface (GUI), user guide, spare components, final design report, and complete project documentation through the course website.
+                </p>
+              </div>
+            </article>
+          </section>
+
+          <section class="cpm-explode" data-cpm-explode aria-label="Scroll-driven assembly reveal">
+            <div class="cpm-explode__sticky">
+              <div class="cpm-explode__label">
+                <div class="cpm-eyebrow">Product Reveal</div>
+                <h2>Final<br>Design</h2>
+              </div>
+
+              <div class="cpm-explode__stage">
+                <video
+                  id="cpmExplodeVideo"
+                  src="../assets/videos/projects/cpm/assembly-explode.mp4"
+                  preload="auto"
+                  muted
+                  playsinline
+                  aria-hidden="true"></video>
+              </div>
+
+              <div class="cpm-explode__hint" aria-hidden="true">
+                <span>Scroll to explore</span>
+                <div class="cpm-explode__hint-arrow"></div>
+              </div>
+            </div>
+          </section>
+
+          <div class="cpm-final-overview" data-cpm-reveal>
+            <img src="../assets/images/projects/cpm/final-design-overview.png" alt="Final CPM design annotated overview">
+          </div>
+
+          <div class="cpm-feature-explorer" data-cpm-reveal>
+            <nav class="cpm-feat-nav" aria-label="Feature navigation">
+              <button class="cpm-feat-chip is-active" type="button" data-iteration-target="cpm-feat-1" aria-controls="cpm-feat-1" aria-pressed="true">Adjustable ROM</button>
+              <button class="cpm-feat-chip" type="button" data-iteration-target="cpm-feat-2" aria-controls="cpm-feat-2" aria-pressed="false">Mounting</button>
+              <button class="cpm-feat-chip" type="button" data-iteration-target="cpm-feat-3" aria-controls="cpm-feat-3" aria-pressed="false">Powertrain &amp; Encoding</button>
+              <button class="cpm-feat-chip" type="button" data-iteration-target="cpm-feat-4" aria-controls="cpm-feat-4" aria-pressed="false">MATLAB Interface</button>
+            </nav>
+
+            <div class="cpm-feat-stage">
+              <article class="cpm-feat-card is-active" id="cpm-feat-1" data-iteration-card>
+                <div class="cpm-feat-card__image-bay">
+                  <img src="../assets/images/projects/cpm/features/rom.png" alt="Adjustable ROM feature" loading="lazy">
+                </div>
+                <div class="cpm-feat-card__body">
+                  <p class="cpm-feat-card__label">Adjustable ROM</p>
+                  <p>Instead of aiming for a continuous range of adjustment. We opted for 5 discrete ranges of motion. </p>
+                  <p>By changing which hole the pin of the input arm is inserted into the output pulley, the user can choose a range of motion of 40°, 55°, 70°, 85°, or 100°. This allows for a simple and easy to use way to adjust the range of motion.</p>
+                </div>
+              </article>
+
+              <article class="cpm-feat-card" id="cpm-feat-2" data-iteration-card hidden>
+                <div class="cpm-feat-card__image-bay">
+                  <img src="../assets/images/projects/cpm/features/mounting.png" alt="Mounting feature" loading="lazy">
+                </div>
+                <div class="cpm-feat-card__body">
+                  <p class="cpm-feat-card__label">Mounting</p>
+                  <p>Because rat leg geometry varies between specimens, the mounting system was designed to be both secure and adaptable. A rubber band-assisted sliding clamp stabilized the thigh, while a padded Velcro strap secured the calf to the output crank. The design also supports medical tape as an alternative mounting method to accommodate future experimental preferences.</p>
+                </div>
+              </article>
+
+              <article class="cpm-feat-card" id="cpm-feat-3" data-iteration-card hidden>
+                <div class="cpm-feat-card__image-bay">
+                  <img src="../assets/images/projects/cpm/features/powertrain.png" alt="Powertrain & Encoding feature" loading="lazy">
+                </div>
+                <div class="cpm-feat-card__body">
+                  <p class="cpm-feat-card__label">Powertrain &amp; Encoding</p>
+                  <p>A 4:1 compound belt-driven transmission reduces the motor speed while increasing output torque, providing smooth and controlled actuation of the crank-slider mechanism. A brushless DC motor drives the input pulley, converting continuous rotation into the linear reciprocating motion required to flex and extend the rat knee.</p>
+                  <p>To accurately measure the knee position, a secondary 1:1 belt transmission carries the crank arm’s rotation to an optical encoder located outside the micro-CT scanner. Measuring the output directly avoids errors introduced by drivetrain compliance and keeps electronic components away from the imaging area, ensuring reliable position feedback without interfering with CT scanning.</p>
+                </div>
+              </article>
+
+              <article class="cpm-feat-card" id="cpm-feat-4" data-iteration-card hidden>
+                <div class="cpm-feat-card__image-bay">
+                  <img src="../assets/images/projects/cpm/features/gui.png" alt="MATLAB Interface feature" loading="lazy">
+                </div>
+                <div class="cpm-feat-card__body">
+                  <p class="cpm-feat-card__label">MATLAB Interface</p>
+                  <p>The graphical user interface (GUI) allows researchers to configure key experimental parameters, including motion mode, frequency, range of motion (ROM), and the number of actuation cycles. Once configured, these parameters are transmitted directly to the device for repeatable experiment setup.</p>
+                  <p>During operation, the GUI visualizes encoder feedback in real time while tracking the current cycle count and device status. Motion automatically stops once the prescribed number of cycles is completed, and the recorded position data can be exported for further analysis.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <section class="cpm-nav-industrial" data-cpm-reveal>
+            <div class="cpm-nav-industrial__header">
+              <div class="cpm-eyebrow">A walk through</div>
+              <h2>Design Process</h2>
+            </div>
+            <div class="c4-shell">
+              <div class="c4-rivet tl"></div>
+              <div class="c4-rivet tr"></div>
+              <div class="c4-rivet bl"></div>
+              <div class="c4-rivet br"></div>
+
+              <nav class="c4-sidebar">
+                <div class="c4-pocket-wrap">
+                  <div class="c4-pocket-frame">
+                    <div class="c4-nav-list">
+                      <button class="c4-nav-btn active" data-c4="0"><span class="c4-nav-num">01</span>Ideation<span class="c4-led"></span></button>
+                      <button class="c4-nav-btn"        data-c4="1"><span class="c4-nav-num">02</span>Mechanism Exploration<span class="c4-led"></span></button>
+                      <button class="c4-nav-btn"        data-c4="2"><span class="c4-nav-num">03</span>Preliminary Analysis<span class="c4-led"></span></button>
+                      <button class="c4-nav-btn"        data-c4="3"><span class="c4-nav-num">04</span>Design Optimization<span class="c4-led"></span></button>
+                      <button class="c4-nav-btn"        data-c4="4"><span class="c4-nav-num">05</span>Kinematics Analysis<span class="c4-led"></span></button>
+                      <button class="c4-nav-btn"        data-c4="5"><span class="c4-nav-num">06</span>Fine Tuning<span class="c4-led"></span></button>
+                      <button class="c4-nav-btn"        data-c4="6"><span class="c4-nav-num">07</span>Design for Assembly<span class="c4-led"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+
+              <div class="c4-body">
+                <div class="c4-flash" id="c4-flash"></div>
+
+                <div class="c4-panel" data-c4-panel="0">
+                  <div class="c4-eyebrow">Module 01 — Ideation</div>
+                  <h2>Ideation</h2>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Project Overview</p>
+                  <p class="c4-lead">This project explores a new approach to medical imaging by developing a CT-compatible continuous passive motion (CPM) device capable of repeatedly flexing and extending a rat knee inside a micro-CT scanner. </p>
+                  <p>The device serves as a proof of concept for future studies investigating how knee joints behave under diseased and post-surgical conditions. By producing highly repeatable motion during scanning, individual CT images captured at different flexion angles can later be reconstructed into a dynamic 3D visualization of the joint.</p>
+                  <p>The idea was inspired by an earlier dynamic CT study from the NYU Langone Medical Center 3D Imaging Lab. Rather than treating CT as a tool for capturing static anatomy, the researchers reconstructed a moving 3D model of a beating heart by imaging it throughout its motion.</p>
+                  <div class="c4-media c4-media--center c4-media--medium">
+                    <div class="cpm-evo-video" data-cpm-youtube="https://www.youtube.com/embed/-bOFRHgCOV0?start=10">
+                      <iframe
+                        title="Dynamic volumetric CT scan animation"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                      <a href="https://www.youtube.com/watch?v=-bOFRHgCOV0&t=10" target="_blank" rel="noopener noreferrer" aria-label="Watch scan animation on YouTube">
+                        <img src="https://img.youtube.com/vi/-bOFRHgCOV0/hqdefault.jpg" alt="Dynamic CT scan animation thumbnail" loading="lazy">
+                        <span>Watch on YouTube</span>
+                      </a>
+                    </div>
+                    <p class="c4-caption">Dynamic CT imaging study of the heart, conducted by NYU Langone Medical Center 3D Imaging Lab and uploaded by ICPMEducation (0:11-0:17).</p>
+                  </div>
+
+                  <div class="c4-split">
+                    <div class="c4-media c4-media--diagram">
+                      <img src="../assets/images/projects/cpm/ideation/project-overview-diagram.png" alt="Project overview diagram showing CPM device on rat knee, CT scan process, and resulting 3D x-ray animation">
+                    </div>
+                    <div>
+                      <p class="c4-sh hi">System Goal</p>
+                      <p>The device repeatedly actuates the rat knee through controlled flexion-extension while CT scans capture volumetric image data across multiple motion states.</p>
+                      <p>The resulting scan sequence can then be reconstructed into a dynamic visualization of joint behavior under motion.</p>
+                    </div>
+                  </div>
+
+                  <div class="c4-rule"></div>
+                  <p class="c4-sh c4-section-title" data-c4-toc>Defining the Problem</p>
+                  <p class="c4-lead">Before exploring mechanisms, the motion requirements and environmental constraints first needed to be established.</p>
+                  <p>The system not only needed to generate controlled knee motion, but also operate within the physical and imaging limitations of a CT scanner.</p>
+
+                  <div class="c4-media c4-media--wide">
+                    <img src="../assets/images/projects/cpm/ideation/functional-requirements.png" alt="Functional requirements infographic showing key design constraints for the CPM device">
+                  </div>
+
+                  <p class="c4-sh hi">Primary Requirements</p>
+                  <div class="c4-chips c4-chips--requirements">
+                    <span class="c4-chip">CT-compatible</span>
+                    <span class="c4-chip">Compact within 10 cm scanner bore</span>
+                    <span class="c4-chip">Repeatable motion</span>
+                    <span class="c4-chip">Adjustable range of motion</span>
+                    <span class="c4-chip">Smooth oscillatory behavior</span>
+                  </div>
+
+                  <p>At this stage, the project still assumed that reproducing natural gait-like motion would be important for the imaging process. However, one major limitation quickly became apparent:</p>
+                  <p class="c4-constraint-note">We did not yet have access to real rat leg specimens.</p>
+                  <p>Without direct physical measurements or experimental observation, the early design process relied heavily on biomechanics literature and computational modeling to estimate realistic knee behavior and motion envelopes.</p>
+                  <p>This led to the next phase of the ideation process: reconstructing rat gait motion from published research.</p>
+
+                  <div class="c4-rule"></div>
+                  <p class="c4-sh c4-section-title" data-c4-toc>Biomechanics &amp; Gait Studies</p>
+                  <p class="c4-lead">Understanding the motion before designing the machine.</p>
+
+                  <p class="c4-sh hi">Anatomically Constrained Skeletal Model</p>
+                  <p>To understand how a rat hindlimb naturally moves, I referenced the Anatomically Constrained Skeletal Model (ACM) developed by Monsees et al., a biomechanics framework that reconstructs the three-dimensional skeleton of freely moving rodents from video while enforcing anatomically realistic bone lengths and joint motion constraints.</p>
+
+                  <p>At this stage of the project, physical specimens were not yet available, making it difficult to reason about realistic limb motion. To bridge this gap, I used the authors’ pose estimation pipeline to extract skeletal pose data from their published gait videos, then imported the reconstructed joint trajectories into MATLAB to generate an animated three-dimensional skeleton.</p>
+
+
+                  <p>Visualizing the reconstructed gait made it much easier to understand how the hip, knee, and ankle coordinate throughout a walking cycle. Rather than interpreting joint angle plots alone, I could observe the overall limb motion, spatial envelope, and changing pose from any viewpoint.</p>
+
+
+                  <p>This reconstruction served as an exploratory tool that provided an intuitive understanding of natural rat gait before moving on to more focused knee modeling.<p>
+
+
+                  <div class="c4-media c4-media--center">
+                    <video src="../assets/videos/projects/cpm/acm-pose-animation.mp4" autoplay loop muted playsinline style="display:block;width:100%;height:auto;border-radius:4px;"></video>
+                    <p class="c4-caption">Motion tracking of a rat using ACM skeletal model implemented in MATLAB.</p>
+                  </div>
+
+                  <div class="c4-info-grid">
+                    <article>
+                      <p class="c4-sh hi">What the ACM Helped Answer</p>
+                      <ul>
+                        <li>How does a healthy rat knee move during walking?</li>
+                        <li>What range of motion should we initially target?</li>
+                        <li>Limb proportions</li>
+                      </ul>
+                    </article>
+                    <article>
+                      <p class="c4-sh hi">Limitations</p>
+                      <ul>
+                        <li>No physical specimen validation</li>
+                        <li>More detailed than necessary once project requirements shifted toward repeatability over gait replication</li>
+                        <li>Complex full-leg behavior may exceed project needs</li>
+                      </ul>
+                    </article>
+                  </div>
+
+                  <p class="c4-sh hi">Boettger Knee Model</p>
+                  <p>To study the knee joint in isolation, I developed a simplified kinematic model using experimental gait data from Boettger et al.</p>
+                  <p>The study measured knee joint angles throughout the gait cycle of freely walking rats using high-speed X-ray videography, providing a reliable reference for natural knee motion.</p>
+        
+                  <div class="c4-boettger-cols">
+                    <div class="c4-media c4-boettger-cols__left">
+                      <img src="../assets/images/projects/cpm/ideation/boettger-rat-diagram.png" alt="Rat skeleton landmarks for knee joint angle measurement">
+                      <p class="c4-caption">Skeletal landmarks used to determine knee joint angle from Boettger et al.</p>
+                    </div>
+                    <div class="c4-media c4-boettger-cols__right">
+                      <img src="../assets/images/projects/cpm/ideation/boettger-gait-graph.png" alt="Rat knee joint angle over gait cycle">
+                      <p class="c4-caption">Knee joint angle across stance and swing phases, showing ROM from Boettger et al.</p>
+                    </div>
+                  </div>
+                  <p>Using this dataset, I recreated the knee's flexion-extension motion to better understand its range of motion and spatial envelope independent of the rest of the limb.</p>
+                  <p>Unlike the ACM model, which reconstructs the entire skeletal system, this approach reduces the motion to a single degree-of-freedom knee hinge driven directly by experimentally measured joint angles.
+                  This model made it easier to analyze knee range of motion, angular velocity, acceleration, and the overall flexion-extension profile, informing the motion requirements for the final device.</p>
+
+                  <div class="c4-media c4-media--center c4-media--medium">
+                    <img src="../assets/images/projects/cpm/ideation/boettger-knee-cycle.gif" alt="Animated rat knee complete gait cycle reconstruction">
+                    <p class="c4-caption">Reconstructed 1-DOF rat knee cycle from Boettger et al. experimental angle data.</p>
+                  </div>
+
+                  <p class="c4-sh hi">Consolidated Gait Model</p>
+                  <p>After studying both the ACM full-body model and the experimental knee data from Boettger et al., I developed a consolidated gait simulation that combined insights from both approaches into a single forward kinematic model.</p>
+
+                  <p>Bone lengths were estimated using published allometric relationships for a 300 g rat, while joint limits were taken from the ACM framework. Rather than allowing joints to abruptly reach their limits, a soft-stop function based on a sigmoid mapping was implemented to produce smooth transitions and avoid unrealistic motion.</p>
+
+                  <p>The hip joint was driven by a damped sinusoidal trajectory to represent the primary gait input. Forward kinematics then propagated this motion through the knee and ankle, generating the complete hindlimb pose over a walking cycle.</p>
+
+                  <p>The resulting simulation allowed me to visualize an isolated rat hindlimb moving through a natural gait cycle without access to a physical specimen. It also provided an early estimate of the limb’s working envelope, helping determine whether the motion could be accommodated within the limited bore of the micro-CT scanner.</p>
+
+
+                  <div class="c4-media c4-media--center c4-media--medium">
+                    <img src="../assets/images/projects/cpm/ideation/consolidated-gait-kinematics.gif" alt="Consolidated rat gait kinematics simulation">
+                    <p class="c4-caption">Rat hindlimb gait simulation implemented on MATLAB.</p>
+                  </div>
+                  <div class="c4-boettger-cols c4-boettger-cols--equal">
+                    <div class="c4-media c4-boettger-cols__left">
+                      <img src="../assets/images/projects/cpm/ideation/trajectory-xz-view.jpg" alt="Rat knee trajectory XZ plane view">
+                      <p class="c4-caption">Working envelope in the XZ plane.</p>
+                    </div>
+                    <div class="c4-media c4-boettger-cols__right">
+                      <img src="../assets/images/projects/cpm/ideation/trajectory-yz-view.jpg" alt="Rat knee trajectory YZ plane view">
+                      <p class="c4-caption">Working envelope in the YZ plane.</p>
+                    </div>
+                  </div>
+
+                  <p>These findings directly informed the next stage: exploring mechanical architectures capable of reproducing similar motion behavior.</p>
+
+                  <div class="c4-rule"></div>
+                  <p class="c4-sh c4-section-title" data-c4-toc>Early Mechanism Exploration</p>
+                  <p class="c4-lead">Translating motion into mechanisms.</p>
+                  <p>With a rough understanding of the gait behavior established, several mechanism concepts were explored to investigate how the motion could be mechanically generated.</p>
+                  <p>At this stage, the goal was still relatively ambitious:</p>
+                  <p class="c4-constraint-note">Reproduce natural gait-like motion using mechanical linkages.</p>
+
+                  <p>Since the initial goal was to recreate natural gait, these mechanisms were driven at the hip, allowing the knee and ankle to follow naturally through the linkage. The double-rocker mechanism further attempted to constrain the knee motion so that it remained dependent on the hip’s movement.</p>
+
+                  <div class="c4-gallery">
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/ideation/mech-crank-rocker.png" alt="Crank–rocker mechanism concept">
+                      <p class="c4-caption">Crank–rocker</p>
+                    </div>
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/ideation/mech-slider-rocker.png" alt="Hip slider-rocker mechanism concept">
+                      <p class="c4-caption">Slider-rocker</p>
+                    </div>
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/ideation/mech-double-rocker.png" alt="Hip and ankle double-rocker mechanism concept">
+                      <p class="c4-caption">Double-rocker</p>
+                    </div>
+                  </div>
+
+
+                  <table class="c4-table">
+                    <thead><tr><th>Mechanism</th><th>Strength</th><th>Main Limitation</th></tr></thead>
+                    <tbody>
+                      <tr><td>Crank-rocker</td><td>Smooth oscillatory motion</td><td>Additional knee actuation layer needed</td></tr>
+                      <tr><td>Slider-rocker</td><td>Adjustable trajectory through geometry</td><td>Lacks independent knee actuation</td></tr>
+                      <tr><td>Double-rocker</td><td>In-phase joint motion</td><td>Motion constrained by linkage geometry</td></tr>
+                    </tbody>
+                  </table>
+
+                  <p>From this concept exploration, none of these mechanisms are ideal for providing independent and focused knee actuation, since they were primarily conceived to reproduce natural gait motion rather than isolate the knee joint.</p>
+
+                  <div class="c4-rule"></div>
+                  <p class="c4-sh c4-section-title" data-c4-toc>Project Pivot</p>
+                  <p class="c4-lead">Simplifying the problem.</p>
+                  <p>After consolidating the simulations, mechanism studies, and initial findings, the concepts were reviewed with the project sponsor, Dr. Jerban.</p>
+                  <p>That discussion ultimately changed the direction of the project.</p>
+
+                  <div class="c4-callout c4-callout--dark">The project did not actually require full gait reproduction. The primary requirement was significantly simpler: generate controlled and repeatable knee flexion-extension motion during imaging.</div>
+                  <p>This clarification dramatically narrowed the design space.</p>
+                  <p>The project could now focus entirely on isolated knee actuation, repeatability, compact packaging, and scanner compatibility rather than actuating the entire leg or reproducing biologically accurate gait motion.</p>
+                  <p>This pivot became the transition point into the next phase: evaluating and shortlisting mechanisms specifically optimized for controlled knee flexion-extension.</p>
+
+                </div>
+
+                <div class="c4-panel" data-c4-panel="1">
+                  <div class="c4-eyebrow">Module 02</div>
+                  <h2>Mechanism Exploration</h2>
+                  <p class="c4-lead">Now that we knew we only needed to actuate the knee, how did we decide on the best mechanism?</p>
+                
+                  <p class="c4-sh c4-section-title" data-c4-toc>Comparing Candidate Mechanisms</p>
+                  <p>With the project scope refined to isolated knee actuation, the design process shifted away from reproducing full gait and toward identifying the simplest mechanism capable of delivering reliable, repeatable knee motion. 
+
+                  The initial concepts were evaluated against the project’s functional requirements, considering factors such as motion quality, adjustability, mechanical complexity, packaging constraints, and micro-CT compatibility. The ideal candidate should balance these factors while meeting the project’s specific needs without unnecessary complexity.</p>
+
+                  <p>Three mechanisms were shortlisted which were deemed most promising.</p>
+
+                  <div class="c4-gallery">
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/mechanism-exploration/slider-rocker-sketch.png" alt="Slider-rocker mechanism sketch">
+                      <p class="c4-caption">Slider-rocker mechanism</p>
+                    </div>
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/mechanism-exploration/rail-sketch.png" alt="Rail mechanism sketch">
+                      <p class="c4-caption">Rail mechanism</p>
+                    </div>
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/mechanism-exploration/direct-drive-sketch.png" alt="Direct drive mechanism sketch">
+                      <p class="c4-caption">Direct drive mechanism</p>
+                    </div>
+                  </div>
+
+                  <table class="c4-table c4-table--mechanism">
+                    <colgroup>
+                      <col><col><col><col><col>
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th colspan="2">Designs</th>
+                        <th>Slider-rocker mechanism</th>
+                        <th>Rail mechanism</th>
+                        <th>Direct drive mechanism</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td rowspan="7">Design Impact</td>
+                        <td class="c4-table__row-label">Actuated part</td>
+                        <td>Slider (away from specimen)</td>
+                        <td>Ankle mounting disk</td>
+                        <td>Tibia mounting plate</td>
+                      </tr>
+                      <tr>
+                        <td>Stationary part</td>
+                        <td>Femur mounting plate</td>
+                        <td>Hip mounting disk</td>
+                        <td>Femur mounting plate</td>
+                      </tr>
+                      <tr>
+                        <td>Custom ROM implementation</td>
+                        <td>Hardstop clamps along the crank-coupler joint slot</td>
+                        <td>Indirect ROM control through ankle translation; varies with leg geometry</td>
+                        <td>Specification through control system</td>
+                      </tr>
+                      <tr>
+                        <td>Robustness to leg length variation</td>
+                        <td>Moderate – femur and tibia mounting plates can be made adjustable</td>
+                        <td>Poor – knee motion depends on limb length</td>
+                        <td>High – joint angle controlled directly</td>
+                      </tr>
+                      <tr>
+                        <td>Biggest Risk</td>
+                        <td>Slider jamming or friction</td>
+                        <td>Knee motion highly sensitive to leg geometry</td>
+                        <td>Imprecision due to motor backlash</td>
+                      </tr>
+                      <tr>
+                        <td>Pros</td>
+                        <td>Mechanically simple and compact; hardstops allow precise control of joint angle limits; easy to tune motion range through geometry</td>
+                        <td>Simple mechanism with fewer moving parts; allows natural bending of the knee from ankle positioning</td>
+                        <td>Direct and simple knee actuation; supports user-defined ROM and motion profiles; fewer linkage parts and simpler kinematics; compact and straightforward to control</td>
+                      </tr>
+                      <tr>
+                        <td>Cons</td>
+                        <td>Motion profile fixed by linkage geometry; less flexible for adjusting motion trajectory</td>
+                        <td>Potential friction in linear sliding components; mounting discs size restrict small flexion angle; joint angle response depends on limb length, reducing motion repeatability across different leg sizes</td>
+                        <td>Motor torque must directly overcome joint resistance; limited by motor backlash or missed steps; motor mass near the joint may increase bulk; not inherently CT/MRI compatible near the imaging region</td>
+                      </tr>
+                      <tr>
+                        <td rowspan="2">Logistical Impact</td>
+                        <td class="c4-table__row-label">Cost</td>
+                        <td>Free – 3D printable components from UCSD resources</td>
+                        <td>Free – 3D printable components from UCSD resources</td>
+                        <td>$7.98 for 4 motors from Amazon</td>
+                      </tr>
+                      <tr>
+                        <td>Lead Time</td>
+                        <td>Less than 1 day to 3D print parts</td>
+                        <td>Less than 1 day to 3D print parts</td>
+                        <td>Maximum 5 days of Amazon Prime Shipping</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Risk Reduction</p>
+                  <p class="c4-lead">A risk reduction effort was conducted to evaluate areas of high risk so that mitigation strategies could be developed.</p>
+                    
+                  <p>Before committing to a final design, the largest technical uncertainties needed to be addressed. The shortlisted slider-rocker and rail mechanisms were rapidly prototyped to evaluate their mechanical behavior and identify practical issues that could not be predicted through CAD alone.</p>
+
+                  <p>Material compatibility was another critical risk. Because the final device would rely heavily on 3D-printed components, sample ABS parts were scanned inside the micro-CT to verify that they would not introduce imaging artifacts.</p>
+
+                  <p>Testing accessibility also presented a challenge. With limited access to both biological specimens and the micro-CT facility, a mock testing environment was developed using a flexible TPU rat leg and a replica scanner bore. This allowed the mechanism, packaging, and mounting strategy to be refined before formal validation.</p>
+
+                  <div class="c4-media c4-media--center">
+                    <video src="../assets/videos/projects/cpm/risk-reduction-demo.mp4" autoplay loop muted playsinline style="display:block;width:100%;height:auto;border-radius:4px;"></video>
+                    <p class="c4-caption">Quick prototype testing of the slider-rocker and rail mechanisms.</p>
+
+                  </div>
+
+                  <div class="c4-gallery">
+                    <div class="c4-media c4-media--fixed-h">
+                      <img src="../assets/images/projects/cpm/mechanism-exploration/ct-scan-3d.jpg" alt="3D micro-CT scan of a 3D-printed ABS sample">
+                      <p class="c4-caption">Micro-CT scan of a 3D-printed ABS sample checked for imaging artifacts.</p>
+                    </div>
+                    <div class="c4-media c4-media--fixed-h">
+                      <img src="../assets/images/projects/cpm/mechanism-exploration/mock-leg-tpu.jpg" alt="Mock TPU rat leg used for testing accessibility">
+                      <p class="c4-caption">Flexible TPU mock leg used to test mounting and packaging without a specimen.</p>
+                    </div>
+                    <div class="c4-media c4-media--fixed-h">
+                      <img src="../assets/images/projects/cpm/mechanism-exploration/mock-bore.png" alt="Replica scanner bore used for mock testing">
+                      <p class="c4-caption">Replica scanner bore used to validate packaging within the imaging constraint.</p>
+                    </div>
+                  </div>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Crank-Slider / Slider–Rocker Mechanism</p>
+                  <p class="c4-lead">The winner mechanism</p>
+                  
+                  <p>After evaluating multiple concepts, </p>
+
+                  <p class="c4-constraint-note">The crank-slider mechanism emerged as the best balance of simplicity, controllability, and repeatability.</p>
+
+                  <p>Rather than directly actuating the knee with a motor, the mechanism converts continuous rotary motion into a controlled back-and-forth linear stroke, which then drives the knee through flexion and extension.</p>
+
+                  <p>Compared to the other shortlisted concepts, the crank-slider was less sensitive to variations in specimen geometry, resulting in more consistent motion across different rat legs. It also eliminated the need to place motors or other electrical components near the imaging region, making it better suited for the micro-CT environment.</p>
+    
+
+                </div>
+
+                <div class="c4-panel" data-c4-panel="2">
+                  <div class="c4-eyebrow">Module 03</div>
+                  <h2>Preliminary Analysis</h2>
+                  <p class="c4-lead">Diving deeper into the Crank-Slider mechanism.</p>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Input vs Output Motion Profile</p>
+
+                  <p>The crank-slider mechanism introduces a fundamental kinematic trade-off between the input and output motion. By analyzing the mechanism’s geometry, I found that only one side of the system can exhibit simple harmonic motion (SHM). If the input slider follows SHM, the knee motion becomes non-SHM. Conversely, achieving an SHM knee motion requires a non-SHM input profile.</p>
+
+                  <p>The sponsor’s preferred outcome was a smooth oscillating knee motion with an adjustable range of motion (ROM). Achieving this, however, would require a more complex input motion profile rather than a simple constant-speed drive.</p>
+
+                  <p>The alternative was to prioritize a simpler actuation system. Driving the input with SHM results in a mechanically straightforward solution, while accepting a non-SHM knee trajectory. This trade-off became a key consideration in the final mechanism design.</p>
+
+                  <div class="c4-motion-diagram">
+                    <div class="c4-motion-diagram__center">
+                      <img src="../assets/images/projects/cpm/preliminary-analysis/main-schematic.png" alt="Slider-crank mechanism free-body schematic">
+                    </div>
+
+                    <div class="c4-motion-diagram__branch c4-motion-diagram__branch--left">
+                      <div class="c4-motion-diagram__text-top">
+                        <p class="c4-sh hi">SHM Knee</p>
+                        <p class="c4-motion-diagram__eq c4-katex">$\theta(t) = \theta_{\text{mean}} + \Theta\sin(2\pi f t)$</p>
+                      </div>
+                      <div class="c4-motion-diagram__line--h"></div>
+                      <div class="c4-motion-diagram__line--v"></div>
+                      <div class="c4-motion-diagram__node c4-motion-diagram__node--drop"></div>
+                      <p class="c4-motion-diagram__caption c4-caption">User-defined knee motion</p>
+                      <div class="c4-motion-diagram__gif">
+                        <img src="../assets/images/projects/cpm/preliminary-analysis/shm-rocker.gif" alt="SHM knee motion animation">
+                      </div>
+                      <div class="c4-motion-diagram__output">
+                        <img src="../assets/images/projects/cpm/preliminary-analysis/shm-rocker-plot.png" alt="SHM rocker kinematics output plots">
+                      </div>
+                    </div>
+
+                    <div class="c4-motion-diagram__branch c4-motion-diagram__branch--right">
+                      <div class="c4-motion-diagram__text-top">
+                        <p class="c4-sh hi">SHM Slider</p>
+                        <p class="c4-motion-diagram__eq c4-katex">$x(t) = x_{\text{mean}} + X\cos(2\pi f t)$</p>
+                      </div>
+                      <div class="c4-motion-diagram__line--h"></div>
+                      <div class="c4-motion-diagram__line--v"></div>
+                      <div class="c4-motion-diagram__node c4-motion-diagram__node--drop"></div>
+                      <p class="c4-motion-diagram__caption c4-caption">User-defined input signal</p>
+                      <div class="c4-motion-diagram__gif">
+                        <img src="../assets/images/projects/cpm/preliminary-analysis/shm-slider.gif" alt="SHM slider motion animation">
+                      </div>
+                      <div class="c4-motion-diagram__output">
+                        <img src="../assets/images/projects/cpm/preliminary-analysis/shm-slider-plot.png" alt="SHM slider kinematics output plots">
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Motion Equations Derivation</p>
+
+                  <p class="c4-lead">The kinematic plots and visualizations above were derived from the geometric governing equation of the mechanism.</p>
+
+                  <p>The stroke length of the slider from the crank center can be derived as follows:</p>
+
+                  <div class="c4-media c4-media--center">
+                    <img src="../assets/images/projects/cpm/preliminary-analysis/gov-eqn.png" alt="Governing equation derivation for the slider-crank mechanism">
+                    <p class="c4-caption">Governing equation relating crank angle to slider stroke length.</p>
+                  </div>
+
+                  <div class="c4-derivation-grid">
+                    <section class="c4-derivation-col">
+                      <h3>If stroke motion is defined as SHM:</h3>
+
+                      <div class="c4-derivation-group">
+                        <h4>Input (SHM slider stroke):</h4>
+                        <div class="c4-derivation-eqn c4-katex">$$x(t) = x_{\text{mean}} + X\cos(2\pi f t)$$</div>
+                      </div>
+
+                      <div class="c4-derivation-group">
+                        <h4>Output (non-SHM knee angle) in terms of the slider stroke:</h4>
+                        <div class="c4-derivation-eqn c4-katex">$$\theta(t) = \cos^{-1}\!\left(\frac{x^2(t)+r^2-l^2}{2rx(t)}\right)$$</div>
+                        <div class="c4-derivation-eqn c4-katex">$$\omega(t) = -\frac{\left(x(t)-r\cos\theta\right)\dot{x}(t)}{rx(t)\sin\theta}$$</div>
+                        <div class="c4-derivation-eqn c4-katex c4-derivation-eqn--wide">$$\alpha(t) = -\frac{\left[\left(x(t)-r\cos\theta\right)\ddot{x}(t)+\dot{x}^{\,2}(t)+2r\dot{\theta}(t)\dot{x}(t)\sin\theta+rx(t)\dot{\theta}^{\,2}(t)\cos\theta\right]}{rx(t)\sin\theta}$$</div>
+                      </div>
+                    </section>
+
+                    <section class="c4-derivation-col">
+                      <h3>If crank angle is defined as SHM:</h3>
+
+                      <div class="c4-derivation-group">
+                        <h4>Input (SHM knee angle):</h4>
+                        <div class="c4-derivation-eqn c4-katex">$$\theta(t) = \theta_{\text{mean}} + \Theta\sin(2\pi f t)$$</div>
+                      </div>
+
+                      <div class="c4-derivation-group">
+                        <h4>Output (non-SHM slider stroke) in terms of the knee angle:</h4>
+                        <div class="c4-derivation-eqn c4-katex">$$x(t) = r\cos\!\left(\theta(t)\right)+\sqrt{l^2-r^2\sin^2\!\left(\theta(t)\right)}$$</div>
+                        <div class="c4-derivation-eqn c4-katex c4-derivation-eqn--wide">$$x(t) = r\cos\!\left(\theta_{\text{mean}}+\Theta\sin(2\pi f t)\right)+\sqrt{l^2-r^2\sin^2\!\left(\theta_{\text{mean}}+\Theta\sin(2\pi f t)\right)}$$</div>
+                        <div class="c4-derivation-eqn c4-katex">$$v(t) = \frac{dx(t)}{dt}$$</div>
+                        <div class="c4-derivation-eqn c4-katex">$$a(t) = \frac{dv(t)}{dt}=\frac{d^2x(t)}{dt^2}$$</div>
+                      </div>
+                    </section>
+                  </div>
+
+                 
+                </div>
+
+                <div class="c4-panel" data-c4-panel="3">
+                  <div class="c4-eyebrow">Module 04</div>
+                  <h2>Design Optimization</h2>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Driver Mechanism</p>
+                  <p>Insights from the rail mechanism prototype inspired a new approach to the actuation system. While exploring rotary-to-linear motion conversion, the scotch yoke demonstrated the benefits of a compact reciprocating drive, but its sliding contact raised concerns about friction, wear, and long-term reliability.</p>
+
+                  <p>To retain the same motion while improving robustness, </p>
+                    
+                  <p class="c4-constraint-note">the driver was redesigned as a crank-slider mechanism operating in reverse: a rotating crank drives a reciprocating slider.</p>
+                  
+                  <p>Compared to the Scotch yoke, this configuration provides smoother operation, improved durability, and more predictable kinematics.</p>
+
+                  <p>The resulting architecture forms a <strong>dual crank-slider mechanism</strong> with a shared slider connecting the driver and output stages. An added benefit of this geometry is that it overcomes the simple harmonic motion (SHM) trade-off discussed previously. Because the input slider no longer follows a perfect SHM profile, the output knee motion becomes noticeably smoother while maintaining a mechanically simple drive. The detailed kinematic analysis is presented in the following section.</p>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>ROM Adjustability</p>
+
+                  <p>Ideally, the device would allow the knee ROM to be adjusted anywhere from 0° to 180°. In reality, both the mechanism and the specimen impose physical limits, reducing the practical operating range to approximately 40°–110°.</p>
+
+                  <p>So what does it take to make the ROM truly adjustable?</p>
+
+                  <p class="c4-rom-line">It comes down to controlling two quantities:</p>
+
+                  <p class="c4-rom-line c4-rom-quantity"><strong>Mean angle (φ<sub>mean</sub>)</strong>, which sets the center of the motion.</p>
+
+                  <p class="c4-rom-line c4-rom-quantity"><strong>Total range of motion (Δφ)</strong>, which determines how far the knee flexes and extends about that center.</p>
+
+                  <p>These quantities can be controlled as follows:</p>
+
+                  <table class="c4-table c4-table--rom">
+                    <thead><tr><th>Quantities to Control</th><th>How to Control?</th><th>Demonstration</th></tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>φ<sub>mean</sub></td>
+                        <td>Adjustable crank pivot position</td>
+                        <td class="c4-table__media"><img src="../assets/images/projects/cpm/design-optimization/setA-oa-span-sweep.gif" alt="Animation showing adjustable crank pivot position"></td>
+                      </tr>
+                      <tr>
+                        <td>Δφ</td>
+                        <td>Adjustable crank radius length</td>
+                        <td class="c4-table__media"><img src="../assets/images/projects/cpm/design-optimization/setA-radial-sweep.gif" alt="Animation showing adjustable crank radius length"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p>The visualization revealed two key limitations. First, allowing the crank pivot to translate across its full range to independently control the mean angle would cause it to intersect the slider rail, making the mechanism physically infeasible. Second, achieving the largest range of motion required a crank radius that exceeded the available packaging space.</p>
+
+                  <div class="c4-media c4-media--center c4-media--large">
+                    <img src="../assets/images/projects/cpm/design-optimization/rom-issues.png" alt="Diagram illustrating ROM adjustability issues with crank pivot and radius">
+                    <p class="c4-caption">Geometric limitations identified when independently varying crank pivot position and radius.</p>
+                  </div>
+
+                  <p>To resolve these issues, the crank pivot was fixed in place, allowing the mean angle to vary slightly as the range of motion increased. The remaining challenge was to determine a set of mechanism dimensions that satisfied the required ROM while keeping the entire assembly compact enough to fit within the micro-CT scanner. Since key dimensions such as the rail length and coupler length directly influence both the motion and packaging, selecting them by trial and error would be inefficient.</p>
+
+                  <div class="c4-media c4-media--center c4-media--large">
+                    <video src="../assets/videos/projects/cpm/rA-sweep-rom.mp4" autoplay loop muted playsinline style="display:block;width:100%;height:auto;border-radius:4px;"></video>
+                    <p class="c4-caption">Animation showing how the ROM (indicated by the blue sector) changes and the mean angle drifts as the crank radius (r<sub>A</sub>) changes.</p>
+                  </div>
+
+                  <p>After consulting with the project sponsor, </p>
+                    
+                  <p class="c4-constraint-note">the design was simplified to five discrete ROM settings rather than a continuously adjustable range. </p>
+                    
+                  <p>This reduced the mechanical complexity while still meeting the experimental requirements. The next step was to develop an optimization algorithm capable of identifying the optimal mechanism geometry and the corresponding crank radii for each ROM setting.</p>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Optimizer Version 1</p>
+                  <p>Once the design was simplified to five discrete ROM settings, the remaining challenge became determining the mechanism dimensions that could achieve all five settings while keeping the device as compact as possible.</p>
+
+                  <p>Although the crank-slider mechanism appears simple, its dimensions are highly coupled. Changing a single parameter, such as the crank radius or coupler length, affects the slider travel, the achievable knee angle, the overall packaging, and the geometry required by the second crank. Adjusting these parameters manually quickly became impractical, as improving one aspect often worsened another.</p>
+
+                  <p>To address this, I developed an optimization tool that systematically searched thousands of possible mechanism geometries. For each candidate geometry, the tool determined where each of the five ROM settings should be placed within the allowable angular range, calculated the corresponding slider travel, derived the required driving crank radius, and discarded any solutions that violated the physical constraints of the mechanism. Among the remaining feasible designs, it selected the most compact configuration while maintaining smooth transitions between the ROM settings.</p>
+
+                  <p>Rather than replacing engineering judgement, the optimizer served as a design exploration tool. It allowed design decisions to be evaluated objectively, reduced weeks of manual iteration to a matter of seconds, and provided confidence that the final geometry was not simply a working solution, but one of the best solutions within the defined design space.</p>
+
+                  <p>The detailed implementation of the optimization algorithm is discussed in the "Math & Logic" tab in the design tool website below.</p>
+                  <div class="c4-embed-window">
+                    <div class="c4-embed-window__bar">
+                      <span>CPMD DESIGN TOOL</span>
+                      <a href="https://najmihanis.github.io/CPMD_Design_Tool/" target="_blank" rel="noopener noreferrer">Open</a>
+                    </div>
+                    <iframe
+                      src="https://najmihanis.github.io/CPMD_Design_Tool/"
+                      title="CPMD Design Tool embedded preview"
+                      loading="lazy"></iframe>
+                  </div>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Optimizer Version 2</p>
+                  <p>The first optimizer successfully produced dimensions that satisfied the desired ROM settings on paper. The results looked compact, respected the angular limits, and appeared to generate all five target motions. However, once the dimensions were translated into CAD, the issue became clear: the math was solving valid motion cases, but not necessarily a single physical mechanism.</p>
+
+                  <p>Some slider positions did not align across the two crank-slider stages, and a few candidate geometries only worked because the algorithm treated each ROM case too independently. In the real device, every ROM setting had to be produced by the same assembled slider, the same rail, and the same pivot spacing. This mismatch led to a second optimizer that was built around the physical geometry of the mechanism rather than isolated ROM calculations.</p>
+
+                  <p class="c4-constraint-note">The key change was requiring every ROM setting to share one common slider stroke midpoint.</p>
+
+                  <p>Instead of allowing each target motion to define its own slider location, Version 2, which was built on MATLAB, searched for one geometry that could realize all five ROM settings simultaneously. This made the optimization stricter, but also made the output much more meaningful: a solution was only accepted if it could actually be assembled as the dual crank-slider mechanism shown in the final design.</p>
+
+                  <div class="c4-report-derivation">
+                    <p>
+                      The common slider midpoint was defined from the assembled geometry as
+                      <span class="c4-katex">$x_c$</span>, where <span class="c4-katex">$d$</span> is the spacing
+                      between the two crank pivots and <span class="c4-katex">$l_A$</span> is the A-side connecting
+                      rod length.
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$x_c=d-l_A$$</div>
+
+                    <p>
+                      For the output side, the optimizer searched candidate values of the B-side crank radius
+                      <span class="c4-katex">$r_B$</span> and coupler ratio <span class="c4-katex">$\lambda_B$</span>.
+                      The corresponding output coupler length is then set by
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$\lambda_B=\frac{l_B}{r_B}$$</div>
+
+                    <p>
+                      Each B-side candidate maps output crank angle <span class="c4-katex">$\phi$</span> to slider
+                      position using the crank-slider relationship:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$x_B(\phi)=r_B\cos\phi+\sqrt{l_B^2-r_B^2\sin^2\phi}$$</div>
+
+                    <p>
+                      Because <span class="c4-katex">$x_B$</span> changes monotonically over the allowed output
+                      range, the optimizer can also use interpolation to solve the inverse operation:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$\phi=f^{-1}(x_B)$$</div>
+
+                    <p>
+                      The midpoint search is parameterized by a reference output angle
+                      <span class="c4-katex">$\phi_{\text{ref}}$</span>, which guarantees that the common slider
+                      midpoint lies on the feasible B-side motion path:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$x_c=x_B(\phi_{\text{ref}})$$</div>
+
+                    <p>
+                      For each target ROM, the A-side crank radius <span class="c4-katex">$r_A$</span> is solved
+                      from the slider end positions around this shared midpoint:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$X_L=x_c-r_A \qquad X_R=x_c+r_A$$</div>
+                    <div class="c4-report-eqn c4-katex">$$\phi_{\max}=\phi(X_L) \qquad \phi_{\min}=\phi(X_R)$$</div>
+                    <div class="c4-report-eqn c4-katex">$$\Delta\phi=\phi_{\max}-\phi_{\min}$$</div>
+
+                    <p>
+                      The optimizer adjusts <span class="c4-katex">$r_A$</span> until the achieved range of motion
+                      matches the target value. In practice, this is solved using a bisection search on the error
+                      function:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$f(r_A)=\Delta\phi(r_A)-\Delta\phi_{\text{target}}$$</div>
+
+                    <p>
+                      Unlike the first optimizer, Version 2 also includes physical packaging directly in the A-side
+                      link length. The link must leave room for the largest adjustable crank radius, pin geometry,
+                      edge margin, slider clearance, and a small assembly allowance:
+                    </p>
+
+                    <div class="c4-report-eqn c4-report-eqn--wide c4-katex">$$l_A=2r_{A,\max}+\frac{d_{\text{pin}}}{2}+m_{\text{edge}}+r_{\text{keepout}}+c_{\text{assembly}}$$</div>
+
+                    <p>
+                      Once <span class="c4-katex">$l_A$</span> and <span class="c4-katex">$x_c$</span> are known,
+                      the final pivot spacing is determined by the assembled mechanism:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$d=l_A+x_c$$</div>
+
+                    <p>
+                      The optimizer then checks that the slider endpoints match the dead-center positions of Set A.
+                      At <span class="c4-katex">$\theta_A=180^\circ$</span>, the slider should be at the left limit,
+                      and at <span class="c4-katex">$\theta_A=0^\circ$</span>, it should be at the right limit:
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$X_L=d-(l_A+r_A)$$</div>
+                    <div class="c4-report-eqn c4-katex">$$X_R=d-(l_A-r_A)$$</div>
+                  </div>
+
+                  <p>The feasibility checks then reject any candidate that cannot be built. The maximum required A-side crank radius must remain smaller than the B-side crank radius, the output center drift must stay within tolerance, and the packaging allowance must leave enough space for pins, material, slider clearance, and assembly. These checks were important because they forced the optimizer to respect the same constraints that would later appear in CAD and fabrication.</p>
+
+                  <div class="c4-report-derivation">
+                    <p>
+                      Among all feasible candidates, the final design is selected using an objective function. The
+                      dominant term is the pivot spacing <span class="c4-katex">$d$</span>, because minimizing this
+                      keeps the mechanism compact. The remaining terms act as small tie-breakers that prefer lower
+                      center drift, smaller output coupler ratio, and smaller B-side crank radius:
+                    </p>
+
+                    <div class="c4-report-eqn c4-report-eqn--wide c4-katex">$$C=d+10^{-3}\left|\phi_{\text{center,smallest}}-90^\circ\right|+10^{-3}\lambda_B+10^{-4}r_B$$</div>
+                  </div>
+
+                  <p>The revised optimizer produced a geometry whose predicted motion matched the assembled CAD model and the fabricated prototype. More importantly, it changed the optimization problem from finding five individually valid motions to finding one mechanism capable of realizing all five ROM settings. That distinction proved to be the difference between a mathematically valid solution and a buildable one.</p>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Optimizer Comparison</p>
+                  <p>Comparing the two versions makes the design shift more explicit. Version 1 was useful because it automated the search process, but Version 2 changed what the optimizer was actually solving for: not just a valid set of equations, but a buildable mechanism.</p>
+
+                  <div class="c4-table-wrap">
+                    <table class="c4-table c4-table--optimizer">
+                      <thead>
+                        <tr>
+                          <th>Aspect</th>
+                          <th>Optimizer 1</th>
+                          <th>Optimizer 2</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Primary objective</td>
+                          <td>Find a compact geometry that satisfies five ROM settings.</td>
+                          <td>Find a compact geometry and ensure it can be assembled into a single physically consistent mechanism.</td>
+                        </tr>
+                        <tr>
+                          <td>Modeling assumption</td>
+                          <td>Treats each ROM case largely independently while encouraging similar center angles.</td>
+                          <td>Treats all ROM cases as different operating modes of the same physical mechanism.</td>
+                        </tr>
+                        <tr>
+                          <td>Slider constraint</td>
+                          <td>Each ROM case determines its own optimal slider range.</td>
+                          <td>Every ROM shares a common slider midpoint, enforcing one physical slider geometry.</td>
+                        </tr>
+                        <tr>
+                          <td>Driving crank (<span class="c4-katex">$r_A$</span>)</td>
+                          <td>Estimated directly from slider stroke, <span class="c4-katex">$r_A=\frac{\text{stroke}}{2}$</span>.</td>
+                          <td>Computed from the actual left and right dead-center slider positions, ensuring physical consistency.</td>
+                        </tr>
+                        <tr>
+                          <td>A-side kinematics</td>
+                          <td>Derived after the B-side optimization.</td>
+                          <td>Embedded directly into the optimization through dead-center alignment and shared slider geometry.</td>
+                        </tr>
+                        <tr>
+                          <td>Clearance modeling</td>
+                          <td>Basic geometric margins and linkage feasibility.</td>
+                          <td>Explicit packaging model including pin diameter, edge thickness, keep-out clearance, and assembly tolerances.</td>
+                        </tr>
+                        <tr>
+                          <td>Constraint philosophy</td>
+                          <td>Primarily kinematic feasibility.</td>
+                          <td>Simultaneously satisfies kinematic and physical assembly constraints.</td>
+                        </tr>
+                        <tr>
+                          <td>Search variables</td>
+                          <td>Searches over <span class="c4-katex">$r_B$</span> and <span class="c4-katex">$\lambda_B$</span>, then derives the remaining dimensions.</td>
+                          <td>Searches over <span class="c4-katex">$r_B$</span>, <span class="c4-katex">$\lambda_B$</span>, and a common slider reference location, then derives the remaining geometry.</td>
+                        </tr>
+                        <tr>
+                          <td>Optimization strategy</td>
+                          <td>Exhaustive grid search with sequential ROM-window optimization.</td>
+                          <td>Exhaustive grid search with shared-center optimization and physical assembly validation.</td>
+                        </tr>
+                        <tr>
+                          <td>Validation target</td>
+                          <td>Mathematical feasibility.</td>
+                          <td>Mathematical feasibility plus CAD and manufacturability consistency.</td>
+                        </tr>
+                        <tr>
+                          <td>Main limitation</td>
+                          <td>The optimized dimensions could satisfy the equations but still produce a mechanism that was difficult or impossible to assemble consistently.</td>
+                          <td>Addresses this by embedding the physical assembly constraints into the optimization itself.</td>
+                        </tr>
+                        <tr>
+                          <td>Key contribution</td>
+                          <td>Automated the exploration of thousands of candidate geometries, replacing manual trial-and-error.</td>
+                          <td>Reformulated the optimization so that the numerical solution corresponded directly to the mechanism that would ultimately be built.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p>Optimizer 2 was ultimately the stronger approach because it closed the gap between calculation and construction. By enforcing a shared slider midpoint, dead-center consistency, and explicit packaging constraints, the selected geometry was not only mathematically feasible but also consistent with the CAD model and final fabricated mechanism. For that reason, Optimizer 2 became the version used to define the final design dimensions.</p>
+                </div>
+
+                <div class="c4-panel" data-c4-panel="4">
+                  <div class="c4-eyebrow">Module 05</div>
+                  <h2>Kinematics Analysis</h2>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Motion Profile</p>
+
+                  <p>At its core, the device is a dual crank-slider mechanism. The first crank-slider (Set A) drives a common linear slider, which in turn actuates the output crank-slider (Set B) to produce knee flexion and extension. Five interchangeable input crank lengths allow the mechanism to generate five predefined range-of-motion (ROM) settings.</p>
+
+                  <p>Each ROM setting produces the same characteristic motion profile, with larger crank radii increasing the overall motion amplitude. The plots below illustrate the slider displacement and resulting knee angle as functions of the input crank angle for each configuration.</p>
+
+                  <p>Because the input speed is user-adjustable, this analysis focuses on the kinematic profile rather than time-dependent motion. The profile shape remains unchanged and simply scales with the input frequency. More importantly, it allows us to evaluate the jerk behavior, which directly influences motion smoothness and mechanical reliability.</p>
+
+                  
+
+                  <div class="c4-media c4-media--center">
+                    <img src="../assets/images/projects/cpm/kinematics-analysis/dual-crank-slider-ramax.gif" alt="Dual crank-slider motion animation at maximum crank radius">
+                    <p class="c4-caption">Dual crank-slider motion at maximum input crank radius (r_A max) and maximum input frequency (2 Hz).</p>
+                  </div>
+
+                  <div class="c4-media c4-media--center c4-kinematics-plot">
+                    <img src="../assets/images/projects/cpm/kinematics-analysis/kinematics-schematic.png" alt="Kinematics schematic">
+                    <button class="c4-kinematics-hotspot c4-kinematics-hotspot--phi-theta" type="button" data-c4-kinematics-image="../assets/images/projects/cpm/kinematics-analysis/phi_theta.png" data-c4-kinematics-alt="Phi versus theta plot" onclick="event.stopPropagation(); window.openCpmKinematicsImage?.(this)"><span class="cpm-var c4-katex">$\phi$</span> vs <span class="cpm-var c4-katex">$\theta$</span> plot</button>
+                    <button class="c4-kinematics-hotspot c4-kinematics-hotspot--end-effector" type="button" data-c4-kinematics-image="../assets/images/projects/cpm/kinematics-analysis/acceleration.png" data-c4-kinematics-alt="End-effector acceleration plot" onclick="event.stopPropagation(); window.openCpmKinematicsImage?.(this)">End-effector acceleration</button>
+                    <button class="c4-kinematics-hotspot c4-kinematics-hotspot--x-theta" type="button" data-c4-kinematics-image="../assets/images/projects/cpm/kinematics-analysis/x_theta_profile.png" data-c4-kinematics-alt="X versus theta profile plot" onclick="event.stopPropagation(); window.openCpmKinematicsImage?.(this)"><span class="cpm-var c4-katex">$x$</span> vs <span class="cpm-var c4-katex">$\theta$</span> plot</button>
+                  </div>
+
+                  <div class="c4-kinematics-modal" data-c4-kinematics-modal hidden>
+                    <button class="c4-kinematics-modal__close" type="button" aria-label="Close kinematics image" onclick="event.stopPropagation(); window.closeCpmKinematicsImage?.()">×</button>
+                    <img class="c4-kinematics-modal__image" src="" alt="">
+                  </div>
+
+                  <p class="c4-kinematics-summary">The results show that the mechanism maintains a finite jerk throughout the motion cycle, indicating smooth, continuous motion without kinematic discontinuities.</p>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Derivations</p>
+
+                  <div class="c4-media c4-media--center">
+                    <img src="../assets/images/projects/cpm/kinematics-analysis/final-schematic.png" alt="Final mechanism schematic">
+                    <p class="c4-caption">Final mechanism schematic used for kinematics analysis.</p>
+                  </div>
+
+                  <div class="c4-report-derivation">
+                    <p>
+                      The final mechanism can be modeled as a dual crank-slider system. The schematic defines the
+                      crank radii, link lengths, slider location, and the angular variables used to relate the motor
+                      input to the end-effector motion.
+                    </p>
+
+                    <p>
+                      First, the horizontal displacement of the slider, <span class="c4-katex">$x_A$</span>, is derived
+                      geometrically as a function of the input motor angle, <span class="c4-katex">$\theta$</span>.
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$\left(x_A-r_A\cos\theta\right)^2+\left(0-\left(-r_A\sin\theta\right)\right)^2=l_A^2$$</div>
+                    <div class="c4-report-eqn c4-katex">$$x_A^2-\left(2r_A\cos\theta\right)x_A+\left(r_A^2-l_A^2\right)=0$$</div>
+                    <div class="c4-report-eqn c4-katex">$$x_A(\theta)=r_A\cos\theta+\sqrt{l_A^2-r_A^2\sin^2\theta}$$</div>
+
+                    <p>
+                      Differentiating this expression with respect to <span class="c4-katex">$\theta$</span> gives the
+                      slider displacement rate per unit motor angle. The actual linear velocity is then obtained by
+                      multiplying this derivative by the input motor angular velocity,
+                      <span class="c4-katex">$\omega_i$</span>.
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$\frac{dx_A}{d\theta}=-r_A\sin\theta+\frac{r_A^2\sin\theta\cos\theta}{\sqrt{l_A^2-r_A^2\sin^2\theta}}$$</div>
+                    <div class="c4-report-eqn c4-katex">$$v_A(\theta)=\frac{dx_A}{d\theta}\cdot\omega_i$$</div>
+
+                    <p>
+                      Taking another derivative with respect to <span class="c4-katex">$\theta$</span> gives the
+                      acceleration profile shape. Multiplying by the square of the input angular velocity produces
+                      the slider acceleration with respect to time.
+                    </p>
+
+                    <div class="c4-report-eqn c4-report-eqn--wide c4-katex">$$\frac{d^2x_A}{d\theta^2}=-r_A\cos\theta+\frac{r_A^2\cos2\theta}{\sqrt{l_A^2-r_A^2\sin^2\theta}}-\frac{r_A^4\sin^2\theta\cos^2\theta}{\left(l_A^2-r_A^2\sin^2\theta\right)^{3/2}}$$</div>
+                    <div class="c4-report-eqn c4-katex">$$a_A(\theta)=\frac{d^2x_A}{d\theta^2}\cdot\omega_i^2$$</div>
+
+                    <p>
+                      To relate the slider motion to the end-effector, the knee joint angle,
+                      <span class="c4-katex">$\phi$</span>, is solved from the geometry of the second crank-slider
+                      loop. This angle represents the primary output because it corresponds to the knee joint flexion.
+                    </p>
+
+                    <div class="c4-report-eqn c4-katex">$$\left|\overrightarrow{PS}\right|=l_B$$</div>
+                    <div class="c4-report-eqn c4-katex">$$\left(x_A-\left(x_B+r_B\cos\phi\right)\right)^2+\left(0-\left(-r_B\sin\phi\right)\right)^2=l_B^2$$</div>
+                    <div class="c4-report-eqn c4-katex">$$\left(x_A-x_B\right)^2-2r_B\cos\phi\left(x_A-x_B\right)+\left(r_B^2-l_B^2\right)=0$$</div>
+                    <div class="c4-report-eqn c4-report-eqn--wide c4-katex">$$\phi(\theta)=\cos^{-1}\!\left(\frac{-\left(x_A(\theta)-x_B\right)^2+r_B^2-l_B^2}{-2r_B\left(x_A(\theta)-x_B\right)}\right)$$</div>
+
+                    <p>
+                      Analytical expressions for the knee angular velocity
+                      <span class="c4-katex">$\left(\frac{d\phi}{d\theta}\right)$</span>, angular acceleration
+                      <span class="c4-katex">$\left(\frac{d^2\phi}{d\theta^2}\right)$</span>, and jerk
+                      <span class="c4-katex">$\left(\frac{d^3\phi}{d\theta^3}\right)$</span> become increasingly
+                      cumbersome by hand. For the final motion profiles, MATLAB numerical derivatives were used and
+                      then scaled by <span class="c4-katex">$\omega_i$</span>, <span class="c4-katex">$\omega_i^2$</span>,
+                      and <span class="c4-katex">$\omega_i^3$</span>, respectively.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="c4-panel" data-c4-panel="5">
+                  <div class="c4-eyebrow">Module 06</div>
+                  <h2>Fine Tuning</h2>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Thigh Mounting</p>
+
+                  <p>Designing the thigh mount was particularly challenging because the leg geometry was both irregular and unknown. Without access to an actual rat specimen, the mounting system had to be developed using a flexible TPU mock leg whose dimensions and mechanical properties were only approximations.</p>
+
+                  <p>The initial design relied on Velcro straps, but testing showed that the tapered, conical shape of the thigh allowed the leg to gradually slip during repeated knee actuation. A more robust mounting strategy was needed.</p>
+
+                  <p>I proposed a clamp-based design that pressed the thigh against a rigid support while rubber bands wrapped around the opposite side, allowing the mount to conform to varying specimen geometries while maintaining a secure grip.</p>
+
+                  <div class="c4-media c4-media--center">
+                    <img src="../assets/images/projects/cpm/fine-tuning/thigh-mount-sketch.png" alt="Sketch of the clamp-based thigh mount design">
+                    <p class="c4-caption">Clamp-based thigh mount concept sketch.</p>
+                  </div>
+
+                  <p>Through multiple design reviews and sponsor feedback, the concept evolved into the final mounting system. Rubber band slots and rear anchoring pegs improved retention, while a dedicated slot for medical tape provided an alternative mounting method for faster specimen preparation without introducing metal components near the imaging region.</p>
+
+                  <div class="c4-media c4-media--center">
+                    <img src="../assets/images/projects/cpm/fine-tuning/mount-final.png" alt="Final thigh mounting system">
+                    <p class="c4-caption">Final thigh mounting system with rubber band retention and tape-compatible mounting slot.</p>
+                  </div>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Slider Jamming Mitigation</p>
+
+                  <p>After fabricating the first optimized design, testing revealed that the slider frequently jammed during operation. While the optimizer produced a compact mechanism, the resulting slider was much narrower than the height of the protruding linkage pin, making it susceptible to binding. Combined with manufacturing tolerances and 3D printing artifacts, this resulted in inconsistent sliding performance.</p>
+
+                  <p>To identify the root cause, the rail geometry was treated as fixed while the slider was systematically refined. Five slider variants were printed with progressively larger T-slot clearances targeting an RC5 fit. Print orientation was also varied to minimize rough surfaces and unsupported overhangs inside the T-slot. Each prototype was then evaluated for sliding smoothness, looseness, and resistance to jamming.</p>
+
+                  <div class="c4-media c4-media--center c4-media--large">
+                    <img src="../assets/images/projects/cpm/fine-tuning/five-sliders.jpg" alt="Five printed slider variants for tolerance testing">
+                    <p class="c4-caption">Five slider prototypes printed to evaluate T-slot clearance, print orientation, and resistance to jamming.</p>
+                  </div>
+
+                  <p>The final geometry was selected from the best-performing tolerance study. In addition, the slider width was increased to improve resistance against moment-induced binding. Because the linkage force is applied above the slider, it generates a tipping moment that can wedge the slider against the rail. To avoid self-locking, the slider was redesigned to satisfy:</p>
+
+                  <div class="c4-report-eqn c4-katex">$$w>2\mu h$$</div>
+
+                  <p>With a generous factor of safety, <span class="c4-katex">$w$</span> represents the slider width, <span class="c4-katex">$\mu$</span> is the coefficient of friction for PLA-on-PLA contact, and <span class="c4-katex">$h$</span> is the height of the linkage pin. This wider geometry significantly reduced binding and produced smooth, repeatable motion throughout the full range of actuation.</p>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Cradle Mount Modification</p>
+
+                  <p>The micro-CT scanner uses a removable cradle system. Rather than designing the CPM device around the existing cradle, we developed a custom acrylic cradle that directly integrates the mechanism and powertrain while remaining compatible with the scanner's mounting interface.</p>
+
+<p>Because the custom cradle extends well beyond its mounting points, it effectively behaves as a cantilever beam. Under the weight of the device, excessive deflection and vibration could compromise imaging accuracy and motion repeatability. Assuming the worst-case loading condition of a point load at the free end, the maximum deflection is proportional to:</p>
+
+                    <div class="c4-report-eqn c4-katex">$$\delta_{\max}\propto\frac{PL^3}{3EI}$$</div>
+
+<p>This relationship shows that reducing the unsupported length has the greatest impact on stiffness, since deflection scales with the cube of the beam length. Instead of redesigning the cradle itself to be shorter, we modified the scanner's existing cradle mount by extending its support surface and relocating the mounting holes farther back. This shortened the effective cantilever length, significantly increasing the rigidity of the overall assembly.</p>
+
+                  <div class="c4-boettger-cols c4-boettger-cols--equal c4-cradle-mount-pair">
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/fine-tuning/original-mount.jpg" alt="Original scanner cradle mount">
+                      <p class="c4-caption">Original scanner cradle mount with a shorter support surface.</p>
+                    </div>
+                    <div class="c4-media">
+                      <img src="../assets/images/projects/cpm/fine-tuning/modified-mount.jpg" alt="Modified scanner cradle mount">
+                      <p class="c4-caption">Modified cradle mount with extended support and relocated mounting holes.</p>
+                    </div>
+                  </div>
+
+                  <div class="c4-media c4-media--center c4-media--large">
+                    <img src="../assets/images/projects/cpm/fine-tuning/mounted-cpm.jpg" alt="CPM device mounted on the modified cradle">
+                    <p class="c4-caption">CPM mechanism installed on the modified cradle mount for improved assembly rigidity.</p>
+                  </div>
+                </div>
+
+                <div class="c4-panel" data-c4-panel="6">
+                  <div class="c4-eyebrow">Module 07</div>
+                  <h2>Design for Assembly</h2>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Design Changes</p>
+                  <p>
+                    The final assembly pass focused on turning the mechanism from a working geometry into a buildable and long-lasting product.
+                  </p>
+
+                  <div class="c4-before-after">
+                    <div class="c4-ba-column">
+                      <p class="c4-ba-title">Before</p>
+                      <article class="c4-ba-panel">
+                        <div class="c4-ba-image-placeholder">
+                          <img src="../assets/images/projects/cpm/design-for-assembly/before-dfm.png" alt="Before design for manufacturing update" loading="lazy">
+                        </div>
+                        <div class="c4-ba-header">
+                          <h3>MVP Prototype</h3>
+                        </div>
+                        <p class="c4-ba-caption">
+                          Built to validate functionality. Most components were 3D printed and designed as interchangeable modules, enabling rapid iteration, quick part replacement, and efficient testing throughout development.
+                        </p>
+                      </article>
+                    </div>
+
+                    <div class="c4-ba-column">
+                      <p class="c4-ba-title">After</p>
+                      <article class="c4-ba-panel c4-ba-panel--after">
+                        <div class="c4-ba-image-placeholder">
+                          <img src="../assets/images/projects/cpm/design-for-assembly/after-dfm.png" alt="After design for manufacturing update" loading="lazy">
+                        </div>
+                        <div class="c4-ba-header">
+                          <h3>Final Design</h3>
+                        </div>
+                        <p class="c4-ba-caption">
+                          Refined for manufacturability and long-term reliability. The design incorporated DFMA principles, improving assembly, simplifying part replacement, and reducing friction and wear while preserving the validated mechanism.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="c4-change-strip" aria-label="Design change summary">
+                  <div class="c4-change-item">
+                    <strong>Manufacturability & Assembly</strong>
+                    <p>Redesigned components to ensure machinability and ease of assembly and replacement.</p>
+                  </div>
+
+                  <div class="c4-change-item">
+                    <strong>Fatigue Resistance</strong>
+                    <p>High-stress components were machined from more durable materials to improve fatigue life.</p>
+                  </div>
+
+                  <div class="c4-change-item">
+                    <strong>Friction Reduction</strong>
+                    <p>Sliding surfaces were redesigned with low-friction, replaceable wear components for smoother operation and easier maintenance.</p>
+                  </div>
+                </div>
+
+                  <p class="c4-sh c4-section-title" data-c4-toc>Component-Level Changes</p>
+                  <p>
+                    The DFM update was driven by targeted changes to the parts most responsible for assembly effort,
+                    sliding friction, repeated-load durability, and alignment of the powertrain.
+                  </p>
+
+                  <div class="c4-component-changes">
+                    <article class="c4-component-change">
+                      <div class="c4-component-media">
+                        <img src="../assets/images/projects/cpm/design-for-assembly/body.png" alt="Simplified body geometry update" loading="lazy">
+                      </div>
+                      <div class="c4-component-copy">
+                        <div class="c4-component-tags" aria-label="Change categories">
+                          <span>3D Printed</span>
+                          <span>Assembly Focused</span>
+                        </div>
+                        <h3>Simpler Body Geometry</h3>
+                        <p>
+                          The body was simplified so the mechanism could be assembled with fewer awkward tool paths.
+                        </p>
+                        <div class="c4-component-points">
+                          <p><strong>Before</strong> Complex body features made assembly more sensitive to print quality and part orientation.</p>
+                          <p><strong>After</strong> Cleaner geometry improves access, repeatability, and ease of replacement.</p>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="c4-component-change">
+                      <div class="c4-component-media">
+                        <img src="../assets/images/projects/cpm/design-for-assembly/rail.png" alt="Modular Delrin rail update" loading="lazy">
+                      </div>
+                      <div class="c4-component-copy">
+                        <div class="c4-component-tags" aria-label="Change categories">
+                          <span>CNC Machined</span>
+                          <span>Low Friction</span>
+                        </div>
+                        <h3>Modular Delrin Rail</h3>
+                        <p>
+                          The slider interface was separated into a machined Delrin rail, giving the motion path a smoother and more controlled low-friction surface.
+                        </p>
+                        <div class="c4-component-points">
+                          <p><strong>Before</strong> Sliding performance depended more heavily on printed surface finish.</p>
+                          <p><strong>After</strong> Delrin reduces friction and makes the wear surface easier to tune or replace.</p>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="c4-component-change">
+                      <div class="c4-component-media">
+                        <img src="../assets/images/projects/cpm/design-for-assembly/input-arm.png" alt="UHMWPE input coupler update" loading="lazy">
+                      </div>
+                      <div class="c4-component-copy">
+                        <div class="c4-component-tags" aria-label="Change categories">
+                          <span>CNC Machined</span>
+                          <span>Fatigue Resistance</span>
+                        </div>
+                        <h3>UHMWPE Input Coupler</h3>
+                        <p>
+                          The input coupler was changed to a CNC-milled UHMWPE part so the driven side
+                          could better tolerate repeated loading from the crank. An acrylic slip plate was added to reduce friction between the coupler and the pulley's surface.
+                        </p>
+                        <div class="c4-component-points">
+                          <p><strong>Before</strong> The 3D printed input coupler and pin features were prone to breaking.</p>
+                          <p><strong>After</strong> UHMWPE improves fatigue resistance while preserving the input linkage geometry.</p>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="c4-component-change">
+                      <div class="c4-component-media">
+                        <img src="../assets/images/projects/cpm/design-for-assembly/output-arm.png" alt="UHMWPE output coupler update" loading="lazy">
+                      </div>
+                      <div class="c4-component-copy">
+                        <div class="c4-component-tags" aria-label="Change categories">
+                          <span>Water Jet Cut</span>
+                          <span>Fatigue Resistance</span>
+                        </div>
+                        <h3>UHMWPE Output Coupler</h3>
+                        <p>
+                          The output coupler was separated into its own UHMWPE component to handle the repeated force
+                          transfer between the slider motion and the end-effector linkage.
+                        </p>
+                        <div class="c4-component-points">
+                          <p><strong>Before</strong> Printed output coupler features concentrated stress around the pin joints which caused failure.</p>
+                          <p><strong>After</strong> The machined UHMWPE coupler provides a tougher, more serviceable output link.</p>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="c4-component-change">
+                      <div class="c4-component-media">
+                        <img src="../assets/images/projects/cpm/design-for-assembly/cradle.png" alt="Single base and cradle plate update" loading="lazy">
+                      </div>
+                      <div class="c4-component-copy">
+                        <div class="c4-component-tags" aria-label="Change categories">
+                          <span>Laser Cut</span>
+                          <span>Alignment</span>
+                        </div>
+                        <h3>Single Base / Cradle Plate</h3>
+                        <p>
+                          The body and powertrain support were consolidated into one larger laser-cut base to keep the drive system and cradle aligned.
+                        </p>
+                        <div class="c4-component-points">
+                          <p><strong>Before</strong> Separate bases could curve upward under pulley tension.</p>
+                          <p><strong>After</strong> A single base improves flatness, stiffness, and assembly registration.</p>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="c4-component-change">
+                      <div class="c4-component-media">
+                        <img src="../assets/images/projects/cpm/design-for-assembly/mount.png" alt="Modular mounting platform update" loading="lazy">
+                      </div>
+                      <div class="c4-component-copy">
+                        <div class="c4-component-tags" aria-label="Change categories">
+                          <span>Assembly Focused</span>
+                        </div>
+                        <h3>Modular Mounting Platform</h3>
+                        <p>
+                          The mounting platform now fastens into a slotted acrylic clamp plate with tapped holes, replacing the earlier press-fit peg attachment.
+                        </p>
+                        <div class="c4-component-points">
+                          <p><strong>Before</strong> Press-fit pegs made attachment less adjustable and harder to service.</p>
+                          <p><strong>After</strong> The clamp plate acts as a captive tapped interface that can be screwed onto the body while avoiding metal nuts to prevent imaging artifacts.</p>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="c4-toc-rail" id="c4-toc"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="cpm-prototype-evolution" id="cpmPrototypeEvolution" data-cpm-reveal>
+            <div class="cpm-prototype-evolution__header">
+              <div class="cpm-eyebrow">Design Iteration</div>
+              <h2>Prototype Evolution</h2>
+              <p>Each deck represents one prototype version: scattered explorations collapse into a tidy set, then loosen slightly on hover to reveal the work beneath.</p>
+            </div>
+
+            <div class="cpm-evo-decks">
+              <article class="cpm-evo-deck cpm-evo-deck--single-col">
+                <div class="cpm-evo-deck__stage" role="button" tabindex="0" aria-expanded="false" aria-label="Open prototype version 1 details">
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:-150px;--scatter-y:-88px;--scatter-r:-24deg;--deck-x:-6px;--deck-y:7px;--deck-r:-3deg;--messy-x:-26px;--messy-y:18px;--messy-r:-11deg;"><img src="../assets/images/projects/cpm/prototypes/v1/main.jpg" alt="Prototype version 1 annotated CAD" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--top" style="--scatter-x:0px;--scatter-y:-150px;--scatter-r:8deg;--deck-x:0px;--deck-y:-8px;--deck-r:0deg;--messy-x:0px;--messy-y:-20px;--messy-r:1deg;">
+                    <img src="../assets/images/projects/cpm/prototypes/v1/1.png" alt="Prototype version 1 direct drive" loading="lazy">
+                    <span>V1</span>
+                  </div>
+                </div>
+                <div class="cpm-evo-deck__copy">
+                  <span>Version 01</span>
+                  <h3>First Motorized Prototype</h3>
+                  <p>Early validation of the mechanism.</p>
+                </div>
+                <div class="cpm-evo-deck__details">
+                  <p>The first motorized prototype focused on one question: could the crank-slider mechanism reliably actuate the knee using a brushless DC motor? A direct-drive configuration was built by adding another set of crank-slider mechanism as a driver to validate the overall kinematics and confirm that the mechanism produced the desired reciprocating motion.</p>
+
+                  <p>While the concept worked, testing revealed noticeable motor cogging at low speeds, resulting in jerky motion that was unsuitable for precise micro-CT imaging. This prototype demonstrated that a transmission system would be necessary to achieve smooth, repeatable actuation.</p>
+                  <div class="cpm-evo-video" data-cpm-youtube="https://www.youtube.com/embed/FQwRtyRidak">
+                    <iframe
+                      title="Prototype version 1 demo video"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+                    <a href="https://www.youtube.com/watch?v=FQwRtyRidak" target="_blank" rel="noopener noreferrer" aria-label="Watch prototype version 1 demo on YouTube">
+                      <img src="https://img.youtube.com/vi/FQwRtyRidak/hqdefault.jpg" alt="Prototype version 1 demo video thumbnail" loading="lazy">
+                      <span>Watch demo on YouTube</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="cpm-evo-deck">
+                <div class="cpm-evo-deck__stage" role="button" tabindex="0" aria-expanded="false" aria-label="Open prototype version 2 details">
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:-120px;--scatter-y:-116px;--scatter-r:22deg;--deck-x:-8px;--deck-y:8px;--deck-r:-4deg;--messy-x:-30px;--messy-y:16px;--messy-r:-13deg;"><img src="../assets/images/projects/cpm/prototypes/v2/1.jpg" alt="Prototype version 2 detail 1" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:156px;--scatter-y:-70px;--scatter-r:-21deg;--deck-x:7px;--deck-y:5px;--deck-r:3deg;--messy-x:30px;--messy-y:16px;--messy-r:12deg;"><img src="../assets/images/projects/cpm/prototypes/v2/2.jpg" alt="Prototype version 2 detail 2" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:-154px;--scatter-y:62px;--scatter-r:-12deg;--deck-x:-4px;--deck-y:-1px;--deck-r:-2deg;--messy-x:-22px;--messy-y:-6px;--messy-r:-7deg;"><img src="../assets/images/projects/cpm/prototypes/v2/3.jpg" alt="Prototype version 2 detail 3" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:98px;--scatter-y:108px;--scatter-r:16deg;--deck-x:3px;--deck-y:-5px;--deck-r:1deg;--messy-x:18px;--messy-y:-18px;--messy-r:7deg;"><img src="../assets/images/projects/cpm/prototypes/v2/4.jpg" alt="Prototype version 2 detail 4" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo cpm-evo-card--wide cpm-evo-card--contain" style="--scatter-x:-28px;--scatter-y:142px;--scatter-r:10deg;--deck-x:2px;--deck-y:-12px;--deck-r:1deg;--messy-x:-12px;--messy-y:-32px;--messy-r:4deg;"><img src="../assets/images/projects/cpm/prototypes/v2/1-cad-annotation.png" alt="Annotated CAD view of prototype version 2" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--top" style="--scatter-x:18px;--scatter-y:-162px;--scatter-r:-7deg;--deck-x:0px;--deck-y:-9px;--deck-r:0deg;--messy-x:0px;--messy-y:-22px;--messy-r:-1deg;">
+                    <img src="../assets/images/projects/cpm/prototypes/v2/main.jpg" alt="Prototype version 2 main thumbnail" loading="lazy">
+                    <span>V2</span>
+                  </div>
+                </div>
+                <div class="cpm-evo-deck__copy">
+                  <span>Version 02</span>
+                  <h3>Adding the Powertrain</h3>
+                  <p>Smooth motion was achieved, but geometry optimization was still required.</p>
+                </div>
+                <div class="cpm-evo-deck__details">
+                  <p>The second version introduced a 4:1 belt-driven reduction system to improve low-speed performance. By reducing the motor speed and increasing output torque, the device achieved significantly smoother and more consistent motion while maintaining the desired knee trajectory.</p>
+                  <p>MATLAB simulations were used alongside physical testing to evaluate the mechanism’s kinematics and packaging. Although the drivetrain successfully eliminated the direct-drive issues, the prototype revealed two new challenges: increased jerk near the ends of the stroke and a pulley layout that exceeded the micro-CT scanner’s 10 cm diameter constraint.</p>
+                </div>
+              </article>
+
+              <article class="cpm-evo-deck">
+                <div class="cpm-evo-deck__stage" role="button" tabindex="0" aria-expanded="false" aria-label="Open prototype version 3 details">
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:-120px;--scatter-y:-116px;--scatter-r:22deg;--deck-x:-8px;--deck-y:8px;--deck-r:-4deg;--messy-x:-30px;--messy-y:16px;--messy-r:-13deg;"><img src="../assets/images/projects/cpm/prototypes/v3/1.jpg" alt="Prototype version 3 detail 1" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:156px;--scatter-y:-70px;--scatter-r:-21deg;--deck-x:7px;--deck-y:5px;--deck-r:3deg;--messy-x:30px;--messy-y:16px;--messy-r:12deg;"><img src="../assets/images/projects/cpm/prototypes/v3/2.jpg" alt="Prototype version 3 detail 2" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:-154px;--scatter-y:62px;--scatter-r:-12deg;--deck-x:-4px;--deck-y:-1px;--deck-r:-2deg;--messy-x:-22px;--messy-y:-6px;--messy-r:-7deg;"><img src="../assets/images/projects/cpm/prototypes/v3/3.jpg" alt="Prototype version 3 detail 3" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo" style="--scatter-x:98px;--scatter-y:108px;--scatter-r:16deg;--deck-x:3px;--deck-y:-5px;--deck-r:1deg;--messy-x:18px;--messy-y:-18px;--messy-r:7deg;"><img src="../assets/images/projects/cpm/prototypes/v3/4.jpg" alt="Prototype version 3 detail 4" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--photo cpm-evo-card--wide cpm-evo-card--contain" style="--scatter-x:-28px;--scatter-y:142px;--scatter-r:10deg;--deck-x:2px;--deck-y:-12px;--deck-r:1deg;--messy-x:-12px;--messy-y:-32px;--messy-r:4deg;"><img src="../assets/images/projects/cpm/prototypes/v3/1-cad-annotation.png" alt="Annotated CAD view of prototype version 3" loading="lazy"></div>
+                  <div class="cpm-evo-card cpm-evo-card--top" style="--scatter-x:18px;--scatter-y:-162px;--scatter-r:-7deg;--deck-x:0px;--deck-y:-9px;--deck-r:0deg;--messy-x:0px;--messy-y:-22px;--messy-r:-1deg;">
+                    <img src="../assets/images/projects/cpm/prototypes/v3/main.jpg" alt="Prototype version 3 main thumbnail" loading="lazy">
+                    <span>V3</span>
+                  </div>
+                </div>
+                <div class="cpm-evo-deck__copy">
+                  <span>Version 03</span>
+                  <h3>Minimum Viable Product</h3>
+                  <p>The first fully integrated system ready for experimental validation.</p>
+                </div>
+                <div class="cpm-evo-deck__details">
+                  <p>The final prototype combined the validated powertrain with an optimized mechanism and integrated control system. The design introduced adjustable range-of-motion settings, a compact geometry that satisfied the scanner constraints, and modular components for easier assembly and maintenance.</p>
+                  <p>This version also integrated the custom MATLAB interface, allowing researchers to configure motion parameters, monitor encoder feedback in real time, and automatically stop the device after a prescribed number of cycles. With the core functionality validated, this prototype served as the foundation for the final design, which further incorporated Design for Manufacturability and Assembly (DFMA) principles.</p>
+                  <div class="cpm-evo-video" data-cpm-youtube="https://www.youtube.com/embed/3jwEF3Wr0zc">
+                    <iframe
+                      title="Prototype version 3 demo video"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+                    <a href="https://www.youtube.com/watch?v=3jwEF3Wr0zc" target="_blank" rel="noopener noreferrer" aria-label="Watch prototype version 3 demo on YouTube">
+                      <img src="https://img.youtube.com/vi/3jwEF3Wr0zc/hqdefault.jpg" alt="Prototype version 3 demo video thumbnail" loading="lazy">
+                      <span>Watch demo on YouTube</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ─── FINAL DELIVERABLES: hover tab folder stack ─── -->
+          <section class="cpm-folders" data-cpm-folders aria-label="Final Deliverables">
+            <div class="cpm-folders__stage">
+              <div class="cpm-folders__drawer">
+                <article class="cpm-folder cpm-folder--course" data-cpm-folder style="--folder:#8c9c91;--top:0px;--side:-1;--tilt:-0.45deg;--label-left:38%;">
+                  <a class="cpm-folder-browser" href="https://sites.google.com/eng.ucsd.edu/mae156b-2026spring-team08/home" target="_blank" rel="noopener noreferrer" aria-label="Open CPM course site">
+                    <div class="cpm-folder-browser__bar">
+                      <span class="cpm-folder-browser__dot cpm-folder-browser__dot--red"></span>
+                      <span class="cpm-folder-browser__dot cpm-folder-browser__dot--yellow"></span>
+                      <span class="cpm-folder-browser__dot cpm-folder-browser__dot--green"></span>
+                      <span class="cpm-folder-browser__nav">‹</span>
+                      <span class="cpm-folder-browser__nav">›</span>
+                      <span class="cpm-folder-browser__url"></span>
+                      <span class="cpm-folder-browser__search"></span>
+                      <span class="cpm-folder-browser__menu"></span>
+                    </div>
+                    <div class="cpm-folder-browser__screen">
+                      <img src="../assets/images/projects/cpm/course-site.png" alt="CPM course site homepage preview" loading="lazy">
+                    </div>
+                  </a>
+                  <svg class="cpm-folder__shape" viewBox="0 0 1200 410" aria-hidden="true" focusable="false">
+                    <path d="M39 114 C39 95 65 80 99 80 L282 80 C326 80 338 20 380 20 L555 20 C599 20 611 80 653 80 L1101 80 C1135 80 1161 95 1161 114 L1161 368 C1161 390 1129 408 1091 408 L109 408 C71 408 39 390 39 368 Z" />
+                  </svg>
+                  <div class="cpm-folder__tab-title">
+                    <strong>Course Site</strong>
+                    <span>{ team webpage }</span>
+                  </div>
+                  <div class="cpm-folder__body">
+                    <div>
+                      <p class="cpm-folder__eyebrow">Final Deliverable</p>
+                      <p class="cpm-folder__lead">Project Website</p>
+                      <p>The official project website with all deliverables and documentaions.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cpm-folder cpm-folder--component" data-cpm-folder style="--folder:#e7d4a2;--top:54px;--side:1;--tilt:0.35deg;--label-left:66%;">
+                  <a class="cpm-folder-report cpm-folder-report--component" href="https://drive.google.com/file/d/1PpwLms3-plkRSnzmXtqRkT062pkV_mvw/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open individual component report">
+                  </a>
+                  <svg class="cpm-folder__shape" viewBox="0 0 1200 410" aria-hidden="true" focusable="false">
+                    <path d="M39 114 C39 95 65 80 99 80 L586 80 C630 80 642 20 684 20 L884 20 C928 20 940 80 982 80 L1101 80 C1135 80 1161 95 1161 114 L1161 368 C1161 390 1129 408 1091 408 L109 408 C71 408 39 390 39 368 Z" />
+                  </svg>
+                  <div class="cpm-folder__tab-title">
+                    <strong>Individual Component</strong>
+                    <span>{ Moving Mechanism analysis report }</span>
+                  </div>
+                  <div class="cpm-folder__body">
+                    <div>
+                      <p class="cpm-folder__eyebrow">Final Deliverable</p>
+                      <p class="cpm-folder__lead">Report on my individual component</p>
+                      <p>Detailed preliminary analysis and design decisions for the moving mechanism.</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cpm-folder cpm-folder--poster" data-cpm-folder style="--folder:#c98967;--top:108px;--side:-1;--tilt:-0.2deg;--label-left:31%;">
+                  <button class="cpm-folder-poster" type="button" data-cpm-lightbox-image="../assets/images/projects/cpm/final-poster.png" data-cpm-lightbox-alt="Final CPM project poster">
+                    <img src="../assets/images/projects/cpm/final-poster.png" alt="Final CPM project poster thumbnail" loading="lazy">
+                  </button>
+                  <svg class="cpm-folder__shape" viewBox="0 0 1200 410" aria-hidden="true" focusable="false">
+                    <path d="M39 114 C39 95 65 80 99 80 L186 80 C230 80 242 20 284 20 L504 20 C548 20 560 80 602 80 L1101 80 C1135 80 1161 95 1161 114 L1161 368 C1161 390 1129 408 1091 408 L109 408 C71 408 39 390 39 368 Z" />
+                  </svg>
+                  <div class="cpm-folder__tab-title">
+                    <strong>Poster</strong>
+                    <span>{ final poster }</span>
+                  </div>
+                  <div class="cpm-folder__body">
+                    <div>
+                      <p class="cpm-folder__eyebrow">Final Deliverable</p>
+                      <p class="cpm-folder__lead">Compress the story.</p>
+                      <p>A2 conference-style poster summarising the problem statement, final mechanism, and key outcomes.</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cpm-folder cpm-folder--presentation" data-cpm-folder style="--folder:#2f3944;--top:162px;--side:1;--tilt:0.28deg;--label-left:63%;">
+                  <div class="cpm-presentation-notes" aria-label="Presentation slide links">
+                    <a class="cpm-presentation-note" href="https://docs.google.com/presentation/d/e/2PACX-1vTzu8QIuE9vuQyqlbl2_iXREOf0KkRXyaKQz7Eopa6O2YQcaDt8J0Wfz_VbMNdfx_EK8s7KmIzkQ3i7/pub?start=false&loop=false&delayms=3000&slide=id.g3c9ae9baa97_0_25" target="_blank" rel="noopener noreferrer" style="--note-x:-43.39cqw;--note-y:0.68cqw;--note-r:-8deg;--note-bg:#f5df73;--clip-r:-16deg;" aria-label="Open Getting Started presentation"><strong>01</strong><span>Getting Started</span></a>
+                    <a class="cpm-presentation-note" href="https://docs.google.com/presentation/d/e/2PACX-1vRkefhzLBkh6gf2FVRA5J2YZ8mOX5t3h30KqNz17VD5M1wpynFYJRPavlwCoXQGhMj53NVAru_3pqvx/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener noreferrer" style="--note-x:-31.19cqw;--note-y:1.86cqw;--note-r:5deg;--note-bg:#f8b2b8;--clip-r:-6deg;" aria-label="Open Risk Reduction presentation"><strong>02</strong><span>Risk Reduction</span></a>
+                    <a class="cpm-presentation-note" href="https://docs.google.com/presentation/d/e/2PACX-1vRTBzfpJ4Bthg52L0vVSNqni5J-EuxTxMV54cIvVqeX32JXr_oLO-YsqV857xvp1jsjV8TsGLrjy3v6/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener noreferrer" style="--note-x:-19.15cqw;--note-y:0.51cqw;--note-r:-4deg;--note-bg:#bfe1ff;--clip-r:8deg;" aria-label="Open Design Proposal presentation"><strong>03</strong><span>Design Proposal</span></a>
+                    <a class="cpm-presentation-note" href="https://docs.google.com/presentation/d/e/2PACX-1vScNorJGyq4QmGzNPEUPP9q838p60GbwbDD3KluYQntE_Wbp8acCAEhGSdXWWpVxfAjL6GazAr4XnHE/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener noreferrer" style="--note-x:-7.29cqw;--note-y:2.03cqw;--note-r:7deg;--note-bg:#cfeab0;--clip-r:-28deg;" aria-label="Open Proof of Concept presentation"><strong>04</strong><span>Proof of Concept</span></a>
+                    <a class="cpm-presentation-note" href="https://docs.google.com/presentation/d/e/2PACX-1vQikxgNqa2ko0ZEBDxSvpsii3UyICc6ALwFiSrUz8rdDErJCWS9prwfdrSLRTkmyIQcQ_9PIMWfqpVr/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener noreferrer" style="--note-x:37.8cqw;--note-y:0.85cqw;--note-r:5deg;--note-bg:#ffd09f;--clip-r:15deg;" aria-label="Open Preliminary Design Review presentation"><strong>05</strong><span>Preliminary Design Review</span></a>
+                    <a class="cpm-presentation-note" href="https://docs.google.com/presentation/d/e/2PACX-1vRjT1y93Pje3Fv9xrkQ7daBbqsMQgU-txd-b4uayutiP2scR-kohJTKkfWJl_hW-Bt9GeiaYyv1rXDG/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener noreferrer" style="--note-x:49.65cqw;--note-y:2.03cqw;--note-r:-7deg;--note-bg:#d9c7ff;--clip-r:-20deg;" aria-label="Open Final Design Review presentation"><strong>06</strong><span>Final Design Review</span></a>
+                  </div>
+                  <svg class="cpm-folder__shape" viewBox="0 0 1200 410" aria-hidden="true" focusable="false">
+                    <path d="M39 114 C39 95 65 80 99 80 L550 80 C594 80 606 20 648 20 L848 20 C892 20 904 80 946 80 L1101 80 C1135 80 1161 95 1161 114 L1161 368 C1161 390 1129 408 1091 408 L109 408 C71 408 39 390 39 368 Z" />
+                  </svg>
+                  <div class="cpm-folder__tab-title">
+                    <strong>Presentation</strong>
+                    <span>{ class presentation slides }</span>
+                  </div>
+                </article>
+
+                <article class="cpm-folder cpm-folder--report" data-cpm-folder style="--folder:#b33f3c;--top:216px;--side:-1;--tilt:0.18deg;--label-left:32%;">
+                  <a class="cpm-folder-report" href="https://drive.google.com/file/d/1002r_86PVgqtAx1packeJ1wQZPEJd5rw/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open final report">
+                  </a>
+                  <svg class="cpm-folder__shape" viewBox="0 0 1200 410" aria-hidden="true" focusable="false">
+                    <path d="M39 114 C39 95 65 80 99 80 L192 80 C236 80 248 20 290 20 L476 20 C520 20 532 80 574 80 L1101 80 C1135 80 1161 95 1161 114 L1161 368 C1161 390 1129 408 1091 408 L109 408 C71 408 39 390 39 368 Z" />
+                  </svg>
+                  <div class="cpm-folder__tab-title">
+                    <strong>Final Report</strong>
+                    <span>{ full project report }</span>
+                  </div>
+                  <div class="cpm-folder__body">
+                    <div>
+                      <p class="cpm-folder__eyebrow">Final Deliverable</p>
+                      <p class="cpm-folder__lead">Complete Project Report</p>
+                      <p>A comprehensive report covering design rationale, mechanism selection, prototype evolution, and technical discussions.</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="cpm-folder cpm-folder--media" data-cpm-folder style="--folder:#d8a44a;--top:270px;--side:1;--tilt:-0.12deg;--label-left:64%;">
+                  <div class="cpm-folder-media" aria-label="Project media videos">
+                    <button class="cpm-folder-media__card cpm-folder-media__card--left" type="button" data-cpm-folder-video data-video-title="Project Overview" data-video-embed="https://www.youtube.com/embed/eY4R4_4MP_g?autoplay=1" data-video-watch="https://www.youtube.com/watch?v=eY4R4_4MP_g&list=PLAakgdcm4SoPj_zyJy9p7McQrhYs2ZX4J&index=2">
+                      <img src="https://img.youtube.com/vi/eY4R4_4MP_g/hqdefault.jpg" alt="Prototype demonstration video thumbnail" loading="lazy">
+                      <span>Project Overview</span>
+                    </button>
+                    <button class="cpm-folder-media__card cpm-folder-media__card--right" type="button" data-cpm-folder-video data-video-title="Final Product Demo" data-video-embed="https://www.youtube.com/embed/7y235wMvVY0?autoplay=1" data-video-watch="https://www.youtube.com/watch?v=7y235wMvVY0&list=PLAakgdcm4SoPj_zyJy9p7McQrhYs2ZX4J&index=3">
+                      <img src="https://img.youtube.com/vi/7y235wMvVY0/hqdefault.jpg" alt="Final CPM motion demo video thumbnail" loading="lazy">
+                      <span>Final Product Demo</span>
+                    </button>
+                  </div>
+                  <svg class="cpm-folder__shape" viewBox="0 0 1200 410" aria-hidden="true" focusable="false">
+                    <path d="M39 114 C39 95 65 80 99 80 L565 80 C609 80 621 20 663 20 L869 20 C913 20 925 80 967 80 L1101 80 C1135 80 1161 95 1161 114 L1161 368 C1161 390 1129 408 1091 408 L109 408 C71 408 39 390 39 368 Z" />
+                  </svg>
+                  <div class="cpm-folder__tab-title">
+                    <strong>Media</strong>
+                    <span>{ demo Youtube videos }</span>
+                  </div>
+                  <div class="cpm-folder__body">
+                    <div>
+                      <p class="cpm-folder__eyebrow">Final Deliverable</p>
+                      <p class="cpm-folder__lead">Project media archive.</p>
+                      <p>An overview video that introduces the project and a demonstration video of the final working product.</p>
+                    </div>
+                  </div>
+                </article>
+              </div><!-- /.cpm-folders__drawer -->
+            </div><!-- /.cpm-folders__stage -->
+          </section>
+          <!-- ─── END FINAL DELIVERABLES ─── -->
+
+          <section class="cpm-archives" data-cpm-reveal>
+            <div class="cpm-archives__header">
+              <h2>Archives</h2>
+            </div>
+
+            <div class="cpm-archive-carousel" data-cpm-archive-carousel aria-label="Archive image carousel">
+              <div class="cpm-archive-track" data-cpm-archive-track tabindex="0">
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/brainstorming.jpg')" data-caption="whiteboard sessions trying to make sense of the output encoding"><span>01</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/early-concept-sketch.jpg')" data-caption="one of the first concept sketches"><span>02</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/messy-desk.jpg')" data-caption="the desk at its messiest, covered in prototype parts"><span>03</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/fail-print.jpg')" data-caption="third failed print of the week, closer every time"><span>04</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/failed-machining.jpg')" data-caption="a machining slip that cost the whole afternoon"><span>05</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/cafe-work.jpg')" data-caption="turns out vietnamese coffee and a super vibey cafe are great for solving kinematics"><span>06</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/va-visit.jpg')" data-caption="site visit to see the imaging setup firsthand"><span>07</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/cafe-after-visit.jpg')" data-caption="debrief over coffee after the site visit"><span>08</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/presentation-prep.jpg')" data-caption="presentation rehearsals. never gets less scary"><span>09</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/pre-demo-stress.jpg')" data-caption="last-minute nerves before the demo"><span>10</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/senior-day-last-prep.jpg')" data-caption="final setup on senior day morning"><span>11</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/senior-day.jpg')" data-caption="the moment it all came together"><span>12</span></article>
+                <article class="cpm-archive-card" style="--archive-photo:url('../images/projects/cpm/archives/senior-day-candid.jpg')" data-caption="caught mid-laugh after the presentation"><span>13</span></article>
+              </div>
+
+              <p class="cpm-archive-caption" data-cpm-archive-caption>whiteboard sessions trying to make sense of the output encoding</p>
+              <div class="cpm-archive-wheel" data-cpm-archive-wheel aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </section>
+
+          
+        </main>
+
+        <footer class="footer-vent">
+          <div class="vent-screw"></div>
+          <div class="high-fi-grill"></div>
+          <div class="vent-screw"></div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

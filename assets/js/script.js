@@ -1,8 +1,47 @@
+const shouldResetCpmScroll = window.location.pathname.endsWith('/pages/cpm.html') && !window.location.hash;
+
+if (shouldResetCpmScroll && 'scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
+function resetCpmScrollPosition() {
+  if (!shouldResetCpmScroll) return;
+  window.requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+    window.requestAnimationFrame(() => window.scrollTo(0, 0));
+  });
+}
+
+window.addEventListener('pageshow', resetCpmScrollPosition);
+window.addEventListener('load', resetCpmScrollPosition);
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ------------------------------------------------------------------------------------ //
   // ------------------------------- GLOBAL SETTINGS ------------------------------------ //
   // ------------------------------------------------------------------------------------ //
+
+  function renderCpmMathEquations(attempt = 0) {
+    const cpmEquations = document.querySelectorAll('.cpm-page .c4-katex');
+    if (!cpmEquations.length) return;
+    if (typeof window.renderMathInElement !== 'function') {
+      if (attempt < 8) window.setTimeout(() => renderCpmMathEquations(attempt + 1), 120);
+      return;
+    }
+
+    cpmEquations.forEach((equation) => {
+      window.renderMathInElement(equation, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false,
+        strict: 'ignore'
+      });
+    });
+  }
+
+  renderCpmMathEquations();
 
   // --------------------------------- RESPONSIVE UI SCALING ---------------------------------
   const scaleStage = document.getElementById('scaleStage');
@@ -36,7 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const naturalH = deviceCasing.offsetHeight;
     const availableW = vw - gutter * 2;
     let scale = availableW / casingW;
-    scale = Math.max(0.25, Math.min(scale, 1.15));
+    // On the CPM page the casing's own width is capped at the "full-screen
+    // 14" MacBook" breakpoint (see cpm.css), so past that point availableW
+    // keeps growing while casingW doesn't — without this, scale would climb
+    // above 1 and the transform would upscale the casing again, defeating
+    // the cap. Other pages keep the 1.15 allowance for supersized desktops.
+    const isCpmPage = !!document.querySelector('.cpm-page');
+    scale = Math.max(0.25, Math.min(scale, isCpmPage ? 1 : 1.15));
     document.documentElement.style.setProperty('--ui-scale', scale);
 
     // Compensate for transform:scale being VISUAL-only. The casing's layout
@@ -116,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "art-design":   __PAGES_PFX + "art-lobby.html",
     "engineering":  __PAGES_PFX + "projects.html",
     "photography":  __PAGES_PFX + "photography.html",
-    resume:         "https://drive.google.com/file/d/1E3eRwUqXictVi2r_QweSRdBd3mN3Z95Z/view?usp=sharing",
+    resume:         "https://drive.google.com/file/d/1fS70jBG_5N59EwuzjAImQAaVBRA5NVTZ/view?usp=sharing",
     contact:        __ROOT_PFX  + "index.html#contact"
   };
 
@@ -236,6 +281,684 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       revealSections.forEach(section => section.classList.add('is-visible'));
     }
+  }
+
+  // --------------------------------- CPM PAGE MICRO INTERACTIONS ---------------------------------
+  const cpmPage = document.querySelector('.cpm-page');
+
+  if (cpmPage) {
+    const canEmbedYoutube = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+    cpmPage.querySelectorAll('[data-cpm-youtube]').forEach(video => {
+      if (!canEmbedYoutube) return;
+      const iframe = video.querySelector('iframe');
+      if (!iframe) return;
+      iframe.src = video.dataset.cpmYoutube;
+      video.classList.add('is-embedded');
+    });
+
+    const cpmRevealItems = cpmPage.querySelectorAll('[data-cpm-reveal]');
+    cpmPage.classList.add('cpm-reveal-ready');
+    if ('IntersectionObserver' in window) {
+      const cpmRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.12
+      });
+
+      cpmRevealItems.forEach(item => cpmRevealObserver.observe(item));
+    } else {
+      cpmRevealItems.forEach(item => item.classList.add('is-visible'));
+    }
+
+    const cpmNote = document.getElementById('cpmNote');
+    document.querySelectorAll('[data-cpm-note]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('[data-cpm-note]').forEach(peer => {
+          peer.classList.toggle('is-active', peer === button);
+        });
+        if (cpmNote) cpmNote.innerHTML = button.dataset.cpmNote;
+      });
+    });
+
+    const kinematicsModal = cpmPage.querySelector('[data-c4-kinematics-modal]');
+    const kinematicsModalImage = kinematicsModal?.querySelector('.c4-kinematics-modal__image');
+    const kinematicsModalClose = kinematicsModal?.querySelector('.c4-kinematics-modal__close');
+    const kinematicsButtons = Array.from(cpmPage.querySelectorAll('[data-c4-kinematics-image]'));
+
+    function closeKinematicsImage() {
+      if (!kinematicsModal || !kinematicsModalImage) return;
+      kinematicsModal.hidden = true;
+      kinematicsModalImage.removeAttribute('src');
+      kinematicsModalImage.alt = '';
+      kinematicsButtons.forEach(button => button.classList.remove('is-active'));
+    }
+
+    function openKinematicsImage(button) {
+      if (!kinematicsModal || !kinematicsModalImage) return;
+      const imageSrc = button.dataset.c4KinematicsImage;
+      if (!imageSrc) return;
+      kinematicsModalImage.src = imageSrc;
+      kinematicsModalImage.alt = button.dataset.c4KinematicsAlt || button.textContent.trim();
+      kinematicsModal.hidden = false;
+      kinematicsButtons.forEach(peer => peer.classList.toggle('is-active', peer === button));
+      kinematicsModal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    window.openCpmKinematicsImage = openKinematicsImage;
+    window.closeCpmKinematicsImage = closeKinematicsImage;
+
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : event.target?.parentElement;
+      const button = target?.closest('[data-c4-kinematics-image]');
+      if (!button) return;
+      if (button.classList.contains('is-active') && kinematicsModal && !kinematicsModal.hidden) {
+        closeKinematicsImage();
+        return;
+      }
+      openKinematicsImage(button);
+    });
+
+    if (kinematicsModalClose) {
+      kinematicsModalClose.addEventListener('click', closeKinematicsImage);
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && kinematicsModal && !kinematicsModal.hidden) {
+        closeKinematicsImage();
+      }
+    });
+
+    const cpmScrollFilm = document.querySelector('[data-cpm-scroll-film]');
+    const cpmScrollFilmVideo = document.getElementById('cpmScrollFilmVideo');
+
+    if (cpmScrollFilm) {
+      let filmTicking = false;
+      const FILM_LOOPS = 3; // video cycles across the full scroll travel
+
+      function updateCpmScrollFilm() {
+        filmTicking = false;
+        const rect = cpmScrollFilm.getBoundingClientRect();
+        const scrollable = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+        const driftProgress = Math.min(1, Math.max(0, (progress - 0.06) / 0.5));
+        const copyProgress = Math.min(1, Math.max(0, (progress - 0.38) / 0.34));
+        const maxShift = Math.min(window.innerWidth * 0.28, 390);
+
+        // Scrub video: wraps every 1/FILM_LOOPS of scroll travel
+        if (cpmScrollFilmVideo && cpmScrollFilmVideo.readyState >= 2 && cpmScrollFilmVideo.duration) {
+          cpmScrollFilmVideo.currentTime =
+            (progress * cpmScrollFilmVideo.duration * FILM_LOOPS) % cpmScrollFilmVideo.duration;
+        }
+
+        cpmScrollFilm.style.setProperty('--film-x', `${driftProgress * maxShift}px`);
+        cpmScrollFilm.style.setProperty('--film-scale', `${1 - driftProgress * 0.08}`);
+        cpmScrollFilm.style.setProperty('--film-copy-opacity', `${copyProgress}`);
+        cpmScrollFilm.style.setProperty('--film-copy-y', `${(1 - copyProgress) * 34}px`);
+      }
+
+      function requestCpmScrollFilmUpdate() {
+        if (filmTicking) return;
+        filmTicking = true;
+        window.requestAnimationFrame(updateCpmScrollFilm);
+      }
+
+      if (cpmScrollFilmVideo) {
+        cpmScrollFilmVideo.addEventListener('loadedmetadata', updateCpmScrollFilm);
+      }
+      window.addEventListener('scroll', requestCpmScrollFilmUpdate, { passive: true });
+      window.addEventListener('resize', requestCpmScrollFilmUpdate);
+      updateCpmScrollFilm();
+    }
+
+    // ── Scroll-driven assembly explode ──────────────────────────────────────
+    const cpmExplode = cpmPage.querySelector('[data-cpm-explode]');
+    const cpmExplodeVideo = document.getElementById('cpmExplodeVideo');
+
+    if (cpmExplode && cpmExplodeVideo) {
+      let explodeTicking = false;
+
+      function updateCpmExplode() {
+        explodeTicking = false;
+        const rect = cpmExplode.getBoundingClientRect();
+        const scrollable = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+
+        // "Final Design" label: reveal over first 15 % of scroll travel
+        const labelP = Math.min(1, progress / 0.15);
+        cpmExplode.style.setProperty('--explode-label-opacity', labelP);
+        cpmExplode.style.setProperty('--explode-label-y', `${(1 - labelP) * -22}px`);
+
+        // Scroll hint: disappear over first 8 %
+        cpmExplode.style.setProperty('--explode-hint-opacity', Math.max(0, 1 - progress / 0.08));
+
+        // Progressive zoom: 1.0 (exploded) → 1.38 (assembled)
+        cpmExplode.style.setProperty('--explode-zoom', 1 + progress * 0.38);
+
+        // Scrub video proportional to scroll
+        if (cpmExplodeVideo.readyState >= 2 && cpmExplodeVideo.duration) {
+          cpmExplodeVideo.currentTime = (1 - progress) * cpmExplodeVideo.duration;
+        }
+      }
+
+      function requestExplodeUpdate() {
+        if (explodeTicking) return;
+        explodeTicking = true;
+        window.requestAnimationFrame(updateCpmExplode);
+      }
+
+      cpmExplodeVideo.addEventListener('loadedmetadata', updateCpmExplode);
+      window.addEventListener('scroll', requestExplodeUpdate, { passive: true });
+      window.addEventListener('resize', requestExplodeUpdate);
+      updateCpmExplode();
+    }
+
+    const archiveTrack = cpmPage.querySelector('[data-cpm-archive-track]');
+    const archiveWheel = cpmPage.querySelector('[data-cpm-archive-wheel]');
+    const archiveCaption = cpmPage.querySelector('[data-cpm-archive-caption]');
+    const archiveDate = cpmPage.querySelector('[data-cpm-archive-date]');
+
+    if (archiveTrack && archiveWheel) {
+      const archiveCards = Array.from(archiveTrack.querySelectorAll('.cpm-archive-card'));
+      const archiveTicks = Array.from(archiveWheel.querySelectorAll('span'));
+      let archiveTicking = false;
+      let activeArchiveIndex = -1;
+      let archiveCopyTimer;
+
+      function updateCpmArchiveCarousel() {
+        archiveTicking = false;
+        const trackRect = archiveTrack.getBoundingClientRect();
+        const centerX = trackRect.left + trackRect.width / 2;
+        const focusRange = Math.max(trackRect.width * 0.48, 1);
+        let nextActiveIndex = 0;
+        let nearestDistance = Infinity;
+        let weightedIndex = 0;
+        let totalFocus = 0;
+
+        archiveCards.forEach((card, index) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(centerX - cardCenter);
+          const focus = Math.max(0, 1 - distance / focusRange);
+          card.style.setProperty('--focus', focus.toFixed(3));
+
+          if (archiveTicks[index]) {
+            archiveTicks[index].style.setProperty('--tick-focus', focus.toFixed(3));
+          }
+
+          weightedIndex += index * focus;
+          totalFocus += focus;
+
+          if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nextActiveIndex = index;
+          }
+        });
+
+        if (archiveTicks.length > 1 && totalFocus > 0) {
+          const tickPitch = 9;
+          const centeredIndex = weightedIndex / totalFocus;
+          const targetOffset = centeredIndex - (archiveTicks.length - 1) / 2;
+          archiveWheel.style.setProperty('--tick-shift', `${targetOffset * -tickPitch}px`);
+        }
+
+        if (nextActiveIndex !== activeArchiveIndex) {
+          activeArchiveIndex = nextActiveIndex;
+          const activeCard = archiveCards[activeArchiveIndex];
+          window.clearTimeout(archiveCopyTimer);
+
+          if (archiveCaption && activeCard?.dataset.caption) {
+            archiveCaption.classList.add('is-changing');
+          }
+
+          if (archiveDate && activeCard?.dataset.date) {
+            archiveDate.classList.add('is-changing');
+          }
+
+          archiveCopyTimer = window.setTimeout(() => {
+            if (archiveCaption && activeCard?.dataset.caption) {
+              archiveCaption.textContent = activeCard.dataset.caption;
+              archiveCaption.classList.remove('is-changing');
+            }
+            if (archiveDate && activeCard?.dataset.date) {
+              archiveDate.innerHTML = activeCard.dataset.date;
+              archiveDate.classList.remove('is-changing');
+            }
+          }, 90);
+        }
+      }
+
+      function requestCpmArchiveUpdate() {
+        if (archiveTicking) return;
+        archiveTicking = true;
+        window.requestAnimationFrame(updateCpmArchiveCarousel);
+      }
+
+      archiveTrack.addEventListener('wheel', event => {
+        const horizontalIntent = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+        const scrollDelta = horizontalIntent ? event.deltaX : event.deltaY;
+        if (!scrollDelta) return;
+
+        const maxScroll = archiveTrack.scrollWidth - archiveTrack.clientWidth;
+        const atStart = archiveTrack.scrollLeft <= 0;
+        const atEnd = archiveTrack.scrollLeft >= maxScroll - 1;
+        const movingBeforeStart = scrollDelta < 0 && atStart;
+        const movingPastEnd = scrollDelta > 0 && atEnd;
+
+        if (!horizontalIntent && (movingBeforeStart || movingPastEnd)) return;
+
+        event.preventDefault();
+        archiveTrack.scrollLeft += scrollDelta;
+        requestCpmArchiveUpdate();
+      }, { passive: false });
+
+      archiveTrack.addEventListener('scroll', requestCpmArchiveUpdate, { passive: true });
+      window.addEventListener('resize', requestCpmArchiveUpdate);
+      updateCpmArchiveCarousel();
+    }
+
+    const prototypeEvolution = cpmPage.querySelector('.cpm-prototype-evolution');
+
+    if (prototypeEvolution) {
+      const evolutionCards = Array.from(prototypeEvolution.querySelectorAll('.cpm-evo-card'));
+      const evolutionDecks = prototypeEvolution.querySelector('.cpm-evo-decks');
+      let evolutionTicking = false;
+
+      function readCardNumber(card, name) {
+        return Number.parseFloat(card.style.getPropertyValue(name)) || 0;
+      }
+
+      function mix(start, end, progress) {
+        return start + (end - start) * progress;
+      }
+
+      function easeOutCubic(progress) {
+        return 1 - Math.pow(1 - progress, 3);
+      }
+
+      function setEvolutionCardTransform(card, x, y, rotation, scale = 1) {
+        card.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`;
+      }
+
+      function updatePrototypeEvolution() {
+        evolutionTicking = false;
+        const triggerRect = (evolutionDecks || prototypeEvolution).getBoundingClientRect();
+        const startLine = window.innerHeight * 0.82;
+        const travel = window.innerHeight * 0.58;
+        const rawProgress = (startLine - triggerRect.top) / travel;
+        const progress = easeOutCubic(Math.min(1, Math.max(0, rawProgress)));
+
+        prototypeEvolution.classList.toggle('is-clustered', progress > 0.96);
+
+        evolutionCards.forEach(card => {
+          if (card.closest('.cpm-evo-deck')?.classList.contains('is-expanded')) return;
+
+          const scatterX = readCardNumber(card, '--scatter-x');
+          const scatterY = readCardNumber(card, '--scatter-y');
+          const scatterR = readCardNumber(card, '--scatter-r');
+          const deckX = readCardNumber(card, '--deck-x');
+          const deckY = readCardNumber(card, '--deck-y');
+          const deckR = readCardNumber(card, '--deck-r');
+          const x = mix(scatterX, deckX, progress);
+          const y = mix(scatterY, deckY, progress);
+          const rotation = mix(scatterR, deckR, progress);
+          const scale = mix(0.72, 1, progress);
+
+          setEvolutionCardTransform(card, x, y, rotation, scale);
+        });
+      }
+
+      function requestPrototypeEvolutionUpdate() {
+        if (evolutionTicking) return;
+        evolutionTicking = true;
+        window.requestAnimationFrame(updatePrototypeEvolution);
+      }
+
+      window.addEventListener('scroll', requestPrototypeEvolutionUpdate, { passive: true });
+      window.addEventListener('resize', requestPrototypeEvolutionUpdate);
+      prototypeEvolution.querySelectorAll('.cpm-evo-deck').forEach(deck => {
+        deck.addEventListener('click', e => {
+          if (!deck.classList.contains('is-expanded')) return;
+          if (e.target.closest('.cpm-evo-card:has(img)')) return;
+          if (e.target.closest('a, button, iframe, .cpm-evo-video')) return;
+          const stage = deck.querySelector('.cpm-evo-deck__stage');
+          deck.classList.remove('is-expanded');
+          stage?.setAttribute('aria-expanded', 'false');
+          updateUIScale();
+          requestPrototypeEvolutionUpdate();
+        });
+      });
+
+      prototypeEvolution.querySelectorAll('.cpm-evo-deck__stage').forEach(stage => {
+        const deck = stage.closest('.cpm-evo-deck');
+
+        stage.addEventListener('click', e => {
+          if (!deck) return;
+          if (deck.classList.contains('is-expanded') && e.target.closest('.cpm-evo-card:has(img)')) return;
+          deck.classList.toggle('is-expanded');
+          stage.setAttribute('aria-expanded', String(deck.classList.contains('is-expanded')));
+          updateUIScale();
+          requestPrototypeEvolutionUpdate();
+        });
+
+        stage.addEventListener('keydown', event => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault();
+          stage.click();
+        });
+
+        stage.addEventListener('mouseenter', () => {
+          if (!prototypeEvolution.classList.contains('is-clustered')) return;
+          if (deck?.classList.contains('is-expanded')) return;
+          stage.querySelectorAll('.cpm-evo-card').forEach(card => {
+            setEvolutionCardTransform(
+              card,
+              readCardNumber(card, '--messy-x'),
+              readCardNumber(card, '--messy-y'),
+              readCardNumber(card, '--messy-r')
+            );
+          });
+        });
+        stage.addEventListener('mouseleave', requestPrototypeEvolutionUpdate);
+      });
+      updatePrototypeEvolution();
+
+      // ---- LIGHTBOX ----
+      const lightbox = document.createElement('div');
+      lightbox.className = 'cpm-lightbox';
+      lightbox.innerHTML = `
+        <div class="cpm-lightbox__backdrop"></div>
+        <button class="cpm-lightbox__close" aria-label="Close image">✕</button>
+        <img class="cpm-lightbox__img" src="" alt="">
+      `;
+      document.body.appendChild(lightbox);
+      const lbImg = lightbox.querySelector('.cpm-lightbox__img');
+      const lbClose = lightbox.querySelector('.cpm-lightbox__close');
+      const lbBackdrop = lightbox.querySelector('.cpm-lightbox__backdrop');
+
+      function openLightbox(src, alt) {
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      lbClose.addEventListener('click', closeLightbox);
+      lbBackdrop.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      prototypeEvolution.querySelectorAll('.cpm-evo-card:has(img)').forEach(card => {
+        card.addEventListener('click', e => {
+          const deck = card.closest('.cpm-evo-deck');
+          if (!deck?.classList.contains('is-expanded')) return;
+          e.stopPropagation();
+          const img = card.querySelector('img');
+          openLightbox(img.src, img.alt);
+        });
+      });
+
+      document.querySelectorAll('[data-cpm-lightbox-image]').forEach(trigger => {
+        trigger.addEventListener('click', e => {
+          e.stopPropagation();
+          const src = trigger.dataset.cpmLightboxImage;
+          if (!src) return;
+          openLightbox(src, trigger.dataset.cpmLightboxAlt || trigger.querySelector('img')?.alt || '');
+        });
+      });
+    }
+
+    // --------------------------------- FINAL DELIVERABLES: hover tab folder stack ---------------------------------
+    (function () {
+      const folderSection = cpmPage.querySelector('[data-cpm-folders]');
+      if (!folderSection) return;
+
+      const drawer = folderSection.querySelector('.cpm-folders__drawer');
+      if (!drawer) return;
+
+      const folders = Array.from(drawer.querySelectorAll('[data-cpm-folder]'));
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const stage = folderSection.querySelector('.cpm-folders__stage');
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function render(activeIndex) {
+        const stagePaddingTop = stage ? parseFloat(getComputedStyle(stage).paddingTop) || 0 : 0;
+
+        folders.forEach((folder, i) => {
+          const distance = Math.abs(activeIndex - i);
+          const isActive = i === activeIndex;
+          const isBehind = i < activeIndex;
+          const side = parseFloat(folder.style.getPropertyValue('--side')) || 1;
+          const lift = isActive ? 1 : 0;
+          const spread = clamp(distance, 0, 5);
+          const topPx = parseFloat(folder.style.getPropertyValue('--top')) || 0;
+          const desiredLift = -70 - spread * 6;
+          const minLift = -(stagePaddingTop + topPx) + 8;
+          const hoverOffset = i <= activeIndex ? Math.max(desiredLift, minLift) : 108 + spread * 14;
+          const restOffset = i < folders.length - 1 ? 54 : 78;
+          const peek = prefersReduced ? restOffset : (activeIndex === folders.length - 1 ? restOffset : hoverOffset);
+          const shift = side * (isBehind ? 5 : 13);
+          const depth = i * 2;
+          const bodyOpacity = isActive ? 1 : 0.08;
+          const tabOpacity = isActive ? 1 : (isBehind ? 0.56 : 0.82);
+
+          folder.classList.toggle('is-folder-active', isActive);
+          folder.style.setProperty('--x', `${shift.toFixed(2)}px`);
+          folder.style.setProperty('--peek-y', `${peek.toFixed(2)}px`);
+          folder.style.setProperty('--z-depth', `${depth.toFixed(2)}px`);
+          folder.style.setProperty('--scale', '1');
+          folder.style.setProperty('--body-y', `${((1 - lift) * 18).toFixed(2)}px`);
+          folder.style.setProperty('--body-opacity', bodyOpacity.toFixed(3));
+          folder.style.setProperty('--tab-opacity', tabOpacity.toFixed(3));
+          folder.style.setProperty('--report-paper-opacity', isActive ? '1' : '0');
+          folder.style.setProperty('--report-paper-y', isActive ? '-4px' : '42px');
+          folder.style.setProperty('--saturate', (0.86 + lift * 0.2).toFixed(3));
+          folder.style.setProperty('--bright', (0.82 + lift * 0.18).toFixed(3));
+          folder.style.setProperty('--shadow-y', `${(12 + lift * 10).toFixed(2)}px`);
+          folder.style.setProperty('--shadow-blur', `${(18 + lift * 24).toFixed(2)}px`);
+          folder.style.zIndex = String(120 + i);
+        });
+      }
+
+      const restingIndex = folders.length - 1;
+
+      folders.forEach((folder, i) => {
+        folder.tabIndex = 0;
+        folder.addEventListener('mouseenter', () => render(i));
+        folder.addEventListener('focus', () => render(i));
+      });
+
+      drawer.addEventListener('mousemove', event => {
+        const hoveredTab = folders.findIndex(folder => {
+          const tab = folder.querySelector('.cpm-folder__tab-title');
+          if (!tab) return false;
+          const rect = tab.getBoundingClientRect();
+          return event.clientX >= rect.left - 14 &&
+            event.clientX <= rect.right + 14 &&
+            event.clientY >= rect.top - 16 &&
+            event.clientY <= rect.bottom + 16;
+        });
+
+        if (hoveredTab >= 0) render(hoveredTab);
+      });
+
+      document.addEventListener('mousemove', event => {
+        const rect = (stage || drawer).getBoundingClientRect();
+        const outside = event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom;
+
+        if (outside) render(restingIndex);
+      });
+
+      drawer.addEventListener('mouseleave', () => render(restingIndex));
+      render(restingIndex);
+
+      folderSection.querySelectorAll('.cpm-presentation-note[href="#"]').forEach(note => {
+        note.addEventListener('click', event => event.preventDefault());
+      });
+
+      folderSection.querySelectorAll('.cpm-folder-report[href="#"]').forEach(stack => {
+        stack.addEventListener('click', event => event.preventDefault());
+      });
+
+      const videoCards = Array.from(folderSection.querySelectorAll('[data-cpm-folder-video]'));
+
+      if (videoCards.length) {
+        const videoLightbox = document.createElement('div');
+        videoLightbox.className = 'cpm-video-lightbox';
+        videoLightbox.innerHTML = `
+          <div class="cpm-video-lightbox__backdrop"></div>
+          <div class="cpm-video-lightbox__panel" role="dialog" aria-modal="true" aria-label="Project media video">
+            <button class="cpm-video-lightbox__close" type="button" aria-label="Close video">×</button>
+            <div class="cpm-video-lightbox__frame">
+              <iframe title="Project media video" src="" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="cpm-video-lightbox__bar">
+              <p class="cpm-video-lightbox__title"></p>
+              <a class="cpm-video-lightbox__youtube" href="#" target="_blank" rel="noopener noreferrer">Open in YouTube</a>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(videoLightbox);
+
+        const videoIframe = videoLightbox.querySelector('iframe');
+        const videoTitle = videoLightbox.querySelector('.cpm-video-lightbox__title');
+        const videoYoutubeLink = videoLightbox.querySelector('.cpm-video-lightbox__youtube');
+        const videoClose = videoLightbox.querySelector('.cpm-video-lightbox__close');
+        const videoBackdrop = videoLightbox.querySelector('.cpm-video-lightbox__backdrop');
+
+        function buildYoutubeEmbedUrl(embedUrl) {
+          const url = new URL(embedUrl, window.location.href);
+          url.searchParams.set('rel', '0');
+          url.searchParams.set('playsinline', '1');
+
+          if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+            url.searchParams.set('origin', window.location.origin);
+            url.searchParams.set('widget_referrer', window.location.href);
+          }
+
+          return url.toString();
+        }
+
+        function openFolderVideo(card) {
+          const embedUrl = card.dataset.videoEmbed;
+          const watchUrl = card.dataset.videoWatch;
+          if (!embedUrl || !videoIframe || !videoYoutubeLink || !videoTitle) return;
+          videoIframe.src = buildYoutubeEmbedUrl(embedUrl);
+          videoTitle.textContent = card.dataset.videoTitle || 'Project media video';
+          videoYoutubeLink.href = watchUrl || embedUrl;
+          videoLightbox.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+          videoClose?.focus({ preventScroll: true });
+        }
+
+        function closeFolderVideo() {
+          videoLightbox.classList.remove('is-open');
+          if (videoIframe) videoIframe.src = '';
+          document.body.style.overflow = '';
+        }
+
+        videoCards.forEach(card => {
+          card.addEventListener('click', event => {
+            event.stopPropagation();
+            openFolderVideo(card);
+          });
+        });
+
+        videoClose?.addEventListener('click', closeFolderVideo);
+        videoBackdrop?.addEventListener('click', closeFolderVideo);
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && videoLightbox.classList.contains('is-open')) {
+            closeFolderVideo();
+          }
+        });
+      }
+    }());
+
+    // --------------------------------- COMPONENT 4: SIDEBAR NAV — INDUSTRIAL ---------------------------------
+    (function () {
+      const navBtns = Array.from(cpmPage.querySelectorAll('[data-c4]'));
+      const panels  = Array.from(cpmPage.querySelectorAll('[data-c4-panel]'));
+      const flash   = document.getElementById('c4-flash');
+      const tocRail = document.getElementById('c4-toc');
+      if (!navBtns.length || !panels.length || !flash || !tocRail) return;
+
+      let current = 0, busy = false, tocScrollOff = null;
+
+      function show(el) { el.style.opacity = '1'; el.style.pointerEvents = 'auto'; }
+      function hide(el) { el.style.opacity = '0'; el.style.pointerEvents = 'none'; el.scrollTop = 0; }
+
+      function buildToc(idx) {
+        const panel = panels[idx];
+        const explicitNodes = panel.querySelectorAll('[data-c4-toc]');
+        const nodes = Array.from(explicitNodes.length ? explicitNodes : panel.querySelectorAll('h2, p.c4-sh'));
+        if (tocScrollOff) { tocScrollOff(); tocScrollOff = null; }
+        tocRail.innerHTML = '';
+        if (!nodes.length) return;
+        nodes.forEach((n, i) => { if (!n.id) n.id = 'c4a-' + idx + '-' + i; });
+        const items = nodes.map((node, i) => {
+          const item = document.createElement('div');
+          item.className = 'c4-toc-item' + (i === 0 ? ' active' : '');
+          item.textContent = node.textContent;
+          tocRail.appendChild(item);
+          item.addEventListener('click', () => {
+            panel.scrollTo({ top: Math.max(0, node.offsetTop - 20), behavior: 'smooth' });
+          });
+          return item;
+        });
+        function onScroll() {
+          const st = panel.scrollTop;
+          let active = 0;
+          nodes.forEach((n, i) => { if (n.offsetTop <= st + 60) active = i; });
+          items.forEach((it, i) => it.classList.toggle('active', i === active));
+          nodes.forEach((n, i) => n.classList.toggle('is-active', i === active));
+        }
+        nodes[0].classList.add('is-active');
+        panel.addEventListener('scroll', onScroll);
+        tocScrollOff = () => panel.removeEventListener('scroll', onScroll);
+      }
+
+      function goTo(idx) {
+        if (idx === current || busy) return;
+        busy = true;
+        flash.classList.add('on');
+        setTimeout(() => {
+          hide(panels[current]);
+          show(panels[idx]);
+          navBtns[current].classList.remove('active');
+          navBtns[idx].classList.add('active');
+          current = idx;
+          flash.classList.remove('on');
+          buildToc(idx);
+          setTimeout(() => { busy = false; }, 80);
+        }, 80);
+      }
+
+      navBtns.forEach(btn => btn.addEventListener('click', () => goTo(+btn.dataset.c4)));
+      navBtns.forEach((btn, i) => {
+        btn.addEventListener('keydown', e => {
+          if (e.key === 'ArrowDown' && i < navBtns.length - 1) { e.preventDefault(); navBtns[i+1].focus(); goTo(i+1); }
+          else if (e.key === 'ArrowUp' && i > 0) { e.preventDefault(); navBtns[i-1].focus(); goTo(i-1); }
+        });
+      });
+
+      show(panels[0]);
+      panels.slice(1).forEach(hide);
+      buildToc(0);
+    })();
   }
 
   // ------------------------------------------------------------------------------------ //
