@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "art-design":   __PAGES_PFX + "art-lobby.html",
     "engineering":  __PAGES_PFX + "projects.html",
     "photography":  __PAGES_PFX + "photography.html",
-    resume:         "https://drive.google.com/file/d/1D_7TkqaH-xGnbDr1XVDxJ6xHhHcLIzPO/view?usp=sharing",
+    resume:         "https://drive.google.com/file/d/1799DD6PA_YIY6aRX1p74mSumP6byT8LN/view?usp=sharing",
     contact:        __ROOT_PFX  + "index.html#contact"
   };
 
