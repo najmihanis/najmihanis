@@ -4367,68 +4367,69 @@ body:has(.cpm-page) .nav-plate{
   }
 }
 
-/* ─── Scroll videos on phones (≤900px, same breakpoint as the hamburger) ───
-   The casing is scaled down by --ui-scale here, so vh/vw-based sizing and
-   position: sticky no longer line up with the screen. Phones get an unpinned,
-   in-flow version instead: the video sits at full card width and script.js
-   drives it from its position on screen, finishing once it's centred.
-   Text sizes are divided by --ui-scale to land at a fixed on-screen size. */
+/* ─── CPM on phones (≤900px, same breakpoint as the hamburger) ─────────────
+   Below 900px the casing is still laid out at ~1000px and scaled down by
+   --ui-scale (script.js). So vw/vh-based sizes from the narrower breakpoints
+   above come out tiny, and position: sticky / inner scrollers misbehave.
+   These rules size things against the casing (px) instead; headings use
+   calc(X / var(--ui-scale)) to land at a fixed on-screen size, and body copy
+   uses the shared --type-* tokens like every other page. */
 @media (max-width: 900px){
-  .cpm-scroll-film,
+
+  /* -- Scroll film: one row. script.js pins the scene by hand (sticky drifts
+        in the scaled casing), sets the heights below in layout px, slides the
+        video from the centre to the right edge and fades the copy in. */
+  .cpm-scroll-film{
+    height: 2400px;
+  }
+
+  .cpm-scroll-film__sticky{
+    position: relative;
+    top: auto;
+    height: 900px;
+    min-height: 0;
+    padding: 0;
+    will-change: transform;
+  }
+
+  .cpm-scroll-film__copy{
+    left: 44px;
+    top: 50%;
+    width: calc(100% - 500px - 96px);
+  }
+
+  .cpm-scroll-film__copy h2{
+    max-width: 9ch;
+    font-size: calc(1.3rem / var(--ui-scale));
+  }
+
+  .cpm-scroll-film__copy .cpm-eyebrow{
+    font-size: calc(0.6rem / var(--ui-scale));
+  }
+
+  .cpm-scroll-film__copy p{
+    max-width: none;
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-leading);
+  }
+
+  .cpm-scroll-film__stage{
+    width: 500px;
+    max-height: none;
+  }
+
+  /* -- Explode: unpinned, full card width */
   .cpm-explode{
     height: auto;
   }
 
-  .cpm-scroll-film__sticky,
   .cpm-explode__sticky{
     position: relative;
     top: auto;
     height: auto;
     min-height: 0;
-  }
-
-  .cpm-scroll-film__sticky{
-    display: flex;
     flex-direction: column;
-    gap: calc(20px / var(--ui-scale));
-    padding: calc(28px / var(--ui-scale)) calc(20px / var(--ui-scale));
-  }
-
-  .cpm-scroll-film__copy{
-    position: relative;
-    left: auto;
-    top: auto;
-    width: auto;
-    opacity: 1;
-    transform: none;
-  }
-
-  .cpm-scroll-film__copy h2{
-    max-width: 12ch;
-    font-size: calc(2.2rem / var(--ui-scale));
-  }
-
-  .cpm-scroll-film__copy .cpm-eyebrow{
-    font-size: calc(0.7rem / var(--ui-scale));
-  }
-
-  .cpm-scroll-film__copy p{
-    max-width: none;
-    font-size: calc(0.95rem / var(--ui-scale));
-  }
-
-  .cpm-scroll-film__stage{
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    max-height: none;
-    transform: none;
-  }
-
-  .cpm-explode__sticky{
-    flex-direction: column;
-    padding: calc(28px / var(--ui-scale)) calc(20px / var(--ui-scale));
+    padding: 56px 40px;
   }
 
   .cpm-explode__label{
@@ -4441,11 +4442,11 @@ body:has(.cpm-page) .nav-plate{
   }
 
   .cpm-explode__label .cpm-eyebrow{
-    font-size: calc(0.7rem / var(--ui-scale));
+    font-size: calc(0.6rem / var(--ui-scale));
   }
 
   .cpm-explode__label h2{
-    font-size: calc(2.2rem / var(--ui-scale));
+    font-size: calc(1.55rem / var(--ui-scale));
   }
 
   .cpm-explode__stage{
@@ -4454,6 +4455,95 @@ body:has(.cpm-page) .nav-plate{
   }
 
   .cpm-explode__hint{
+    display: none;
+  }
+
+  /* -- Project brief: body copy on the shared tokens, images sized to the casing */
+  .cpm-brief-axis__header{
+    padding: 56px 40px 0;
+  }
+
+  .cpm-brief-axis__header h2{
+    font-size: calc(1.55rem / var(--ui-scale));
+  }
+
+  .cpm-brief-diagonal{
+    min-height: 900px;
+    padding: 48px 40px;
+  }
+
+  .cpm-brief-diagonal__image{
+    width: 560px;
+    transform: none;
+  }
+
+  .cpm-brief-diagonal__copy{
+    width: 420px;
+  }
+
+  .cpm-brief-diagonal__copy h2,
+  .cpm-brief-axis__text h2{
+    max-width: none;
+    font-size: calc(1.1rem / var(--ui-scale));
+    margin-bottom: 20px;
+  }
+
+  .cpm-brief-diagonal__copy p,
+  .cpm-brief-axis__text p{
+    max-width: none;
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-leading);
+  }
+
+  .cpm-brief-diagonal__copy--goal{
+    top: 48px;
+    left: 40px;
+  }
+
+  .cpm-brief-diagonal__copy--problem{
+    top: auto;
+    bottom: 48px;
+    right: 40px;
+  }
+
+  .cpm-brief-axis__panel,
+  .cpm-brief-axis__panel--deliverables{
+    padding-block: 48px;
+  }
+
+  .cpm-brief-axis__text{
+    padding-inline: 40px;
+  }
+
+  .cpm-brief-axis__image img{
+    width: 600px;
+  }
+
+  /* -- Design process: no inner scroller. The active tab grows to its full
+        length and the page scrolls through it (touch couldn't reliably
+        scroll a small nested box inside the scaled casing). */
+  .c4-shell{
+    height: auto;
+    align-items: stretch;
+  }
+
+  .c4-sidebar{
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .c4-body{
+    overflow: visible;
+  }
+
+  .c4-panel{
+    position: relative;
+    inset: auto;
+    overflow: visible;
+    padding: 32px 36px 48px;
+  }
+
+  .c4-toc-rail{
     display: none;
   }
 }
