@@ -645,6 +645,9 @@ body:has(.cpm-page) .nav-plate{
 
 .cpm-archive-carousel{
   position: relative;
+  /* Cards are sized against the carousel (cqw), not the viewport: on phones
+     the casing is scaled, so vw-based sizes came out about a third as big. */
+  container-type: inline-size;
 }
 
 .cpm-archive-carousel::before,
@@ -654,7 +657,7 @@ body:has(.cpm-page) .nav-plate{
   top: 0;
   bottom: 112px;
   z-index: 3;
-  width: clamp(76px, 18vw, 260px);
+  width: clamp(60px, 16cqw, 260px);
   pointer-events: none;
 }
 
@@ -669,12 +672,12 @@ body:has(.cpm-page) .nav-plate{
 }
 
 .cpm-archive-track{
-  --archive-card-width: clamp(220px, 36vw, 520px);
-  --archive-pad: max(18px, calc((100vw - var(--archive-card-width)) / 2));
+  --archive-card-width: clamp(320px, 46cqw, 640px);
+  --archive-pad: max(18px, calc((100cqw - var(--archive-card-width)) / 2));
   display: flex;
-  gap: clamp(8px, 0.7vw, 14px);
+  gap: clamp(8px, 1cqw, 14px);
   align-items: center;
-  min-height: clamp(250px, 37vw, 430px);
+  min-height: calc(var(--archive-card-width) * 2 / 3 + 48px);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
@@ -4532,5 +4535,32 @@ body:has(.cpm-page) .nav-plate{
 
   .c4-toc-rail{
     display: none;
+  }
+
+  /* -- Kinematics plot: the side pills hang fully outside the plot on
+        desktop; on phones the panel is too narrow, so tuck them 60% inside */
+  .c4-kinematics-hotspot--phi-theta{
+    left: 0;
+    transform: translateX(-40%);
+  }
+
+  .c4-kinematics-hotspot--phi-theta:hover,
+  .c4-kinematics-hotspot--phi-theta.is-active{
+    transform: translateX(-40%) translate(3px, 3px);
+  }
+
+  .c4-kinematics-hotspot--x-theta{
+    right: 0;
+    transform: translateX(40%);
+  }
+
+  .c4-kinematics-hotspot--x-theta:hover,
+  .c4-kinematics-hotspot--x-theta.is-active{
+    transform: translateX(40%) translate(3px, 3px);
+  }
+
+  /* -- Archive carousel: larger cards on phones */
+  .cpm-archive-track{
+    --archive-card-width: 68cqw;
   }
 }
