@@ -223,10 +223,10 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
 
 .hero-intro{
   margin: 0 0 var(--space-9) 0;
-  max-width: 70ch;
-  font-size: var(--text-caption);
-  line-height: var(--leading-loose);
-  opacity: 0.88;
+  max-width: var(--type-lede-measure);
+  font-size: var(--type-lede-size);
+  line-height: var(--type-lede-leading);
+  opacity: var(--type-lede-opacity);
 }
 
 .primary-btn.block-3d-lg, .secondary-btn.block-3d-lg {

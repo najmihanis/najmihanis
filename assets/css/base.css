@@ -87,6 +87,38 @@
 
     --ui-scale: 1;
     --page-gutter: 18px;
+
+    /* ---------------------------- BODY TYPOGRAPHY SYSTEM ---------------------------- */
+    /* One source of truth for running text. Page stylesheets should reach for these
+       (lede / body / small / caption) instead of mixing --text-* and --leading-* by hand.
+       --type-boost enlarges copy on narrow screens, where the whole casing is shrunk
+       by --ui-scale (see script.js); it stays 1 on desktop. */
+    --type-boost: 1;
+
+    --type-lede-size: calc(1.05rem * var(--type-boost));
+    --type-lede-leading: 1.5;
+    --type-lede-measure: 64ch;
+    --type-lede-opacity: 0.78;
+
+    --type-body-size: calc(0.95rem * var(--type-boost));
+    --type-body-leading: 1.55;
+    --type-body-measure: 68ch;
+    --type-body-opacity: 0.82;
+
+    --type-small-size: calc(0.875rem * var(--type-boost));
+    --type-small-leading: 1.5;
+
+    --type-caption-size: calc(0.8125rem * var(--type-boost));
+    --type-caption-leading: 1.45;
+
+    --type-list-gap: 0.45em;
+}
+
+/* Narrow screens: the 1000px casing is scaled down to fit, so body copy is shown at
+   roughly --ui-scale of its size. Counter part of that shrink (up to +30%) so running
+   text stays readable without reflowing the layout. */
+@media (max-width: 900px) {
+    :root { --type-boost: clamp(1, calc(0.8 / var(--ui-scale)), 1.3); }
 }
 
 
@@ -115,8 +147,29 @@ h1, h2, h3, p {
 }
 
 p {
-    font-size: var(--text-body);
-    line-height: var(--leading-relaxed);
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-leading);
+}
+
+/* Reusable body roles (for new markup; existing page classes map onto the same tokens) */
+.type-lede {
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-leading);
+    max-width: var(--type-lede-measure);
+    opacity: var(--type-lede-opacity);
+}
+.type-body {
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-leading);
+    max-width: var(--type-body-measure);
+}
+.type-small {
+    font-size: var(--type-small-size);
+    line-height: var(--type-small-leading);
+}
+.type-caption {
+    font-size: var(--type-caption-size);
+    line-height: var(--type-caption-leading);
 }
 
 /* --- DECORATIVE CORNER HARDWARE --- */

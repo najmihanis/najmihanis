@@ -67,18 +67,18 @@ body.nav-open .nav-plate{
 
 .rail-body{
   margin: 0;
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-copy);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .rail-list{
   list-style-type: square;
   margin: 0;
   padding-left: 18px;
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-copy);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .rail-kv{
@@ -147,10 +147,10 @@ body.nav-open .nav-plate{
 
 .hero-lede{
   margin: 10px 0 0;
-  max-width: 70ch;
-  font-size: var(--text-lede);
-  line-height: var(--leading-body);
-  opacity: 0.78;
+  max-width: var(--type-lede-measure);
+  font-size: var(--type-lede-size);
+  line-height: var(--type-lede-leading);
+  opacity: var(--type-lede-opacity);
 }
 
 .hero-stats{
@@ -324,9 +324,9 @@ body.nav-open .nav-plate{
 
 .iter-one{
   margin-top: var(--space-2);
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-copy);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 /* ---------- Wide image bay (CAD board friendly) ---------- */
@@ -386,9 +386,9 @@ body.nav-open .nav-plate{
 .iter-notes{
   margin: 12px 0 0;
   padding-left: 18px;
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-body);
-  opacity: 0.82;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .iter-notes b{
@@ -552,10 +552,10 @@ body.nav-open .nav-plate{
 /* Body text */
 .free-text{
   margin: 0;
-  max-width: 70ch;
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
-  opacity: 0.8;
+  max-width: var(--type-body-measure);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 

@@ -49,10 +49,10 @@
 
 .mach-lede{
   margin: 10px 0 0;
-  font-size: var(--text-lede);
-  line-height: var(--leading-body);
-  opacity: 0.78;
-  max-width: 70ch;
+  font-size: var(--type-lede-size);
+  line-height: var(--type-lede-leading);
+  opacity: var(--type-lede-opacity);
+  max-width: var(--type-lede-measure);
 }
 
 /* Stats strip */
@@ -346,9 +346,9 @@ html{
 .mach-card__list{
   margin: 0;
   padding-left: 16px;
-  font-size: var(--text-caption);
-  line-height: var(--leading-flat);
-  opacity: 0.85;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .mach-card__list li{

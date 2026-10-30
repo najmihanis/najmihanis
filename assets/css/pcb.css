@@ -36,10 +36,10 @@
 }
 
 .pcb-lede{
-  max-width: 60ch;
-  font-size: var(--text-lede);
-  line-height: var(--leading-body);
-  opacity: 0.78;
+  max-width: var(--type-lede-measure);
+  font-size: var(--type-lede-size);
+  line-height: var(--type-lede-leading);
+  opacity: var(--type-lede-opacity);
 }
 
 .pcb-stats{
@@ -130,8 +130,8 @@
 .pcb-overview__col ul{
   margin: 0;
   padding-left: 16px;
-  font-size: var(--text-body);
-  line-height: var(--leading-copy);
-  opacity: 0.82;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
   list-style-type: square;
 }

@@ -131,9 +131,9 @@
 .yonder-bullets{
   margin: 0;
   padding-left: 16px;
-  font-size: var(--text-body);
-  line-height: var(--leading-dense);
-  opacity: 0.82;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .yonder-bullets li{

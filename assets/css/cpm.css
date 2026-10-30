@@ -109,8 +109,8 @@ body:has(.cpm-page) .nav-plate{
 
 .cpm-hero p{
   max-width: 56ch;
-  font-size: var(--text-title-sm);
-  line-height: var(--leading-relaxed);
+  font-size: var(--type-lede-size);
+  line-height: var(--type-lede-leading);
   color: rgba(0,0,0,0.72);
 }
 
@@ -312,8 +312,8 @@ body:has(.cpm-page) .nav-plate{
   border-radius: 18px;
   background: rgba(255,255,255,0.82);
   box-shadow: 6px 6px 0 rgba(0,0,0,0.12);
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-body);
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 /* Once the illustration column has enough room, pin the note back into
@@ -564,7 +564,8 @@ body:has(.cpm-page) .nav-plate{
 .cpm-brief-axis__text p{
   max-width: 46ch;
   color: rgba(0,0,0,0.72);
-  font-size: var(--text-body-sm);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
 }
 
 .cpm-brief-axis__image{
@@ -1217,7 +1218,7 @@ body:has(.cpm-page) .nav-plate{
 
 .cpm-finish p{
   max-width: 64ch;
-  font-size: var(--text-title-sm);
+  font-size: var(--type-lede-size);
 }
 
 /* ─── Component 4: Sidebar Nav — Industrial ─────────────────────────────── */
@@ -1457,18 +1458,20 @@ body:has(.cpm-page) .nav-plate{
 }
 
 .c4-lead {
-  font-size: 12px;
+  font-size: var(--type-lede-size);
+  max-width: var(--type-lede-measure);
   color: #6b6560;
-  line-height: 1.65;
+  line-height: var(--type-lede-leading);
   margin-bottom: 20px;
   padding-left: 10px;
   border-left: 2.5px solid #141414;
 }
 
 .c4-panel p {
-  font-size: 12px;
+  font-size: var(--type-body-size);
   color: #6b6560;
-  line-height: 1.7;
+  line-height: var(--type-body-leading);
+  max-width: var(--type-body-measure);
   margin-bottom: 12px;
 }
 
@@ -1762,7 +1765,8 @@ body:has(.cpm-page) .nav-plate{
   padding-left: 10px;
   border-left: 2px solid #141414;
   color: #8a8078;
-  font-size: 11px;
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-leading);
 }
 
 .c4-split{
@@ -1792,8 +1796,8 @@ body:has(.cpm-page) .nav-plate{
   margin: 0;
   padding-left: 17px;
   color: #6b6560;
-  font-size: 12px;
-  line-height: 1.7;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 .c4-callout{
@@ -2138,8 +2142,8 @@ body:has(.cpm-page) .nav-plate{
 
 .c4-change-item p{
   margin: 5px 0 0;
-  font-size: 0.76rem;
-  line-height: 1.42;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
   color: rgba(20,20,20,0.58);
 }
 
@@ -2223,8 +2227,8 @@ body:has(.cpm-page) .nav-plate{
 .c4-component-copy > p{
   margin: 0;
   max-width: 58ch;
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
   color: rgba(20,20,20,0.66);
 }
 
@@ -2238,8 +2242,8 @@ body:has(.cpm-page) .nav-plate{
   margin: 0;
   padding-left: 10px;
   border-left: 2px solid rgba(20,20,20,0.14);
-  font-size: 0.8rem;
-  line-height: 1.45;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
   color: rgba(20,20,20,0.62);
 }
 
@@ -2361,7 +2365,7 @@ body:has(.cpm-page) .nav-plate{
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 16px;
-  font-size: 12px;
+  font-size: var(--type-small-size);
 }
 
 .c4-table-wrap{
@@ -2751,9 +2755,9 @@ body:has(.cpm-page) .nav-plate{
 }
 
 .cpm-feat-card__body p:not(.cpm-feat-card__label){
-  font-size: 13px;
+  font-size: var(--type-small-size);
   color: #6b6560;
-  line-height: 1.65;
+  line-height: var(--type-small-leading);
   margin: 0;
 }
 

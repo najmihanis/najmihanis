@@ -64,17 +64,17 @@
 
 .mind-rail-body{
   margin: 0;
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-copy);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .mind-rail-list{
   margin: 0;
   padding-left: 18px;
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-copy);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 /* KV table */
@@ -145,10 +145,10 @@
 
 .mind-hero-lede{
   margin: 10px 0 0;
-  max-width: 70ch;
-  font-size: var(--text-lede);
-  line-height: var(--leading-body);
-  opacity: 0.78;
+  max-width: var(--type-lede-measure);
+  font-size: var(--type-lede-size);
+  line-height: var(--type-lede-leading);
+  opacity: var(--type-lede-opacity);
 }
 
 .mind-hero-stats{
@@ -244,9 +244,9 @@
 
 /* tighten WHAT / HOW body a bit */
 .mind-rail-wh .mind-rail-body{
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-copy);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
   padding-bottom: 10px;
 }
 
@@ -254,8 +254,9 @@
 .mind-rail-wh .mind-rail-list{
   padding-left: 16px;
 
-  font-size: var(--text-body-sm);
-  opacity: 0.78;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  opacity: var(--type-body-opacity);
 }
 
 .mind-rail-wh .mind-rail-list li{

@@ -237,7 +237,8 @@
 }
 
 .urban-text-column p {
-    font-size: var(--text-title-sm); line-height: var(--leading-loose); margin-bottom: var(--space-10); color: #444;
+    font-size: var(--type-lede-size); line-height: var(--leading-loose); margin-bottom: var(--space-10); color: #444;
+    max-width: var(--type-body-measure);
 }
 
 .drop-cap {
