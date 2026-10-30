@@ -1430,6 +1430,8 @@ body:has(.cpm-page) .nav-plate{
   background: #f0ede6;
 }
 
+.c4-panel[hidden] { display: none; }
+
 .c4-panel::-webkit-scrollbar { width: 4px; }
 .c4-panel::-webkit-scrollbar-track { background: transparent; }
 .c4-panel::-webkit-scrollbar-thumb { background: #c8c4bc; border-radius: 99px; }
@@ -2518,6 +2520,9 @@ body:has(.cpm-page) .nav-plate{
   padding: 2px 9px;
   background: #f0ede6;
 }
+
+/* Phones get the bar + Open link only (see script.js) */
+.c4-embed-window iframe:not([src]){ display: none; }
 
 .c4-embed-window iframe{
   display: block;
@@ -4359,5 +4364,96 @@ body:has(.cpm-page) .nav-plate{
 
   .cpm-folder__body{
     transition: none;
+  }
+}
+
+/* ─── Scroll videos on phones (≤900px, same breakpoint as the hamburger) ───
+   The casing is scaled down by --ui-scale here, so vh/vw-based sizing and
+   position: sticky no longer line up with the screen. Phones get an unpinned,
+   in-flow version instead: the video sits at full card width and script.js
+   drives it from its position on screen, finishing once it's centred.
+   Text sizes are divided by --ui-scale to land at a fixed on-screen size. */
+@media (max-width: 900px){
+  .cpm-scroll-film,
+  .cpm-explode{
+    height: auto;
+  }
+
+  .cpm-scroll-film__sticky,
+  .cpm-explode__sticky{
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+  }
+
+  .cpm-scroll-film__sticky{
+    display: flex;
+    flex-direction: column;
+    gap: calc(20px / var(--ui-scale));
+    padding: calc(28px / var(--ui-scale)) calc(20px / var(--ui-scale));
+  }
+
+  .cpm-scroll-film__copy{
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .cpm-scroll-film__copy h2{
+    max-width: 12ch;
+    font-size: calc(2.2rem / var(--ui-scale));
+  }
+
+  .cpm-scroll-film__copy .cpm-eyebrow{
+    font-size: calc(0.7rem / var(--ui-scale));
+  }
+
+  .cpm-scroll-film__copy p{
+    max-width: none;
+    font-size: calc(0.95rem / var(--ui-scale));
+  }
+
+  .cpm-scroll-film__stage{
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-height: none;
+    transform: none;
+  }
+
+  .cpm-explode__sticky{
+    flex-direction: column;
+    padding: calc(28px / var(--ui-scale)) calc(20px / var(--ui-scale));
+  }
+
+  .cpm-explode__label{
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: flex-end;
+    opacity: 1;
+    transform: none;
+  }
+
+  .cpm-explode__label .cpm-eyebrow{
+    font-size: calc(0.7rem / var(--ui-scale));
+  }
+
+  .cpm-explode__label h2{
+    font-size: calc(2.2rem / var(--ui-scale));
+  }
+
+  .cpm-explode__stage{
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .cpm-explode__hint{
+    display: none;
   }
 }

@@ -287,7 +287,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const cpmPage = document.querySelector('.cpm-page');
 
   if (cpmPage) {
-    const canEmbedYoutube = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+    // Compact = the same ≤900px breakpoint where the header switches to the
+    // hamburger. Phones skip live embeds (YouTube, the design tool) — each is a
+    // full page in memory — and keep the thumbnail / "Open" links instead.
+    const isCompact = window.matchMedia('(max-width: 900px)').matches;
+    const canEmbedYoutube = !isCompact && (window.location.protocol === 'http:' || window.location.protocol === 'https:');
+
+    if (!isCompact) {
+      cpmPage.querySelectorAll('.c4-embed-window iframe[data-src]').forEach((frame) => {
+        frame.src = frame.dataset.src;
+      });
+    }
+
     cpmPage.querySelectorAll('[data-cpm-youtube]').forEach(video => {
       if (!canEmbedYoutube) return;
       const iframe = video.querySelector('iframe');
@@ -435,6 +446,17 @@ document.addEventListener('DOMContentLoaded', () => {
       loopVideos.forEach((video) => loopObserver.observe(video));
     }
 
+    // Phones (compact): scroll videos aren't pinned (see cpm.css). Progress runs
+    // from the element entering at the bottom of the screen (0) to its centre
+    // reaching 45% of the screen height (1), then holds the final pose.
+    const compactQuery = window.matchMedia('(max-width: 900px)');
+    function compactProgress(el) {
+      const rect = el.getBoundingClientRect();
+      const start = window.innerHeight;
+      const end = window.innerHeight * 0.45 - rect.height / 2;
+      return Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, start - end)));
+    }
+
     const cpmScrollFilm = document.querySelector('[data-cpm-scroll-film]');
     const cpmScrollFilmVideo = document.getElementById('cpmScrollFilmVideo');
 
@@ -444,6 +466,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function updateCpmScrollFilm() {
         filmTicking = false;
+
+        if (compactQuery.matches) {
+          const stage = cpmScrollFilm.querySelector('.cpm-scroll-film__stage') || cpmScrollFilm;
+          const progress = compactProgress(stage);
+          if (cpmScrollFilmVideo && cpmScrollFilmVideo.duration) {
+            // Two gait cycles, ending back on the first frame
+            scrubVideo(cpmScrollFilmVideo,
+              Math.min(progress * 2 * cpmScrollFilmVideo.duration, 2 * cpmScrollFilmVideo.duration - 0.01) % cpmScrollFilmVideo.duration);
+          }
+          cpmScrollFilm.style.setProperty('--film-x', '0px');
+          cpmScrollFilm.style.setProperty('--film-scale', '1');
+          cpmScrollFilm.style.setProperty('--film-copy-opacity', '1');
+          cpmScrollFilm.style.setProperty('--film-copy-y', '0px');
+          return;
+        }
+
         const rect = cpmScrollFilm.getBoundingClientRect();
         const scrollable = Math.max(1, rect.height - window.innerHeight);
         const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
@@ -489,7 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
         explodeTicking = false;
         const rect = cpmExplode.getBoundingClientRect();
         const scrollable = Math.max(1, rect.height - window.innerHeight);
-        const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+        const progress = compactQuery.matches
+          ? compactProgress(cpmExplode.querySelector('.cpm-explode__stage') || cpmExplode)
+          : Math.min(1, Math.max(0, -rect.top / scrollable));
 
         // "Final Design" label: reveal over first 15 % of scroll travel
         const labelP = Math.min(1, progress / 0.15);
@@ -962,8 +1002,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let current = 0, busy = false, tocScrollOff = null;
 
-      function show(el) { el.style.opacity = '1'; el.style.pointerEvents = 'auto'; }
-      function hide(el) { el.style.opacity = '0'; el.style.pointerEvents = 'none'; el.scrollTop = 0; }
+      // Inactive panels are taken out of rendering (hidden), not just made
+      // transparent: otherwise every tab's GIFs, videos and iframes load and
+      // animate at once, which crashes iOS Safari. The flash covers the swap.
+      function show(el) { el.hidden = false; el.style.opacity = '1'; el.style.pointerEvents = 'auto'; }
+      function hide(el) {
+        el.scrollTop = 0;
+        el.hidden = true;
+        el.style.opacity = '0';
+        el.style.pointerEvents = 'none';
+        el.querySelectorAll('video').forEach((video) => video.pause());
+      }
 
       function buildToc(idx) {
         const panel = panels[idx];
