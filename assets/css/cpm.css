@@ -1459,7 +1459,6 @@ body:has(.cpm-page) .nav-plate{
 
 .c4-lead {
   font-size: var(--type-lede-size);
-  max-width: var(--type-lede-measure);
   color: #6b6560;
   line-height: var(--type-lede-leading);
   margin-bottom: 20px;
@@ -1471,7 +1470,6 @@ body:has(.cpm-page) .nav-plate{
   font-size: var(--type-body-size);
   color: #6b6560;
   line-height: var(--type-body-leading);
-  max-width: var(--type-body-measure);
   margin-bottom: 12px;
 }
 
