@@ -390,6 +390,36 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Math.abs(video.currentTime - time) > 0.02) video.currentTime = time;
     }
 
+    // iOS Safari ignores preload and won't fetch frames for a video that has
+    // never played, so scrubbing showed nothing. A muted play()/pause() as the
+    // video nears the viewport makes it load; 'loadeddata' then redraws it.
+    function primeScrubVideo(video, onReady) {
+      if (!video) return;
+      video.addEventListener('loadeddata', onReady);
+      const prime = () => {
+        if (video._primed) return;
+        video._primed = true;
+        video.muted = true;
+        const playing = video.play();
+        if (playing && playing.then) {
+          playing.then(() => { video.pause(); onReady(); }).catch(() => video.load());
+        } else {
+          video.pause();
+        }
+      };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            prime();
+            io.disconnect();
+          }
+        }, { rootMargin: '600px 0px' });
+        io.observe(video);
+      } else {
+        prime();
+      }
+    }
+
     // Looping demo videos only play while on screen
     const loopVideos = cpmPage.querySelectorAll('video[autoplay][loop]');
     if ('IntersectionObserver' in window && loopVideos.length) {
@@ -441,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (cpmScrollFilmVideo) {
         cpmScrollFilmVideo.addEventListener('loadedmetadata', updateCpmScrollFilm);
+        primeScrubVideo(cpmScrollFilmVideo, updateCpmScrollFilm);
       }
       window.addEventListener('scroll', requestCpmScrollFilmUpdate, { passive: true });
       window.addEventListener('resize', requestCpmScrollFilmUpdate);
@@ -484,6 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       cpmExplodeVideo.addEventListener('loadedmetadata', updateCpmExplode);
+      primeScrubVideo(cpmExplodeVideo, updateCpmExplode);
       window.addEventListener('scroll', requestExplodeUpdate, { passive: true });
       window.addEventListener('resize', requestExplodeUpdate);
       updateCpmExplode();
