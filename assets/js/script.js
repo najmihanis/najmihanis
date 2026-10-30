@@ -373,6 +373,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Scroll-scrubbed videos: queue at most one seek per video. Firing a new
+    // currentTime on every scroll frame piles up full-HD decodes, which runs
+    // iOS Safari out of memory and makes it reload the page.
+    function scrubVideo(video, time) {
+      if (!video || video.readyState < 2 || !video.duration) return;
+      video._scrubTarget = time;
+      if (video.seeking) return;
+      if (!video._scrubBound) {
+        video._scrubBound = true;
+        video.addEventListener('seeked', () => {
+          const target = video._scrubTarget;
+          if (Math.abs(video.currentTime - target) > 0.02) video.currentTime = target;
+        });
+      }
+      if (Math.abs(video.currentTime - time) > 0.02) video.currentTime = time;
+    }
+
+    // Looping demo videos only play while on screen
+    const loopVideos = cpmPage.querySelectorAll('video[autoplay][loop]');
+    if ('IntersectionObserver' in window && loopVideos.length) {
+      const loopObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.play().catch(() => {});
+          } else {
+            target.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px' });
+      loopVideos.forEach((video) => loopObserver.observe(video));
+    }
+
     const cpmScrollFilm = document.querySelector('[data-cpm-scroll-film]');
     const cpmScrollFilmVideo = document.getElementById('cpmScrollFilmVideo');
 
@@ -390,9 +422,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxShift = Math.min(window.innerWidth * 0.28, 390);
 
         // Scrub video: wraps every 1/FILM_LOOPS of scroll travel
-        if (cpmScrollFilmVideo && cpmScrollFilmVideo.readyState >= 2 && cpmScrollFilmVideo.duration) {
-          cpmScrollFilmVideo.currentTime =
-            (progress * cpmScrollFilmVideo.duration * FILM_LOOPS) % cpmScrollFilmVideo.duration;
+        if (cpmScrollFilmVideo && cpmScrollFilmVideo.duration) {
+          scrubVideo(cpmScrollFilmVideo,
+            (progress * cpmScrollFilmVideo.duration * FILM_LOOPS) % cpmScrollFilmVideo.duration);
         }
 
         cpmScrollFilm.style.setProperty('--film-x', `${driftProgress * maxShift}px`);
@@ -440,8 +472,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cpmExplode.style.setProperty('--explode-zoom', 1 + progress * 0.38);
 
         // Scrub video proportional to scroll
-        if (cpmExplodeVideo.readyState >= 2 && cpmExplodeVideo.duration) {
-          cpmExplodeVideo.currentTime = (1 - progress) * cpmExplodeVideo.duration;
+        if (cpmExplodeVideo.duration) {
+          scrubVideo(cpmExplodeVideo, (1 - progress) * cpmExplodeVideo.duration);
         }
       }
 

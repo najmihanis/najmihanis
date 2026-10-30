@@ -318,12 +318,11 @@
     rgba(0,0,0,0.00) 100%
   );
 
-  /* extra softness */
-  filter: blur(48px);
+  /* Feather the frost out with a mask rather than filter: blur() — Chrome doesn't
+     blur the backdrop-filter result, so a filter left a hard grey pill there. */
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%);
+          mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%);
   opacity: 0.9;
-
-  /* make sure no “rectangle” silhouette appears */
-  border-radius: 999px;
 }
 
 /* Subtle bottom-left vignette to support text readability */

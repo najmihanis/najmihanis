@@ -205,7 +205,8 @@ p {
     position: relative;
     transform: scale(var(--ui-scale));
     transform-origin: top center;
-    will-change: transform;
+    /* No will-change: the scale only changes on resize, and promoting the whole
+       (very tall) casing to its own GPU layer exhausts memory on iOS. */
 }
 
 .scale-stage {
@@ -243,14 +244,19 @@ p {
 
 /* ------------------------------- HEADER: BRANDING PLATE ------------------------------ */
 
+/* Two modes only: brand + nav on one row (desktop), or pill brand + hamburger
+   (≤900px, below). Never wrap — the row sits in the fixed 1000px casing, and
+   Chrome's slightly wider font metrics used to push the nav onto a second line. */
 .header-panel {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: var(--space-9);
+    gap: var(--space-7);
     margin-bottom: var(--space-10);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
+.header-panel > .branding-plate { min-width: 0; }
+.header-panel > .nav-plate { flex-shrink: 0; }
 
 /* Desktop default: hide mobile toggle */
 .nav-vent-toggle { display: none; }
