@@ -467,61 +467,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const filmSticky = cpmScrollFilm.querySelector('.cpm-scroll-film__sticky');
       const filmStage = cpmScrollFilm.querySelector('.cpm-scroll-film__stage');
 
-      // Phones: position: sticky drifts inside the scaled casing (it tracks in
-      // unscaled px), so the scene is pinned by hand. The section gets a tall
-      // scroll track and the sticky box is translated to hold it on screen.
-      // Sizes are in layout px (screen px / --ui-scale). The screen height is
-      // read once per width so iOS toolbar show/hide doesn't jolt the layout.
-      let compactFilmVh = window.innerHeight;
-      let compactFilmWidth = 0;
-
-      function uiScale() {
-        return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ui-scale')) || 1;
-      }
-
-      function layoutCompactFilm() {
-        if (!filmSticky) return;
-        if (!compactQuery.matches) {
-          cpmScrollFilm.style.height = '';
-          filmSticky.style.height = '';
-          filmSticky.style.transform = '';
-          return;
-        }
-        if (window.innerWidth !== compactFilmWidth) {
-          compactFilmWidth = window.innerWidth;
-          compactFilmVh = window.innerHeight;
-        }
-        const scale = uiScale();
-        filmSticky.style.height = `${compactFilmVh / scale}px`;
-        cpmScrollFilm.style.height = `${(compactFilmVh * 2.6) / scale}px`;
-        pinCompactFilm();
-      }
-
-      function pinCompactFilm() {
-        if (!filmSticky || !compactQuery.matches) return;
-        const rect = cpmScrollFilm.getBoundingClientRect();
-        const travel = Math.max(0, rect.height - compactFilmVh);
-        const offset = Math.min(travel, Math.max(0, -rect.top));
-        filmSticky.style.transform = `translate3d(0, ${offset / uiScale()}px, 0)`;
+      // Phones: no pin (sticky drifts in the scaled casing, and script-held
+      // pins lag the finger on iOS). The row sits in flow under the hero and
+      // its progress runs on scroll distance: 0 at the top of the page, 1 once
+      // the row's top reaches 12% of the screen, where it holds the final pose.
+      function compactFilmProgress() {
+        const rect = filmSticky.getBoundingClientRect();
+        const startTop = Math.min(rect.top + window.scrollY, window.innerHeight * 0.9);
+        const endTop = window.innerHeight * 0.12;
+        return Math.min(1, Math.max(0, (startTop - rect.top) / Math.max(1, startTop - endTop)));
       }
 
       function updateCpmScrollFilm() {
         filmTicking = false;
 
-        if (compactQuery.matches) {
-          // Same choreography as desktop, pinned by pinCompactFilm(): the video
-          // starts centred and slides until its right edge meets the card
-          // edge, while the copy fades in beside it on the same row.
-          const rect = cpmScrollFilm.getBoundingClientRect();
-          const travel = Math.max(1, rect.height - compactFilmVh);
-          const progress = Math.min(1, Math.max(0, -rect.top / travel));
-          const drift = Math.min(1, Math.max(0, (progress - 0.06) / 0.5));
-          const copy = Math.min(1, Math.max(0, (progress - 0.38) / 0.34));
+        if (compactQuery.matches && filmSticky) {
+          // Desktop's choreography on one row: the video starts centred and
+          // slides until its right edge meets the card edge, then the copy
+          // fades in beside it.
+          const progress = compactFilmProgress();
+          const drift = Math.min(1, Math.max(0, progress / 0.65));
+          const copy = Math.min(1, Math.max(0, (progress - 0.3) / 0.6));
           // Layout px (pre-scale), so the shift matches the casing geometry
           const shift = filmStage ? (filmSticky.clientWidth - filmStage.offsetWidth) / 2 - 24 : 0;
           if (cpmScrollFilmVideo && cpmScrollFilmVideo.duration) {
-            scrubVideo(cpmScrollFilmVideo,
-              (progress * cpmScrollFilmVideo.duration * FILM_LOOPS) % cpmScrollFilmVideo.duration);
+            // One gait cycle across the travel, ending on the first pose
+            scrubVideo(cpmScrollFilmVideo, Math.min(progress, 0.999) * cpmScrollFilmVideo.duration);
           }
           cpmScrollFilm.style.setProperty('--film-x', `${drift * shift}px`);
           cpmScrollFilm.style.setProperty('--film-scale', `${1 - drift * 0.08}`);
@@ -559,18 +530,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cpmScrollFilmVideo.addEventListener('loadedmetadata', updateCpmScrollFilm);
         primeScrubVideo(cpmScrollFilmVideo, updateCpmScrollFilm);
       }
-      // Pin in the scroll handler itself (not a frame later) to stay in step
-      // with the finger; the heavier video/opacity work stays on rAF.
-      window.addEventListener('scroll', () => {
-        pinCompactFilm();
-        requestCpmScrollFilmUpdate();
-      }, { passive: true });
-      window.addEventListener('resize', () => {
-        layoutCompactFilm();
-        requestCpmScrollFilmUpdate();
-      });
-      layoutCompactFilm();
-      window.addEventListener('load', layoutCompactFilm);
+      window.addEventListener('scroll', requestCpmScrollFilmUpdate, { passive: true });
+      window.addEventListener('resize', requestCpmScrollFilmUpdate);
       updateCpmScrollFilm();
     }
 
@@ -1114,12 +1075,6 @@ document.addEventListener('DOMContentLoaded', () => {
           current = idx;
           flash.classList.remove('on');
           buildToc(idx);
-          // Phones: tabs grow to full length (no inner scroll), so bring the
-          // top of the new tab back into view if the reader was further down
-          const shell = panels[idx].closest('.c4-shell');
-          if (shell && window.matchMedia('(max-width: 900px)').matches && shell.getBoundingClientRect().top < 0) {
-            shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
           setTimeout(() => { busy = false; }, 80);
         }, 80);
       }
@@ -1135,6 +1090,18 @@ document.addEventListener('DOMContentLoaded', () => {
       show(panels[0]);
       panels.slice(1).forEach(hide);
       buildToc(0);
+
+      // Phones: the panel only scrolls once the box is ~fully on screen
+      // (see .c4-shell--engaged in cpm.css), so a swipe on a half-visible box
+      // keeps scrolling the page instead of getting caught inside it.
+      const shell = panels[0].closest('.c4-shell');
+      if (shell && 'IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+          shell.classList.toggle('c4-shell--engaged', entry.intersectionRatio >= 0.9);
+        }, { threshold: [0, 0.5, 0.9, 1] }).observe(shell);
+      } else if (shell) {
+        shell.classList.add('c4-shell--engaged');
+      }
     })();
   }
 

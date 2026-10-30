@@ -82,17 +82,6 @@ body:has(.cpm-page) .nav-plate{
   pointer-events: none;
 }
 
-.cpm-hero::after{
-  content:"CPM / 0.08 MM";
-  position: absolute;
-  right: 42px;
-  bottom: 28px;
-  font-family: 'Space Mono', monospace;
-  font-size: var(--text-label-sm);
-  letter-spacing: var(--tracking-label);
-  color: rgba(0,0,0,0.38);
-}
-
 .cpm-hero__copy{
   max-width: 620px;
   z-index: 2;
@@ -4376,20 +4365,21 @@ body:has(.cpm-page) .nav-plate{
    uses the shared --type-* tokens like every other page. */
 @media (max-width: 900px){
 
-  /* -- Scroll film: one row. script.js pins the scene by hand (sticky drifts
-        in the scaled casing), sets the heights below in layout px, slides the
-        video from the centre to the right edge and fades the copy in. */
+  /* -- Scroll film: one compact row straight under the hero, never pinned
+        (script-driven pinning stutters on iOS, and sticky drifts in the scaled
+        casing). script.js slides the video from the centre to the right edge
+        and fades the copy in as the page scrolls from the top. */
   .cpm-scroll-film{
-    height: 2400px;
+    height: auto;
+    margin: 0;
   }
 
   .cpm-scroll-film__sticky{
     position: relative;
     top: auto;
-    height: 900px;
+    height: 560px;
     min-height: 0;
     padding: 0;
-    will-change: transform;
   }
 
   .cpm-scroll-film__copy{
@@ -4516,31 +4506,28 @@ body:has(.cpm-page) .nav-plate{
   }
 
   .cpm-brief-axis__image img{
-    width: 600px;
+    width: 100%;
+    max-width: 100%;
   }
 
-  /* -- Design process: no inner scroller. The active tab grows to its full
-        length and the page scrolls through it (touch couldn't reliably
-        scroll a small nested box inside the scaled casing). */
+  /* -- Design process: a contained box ~78% of the screen tall (in layout
+        px, so it survives the casing scale). Its inner scroll only switches
+        on once the box is almost fully on screen (.c4-shell--engaged, set in
+        script.js); until then a swipe on it scrolls the page, so the reader
+        isn't trapped in a half-visible box. */
   .c4-shell{
-    height: auto;
-    align-items: stretch;
-  }
-
-  .c4-sidebar{
-    justify-content: flex-start;
-    padding-top: 40px;
-  }
-
-  .c4-body{
-    overflow: visible;
+    height: calc(78vh / var(--ui-scale));
+    height: calc(78svh / var(--ui-scale));
   }
 
   .c4-panel{
-    position: relative;
-    inset: auto;
-    overflow: visible;
     padding: 32px 36px 48px;
+    overflow-y: hidden;
+    overscroll-behavior-y: auto;
+  }
+
+  .c4-shell--engaged .c4-panel{
+    overflow-y: auto;
   }
 
   .c4-toc-rail{
