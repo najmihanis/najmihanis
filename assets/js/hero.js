@@ -10,13 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const compactQuery = window.matchMedia('(max-width: 900px)');
-  // Scroll-driven animations run on the compositor, so the pin and title drift can't jitter.
-  // Without them (e.g. Firefox) the same motion is driven from the scroll handler instead.
+  // The title's departure runs as a scroll-driven animation (compositor, no lag) where
+  // supported; otherwise the scroll handler drives the same motion.
   const scrollTimelines = window.CSS && CSS.supports('animation-timeline: scroll()');
 
   const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
   const range = (p, start, end) => clamp((p - start) / (end - start));
   const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+  const easeOutBack = (t) => 1 + 2.2 * Math.pow(t - 1, 3) + 1.2 * Math.pow(t - 1, 2);
   const lerp = (a, b, t) => a + (b - a) * t;
   const uiScale = () => parseFloat(root.style.getPropertyValue('--ui-scale')) || 1;
 
@@ -67,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   hero.querySelectorAll('.hero__tags li').forEach((el, i) => el.style.setProperty('--i', i));
 
-  // --------------------------------- INTRO LOADER ---------------------------------
+  // --------------------------------- INTRO LOADER: THE ATOM ---------------------------------
+  // Gears orbit (spinning as they go) and land exactly on their logo positions once the page
+  // is ready; the pencil swings in counter-clockwise and the spanner clockwise to cross.
   const loader = document.getElementById('introLoader');
 
   function startHero() {
@@ -78,26 +82,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loader) loader.remove();
     startHero();
   } else {
-    // Draw the caliper's beam graduations
-    const ticks = loader.querySelector('.intro-caliper__ticks');
-    if (ticks) {
-      let d = '';
-      for (let i = 0, x = 62; x <= 432; i++, x += 7.4) {
-        d += `M${x.toFixed(1)} 34V${i % 5 === 0 ? 46 : 40}`;
-      }
-      ticks.setAttribute('d', d);
-    }
-
-    const jaw = document.getElementById('loaderJaw');
+    const ATOM = { cx: 224, cy: 248, rx: 218, ry: 90 };
+    const gears = [...loader.querySelectorAll('.atom__gear')].map((el) => ({
+      el,
+      orbit: parseFloat(el.dataset.orbit) * Math.PI / 180,
+      theta: parseFloat(el.dataset.theta),
+    }));
+    const pencil = loader.querySelector('.atom__pencil');
+    const spanner = loader.querySelector('.atom__spanner');
     const count = document.getElementById('loaderCount');
     const paintImg = hero.querySelector('.paint__img');
+
     let repeatVisit = false;
     try { repeatVisit = sessionStorage.getItem('nh-intro-seen') === '1'; } catch (e) { /* storage blocked */ }
 
-    const minDuration = repeatVisit ? 700 : 1700;
+    const pace = repeatVisit ? 1.7 : 1;           // repeat visits in a session run faster
+    const minDuration = 1900 / pace;
     const maxDuration = 5000;
+    const ORBIT_SPEED = 0.24 * pace;               // degrees of orbit per ms
+    const SPIN_RATIO = 2.5;                        // self-spin per degree of orbit (lands on a tooth)
+    const TOOLS_START = 250 / pace;
+    const TOOLS_DURATION = 1400 / pace;
+    const HOLD = 380 / pace;
     const startedAt = performance.now();
     let readyAt = 0;
+    let landing = null;                            // { at, from, distance, duration }
 
     const imgReady = paintImg && !paintImg.complete
       ? new Promise((res) => { paintImg.addEventListener('load', res, { once: true }); paintImg.addEventListener('error', res, { once: true }); })
@@ -105,34 +114,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
     Promise.all([imgReady, fontsReady]).then(() => { readyAt = performance.now(); });
 
-    // Purely time-based, so sparse frames (background tabs) still finish on schedule.
-    // Holds at 90% until the artwork and fonts are in, then closes the last 10%.
+    function placeGear(gear, phase, scale) {
+      const th = (gear.theta + phase) * Math.PI / 180;
+      const x = ATOM.cx + ATOM.rx * Math.cos(th) * Math.cos(gear.orbit) - ATOM.ry * Math.sin(th) * Math.sin(gear.orbit);
+      const y = ATOM.cy + ATOM.rx * Math.cos(th) * Math.sin(gear.orbit) + ATOM.ry * Math.sin(th) * Math.cos(gear.orbit);
+      const spin = -(phase * SPIN_RATIO) % 360;
+      gear.el.setAttribute('transform', `translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${spin.toFixed(2)}) scale(${scale.toFixed(3)})`);
+    }
+
+    // Time-based (not frame-counted), so sparse frames in background tabs still finish on time
     function tick() {
       const now = performance.now();
-      const elapsed = now - startedAt;
-      if (!readyAt && elapsed > maxDuration) readyAt = now;
-      const eased = 1 - Math.pow(1 - clamp(elapsed / minDuration), 3);
-      let shown = readyAt ? eased : Math.min(eased, 0.9);
-      if (readyAt && readyAt - startedAt > minDuration * 0.8) {
-        shown = Math.min(1, 0.9 + 0.1 * clamp((now - readyAt) / 350));
+      const t = now - startedAt;
+      if (!readyAt && t > maxDuration) readyAt = now;
+
+      // Orbit phase: constant speed, then a landing that ends on a whole number of turns
+      let phase = t * ORBIT_SPEED;
+      let landed = 0;
+      if (!landing && readyAt && t >= Math.max(minDuration, TOOLS_START + TOOLS_DURATION)) {
+        const minTravel = 110;
+        const distance = minTravel + ((360 - ((phase + minTravel) % 360)) % 360);
+        const duration = clamp((3 * distance) / ORBIT_SPEED, 900 / pace, 1800 / pace);
+        landing = { at: t, from: phase, distance, duration };
+      }
+      if (landing) {
+        landed = clamp((t - landing.at) / landing.duration);
+        phase = landing.from + landing.distance * easeOutCubic(landed);
+      }
+      const gearScale = easeOutBack(clamp(t / (650 / pace)));
+      gears.forEach((gear) => placeGear(gear, phase, gearScale));
+
+      // Tools swing in from opposite sides and cross
+      const toolT = clamp((t - TOOLS_START) / TOOLS_DURATION);
+      const swing = 1 - easeOutBack(toolT);
+      const toolScale = lerp(0.55, 1, easeOutCubic(toolT));
+      if (pencil) {
+        pencil.setAttribute('transform', `rotate(${(swing * 160).toFixed(2)}) scale(${toolScale.toFixed(3)})`);
+        pencil.style.opacity = clamp(toolT * 4).toFixed(2);
+      }
+      if (spanner) {
+        spanner.setAttribute('transform', `rotate(${(swing * -160).toFixed(2)}) scale(${toolScale.toFixed(3)})`);
+        spanner.style.opacity = clamp(toolT * 4).toFixed(2);
       }
 
-      if (jaw) jaw.style.transform = `translateX(${(shown * 300).toFixed(2)}px)`;
+      // Counter: up to 90 while loading, the last 10 during the landing
+      const shown = landing ? 0.9 + 0.1 * landed : 0.9 * easeOutCubic(clamp(t / minDuration));
       if (count) count.textContent = String(Math.round(shown * 100)).padStart(3, '0');
 
-      if (shown < 1) {
+      if (landed < 1) {
         requestAnimationFrame(tick);
         return;
       }
       try { sessionStorage.setItem('nh-intro-seen', '1'); } catch (e) { /* storage blocked */ }
-      setTimeout(leave, 220);
+      setTimeout(leave, HOLD);
     }
 
     function leave() {
       loader.classList.add('is-leaving');
       root.classList.remove('is-loading');
-      setTimeout(startHero, 280);
-      setTimeout(() => loader.remove(), 1200);
+      setTimeout(startHero, 300);
+      setTimeout(() => loader.remove(), 1300);
     }
 
     requestAnimationFrame(tick);
@@ -140,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --------------------------------- PAINT WINDOW ON SCROLL ---------------------------------
   const intro = hero.querySelector('.hero__intro');
+  const unscale = hero.querySelector('[data-hero-unscale]');
   const track = hero.querySelector('[data-hero-track]');
   const stage = hero.querySelector('[data-hero-stage]');
   const paint = hero.querySelector('[data-paint]');
@@ -149,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursor = hero.querySelector('[data-paint-cursor]');
   const bio = (hero.querySelector('[data-hero-bio]') || {}).textContent || '';
   const text = bio.replace(/\s+/g, ' ').trim();
-  if (!track || !stage || !paint || !text) return;
+  if (!track || !stage || !paint || !unscale || !text) return;
 
   // Paint geometry, as fractions of the artwork (1027 × 1532)
   const ASPECT = 1532 / 1027;
@@ -170,40 +212,43 @@ document.addEventListener('DOMContentLoaded', () => {
     done: 'Text placed. Keep scrolling ↓',
   };
 
-  // Scroll range of the pin, in document px: [pinStart, pinEnd], set by measure()
-  let pinStart = 0;
-  let pinEnd = 1;
-  let pinTravel = 0;     // local (pre-scale) px the stage moves over that range
-  let driftEnd = 900;
+  const DEPART_SPEED = 0.9;   // the title block moves up this much faster than the page
+  let departEnd = 700;        // document px of scroll over which the title leaves
   let lastTyped = -1;
   let lastStatus = '';
-  let pinFix = 0;
   let scrubTimer = 0;
 
   typedEl.textContent = '';
 
   const pinned = () => !compactQuery.matches && !reduceMotion;
 
+  const casing = document.getElementById('deviceCasing');
+
   function measure() {
     const s = uiScale();
-    root.style.setProperty('--hero-vh', `${Math.round(window.innerHeight / s)}px`);
 
-    // Title drift: runs until the paint window reaches the top of the screen
+    if (pinned() && casing) {
+      // .hero__unscale cancels the casing's scale, so inside it layout px are screen px,
+      // shifted by a constant: (where it's drawn) − (where layout thinks it is). The casing
+      // scales from its top edge, so layout top = casing top + (drawn offset) / scale.
+      root.style.setProperty('--hero-s', s.toFixed(4));
+      root.style.setProperty('--hero-vh', `${window.innerHeight}px`);
+      const casingTop = casing.getBoundingClientRect().top;
+      const drawnTop = unscale.getBoundingClientRect().top;
+      const shift = (drawnTop - casingTop) * (1 - 1 / s);
+      stage.style.top = `${(-shift).toFixed(3)}px`;
+    } else {
+      root.style.setProperty('--hero-s', '1');
+      stage.style.top = '';
+    }
+
+    // Title departure: done well before the paint window reaches the top of the screen
     const trackTop = track.getBoundingClientRect().top + window.scrollY;
-    driftEnd = Math.max(300, trackTop);
-    hero.style.setProperty('--drift-end', `${Math.round(driftEnd)}px`);
-    hero.style.setProperty('--drift-y', `${Math.round(driftEnd * 0.45 / s)}px`);
-    // Letters drain one after another across most of the drift
-    hero.style.setProperty('--drain-start', `${Math.round(driftEnd * 0.08)}px`);
-    hero.style.setProperty('--drain-step', `${((driftEnd * 0.7) / Math.max(1, fillChars.length)).toFixed(2)}px`);
-
-    if (!pinned()) return;
-    pinTravel = Math.max(0, track.offsetHeight - stage.offsetHeight);
-    pinStart = trackTop;
-    pinEnd = pinStart + pinTravel * s;
-    stage.style.setProperty('--pin-start', `${Math.round(pinStart)}px`);
-    stage.style.setProperty('--pin-end', `${Math.round(pinEnd)}px`);
-    stage.style.setProperty('--pin-travel', `${Math.round(pinTravel)}px`);
+    departEnd = Math.max(240, trackTop * 0.85);
+    hero.style.setProperty('--depart-end', `${Math.round(departEnd)}px`);
+    hero.style.setProperty('--depart-y', `${Math.round(-departEnd * DEPART_SPEED / s)}px`);
+    hero.style.setProperty('--drain-step', `${((departEnd * 0.35) / Math.max(1, fillChars.length)).toFixed(2)}px`);
+    hero.style.setProperty('--drain-len', `${Math.round(departEnd * 0.25)}px`);
   }
 
   function setStatus(msg) {
@@ -228,41 +273,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const end = window.innerHeight * 0.04;
       return clamp((start - rect.top) / (start - end));
     }
-    return clamp((window.scrollY - pinStart) / Math.max(1, pinEnd - pinStart));
+    const rect = track.getBoundingClientRect();
+    return clamp(-rect.top / Math.max(1, rect.height - stage.getBoundingClientRect().height));
   }
 
-  // Fallback only (no scroll-driven animations): sticky creeps by (scale − 1) × scroll inside
-  // the scaled casing, so measure where it is and nudge it to where it should be.
-  function fixPin() {
-    if (scrollTimelines || !pinned()) return;
-    const s = uiScale();
-    const trackRect = track.getBoundingClientRect();
-    const stageRect = stage.getBoundingClientRect();
-    const rawTop = stageRect.top - pinFix * s;
-    const desired = Math.min(Math.max(trackRect.top, 0), trackRect.bottom - stageRect.height);
-    const next = (desired - rawTop) / s;
-    if (Math.abs(next - pinFix) > 0.1) {
-      pinFix = next;
-      stage.style.setProperty('--hero-pin-fix', `${pinFix.toFixed(2)}px`);
-    }
-  }
-
-  // Fallback only: title drift + letter drain from the scroll handler
-  function driftTitle() {
+  // Fallback only: title departure + letter drain from the scroll handler
+  function departTitle() {
     if (scrollTimelines || reduceMotion || !intro) return;
-    const s = uiScale();
-    const t = clamp(window.scrollY / driftEnd);
-    intro.style.transform = `translate3d(0, ${(t * driftEnd * 0.45 / s).toFixed(1)}px, 0)`;
-    intro.style.opacity = (1 - t * 0.65).toFixed(3);
-    const step = (driftEnd * 0.7) / Math.max(1, fillChars.length);
+    const y = window.scrollY;
+    const t = clamp(y / departEnd);
+    intro.style.transform = `translate3d(0, ${(-t * departEnd * DEPART_SPEED / uiScale()).toFixed(1)}px, 0)`;
+    intro.style.opacity = (1 - range(t, 0.25, 0.85)).toFixed(3);
+    const step = (departEnd * 0.35) / Math.max(1, fillChars.length);
+    const len = departEnd * 0.25;
     fillChars.forEach((el, i) => {
-      el.style.opacity = (1 - clamp((window.scrollY - driftEnd * 0.08 - i * step) / 140)).toFixed(3);
+      el.style.opacity = (1 - clamp((y - i * step) / len)).toFixed(3);
     });
   }
 
   function render() {
-    fixPin();
-    driftTitle();
+    departTitle();
     const p = progress();
 
     // Cursor path: rest → "A" tool → click → box corner → drag to the far corner

@@ -17,7 +17,7 @@
     --font-serif-italic: 'Instrument Serif', Georgia, serif;
     --paint-paper: #faf8f2;           /* matches the paint artwork's off-white */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    /* Local (pre-scale) px equal to one screen height. Set by hero.js. */
+    /* One screen height in px for the (unscaled) pinned stage. Set by hero.js. */
     --hero-vh: 100vh;
 }
 
@@ -30,12 +30,8 @@
     display: none;
     place-items: center;
     background: var(--bg-paper);
-    color: var(--ink);
-    /* subtle dot grid, same family as the branding grille */
-    background-image: radial-gradient(circle at center, rgba(26,26,26,0.12) 1px, transparent 1.5px);
-    background-size: 14px 14px;
     clip-path: inset(0 0 0 0);
-    transition: clip-path 1s var(--ease-out-expo);
+    transition: clip-path 1.1s var(--ease-out-expo);
 }
 html.is-loading .intro-loader,
 .intro-loader.is-leaving { display: grid; }
@@ -43,44 +39,42 @@ html.is-loading body { overflow: hidden; }
 .intro-loader.is-leaving { clip-path: inset(0 0 100% 0); }
 
 .intro-loader__inner {
-    width: min(460px, calc(100vw - 48px));
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    transition: transform 1s var(--ease-out-expo), opacity 0.5s ease;
+    align-items: center;
+    gap: 22px;
+    transition: transform 1.1s var(--ease-out-expo), opacity 0.6s ease;
 }
-.intro-loader.is-leaving .intro-loader__inner { transform: translateY(-40px); opacity: 0; }
+.intro-loader.is-leaving .intro-loader__inner { transform: translateY(-60px) scale(0.92); opacity: 0; }
 
-.intro-loader__row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+.atom {
+    width: min(300px, 62vw);
+    height: auto;
+    display: block;
+    overflow: visible;
 }
-.intro-loader__row--readout { border-top: 2px solid var(--ink); padding-top: 12px; }
-.intro-loader__row--readout > span:last-child { text-align: right; opacity: 0.6; max-width: 18ch; }
+.atom__orbit {
+    stroke-dasharray: 100 100;
+    stroke-dashoffset: 100;
+    animation: atom-orbit-draw 1.3s var(--ease-out-expo) forwards;
+}
+.atom__orbit:nth-child(2) { animation-delay: 0.12s; }
+.atom__orbit:nth-child(3) { animation-delay: 0.24s; }
+@keyframes atom-orbit-draw { to { stroke-dashoffset: 0; } }
+
+.atom__halo { fill: var(--bg-paper); }
+.atom__teeth { fill: #c8951f; }
+.atom__gear, .atom__tool { will-change: transform; }
+.atom__tool { opacity: 0; }
 
 .intro-loader__count {
-    font-family: var(--font-deco);
-    font-weight: 600;
-    font-size: 72px;
-    line-height: 0.8;
-    letter-spacing: 0;
-    font-variant-numeric: tabular-nums;
-}
-.intro-loader__count small {
     font-family: 'Space Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.14em;
-    margin-left: 6px;
+    letter-spacing: 0.24em;
+    color: var(--ink);
+    opacity: 0.55;
+    font-variant-numeric: tabular-nums;
 }
-
-.intro-caliper { width: 100%; height: auto; display: block; overflow: visible; }
-.intro-caliper__jaw { will-change: transform; }
 
 /* --------------------------------------- HERO PANEL ----------------------------------- */
 
@@ -134,31 +128,23 @@ html.is-loading body { overflow: hidden; }
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr 1fr;
-    border-top: 2px solid var(--ink);
-    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 6px;
 }
 .hero__tags li {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    padding: 12px 14px;
+    padding: 0 22px;
     font-family: var(--font-header);
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 0.08em;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     white-space: nowrap;
 }
-.hero__tags li + li { border-left: 2px solid var(--ink); }
-.hero__tag-no {
-    font-family: 'Space Mono', monospace;
-    font-weight: 400;
-    font-size: 10px;
-    opacity: 0.55;
-}
+.hero__tags li + li { border-left: 1.5px solid var(--ink); }
 
 .hero__bio {
     /* visually hidden: the typed copy in the paint window is decorative */
@@ -171,9 +157,11 @@ html.is-loading body { overflow: hidden; }
 }
 
 /* --------------------------------------- PINNED STAGE ----------------------------------- */
-/* The casing is scaled with a transform, which makes position: sticky creep and a scroll
-   handler lag a frame (jitter). Instead the stage rides a scroll-driven animation: hero.js
-   measures the scroll range and travel, the compositor moves it in lockstep with the page. */
+/* The casing is scaled with a transform, and a sticky element inside a scaled box creeps by
+   (scale − 1) × scroll, which a scroll handler can only chase a frame late (jitter).
+   .hero__unscale applies the inverse scale, so everything inside it is laid out in true
+   screen px and the browser's own sticky pins it exactly. hero.js sets --hero-s (the casing
+   scale), --hero-vh (screen height in px) and the stage's top offset. */
 
 .hero__track {
     position: relative;
@@ -182,28 +170,22 @@ html.is-loading body { overflow: hidden; }
 }
 
 .hero__stage {
-    position: sticky;          /* fallback for browsers without scroll-driven animations */
+    position: sticky;
     top: 0;
     height: var(--hero-vh);
     display: grid;
     place-items: center;
-    transform: translate3d(0, var(--hero-pin-fix, 0px), 0);
 }
 
-@supports (animation-timeline: scroll()) {
-    .hero__stage {
-        position: absolute;
-        left: 0;
-        right: 0;
-        transform: none;
-        animation: hero-pin linear both;
-        animation-timeline: scroll(root);
-        animation-range: var(--pin-start, 0px) var(--pin-end, 1px);
+@media (min-width: 901px) {
+    .hero__unscale {
+        width: calc(100% * var(--hero-s, 1));
+        margin-left: calc(50% * (1 - var(--hero-s, 1)));
+        /* the box reserves layout height × scale on screen; shed the excess */
+        margin-bottom: calc(var(--hero-vh) * 3 * (1 / var(--hero-s, 1) - 1));
+        transform: scale(calc(1 / var(--hero-s, 1)));
+        transform-origin: top center;
     }
-}
-@keyframes hero-pin {
-    from { transform: translate3d(0, 0, 0); }
-    to   { transform: translate3d(0, var(--pin-travel, 0px), 0); }
 }
 
 /* --------------------------------------- PAINT WINDOW ----------------------------------- */
@@ -211,7 +193,7 @@ html.is-loading body { overflow: hidden; }
 .paint {
     position: relative;
     margin: 0;
-    width: min(620px, calc((var(--hero-vh) - 56px) * 0.6704));
+    width: min(calc(620px * var(--hero-s, 1)), calc((var(--hero-vh) - 56px) * 0.6704));
     aspect-ratio: 1027 / 1532;
     container-type: inline-size;
     /* hard offset shadow, same as the site's cards */
@@ -336,10 +318,9 @@ html.is-loading body { overflow: hidden; }
 
 html.js .hero__title-outline .hero__char > span,
 html.js .hero__title-fill .hero__char > span { opacity: 0; transform: translateY(0.06em); }
-html.js .hero__tags { border-color: transparent; }
 html.js .hero__tags li { opacity: 0; transform: translateY(10px); }
-html.js .hero__stage .paint { clip-path: inset(0 47% 0 47%); }
-html.js .hero__stage .paint__img { transform: scale(1.12); }
+html.js .hero__stage .paint { clip-path: inset(50% 50% 50% 50%); }
+html.js .hero__stage .paint__img { transform: scale(0.86); }
 
 html.js.hero-in .hero__char > span {
     opacity: 1;
@@ -350,45 +331,45 @@ html.js.hero-in .hero__char > span {
 html.js.hero-in .hero__title-fill .hero__char > span {
     transition-delay: calc(0.45s + var(--i, 0) * 0.035s);
 }
-html.js.hero-in .hero__tags {
-    border-color: var(--ink);
-    transition: border-color 0.4s ease 1s;
-}
 html.js.hero-in .hero__tags li {
     opacity: 1; transform: none;
     transition: opacity 0.6s ease, transform 0.9s var(--ease-out-expo);
     transition-delay: calc(1.05s + var(--i, 0) * 0.07s);
 }
-/* the paint window opens from a thin vertical strip, like illoca's hero image */
+/* the paint window opens out of nothing while the artwork zooms in to size */
 html.js.hero-in .hero__stage .paint {
     clip-path: inset(0 -24px -24px 0);
-    transition: clip-path 1.5s var(--ease-out-expo) 1.1s;
+    transition: clip-path 1.4s var(--ease-out-expo) 1.2s;
 }
 html.js.hero-in .hero__stage .paint__img {
     transform: none;
-    transition: transform 1.8s var(--ease-out-expo) 1.1s;
+    transition: transform 1.8s var(--ease-out-expo) 1.2s;
 }
 
 /* --------------------------------------- SCROLL DEPARTURE ----------------------------------- */
-/* As the page scrolls, the title drifts down behind the rising paint window and its fill
-   drains letter by letter, leaving a ghost outline. Compositor-driven where supported. */
+/* The title block leaves faster than the page scrolls (and fades, its fill draining letter by
+   letter), so the rising paint window never reaches it. Compositor-driven where supported;
+   hero.js drives the same motion from the scroll handler otherwise. */
 
 @supports (animation-timeline: scroll()) {
     .hero__intro {
-        animation: hero-intro-drift linear both;
+        animation: hero-intro-depart linear both;
         animation-timeline: scroll(root);
-        animation-range: 0px var(--drift-end, 900px);
+        animation-range: 0px var(--depart-end, 700px);
     }
     .hero__title-fill .hero__char {
         animation: hero-char-drain linear both;
         animation-timeline: scroll(root);
         animation-range:
-            calc(var(--drain-start, 40px) + var(--i, 0) * var(--drain-step, 14px))
-            calc(var(--drain-start, 40px) + 140px + var(--i, 0) * var(--drain-step, 14px));
+            calc(var(--i, 0) * var(--drain-step, 8px))
+            calc(var(--drain-len, 120px) + var(--i, 0) * var(--drain-step, 8px));
     }
 }
-@keyframes hero-intro-drift {
-    to { transform: translate3d(0, var(--drift-y, 320px), 0); opacity: 0.35; }
+@keyframes hero-intro-depart {
+    0%   { transform: translate3d(0, 0, 0); opacity: 1; }
+    25%  { opacity: 1; }
+    85%  { opacity: 0; }
+    100% { transform: translate3d(0, var(--depart-y, -500px), 0); opacity: 0; }
 }
 @keyframes hero-char-drain {
     to { opacity: 0; }
@@ -407,29 +388,19 @@ html.js.hero-in .hero__stage .paint__img {
     }
     .hero__title-outline { -webkit-text-stroke-width: calc(1px / var(--ui-scale, 1)); }
 
-    .hero__tags {
-        grid-template-columns: 1fr 1fr;
-        border-width: calc(1.5px / var(--ui-scale, 1)) 0;
-    }
+    .hero__tags { row-gap: calc(8px / var(--ui-scale, 1)); }
     .hero__tags li {
         font-size: calc(10px / var(--ui-scale, 1));
-        padding: calc(9px / var(--ui-scale, 1)) calc(10px / var(--ui-scale, 1));
-        gap: calc(6px / var(--ui-scale, 1));
+        padding: 0 calc(9px / var(--ui-scale, 1));
     }
-    .hero__tags li + li { border-left-width: calc(1.5px / var(--ui-scale, 1)); }
-    .hero__tags li:nth-child(3) { border-left: 0; }
-    .hero__tags li:nth-child(n + 3) { border-top: calc(1.5px / var(--ui-scale, 1)) solid var(--ink); }
-    .hero__tag-no { font-size: calc(8px / var(--ui-scale, 1)); }
+    .hero__tags li + li { border-left-width: calc(1px / var(--ui-scale, 1)); }
 
     .hero__track { height: auto; }
-    .hero__stage,
-    .hero__stage[style] {
+    .hero__stage {
         position: relative;
         height: auto;
         display: block;
         padding: calc(28px / var(--ui-scale, 1)) 36px calc(36px / var(--ui-scale, 1));
-        transform: none;
-        animation: none;
     }
     .paint { width: 100%; filter: none; }
 }
@@ -438,7 +409,8 @@ html.js.hero-in .hero__stage .paint__img {
 
 @media (prefers-reduced-motion: reduce) {
     .hero__track { height: auto; }
-    .hero__stage { position: relative; height: auto; padding-block: 40px; transform: none; animation: none; }
+    .hero__stage { position: relative; height: auto; padding-block: 40px; }
+    .hero__unscale { transform: none; width: auto; margin: 0; }
     .hero__intro, .hero__title-fill .hero__char { animation: none; }
     .paint__caret { animation: none; }
     html.js .hero *, html.js .hero *::before { transition: none !important; }

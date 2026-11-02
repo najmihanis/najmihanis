@@ -30,48 +30,64 @@
 </head>
 
 <body>
-    <!-- --------------------------------- INTRO LOADER: a caliper measuring 0 → 100 --------------------------------- -->
+    <!-- --------------------------------- INTRO LOADER: the atom logo assembling itself --------------------------------- -->
+    <!-- Geometry traced from the brand logo: three identical orbits (rx 218, ry 90) at 90° / 31° / 149°,
+         8-tooth gears riding them, pencil + spanner crossed at the nucleus. hero.js drives the motion. -->
     <div class="intro-loader" id="introLoader" aria-hidden="true">
         <div class="intro-loader__inner">
-            <div class="intro-loader__row">
-                <span>Najmi Hanis</span>
-                <span>Calibrating</span>
-            </div>
+            <svg class="atom" viewBox="0 0 450 490" fill="none">
+                <defs>
+                    <path id="atomGear" d="M21.19 -5.90L29.12 -4.70L29.12 4.70L21.19 5.90A22.0 22.0 0 0 1 19.16 10.81L23.92 17.27L17.27 23.92L10.81 19.16A22.0 22.0 0 0 1 5.90 21.19L4.70 29.12L-4.70 29.12L-5.90 21.19A22.0 22.0 0 0 1 -10.81 19.16L-17.27 23.92L-23.92 17.27L-19.16 10.81A22.0 22.0 0 0 1 -21.19 5.90L-29.12 4.70L-29.12 -4.70L-21.19 -5.90A22.0 22.0 0 0 1 -19.16 -10.81L-23.92 -17.27L-17.27 -23.92L-10.81 -19.16A22.0 22.0 0 0 1 -5.90 -21.19L-4.70 -29.12L4.70 -29.12L5.90 -21.19A22.0 22.0 0 0 1 10.81 -19.16L17.27 -23.92L23.92 -17.27L19.16 -10.81A22.0 22.0 0 0 1 21.19 -5.90Z M0 -10.5a10.5 10.5 0 1 0 0 21a10.5 10.5 0 1 0 0-21z" fill-rule="evenodd"/>
+                    <mask id="spannerJaws" maskUnits="userSpaceOnUse" x="-100" y="-100" width="200" height="200">
+                        <rect x="-100" y="-100" width="200" height="200" fill="#fff"/>
+                        <path d="M0 -6.5h30v13h-30a6.5 6.5 0 0 1 0-13z" fill="#000" transform="translate(53.5 0) rotate(-24) translate(-1 0)"/>
+                        <path d="M0 -6.5h30v13h-30a6.5 6.5 0 0 1 0-13z" fill="#000" transform="translate(-56 0) rotate(204) translate(-1 0)"/>
+                    </mask>
+                </defs>
 
-            <svg class="intro-caliper" viewBox="0 0 460 120" fill="none" stroke="currentColor" stroke-width="2">
-                <!-- main beam + fixed jaw -->
-                <path d="M30 34 H440 V58 H30 Z" fill="#fff"/>
-                <path class="intro-caliper__ticks" d="" stroke-width="1.5"/>
-                <path d="M30 34 V112 L52 112 L58 58" fill="#fff"/>
-                <path d="M30 34 V12 L42 12 L46 34" fill="#fff"/>
-                <!-- sliding jaw -->
-                <g class="intro-caliper__jaw" id="loaderJaw">
-                    <path d="M58 28 H118 V64 H58 Z" fill="#fff"/>
-                    <path d="M58 64 L64 112 L84 112 L84 64" fill="#fff"/>
-                    <path d="M58 28 L62 12 L72 12 L72 28" fill="#fff"/>
-                    <path d="M66 58 V64 M74 58 V62 M82 58 V64 M90 58 V62 M98 58 V64 M106 58 V62" stroke-width="1.5"/>
-                    <circle cx="104" cy="22" r="4"/>
+                <g class="atom__orbits" stroke="#3f7a7f" stroke-width="10.5">
+                    <ellipse class="atom__orbit" cx="224" cy="248" rx="218" ry="90" transform="rotate(90 224 248)" pathLength="100"/>
+                    <ellipse class="atom__orbit" cx="224" cy="248" rx="218" ry="90" transform="rotate(31 224 248)" pathLength="100"/>
+                    <ellipse class="atom__orbit" cx="224" cy="248" rx="218" ry="90" transform="rotate(149 224 248)" pathLength="100"/>
+                </g>
+
+                <!-- each gear carries a paper-coloured halo that breaks its orbit, like the logo -->
+                <g class="atom__gear" transform="scale(0)" data-orbit="149" data-theta="141.6"><circle r="34" class="atom__halo"/><use href="#atomGear" class="atom__teeth"/></g>
+                <g class="atom__gear" transform="scale(0)" data-orbit="31" data-theta="142.9"><circle r="34" class="atom__halo"/><use href="#atomGear" class="atom__teeth"/></g>
+                <g class="atom__gear" transform="scale(0)" data-orbit="90" data-theta="323.1"><circle r="34" class="atom__halo"/><use href="#atomGear" class="atom__teeth"/></g>
+
+                <g transform="translate(224 249)">
+                    <!-- pencil: tip upper-left, eraser lower-right -->
+                    <g class="atom__tool atom__pencil">
+                        <g transform="rotate(42.5)">
+                            <path d="M-79 0L-52 -10V10Z" fill="var(--bg-paper)" stroke="#111" stroke-width="2.6" stroke-linejoin="round"/>
+                            <path d="M-79 0L-69.5 -3.5V3.5Z" fill="#111"/>
+                            <rect x="-52" y="-10" width="101" height="20" fill="#111"/>
+                            <rect x="-52" y="-4.7" width="101" height="2.1" fill="var(--bg-paper)"/>
+                            <rect x="-52" y="2.6" width="101" height="2.1" fill="var(--bg-paper)"/>
+                            <rect x="49" y="-10" width="2.6" height="20" fill="var(--bg-paper)"/>
+                            <path d="M51.6 -10H67a5.5 5.5 0 0 1 5.5 5.5v9A5.5 5.5 0 0 1 67 10H51.6Z" fill="#111"/>
+                        </g>
+                    </g>
+                    <!-- spanner: open ends upper-right and lower-left, drawn over the pencil -->
+                    <g class="atom__tool atom__spanner">
+                        <g transform="rotate(-43)">
+                            <g mask="url(#spannerJaws)" fill="#111">
+                                <rect x="-46" y="-6.6" width="88" height="13.2" rx="3"/>
+                                <circle cx="53.5" cy="0" r="17.5"/>
+                                <circle cx="-56" cy="0" r="17.5"/>
+                                <path d="M28 -6.6L41 -9.6V9.6L28 6.6Z"/>
+                                <path d="M-32 -6.6L-43 -9.6V9.6L-32 6.6Z"/>
+                            </g>
+                        </g>
+                    </g>
                 </g>
             </svg>
 
-            <div class="intro-loader__row intro-loader__row--readout">
-                <span class="intro-loader__count"><span id="loaderCount">000</span><small>.00 mm</small></span>
-                <span>Mechanism design &amp; creative storytelling</span>
-            </div>
+            <div class="intro-loader__count"><span id="loaderCount">000</span></div>
         </div>
     </div>
 
-    <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
-    <svg style="display: none;">
-        <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 26V12a10 10 0 0 1 10-10h14"/>
-        </symbol>
-
-        <symbol id="corner-complex" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
-            <circle cx="14" cy="14" r="4"/>
-        </symbol>
-    </svg>
     <!-- --------------------------------------------------- MAIN BODY CASING --------------------------------------------- -->
     <div class="scale-stage" id="scaleStage"> <!-- wrapping everthing in a "container" for scaling adjustments -->
         <div class="device-casing" id="deviceCasing">
@@ -156,13 +172,15 @@
                         </h1>
 
                         <ul class="hero__tags" aria-label="Disciplines">
-                            <li><span class="hero__tag-no">01</span>Mechanical Engineering</li>
-                            <li><span class="hero__tag-no">02</span>Robotics</li>
-                            <li><span class="hero__tag-no">03</span>Design</li>
-                            <li><span class="hero__tag-no">04</span>Art</li>
+                            <li>Mechanical Engineering</li>
+                            <li>Robotics</li>
+                            <li>Design</li>
+                            <li>Art</li>
                         </ul>
                     </div>
 
+                    <!-- Desktop: cancels the casing's scale so the sticky stage pins exactly (see hero.css) -->
+                    <div class="hero__unscale" data-hero-unscale>
                     <div class="hero__track" data-hero-track>
                         <div class="hero__stage" data-hero-stage>
 
@@ -186,6 +204,7 @@
                             </figure>
 
                         </div>
+                    </div>
                     </div>
 
                     <!-- Source of the typed text (and what screen readers get) -->
