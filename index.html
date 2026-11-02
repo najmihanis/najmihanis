@@ -9,13 +9,58 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Limelight&family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/hero.css">
+
+    <!-- Hero intro states only apply when JS can run them; the loader is skipped for reduced motion -->
+    <script>
+        document.documentElement.classList.add('js');
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('is-loading');
+            // Safety net: never leave the page behind the loader if hero.js fails
+            setTimeout(function () {
+                var el = document.documentElement;
+                if (el.classList.contains('is-loading')) { el.classList.remove('is-loading'); el.classList.add('hero-in'); }
+            }, 7000);
+        }
+    </script>
 </head>
 
 <body>
+    <!-- --------------------------------- INTRO LOADER: a caliper measuring 0 → 100 --------------------------------- -->
+    <div class="intro-loader" id="introLoader" aria-hidden="true">
+        <div class="intro-loader__inner">
+            <div class="intro-loader__row">
+                <span>Najmi Hanis</span>
+                <span>Calibrating</span>
+            </div>
+
+            <svg class="intro-caliper" viewBox="0 0 460 120" fill="none" stroke="currentColor" stroke-width="2">
+                <!-- main beam + fixed jaw -->
+                <path d="M30 34 H440 V58 H30 Z" fill="#fff"/>
+                <path class="intro-caliper__ticks" d="" stroke-width="1.5"/>
+                <path d="M30 34 V112 L52 112 L58 58" fill="#fff"/>
+                <path d="M30 34 V12 L42 12 L46 34" fill="#fff"/>
+                <!-- sliding jaw -->
+                <g class="intro-caliper__jaw" id="loaderJaw">
+                    <path d="M58 28 H118 V64 H58 Z" fill="#fff"/>
+                    <path d="M58 64 L64 112 L84 112 L84 64" fill="#fff"/>
+                    <path d="M58 28 L62 12 L72 12 L72 28" fill="#fff"/>
+                    <path d="M66 58 V64 M74 58 V62 M82 58 V64 M90 58 V62 M98 58 V64 M106 58 V62" stroke-width="1.5"/>
+                    <circle cx="104" cy="22" r="4"/>
+                </g>
+            </svg>
+
+            <div class="intro-loader__row intro-loader__row--readout">
+                <span class="intro-loader__count"><span id="loaderCount">000</span><small>.00 mm</small></span>
+                <span>Mechanism design &amp; creative storytelling</span>
+            </div>
+        </div>
+    </div>
+
     <!-- SCREW @ CORNERS OF HERO: GENERALIZED (simple vs complex corner)-->
     <svg style="display: none;">
         <symbol id="corner-simple" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -93,83 +138,86 @@
 
                 </header>
 
-                <!-- --------------------------------- SIDE CONSOLE & HERO SECTION ------------------------------- -->
-                <div class="main-body-grid">
+                <!-- --------------------------------- HERO: TITLE + PAINT WINDOW ------------------------------- -->
+                <!-- The paint window is pinned while the page scrolls (desktop) and "types" the bio into a text box.
+                     hero.js maps scroll progress onto the cursor, text box and status bar. -->
+                <section class="panel-section hero" id="hero" data-hero>
+                    <div class="corner-deco complex c-tl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+                    <div class="corner-deco complex c-tr"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+                    <div class="corner-deco complex c-bl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
+                    <div class="corner-deco complex c-br"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
 
-                    <!-- SIDE CONSOLE -->
-                    <aside class="panel-section sidebar-panel">
-                        <div class="corner-deco c-tl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
-                        <div class="corner-deco c-tr"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
-                        <div class="corner-deco c-bl"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
-                        <div class="corner-deco c-br"><svg viewBox="0 0 28 28"><use href="#corner-simple"></use></svg></div>
-
-                        <div class="instrument-bezel">
-                            <div class="gauge-housing">
-                                <svg class="gauge-bg" viewBox="0 0 100 100">
-                                    <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="1, 4" />
-                                    <path d="M20 80 A 45 45 0 1 1 80 80" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="1, 14" opacity="0.5"/>
-                                    <text x="50" y="30" text-anchor="middle" font-size="8" font-weight="bold" fill="currentColor">RPM</text>
-                                    <text x="28" y="75" text-anchor="middle" font-size="6" fill="currentColor">0</text>
-                                    <text x="72" y="75" text-anchor="middle" font-size="6" fill="currentColor">10</text>
-                                </svg>
-                                <div class="needle"></div>
-                                <div class="gauge-center-cap"></div>
-                                <div class="gauge-glass-reflection"></div>
-                            </div>
+                    <div class="hero__intro">
+                        <div class="hero__meta" data-reveal="fade">
+                            <span>Najmi Hanis</span>
+                            <span class="hero__meta-rule" aria-hidden="true"></span>
+                            <span>Scroll to draw<span class="hero__cue-arrow" aria-hidden="true">&darr;</span></span>
                         </div>
 
-                        <div class="slider-group">
-                            <div class="slider-track-housing">
-                                <div class="slider-slot"></div>
-                                <div class="slider-handle retro-fader">
-                                    <div class="ribs"><span></span><span></span><span></span></div>
+                        <h1 class="hero__title" aria-label="Mechanism design and creative storytelling">
+                            <span class="hero__word" aria-hidden="true"><span>Mechanism</span></span>
+                            <span class="hero__word" aria-hidden="true"><span>design</span></span>
+                            <span class="hero__word hero__word--and" aria-hidden="true"><span>and</span></span>
+                            <span class="hero__word" aria-hidden="true"><span>creative</span></span>
+                            <span class="hero__word" aria-hidden="true"><span>storytelling</span></span>
+                        </h1>
+
+                        <ul class="hero__tags" aria-label="Disciplines">
+                            <li><span class="hero__tag-no">01</span>Mechanical Engineering</li>
+                            <li><span class="hero__tag-no">02</span>Robotics</li>
+                            <li><span class="hero__tag-no">03</span>Design</li>
+                            <li><span class="hero__tag-no">04</span>Art</li>
+                        </ul>
+                    </div>
+
+                    <div class="hero__track" data-hero-track>
+                        <div class="hero__stage" data-hero-stage>
+
+                            <!-- LEFT RAIL: caliper-style progress readout -->
+                            <aside class="hero__rail hero__rail--left" aria-hidden="true">
+                                <div class="hero__rail-label">Fig. 01</div>
+                                <div class="hero__rail-caption">Hand, caliper,<br>wristwatch.</div>
+                                <div class="hero__gauge">
+                                    <div class="hero__gauge-scale"></div>
+                                    <div class="hero__gauge-jaw" data-hero-jaw></div>
                                 </div>
-                            </div>
-                            <div class="slider-labels">
-                                <span>MAX</span>
-                                <span class="tick">-</span>
-                                <span class="tick">-</span>
-                                <span class="tick">-</span>
-                                <span class="tick">-</span>
-                                <span class="tick">-</span>
-                                <span>MIN</span>
-                            </div>
+                                <div class="hero__readout"><span data-hero-readout>000.00</span> mm</div>
+                            </aside>
+
+                            <figure class="paint" data-paint>
+                                <img class="paint__img" src="assets/images/hero/paint-caliper.webp" width="1027" height="1532"
+                                     alt="A retro paint program window with an ink drawing of a hand holding a vernier caliper">
+
+                                <span class="paint__tool" data-paint-tool aria-hidden="true"></span>
+                                <div class="paint__status" aria-hidden="true"><span data-paint-status>For Help, click Help Topics on the Help Menu.</span></div>
+
+                                <div class="paint__box" data-paint-box aria-hidden="true">
+                                    <span class="paint__handle" style="--hx:0;--hy:0"></span><span class="paint__handle" style="--hx:.5;--hy:0"></span><span class="paint__handle" style="--hx:1;--hy:0"></span>
+                                    <span class="paint__handle" style="--hx:0;--hy:.5"></span><span class="paint__handle" style="--hx:1;--hy:.5"></span>
+                                    <span class="paint__handle" style="--hx:0;--hy:1"></span><span class="paint__handle" style="--hx:.5;--hy:1"></span><span class="paint__handle" style="--hx:1;--hy:1"></span>
+                                    <p class="paint__text"><span data-paint-typed></span><span class="paint__caret"></span><span class="paint__ghost" data-paint-ghost></span></p>
+                                </div>
+
+                                <svg class="paint__cursor" data-paint-cursor viewBox="0 0 12 19" aria-hidden="true">
+                                    <path d="M0.5 0.5v15l3.5-3.5 2.5 6 2.5-1-2.5-6h5z" fill="#fff" stroke="#000" stroke-width="1" stroke-linejoin="miter"/>
+                                </svg>
+                            </figure>
+
+                            <!-- RIGHT RAIL: what the "user" is doing -->
+                            <aside class="hero__rail hero__rail--right" aria-hidden="true">
+                                <ol class="hero__log" data-hero-log>
+                                    <li><span>01</span>Text tool</li>
+                                    <li><span>02</span>Draw a box</li>
+                                    <li><span>03</span>Type the brief</li>
+                                    <li><span>04</span>Scroll on</li>
+                                </ol>
+                            </aside>
                         </div>
+                    </div>
 
-                        <div class="switch-panel">
-                            <div class="rocker-switch"></div>
-                            <div class="rocker-switch off"></div>
-                            <div class="round-knob"></div>
-                            <div class="round-knob"></div>
-                        </div>
-                    </aside>
-
-                    <!-- HERO SECTION -->
-                    <main class="panel-section hero-panel" id="hero" >
-                        <div class="corner-deco complex c-tl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
-                        <div class="corner-deco complex c-tr"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
-                        <div class="corner-deco complex c-bl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
-                        <div class="corner-deco complex c-br"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
-
-                        <div class="hero-content">
-                            <h2>MECHANICAL SYSTEMS, DESIGNED WITH FEELING</h2>
-                            <p class="subhead">mechanical engineering • robotics • design • art</p>
-
-                            <!-- NEW: intro block (under meta, before CTA) -->
-                            <p class="hero-intro">
-                                I design and build mechanical systems with an emphasis on clarity, in function, feel, and intent. With a background in mechanical engineering and robotics, my work blends engineering, industrial design, and visual storytelling. I sketch extensively and prototype often, drawn to projects where form, proportion, and user interaction help reliable mechanics feel intuitive.
-                            </p>
-                            <!-- UPDATED: single CTA only
-                            <div class="cta-group">
-                                <a class="primary-btn block-3d-lg hero-contact-btn" href="#contact">CONTACT ME</a>
-                            </div>-->
-                        </div>
-
-                        <div class="hero-image-frame">
-                            <img src="assets/images/profile/profile.png" alt="Profile Picture" class="retro-photo">
-                        </div>
-                    </main>
-                </div>
+                    <!-- Source of the typed text (and what screen readers get) -->
+                    <p class="hero__bio" data-hero-bio>I design and build mechanical systems with an emphasis on clarity, in function, feel, and intent. With a background in mechanical engineering and robotics, my work blends engineering, industrial design, and visual storytelling. I sketch extensively and prototype often, drawn to projects where form, proportion, and user interaction help reliable mechanics feel intuitive.</p>
+                </section>
 
                 <!-- --------------------------------- NAV DIAL SECTION ------------------------------- -->
                 <section class="panel-section nav-station-panel">
@@ -532,6 +580,7 @@
 
     <!-- --------------------------------- SCRIPT.JS SOURCE ----------------------------------- -->
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/hero.js"></script>
 
 </body>
 </html>
