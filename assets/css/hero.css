@@ -16,9 +16,9 @@
     --font-pixel: 'VT323', 'Space Mono', monospace;
     --font-serif-italic: 'Instrument Serif', Georgia, serif;
     --paint-paper: #faf8f2;           /* matches the paint artwork's off-white */
-    /* atomic-age accents: turquoise + a warm tangerine that sits opposite it */
-    --accent-teal: #61C2A2;
-    --accent-orange: #F2993A;
+    /* atomic-age accents: deep teal + burnt orange, both ~4.3:1 against the white panel */
+    --accent-teal: #2E8570;
+    --accent-orange: #C95A1E;
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     /* One screen height in px for the (unscaled) pinned stage. Set by hero.js. */
     --hero-vh: 100vh;
