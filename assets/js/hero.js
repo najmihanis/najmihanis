@@ -179,6 +179,57 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(tick);
   }
 
+  // --------------------------------- SECTION REVEALS (NAV DIAL, CONTACT) ---------------------------------
+  // Each [data-reveal] section animates in once, the first time it scrolls into view.
+  // .is-revealing carries the reveal transitions and is dropped afterwards, so the
+  // controls' own hover/press transitions apply again.
+  const revealSections = document.querySelectorAll('[data-reveal]');
+
+  // The navigation dial gives a little turn: knob and rings swing cw/ccw and settle
+  function wiggleDial() {
+    const knob = document.getElementById('nav-knob');
+    const outerRing = document.getElementById('nav-outer-ring');
+    const innerRing = document.getElementById('nav-inner-ring');
+    if (!knob || !knob.animate) return;
+    const swing = (el, base, angles, delay) => el && el.animate(
+      angles.map((a, i) => ({ transform: `${base}rotate(${a}deg)`, offset: i / (angles.length - 1) })),
+      { duration: 1900, delay, easing: 'cubic-bezier(0.45, 0, 0.25, 1)' }
+    );
+    swing(knob, 'translate(-50%, -50%) ', [0, 38, -24, 10, -3, 0], 0);
+    swing(innerRing, '', [0, 30, -18, 7, 0], 60);
+    swing(outerRing, '', [0, -16, 11, -4, 0], 120);
+  }
+
+  function reveal(section) {
+    section.classList.add('is-revealed', 'is-revealing');
+    setTimeout(() => section.classList.remove('is-revealing'), 2600);
+    if (section.dataset.reveal === 'nav' && !reduceMotion) setTimeout(wiggleDial, 650);
+  }
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealSections.forEach((section) => section.classList.add('is-revealed'));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // Wait for the intro to finish so nothing reveals behind the loader
+        if (!entry.isIntersecting || root.classList.contains('is-loading')) return;
+        revealObserver.unobserve(entry.target);
+        reveal(entry.target);
+      });
+    }, { threshold: 0.25 });
+    revealSections.forEach((section) => revealObserver.observe(section));
+    // Sections already in view when the loader leaves (e.g. a reload mid-page)
+    new MutationObserver((_, obs) => {
+      if (root.classList.contains('is-loading')) return;
+      obs.disconnect();
+      revealSections.forEach((section) => {
+        if (section.classList.contains('is-revealed')) return;
+        revealObserver.unobserve(section);
+        revealObserver.observe(section);
+      });
+    }).observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+
   // --------------------------------- PAINT WINDOW ON SCROLL ---------------------------------
   const intro = hero.querySelector('.hero__intro');
   const unscale = hero.querySelector('[data-hero-unscale]');
