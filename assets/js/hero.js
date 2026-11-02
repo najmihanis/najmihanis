@@ -272,9 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastStatus = '';
   let scrubTimer = 0;
 
-  // Phones: the window is already on screen at load, so scroll progress alone would skip the
-  // setup. Instead the cursor / A tool / text box play by themselves once the window has opened,
-  // then scrolling takes over and drives the typing from that point.
+  // The cursor / A tool / text box play by themselves once the window has opened, then
+  // scrolling takes over and drives the typing from that point (phones and large screens).
   const AUTO = { revealWait: 2700, setupMs: 2600, typeMs: 4000 };
   const compact = { mode: 'waiting', start: 0, handoffY: 0, distance: 1 };   // waiting → playing → scroll | autotype
 
@@ -326,16 +325,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function progress() {
     if (reduceMotion) return 1;
-    if (compactQuery.matches) return compactProgress();
-    const rect = track.getBoundingClientRect();
-    return clamp(-rect.top / Math.max(1, rect.height - stage.getBoundingClientRect().height));
+    return compactProgress();
   }
 
   function compactProgress() {
     const now = performance.now();
     if (compact.mode === 'waiting') {
       const rect = paint.getBoundingClientRect();
-      const onScreen = rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
+      // Wait until the part of the window where the cursor and text box work is in view
+      // (at load on phones and tall screens; after a short nudge on shorter laptop screens)
+      const onScreen = rect.top + rect.height * 0.45 < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.15;
       if (!heroInAt || now - heroInAt < AUTO.revealWait || !onScreen) return 0;
       compact.mode = 'playing';
       compact.start = now;
@@ -350,7 +349,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = paint.getBoundingClientRect();
       const vh = window.innerHeight;
       compact.handoffY = window.scrollY;
-      compact.distance = Math.min(Math.max(rect.top - vh * 0.04, vh * 0.8), rect.top + rect.height * 0.25);
+      if (pinned()) {
+        // Large screens: type across the scroll that brings the window up and holds it pinned,
+        // finishing a little before the pin lets go
+        const unpinY = window.scrollY + track.getBoundingClientRect().bottom - vh;
+        compact.distance = (unpinY - compact.handoffY) * 0.85;
+      } else {
+        compact.distance = Math.min(Math.max(rect.top - vh * 0.04, vh * 0.8), rect.top + rect.height * 0.25);
+      }
       compact.mode = compact.distance > vh * 0.25 ? 'scroll' : 'autotype';
       compact.start = now;
     }
@@ -363,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function autoplayLoop() {
     render();
     const autoTyping = compact.mode === 'autotype' && performance.now() - compact.start < AUTO.typeMs;
-    if (compactQuery.matches && (compact.mode === 'playing' || autoTyping)) requestAnimationFrame(autoplayLoop);
+    if (compact.mode === 'playing' || autoTyping) requestAnimationFrame(autoplayLoop);
   }
 
   // Fallback only: title departure + letter drain from the scroll handler
@@ -453,13 +459,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   measure();
   render();
-  // Phones: check again once the intro reveal has had time to open the window
+  // Check again once the intro reveal has had time to open the window
   const waitForReveal = () => {
     if (compact.mode !== 'waiting') return;
     if (heroInAt) setTimeout(() => render(), Math.max(0, AUTO.revealWait - (performance.now() - heroInAt)) + 20);
     else setTimeout(waitForReveal, 200);
   };
-  if (compactQuery.matches && !reduceMotion) waitForReveal();
+  if (!reduceMotion) waitForReveal();
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onLayoutChange);

@@ -172,7 +172,7 @@ html.is-loading body { overflow: hidden; }
 .hero__track {
     position: relative;
     z-index: 2;
-    height: calc(var(--hero-vh) * 3);
+    height: calc(var(--hero-vh) * 2.5);
 }
 
 .hero__stage {
@@ -188,7 +188,7 @@ html.is-loading body { overflow: hidden; }
         width: calc(100% * var(--hero-s, 1));
         margin-left: calc(50% * (1 - var(--hero-s, 1)));
         /* the box reserves layout height × scale on screen; shed the excess */
-        margin-bottom: calc(var(--hero-vh) * 3 * (1 / var(--hero-s, 1) - 1));
+        margin-bottom: calc(var(--hero-vh) * 2.5 * (1 / var(--hero-s, 1) - 1));
         transform: scale(calc(1 / var(--hero-s, 1)));
         transform-origin: top center;
     }
