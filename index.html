@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Limelight&family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/index.css">
@@ -139,8 +139,8 @@
                 </header>
 
                 <!-- --------------------------------- HERO: TITLE + PAINT WINDOW ------------------------------- -->
-                <!-- The paint window is pinned while the page scrolls (desktop) and "types" the bio into a text box.
-                     hero.js maps scroll progress onto the cursor, text box and status bar. -->
+                <!-- The paint window is pinned while the page scrolls (desktop) and "types" the bio into a text box
+                     that grows line by line. hero.js maps scroll progress onto the cursor, text box and status bar. -->
                 <section class="panel-section hero" id="hero" data-hero>
                     <div class="corner-deco complex c-tl"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
                     <div class="corner-deco complex c-tr"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
@@ -148,18 +148,11 @@
                     <div class="corner-deco complex c-br"><svg viewBox="0 0 36 36"><use href="#corner-complex"></use></svg></div>
 
                     <div class="hero__intro">
-                        <div class="hero__meta" data-reveal="fade">
-                            <span>Najmi Hanis</span>
-                            <span class="hero__meta-rule" aria-hidden="true"></span>
-                            <span>Scroll to draw<span class="hero__cue-arrow" aria-hidden="true">&darr;</span></span>
-                        </div>
-
-                        <h1 class="hero__title" aria-label="Mechanism design and creative storytelling">
-                            <span class="hero__word" aria-hidden="true"><span>Mechanism</span></span>
-                            <span class="hero__word" aria-hidden="true"><span>design</span></span>
-                            <span class="hero__word hero__word--and" aria-hidden="true"><span>and</span></span>
-                            <span class="hero__word" aria-hidden="true"><span>creative</span></span>
-                            <span class="hero__word" aria-hidden="true"><span>storytelling</span></span>
+                        <!-- hero.js splits each line into characters and builds an outline layer + a fill layer -->
+                        <h1 class="hero__title" data-hero-title aria-label="Mechanism design and creative storytelling">
+                            <span class="hero__line">Mechanism design</span>
+                            <span class="hero__line"><em class="hero__and">and</em> creative</span>
+                            <span class="hero__line">storytelling</span>
                         </h1>
 
                         <ul class="hero__tags" aria-label="Disciplines">
@@ -173,17 +166,6 @@
                     <div class="hero__track" data-hero-track>
                         <div class="hero__stage" data-hero-stage>
 
-                            <!-- LEFT RAIL: caliper-style progress readout -->
-                            <aside class="hero__rail hero__rail--left" aria-hidden="true">
-                                <div class="hero__rail-label">Fig. 01</div>
-                                <div class="hero__rail-caption">Hand, caliper,<br>wristwatch.</div>
-                                <div class="hero__gauge">
-                                    <div class="hero__gauge-scale"></div>
-                                    <div class="hero__gauge-jaw" data-hero-jaw></div>
-                                </div>
-                                <div class="hero__readout"><span data-hero-readout>000.00</span> mm</div>
-                            </aside>
-
                             <figure class="paint" data-paint>
                                 <img class="paint__img" src="assets/images/hero/paint-caliper.webp" width="1027" height="1532"
                                      alt="A retro paint program window with an ink drawing of a hand holding a vernier caliper">
@@ -195,7 +177,7 @@
                                     <span class="paint__handle" style="--hx:0;--hy:0"></span><span class="paint__handle" style="--hx:.5;--hy:0"></span><span class="paint__handle" style="--hx:1;--hy:0"></span>
                                     <span class="paint__handle" style="--hx:0;--hy:.5"></span><span class="paint__handle" style="--hx:1;--hy:.5"></span>
                                     <span class="paint__handle" style="--hx:0;--hy:1"></span><span class="paint__handle" style="--hx:.5;--hy:1"></span><span class="paint__handle" style="--hx:1;--hy:1"></span>
-                                    <p class="paint__text"><span data-paint-typed></span><span class="paint__caret"></span><span class="paint__ghost" data-paint-ghost></span></p>
+                                    <p class="paint__text"><span data-paint-typed></span><span class="paint__caret"></span></p>
                                 </div>
 
                                 <svg class="paint__cursor" data-paint-cursor viewBox="0 0 12 19" aria-hidden="true">
@@ -203,15 +185,6 @@
                                 </svg>
                             </figure>
 
-                            <!-- RIGHT RAIL: what the "user" is doing -->
-                            <aside class="hero__rail hero__rail--right" aria-hidden="true">
-                                <ol class="hero__log" data-hero-log>
-                                    <li><span>01</span>Text tool</li>
-                                    <li><span>02</span>Draw a box</li>
-                                    <li><span>03</span>Type the brief</li>
-                                    <li><span>04</span>Scroll on</li>
-                                </ol>
-                            </aside>
                         </div>
                     </div>
 

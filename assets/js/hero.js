@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const compactQuery = window.matchMedia('(max-width: 900px)');
+  // Scroll-driven animations run on the compositor, so the pin and title drift can't jitter.
+  // Without them (e.g. Firefox) the same motion is driven from the scroll handler instead.
+  const scrollTimelines = window.CSS && CSS.supports('animation-timeline: scroll()');
 
   const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
   const range = (p, start, end) => clamp((p - start) / (end - start));
@@ -17,8 +20,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const lerp = (a, b, t) => a + (b - a) * t;
   const uiScale = () => parseFloat(root.style.getPropertyValue('--ui-scale')) || 1;
 
-  // Stagger indices for the intro reveal
-  hero.querySelectorAll('.hero__word > span').forEach((el, i) => el.style.setProperty('--i', i));
+  // --------------------------------- TITLE: OUTLINE + FILL LAYERS ---------------------------------
+  // Each line is split into characters, then the whole title is cloned: an ink outline layer
+  // below and the solid fill on top. --i staggers the reveal and the scroll drain.
+  const title = hero.querySelector('[data-hero-title]');
+  let fillChars = [];
+
+  if (title) {
+    let index = 0;
+    const splitInto = (node, target) => {
+      node.childNodes.forEach((child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          [...child.textContent].forEach((ch) => {
+            if (ch === ' ') { target.appendChild(document.createTextNode(' ')); return; }
+            const outer = document.createElement('span');
+            outer.className = 'hero__char';
+            outer.style.setProperty('--i', index++);
+            const inner = document.createElement('span');
+            inner.textContent = ch;
+            outer.appendChild(inner);
+            target.appendChild(outer);
+          });
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          const copy = child.cloneNode(false);
+          target.appendChild(copy);
+          splitInto(child, copy);
+        }
+      });
+    };
+
+    const outline = document.createElement('span');
+    outline.className = 'hero__title-outline';
+    outline.setAttribute('aria-hidden', 'true');
+    title.querySelectorAll('.hero__line').forEach((line) => {
+      const copy = line.cloneNode(false);
+      splitInto(line, copy);
+      outline.appendChild(copy);
+    });
+    const fill = outline.cloneNode(true);
+    fill.className = 'hero__title-fill';
+
+    title.textContent = '';
+    title.append(outline, fill);
+    fillChars = [...fill.querySelectorAll('.hero__char')];
+  }
+
   hero.querySelectorAll('.hero__tags li').forEach((el, i) => el.style.setProperty('--i', i));
 
   // --------------------------------- INTRO LOADER ---------------------------------
@@ -93,31 +139,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------- PAINT WINDOW ON SCROLL ---------------------------------
+  const intro = hero.querySelector('.hero__intro');
   const track = hero.querySelector('[data-hero-track]');
   const stage = hero.querySelector('[data-hero-stage]');
   const paint = hero.querySelector('[data-paint]');
   const box = hero.querySelector('[data-paint-box]');
-  const textEl = hero.querySelector('.paint__text');
   const typedEl = hero.querySelector('[data-paint-typed]');
-  const ghostEl = hero.querySelector('[data-paint-ghost]');
   const statusEl = hero.querySelector('[data-paint-status]');
   const cursor = hero.querySelector('[data-paint-cursor]');
-  const readout = hero.querySelector('[data-hero-readout]');
-  const logItems = hero.querySelectorAll('[data-hero-log] li');
   const bio = (hero.querySelector('[data-hero-bio]') || {}).textContent || '';
   const text = bio.replace(/\s+/g, ' ').trim();
   if (!track || !stage || !paint || !text) return;
 
   // Paint geometry, as fractions of the artwork (1027 × 1532)
   const ASPECT = 1532 / 1027;
-  const BOX = { x: 0.246, y: 0.366, w: 0.684 };
+  const BOX = { x: 0.246, y: 0.366, w: 0.684, h: 0.072 / ASPECT };   // dragged box: ~2 lines tall
   const TOOL = { x: 0.149, y: 0.348 };
   const REST = { x: 0.64, y: 0.27 };
 
   // Scroll phases (0 → 1 across the pinned travel)
   const P = {
-    cursorIn: 0.03, atTool: 0.15, click: 0.18, atBox: 0.25,
-    dragEnd: 0.36, typing: 0.38, typed: 0.86,
+    cursorIn: 0.03, atTool: 0.14, click: 0.17, atBox: 0.23,
+    dragEnd: 0.31, typing: 0.33, typed: 0.88,
   };
 
   const STATUS = {
@@ -127,25 +170,40 @@ document.addEventListener('DOMContentLoaded', () => {
     done: 'Text placed. Keep scrolling ↓',
   };
 
-  let boxFullH = 0.3;    // fraction of the figure's height, measured from the full text
+  // Scroll range of the pin, in document px: [pinStart, pinEnd], set by measure()
+  let pinStart = 0;
+  let pinEnd = 1;
+  let pinTravel = 0;     // local (pre-scale) px the stage moves over that range
+  let driftEnd = 900;
   let lastTyped = -1;
   let lastStatus = '';
   let pinFix = 0;
   let scrubTimer = 0;
 
   typedEl.textContent = '';
-  ghostEl.textContent = text;
 
-  function measureBox() {
-    const figH = paint.offsetHeight;
-    if (!figH) return;
-    boxFullH = textEl.offsetHeight / figH;
-    paint.style.setProperty('--box-full-h', `${(boxFullH * 100).toFixed(3)}%`);
-  }
+  const pinned = () => !compactQuery.matches && !reduceMotion;
 
-  // One screen height in the casing's local (pre-scale) px
-  function updateHeroVh() {
-    root.style.setProperty('--hero-vh', `${Math.round(window.innerHeight / uiScale())}px`);
+  function measure() {
+    const s = uiScale();
+    root.style.setProperty('--hero-vh', `${Math.round(window.innerHeight / s)}px`);
+
+    // Title drift: runs until the paint window reaches the top of the screen
+    const trackTop = track.getBoundingClientRect().top + window.scrollY;
+    driftEnd = Math.max(300, trackTop);
+    hero.style.setProperty('--drift-end', `${Math.round(driftEnd)}px`);
+    hero.style.setProperty('--drift-y', `${Math.round(driftEnd * 0.45 / s)}px`);
+    // Letters drain one after another across most of the drift
+    hero.style.setProperty('--drain-start', `${Math.round(driftEnd * 0.08)}px`);
+    hero.style.setProperty('--drain-step', `${((driftEnd * 0.7) / Math.max(1, fillChars.length)).toFixed(2)}px`);
+
+    if (!pinned()) return;
+    pinTravel = Math.max(0, track.offsetHeight - stage.offsetHeight);
+    pinStart = trackTop;
+    pinEnd = pinStart + pinTravel * s;
+    stage.style.setProperty('--pin-start', `${Math.round(pinStart)}px`);
+    stage.style.setProperty('--pin-end', `${Math.round(pinEnd)}px`);
+    stage.style.setProperty('--pin-travel', `${Math.round(pinTravel)}px`);
   }
 
   function setStatus(msg) {
@@ -170,18 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const end = window.innerHeight * 0.04;
       return clamp((start - rect.top) / (start - end));
     }
-    const rect = track.getBoundingClientRect();
-    const travel = rect.height - stage.getBoundingClientRect().height;
-    return clamp(-rect.top / Math.max(1, travel));
+    return clamp((window.scrollY - pinStart) / Math.max(1, pinEnd - pinStart));
   }
 
-  // Sticky positions in the casing's local px, so inside the scaled casing the pin
-  // creeps by (scale − 1) × scroll. Measure where it is and nudge it to where it should be.
+  // Fallback only (no scroll-driven animations): sticky creeps by (scale − 1) × scroll inside
+  // the scaled casing, so measure where it is and nudge it to where it should be.
   function fixPin() {
-    if (compactQuery.matches || reduceMotion) {
-      if (pinFix) { pinFix = 0; stage.style.setProperty('--hero-pin-fix', '0px'); }
-      return;
-    }
+    if (scrollTimelines || !pinned()) return;
     const s = uiScale();
     const trackRect = track.getBoundingClientRect();
     const stageRect = stage.getBoundingClientRect();
@@ -194,15 +247,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Fallback only: title drift + letter drain from the scroll handler
+  function driftTitle() {
+    if (scrollTimelines || reduceMotion || !intro) return;
+    const s = uiScale();
+    const t = clamp(window.scrollY / driftEnd);
+    intro.style.transform = `translate3d(0, ${(t * driftEnd * 0.45 / s).toFixed(1)}px, 0)`;
+    intro.style.opacity = (1 - t * 0.65).toFixed(3);
+    const step = (driftEnd * 0.7) / Math.max(1, fillChars.length);
+    fillChars.forEach((el, i) => {
+      el.style.opacity = (1 - clamp((window.scrollY - driftEnd * 0.08 - i * step) / 140)).toFixed(3);
+    });
+  }
+
   function render() {
     fixPin();
+    driftTitle();
     const p = progress();
-    hero.style.setProperty('--hero-p', p.toFixed(4));
-    if (readout) readout.textContent = (p * 150).toFixed(2).padStart(6, '0');
-
-    const boxEnd = { x: BOX.x + BOX.w, y: BOX.y + boxFullH };
 
     // Cursor path: rest → "A" tool → click → box corner → drag to the far corner
+    const dragEnd = { x: BOX.x + BOX.w, y: BOX.y + BOX.h };
     if (p < P.atTool) {
       const t = easeInOut(range(p, P.cursorIn, P.atTool));
       pointAt(lerp(REST.x, TOOL.x, t), lerp(REST.y, TOOL.y, t));
@@ -214,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pointAt(lerp(TOOL.x, BOX.x, t), lerp(TOOL.y, BOX.y, t));
     } else {
       const t = easeInOut(range(p, P.atBox, P.dragEnd));
-      pointAt(lerp(BOX.x, boxEnd.x, t), lerp(BOX.y, boxEnd.y, t));
+      pointAt(lerp(BOX.x, dragEnd.x, t), lerp(BOX.y, dragEnd.y, t));
     }
 
     const drag = easeInOut(range(p, P.atBox, P.dragEnd));
@@ -226,12 +290,11 @@ document.addEventListener('DOMContentLoaded', () => {
     paint.classList.toggle('is-drawing', p >= P.atBox);
     paint.classList.toggle('is-typing', p >= P.typing);
 
-    // Typing
+    // Typing: the box's height follows the text, so it grows a line at a time
     const typedCount = Math.round(range(p, P.typing, P.typed) * text.length);
     if (typedCount !== lastTyped) {
       lastTyped = typedCount;
       typedEl.textContent = text.slice(0, typedCount);
-      ghostEl.textContent = text.slice(typedCount);
     }
 
     // Status bar
@@ -240,17 +303,10 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (p < P.atBox) setStatus(STATUS.box);
     else if (p < P.typing) {
       const w = Math.round(drag * BOX.w * 1027);
-      const h = Math.round(drag * boxFullH * 1532);
+      const h = Math.round(drag * BOX.h * 1532);
       setStatus(`${w}x${h}`);
     } else if (p < P.typed) setStatus(`Typing… ${typedCount} of ${text.length} characters`);
     else setStatus(STATUS.done);
-
-    // Step log
-    const step = p < P.click ? 0 : p < P.typing ? 1 : p < P.typed ? 2 : 3;
-    logItems.forEach((li, i) => {
-      li.classList.toggle('is-active', i === step && p >= P.cursorIn);
-      li.classList.toggle('is-done', i < step);
-    });
   }
 
   let ticking = false;
@@ -268,22 +324,21 @@ document.addEventListener('DOMContentLoaded', () => {
     scrubTimer = setTimeout(() => paint.classList.remove('is-scrubbing'), 450);
   }
 
-  function onResize() {
+  function onLayoutChange() {
     // After script.js has applied the new --ui-scale
     requestAnimationFrame(() => {
-      updateHeroVh();
-      measureBox();
+      measure();
       render();
     });
   }
 
-  updateHeroVh();
-  measureBox();
+  measure();
   render();
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onResize);
-  window.addEventListener('load', onResize);
-  if (document.fonts) document.fonts.ready.then(onResize);
-  if (window.ResizeObserver) new ResizeObserver(() => { measureBox(); requestRender(); }).observe(paint);
+  window.addEventListener('resize', onLayoutChange);
+  window.addEventListener('load', onLayoutChange);
+  if (document.fonts) document.fonts.ready.then(onLayoutChange);
+  // Content above the track (fonts, images) can shift where the pin starts
+  if (window.ResizeObserver && intro) new ResizeObserver(onLayoutChange).observe(intro);
 });
