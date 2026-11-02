@@ -74,7 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // is ready; the pencil swings in counter-clockwise and the spanner clockwise to cross.
   const loader = document.getElementById('introLoader');
 
+  let heroInAt = 0;            // when the intro reveal started (phones time their autoplay from it)
+
   function startHero() {
+    heroInAt = performance.now();
     root.classList.add('hero-in');
   }
 
@@ -269,6 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastStatus = '';
   let scrubTimer = 0;
 
+  // Phones: the window is already on screen at load, so scroll progress alone would skip the
+  // setup. Instead the cursor / A tool / text box play by themselves once the window has opened,
+  // then scrolling takes over and drives the typing from that point.
+  const AUTO = { revealWait: 2700, setupMs: 2600, typeMs: 4000 };
+  const compact = { mode: 'waiting', start: 0, handoffY: 0, distance: 1 };   // waiting → playing → scroll | autotype
+
   typedEl.textContent = '';
 
   const pinned = () => !compactQuery.matches && !reduceMotion;
@@ -317,15 +326,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function progress() {
     if (reduceMotion) return 1;
-    if (compactQuery.matches) {
-      // Phones: no pin. Runs from the window entering low on screen to its top near the top.
-      const rect = paint.getBoundingClientRect();
-      const start = window.innerHeight * 0.8;
-      const end = window.innerHeight * 0.04;
-      return clamp((start - rect.top) / (start - end));
-    }
+    if (compactQuery.matches) return compactProgress();
     const rect = track.getBoundingClientRect();
     return clamp(-rect.top / Math.max(1, rect.height - stage.getBoundingClientRect().height));
+  }
+
+  function compactProgress() {
+    const now = performance.now();
+    if (compact.mode === 'waiting') {
+      const rect = paint.getBoundingClientRect();
+      const onScreen = rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
+      if (!heroInAt || now - heroInAt < AUTO.revealWait || !onScreen) return 0;
+      compact.mode = 'playing';
+      compact.start = now;
+      requestAnimationFrame(autoplayLoop);
+    }
+    if (compact.mode === 'playing') {
+      const t = clamp((now - compact.start) / AUTO.setupMs);
+      if (t < 1) return t * P.typing;
+      // Hand over to scrolling from wherever the page is now. Typing gets ~0.8 screens of
+      // scroll, but ends before the text box would leave the top of the screen; if there is
+      // barely any room left (reader already scrolled on), it just finishes by itself.
+      const rect = paint.getBoundingClientRect();
+      const vh = window.innerHeight;
+      compact.handoffY = window.scrollY;
+      compact.distance = Math.min(Math.max(rect.top - vh * 0.04, vh * 0.8), rect.top + rect.height * 0.25);
+      compact.mode = compact.distance > vh * 0.25 ? 'scroll' : 'autotype';
+      compact.start = now;
+    }
+    if (compact.mode === 'autotype') {
+      return lerp(P.typing, 1, clamp((now - compact.start) / AUTO.typeMs));
+    }
+    return lerp(P.typing, 1, clamp((window.scrollY - compact.handoffY) / compact.distance));
+  }
+
+  function autoplayLoop() {
+    render();
+    const autoTyping = compact.mode === 'autotype' && performance.now() - compact.start < AUTO.typeMs;
+    if (compactQuery.matches && (compact.mode === 'playing' || autoTyping)) requestAnimationFrame(autoplayLoop);
   }
 
   // Fallback only: title departure + letter drain from the scroll handler
@@ -415,6 +453,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   measure();
   render();
+  // Phones: check again once the intro reveal has had time to open the window
+  const waitForReveal = () => {
+    if (compact.mode !== 'waiting') return;
+    if (heroInAt) setTimeout(() => render(), Math.max(0, AUTO.revealWait - (performance.now() - heroInAt)) + 20);
+    else setTimeout(waitForReveal, 200);
+  };
+  if (compactQuery.matches && !reduceMotion) waitForReveal();
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onLayoutChange);
