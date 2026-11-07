@@ -1103,11 +1103,11 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
 
 .social-bay {
   /* Outer frame, like the brand plate */
-  padding: 4px;
+  padding: 9px;         /* thick white frame around the cutout */
   margin-bottom: 34px;  /* Space above the send button */
   background: #fff;
   border: var(--border-thick);
-  border-radius: 16px;
+  border-radius: 18px;
   box-shadow: 6px 6px 0px rgba(0,0,0,0.10);
 }
 
@@ -1115,10 +1115,10 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
 .social-grille {
   display: grid;
   grid-template-columns: repeat(2, 54px);   /* 2x2 */
-  gap: 18px 22px;
-  padding: 22px 26px 26px 22px;  /* extra right/bottom room for the buttons' hard shadows */
+  gap: 10px;
+  padding: 9px 13px 13px 9px;  /* extra right/bottom room for the buttons' hard shadows */
   border: 2px solid var(--ink);
-  border-radius: 11px;
+  border-radius: 10px;
   background-color: #ddd;
   background-image: radial-gradient(circle at center, var(--ink) 1.5px, transparent 2px);
   background-size: 6px 6px;
@@ -1238,7 +1238,6 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
 
     .social-grille{
         grid-template-columns: repeat(4, 54px);   /* 1x4 */
-        gap: 22px;
     }
 
 }
