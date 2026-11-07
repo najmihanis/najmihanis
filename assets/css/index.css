@@ -1232,20 +1232,20 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
         grid-template-columns: 1fr;
     }
 
-    /* one row: big social plate on the left (past the centre), send button on the right */
+    /* one row, centred as a group: social plate beside the send button, level with its centre */
     .tx-bay{
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: auto auto;
         grid-template-areas:
             "plate send"
-            "plate label";
+            ".     label";
+        justify-content: center;
         align-items: center;
-        column-gap: 40px;
+        column-gap: 48px;
         padding-top: 24px;
     }
     .social-bay{
         grid-area: plate;
-        justify-self: start;
         margin-bottom: 0;
     }
     .tx-btn{ grid-area: send; }
@@ -1259,12 +1259,12 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
     .social-btn{
         width: 104px;
         height: 104px;
-        border-radius: 22px;
+        border-radius: 30px;
         border-width: 3px;
     }
     .social-btn svg{
-        width: 50px;
-        height: 50px;
+        width: 64px;
+        height: 64px;
     }
 
 }
