@@ -15,7 +15,7 @@
     --font-deco: 'TT Modernoir', 'Montserrat', sans-serif;
     --font-pixel: 'VT323', 'Space Mono', monospace;
     --font-serif-italic: 'Instrument Serif', Georgia, serif;
-    --paint-paper: #faf8f2;           /* matches the paint artwork's off-white */
+    --paint-paper: #fcf7f1;           /* matches the paint artwork's off-white */
     /* atomic-age accents: deep teal + burnt orange, both ~4.3:1 against the white panel */
     --accent-teal: #2E8570;
     --accent-orange: #C95A1E;
@@ -199,8 +199,8 @@ html.is-loading body { overflow: hidden; }
 .paint {
     position: relative;
     margin: 0;
-    width: min(calc(620px * var(--hero-s, 1)), calc((var(--hero-vh) - 56px) * 0.6704));
-    aspect-ratio: 1027 / 1532;
+    width: min(calc(620px * var(--hero-s, 1)), calc((var(--hero-vh) - 56px) * 0.7465));
+    aspect-ratio: 1493 / 2000;
     container-type: inline-size;
     /* hard offset shadow, same as the site's cards */
     filter: drop-shadow(10px 10px 0 rgba(0,0,0,0.12));
@@ -217,10 +217,10 @@ html.is-loading body { overflow: hidden; }
 /* "A" text tool pressed state (sits over the toolbar cell) */
 .paint__tool {
     position: absolute;
-    left: 11.2%;
-    top: 32.4%;
-    width: 7.4%;
-    height: 4.9%;
+    left: 3%;
+    top: 37.1%;
+    width: 7.6%;
+    height: 6%;
     border: 0.45cqw solid #000;
     box-shadow: inset 0.5cqw 0.5cqw 0 rgba(0,0,0,0.35);
     background: rgba(0,0,0,0.06);
@@ -231,16 +231,17 @@ html.is-loading body { overflow: hidden; }
 /* Status bar overlay */
 .paint__status {
     position: absolute;
-    left: 3.6%;
-    top: 92.6%;
-    width: 85.5%;
-    height: 3.9%;
+    left: 7.7%;
+    top: 94.6%;
+    width: 68.2%;
+    height: 3.5%;
     display: flex;
     align-items: center;
     padding-left: 0.9%;
     background: var(--paint-paper);
     font-family: var(--font-pixel);
-    font-size: 3.7cqw;
+    font-size: 3.3cqw;
+    text-transform: uppercase;   /* matches the artwork's status bar lettering */
     line-height: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -250,16 +251,16 @@ html.is-loading body { overflow: hidden; }
 /* The text box: a dashed rubber band while dragging, then it grows a line at a time */
 .paint__box {
     position: absolute;
-    left: 24.6%;
-    top: 36.6%;
-    width: calc(var(--box-w, 0) * 68.4%);
+    left: 21.5%;
+    top: 40%;
+    width: calc(var(--box-w, 0) * 65.5%);
     height: calc(var(--box-h, 0) * 7.2cqw);
     outline: 0.3cqw dashed #000;
     opacity: 0;
 }
 .paint.is-drawing .paint__box { opacity: 1; }
 .paint.is-typing .paint__box {
-    width: 68.4%;
+    width: 65.5%;
     height: auto;
     min-height: 7.2cqw;
     background: var(--paint-paper);

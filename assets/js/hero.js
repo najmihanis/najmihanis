@@ -247,10 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const text = bio.replace(/\s+/g, ' ').trim();
   if (!track || !stage || !paint || !unscale || !text) return;
 
-  // Paint geometry, as fractions of the artwork (1027 × 1532)
-  const ASPECT = 1532 / 1027;
-  const BOX = { x: 0.246, y: 0.366, w: 0.684, h: 0.072 / ASPECT };   // dragged box: ~2 lines tall
-  const TOOL = { x: 0.149, y: 0.348 };
+  // Paint geometry, as fractions of the artwork (1493 × 2000)
+  const ASPECT = 2000 / 1493;
+  const BOX = { x: 0.215, y: 0.40, w: 0.655, h: 0.072 / ASPECT };   // dragged box: ~2 lines tall
+  const TOOL = { x: 0.068, y: 0.401 };
   const REST = { x: 0.64, y: 0.27 };
 
   // Scroll phases (0 → 1 across the pinned travel)
@@ -427,8 +427,8 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (p < P.click) setStatus(STATUS.tool);
     else if (p < P.atBox) setStatus(STATUS.box);
     else if (p < P.typing) {
-      const w = Math.round(drag * BOX.w * 1027);
-      const h = Math.round(drag * BOX.h * 1532);
+      const w = Math.round(drag * BOX.w * 1493);
+      const h = Math.round(drag * BOX.h * 2000);
       setStatus(`${w}x${h}`);
     } else if (p < P.typed) setStatus(`Typing… ${typedCount} of ${text.length} characters`);
     else setStatus(STATUS.done);
