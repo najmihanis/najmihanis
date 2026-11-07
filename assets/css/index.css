@@ -1102,36 +1102,27 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
    ========================================================= */
 
 .social-bay {
-  position: relative;
+  /* Outer frame, like the brand plate */
+  padding: 4px;
+  margin-bottom: 34px;  /* Space above the send button */
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 16px;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.10);
+}
+
+/* Frame cutout: depressed perforated metal grille the buttons sit in */
+.social-grille {
   display: grid;
   grid-template-columns: repeat(2, 54px);   /* 2x2 */
   gap: 18px 22px;
-  padding: 24px 30px 26px;
-  margin-bottom: 34px;  /* Space above the send button */
-
-  /* Brushed metal plate, same finish as the send button's housing */
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.14) 0 1px, transparent 1px 3px),
-    linear-gradient(145deg, #e6e6e6, #a0a0a0);
-  border: 2px solid #121212;
-  border-radius: 16px;
-  box-shadow:
-    inset 2px 2px 0px rgba(255,255,255,0.6),
-    6px 6px 0px #121212;
-}
-
-/* Corner screws */
-.social-bay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 8px 8px / 12px 12px no-repeat,
-    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) calc(100% - 8px) 8px / 12px 12px no-repeat,
-    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 8px calc(100% - 8px) / 12px 12px no-repeat,
-    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) calc(100% - 8px) calc(100% - 8px) / 12px 12px no-repeat;
+  padding: 22px 26px 26px 22px;  /* extra right/bottom room for the buttons' hard shadows */
+  border: 2px solid var(--ink);
+  border-radius: 11px;
+  background-color: #ddd;
+  background-image: radial-gradient(circle at center, var(--ink) 1.5px, transparent 2px);
+  background-size: 6px 6px;
+  box-shadow: inset 3px 3px 8px rgba(0,0,0,0.3);
 }
 
 .social-btn {
@@ -1236,19 +1227,18 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
     grid-template-columns: 1fr;
     }
 
-    .tx-bay{
-        padding-top: 10px;
-    }
-
-    /* wider button column so the 1x4 plate fits beside the form */
+    /* buttons go under the form, so the text boxes get the full width */
     .contact-mainplate__layout{
-        grid-template-columns: 1fr 300px;
+        grid-template-columns: 1fr;
     }
 
-    .social-bay{
+    .tx-bay{
+        padding-top: 24px;
+    }
+
+    .social-grille{
         grid-template-columns: repeat(4, 54px);   /* 1x4 */
-        gap: 14px;
-        padding: 22px 20px 24px;
+        gap: 22px;
     }
 
 }
