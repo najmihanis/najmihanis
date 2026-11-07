@@ -1701,3 +1701,62 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+// Email button on touch screens: show the address in a pop-up instead of jumping
+// straight into a mail app. Copying or opening the mail app are there if wanted;
+// tapping outside the card (or Escape) closes it.
+(() => {
+  const emailBtn = document.querySelector('[data-email-pop]');
+  if (!emailBtn || typeof HTMLDialogElement === 'undefined') return;
+
+  const touchOnly = window.matchMedia('(hover: none)');
+  const address = emailBtn.getAttribute('href').replace(/^mailto:/, '');
+  let dialog = null;
+
+  function build() {
+    dialog = document.createElement('dialog');
+    dialog.className = 'email-pop';
+    dialog.setAttribute('aria-labelledby', 'emailPopLabel');
+    dialog.innerHTML = `
+      <div class="email-pop__card">
+        <div class="contact-label" id="emailPopLabel">&gt; COMM_CHANNEL</div>
+        <span class="email-pop__address">${address.replace('@', '@<wbr>')}</span>
+        <div class="email-pop__actions">
+          <button type="button" class="email-pop__btn email-pop__btn--primary" data-copy>Copy</button>
+          <a class="email-pop__btn" href="mailto:${address}">Open mail</a>
+        </div>
+        <p class="email-pop__hint">Tap outside to close</p>
+      </div>`;
+    document.body.appendChild(dialog);
+
+    // A tap on the backdrop lands on the <dialog> itself, not the card
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    const copyBtn = dialog.querySelector('[data-copy]');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(address);
+        copyBtn.textContent = 'Copied ✓';
+      } catch (err) {
+        // Clipboard blocked: select the address so it can be copied by hand
+        const range = document.createRange();
+        range.selectNodeContents(dialog.querySelector('.email-pop__address'));
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        copyBtn.textContent = 'Selected';
+      }
+      setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1800);
+    });
+  }
+
+  emailBtn.addEventListener('click', (e) => {
+    if (!touchOnly.matches) return;   // mouse users get the hover readout and the normal mailto
+    e.preventDefault();
+    if (!dialog) build();
+    dialog.showModal();
+    dialog.querySelector('[data-copy]').blur();
+  });
+})();

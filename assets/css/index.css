@@ -1163,6 +1163,186 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
   box-shadow: 0px 0px 0px #121212;
 }
 
+/* =========================================================
+   SOCIAL HANDLE READOUTS (hover, mouse only)
+   A little phosphor display, same as the form labels, pops up
+   above the button with the actual handle.
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .social-btn {
+    position: relative;
+  }
+  .social-btn:hover,
+  .social-btn:focus-visible {
+    z-index: 3;
+  }
+
+  .social-btn[data-handle]::after {
+    content: attr(data-handle);
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    translate: -50% 6px;
+    scale: 0.92;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+
+    padding: 7px 14px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(122, 255, 122, 0.6);
+    background-color: #051a05;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 50%);
+    border-radius: 20px;
+    border: 3px solid;
+    border-color: #d3d3d3 #464646 #686868 #a8a8a8;
+    box-shadow:
+      inset 0 0 8px rgba(0,0,0,1),
+      4px 4px 0px #121212;
+
+    transition: opacity 0.18s ease, translate 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), scale 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* 2x2 plate: the bottom row reads out below, so it doesn't cover the top row */
+  .social-btn[data-handle]:nth-child(n+3)::after {
+    bottom: auto;
+    top: calc(100% + 14px);
+    translate: -50% -6px;
+  }
+
+  .social-btn[data-handle]:hover::after,
+  .social-btn[data-handle]:focus-visible::after {
+    opacity: 1;
+    translate: -50% 0;
+    scale: 1;
+  }
+}
+
+/* =========================================================
+   EMAIL POP-UP (touch screens: tapping the email button shows
+   the address instead of jumping straight into a mail app)
+   ========================================================= */
+
+.email-pop {
+  width: min(420px, calc(100vw - 32px));
+  max-width: none;
+  padding: 0;
+  margin: auto;
+  border: none;
+  background: transparent;
+  overflow: visible;
+  color: var(--ink);
+}
+
+.email-pop::backdrop {
+  background: rgba(18, 18, 18, 0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.email-pop[open] {
+  animation: email-pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.email-pop[open]::backdrop {
+  animation: email-pop-fade 0.25s ease;
+}
+
+@keyframes email-pop-in {
+  from { opacity: 0; scale: 0.9; translate: 0 12px; }
+}
+@keyframes email-pop-fade {
+  from { opacity: 0; }
+}
+
+.email-pop__card {
+  position: relative;
+  padding: 26px 22px 22px;
+  background: #fff;
+  border: var(--border-thick);
+  border-radius: 22px;
+  box-shadow: 8px 8px 0px #121212;
+  text-align: center;
+}
+
+/* inner border line, like the other panels */
+.email-pop__card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 2px solid var(--ink);
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.email-pop__card .contact-label {
+  margin: 0 0 14px;
+}
+
+.email-pop__address {
+  display: block;
+  margin: 0 0 20px;
+  padding: 14px 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(13px, 4vw, 17px);
+  font-weight: 700;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: inset 3px 3px 0px rgba(0,0,0,0.10);
+  overflow-wrap: break-word;
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.email-pop__actions {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.email-pop__btn {
+  flex: 1;
+  padding: 12px 10px;
+  font-family: var(--font-header);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #121212;
+  background: #fff;
+  border: 2px solid #121212;
+  border-radius: 14px;
+  box-shadow: 4px 4px 0px #121212;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.email-pop__btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #121212;
+}
+.email-pop__btn--primary {
+  background: radial-gradient(circle at 35% 35%, #ffab73 0%, #ff7b30 50%, #e0601a 100%);
+}
+
+.email-pop__hint {
+  position: relative;
+  margin: 16px 0 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
 /* ------------------------------- MOBILE RESPONSIVENESS SETTING --------------------------------------- */
 
 /* Mobile Responsive Fix - OVERALL (header, hero + side, nav dial, proj, contact me, footer) */
@@ -1265,6 +1445,10 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
     .social-btn svg{
         width: 64px;
         height: 64px;
+    }
+    .social-btn[data-handle]:nth-child(n+3)::after{
+        top: auto;
+        bottom: calc(100% + 14px);
     }
 
 }
