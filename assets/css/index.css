@@ -1102,10 +1102,36 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
    ========================================================= */
 
 .social-bay {
-  display: flex;
-  gap: var(--space-9);            /* Space between buttons */
-  margin-bottom: 24px;  /* Space above the transmission label */
-  justify-content: center;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 54px);   /* 2x2 */
+  gap: 18px 22px;
+  padding: 24px 30px 26px;
+  margin-bottom: 34px;  /* Space above the send button */
+
+  /* Brushed metal plate, same finish as the send button's housing */
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.14) 0 1px, transparent 1px 3px),
+    linear-gradient(145deg, #e6e6e6, #a0a0a0);
+  border: 2px solid #121212;
+  border-radius: 16px;
+  box-shadow:
+    inset 2px 2px 0px rgba(255,255,255,0.6),
+    6px 6px 0px #121212;
+}
+
+/* Corner screws */
+.social-bay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 8px 8px / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) calc(100% - 8px) 8px / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) 8px calc(100% - 8px) / 12px 12px no-repeat,
+    radial-gradient(circle, #ddd 0 2px, #121212 3px, transparent 4px) calc(100% - 8px) calc(100% - 8px) / 12px 12px no-repeat;
 }
 
 .social-btn {
@@ -1212,6 +1238,17 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
 
     .tx-bay{
         padding-top: 10px;
+    }
+
+    /* wider button column so the 1x4 plate fits beside the form */
+    .contact-mainplate__layout{
+        grid-template-columns: 1fr 300px;
+    }
+
+    .social-bay{
+        grid-template-columns: repeat(4, 54px);   /* 1x4 */
+        gap: 14px;
+        padding: 22px 20px 24px;
     }
 
 }

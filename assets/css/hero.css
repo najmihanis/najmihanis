@@ -449,6 +449,7 @@ html.js [data-reveal="nav"].is-revealing .nav-dial__arcText {
 html.js [data-reveal="contact"]:not(.is-revealed) .contact-plate { opacity: 0; translate: 0 -40px; }
 html.js [data-reveal="contact"]:not(.is-revealed) .contact-mainplate { opacity: 0; translate: 0 60px; }
 html.js [data-reveal="contact"]:not(.is-revealed) .contact-field { opacity: 0; translate: -24px 0; }
+html.js [data-reveal="contact"]:not(.is-revealed) .social-bay { opacity: 0; translate: 0 24px; }
 html.js [data-reveal="contact"]:not(.is-revealed) .social-btn { opacity: 0; scale: 0.3; }
 html.js [data-reveal="contact"]:not(.is-revealed) .tx-btn { opacity: 0; scale: 0.5; rotate: -120deg; }
 html.js [data-reveal="contact"]:not(.is-revealed) .tx-label { opacity: 0; translate: 0 10px; }
@@ -475,6 +476,11 @@ html.js [data-reveal="contact"].is-revealing .social-btn {
 html.js [data-reveal="contact"].is-revealing .social-btn:nth-child(1) { transition-delay: 0.6s; }
 html.js [data-reveal="contact"].is-revealing .social-btn:nth-child(2) { transition-delay: 0.68s; }
 html.js [data-reveal="contact"].is-revealing .social-btn:nth-child(3) { transition-delay: 0.76s; }
+html.js [data-reveal="contact"].is-revealing .social-btn:nth-child(4) { transition-delay: 0.84s; }
+html.js [data-reveal="contact"].is-revealing .social-bay {
+    opacity: 1; translate: 0 0;
+    transition: opacity 0.5s ease 0.45s, translate 0.9s var(--reveal-ease) 0.45s;
+}
 html.js [data-reveal="contact"].is-revealing .tx-btn {
     opacity: 1; scale: 1; rotate: 0deg;
     transition: opacity 0.5s ease 0.8s, scale 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s, rotate 1.2s var(--reveal-ease) 0.8s;
