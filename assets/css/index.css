@@ -813,7 +813,7 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
   z-index: 2;
 }
 .contact-mainplate{
-  z-index: 1;
+  z-index: auto;   /* no stacking context, so a hovered button's readout can rise above the banner */
 }
 
 /* The “console” form layout */
