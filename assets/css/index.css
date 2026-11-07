@@ -1103,11 +1103,11 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
 
 .social-bay {
   /* Outer frame, like the brand plate */
-  padding: 9px;         /* thick white frame around the cutout */
+  padding: 14px;        /* thick white frame around the cutout */
   margin-bottom: 34px;  /* Space above the send button */
   background: #fff;
   border: var(--border-thick);
-  border-radius: 18px;
+  border-radius: 30px;
   box-shadow: 6px 6px 0px rgba(0,0,0,0.10);
 }
 
@@ -1118,7 +1118,7 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
   gap: 10px;
   padding: 9px 13px 13px 9px;  /* extra right/bottom room for the buttons' hard shadows */
   border: 2px solid var(--ink);
-  border-radius: 10px;
+  border-radius: 18px;
   background-color: #ddd;
   background-image: radial-gradient(circle at center, var(--ink) 1.5px, transparent 2px);
   background-size: 6px 6px;
@@ -1232,12 +1232,39 @@ h2 { font-size: var(--text-title-project); margin: 0 0 var(--space-4) 0; text-tr
         grid-template-columns: 1fr;
     }
 
+    /* one row: big social plate on the left (past the centre), send button on the right */
     .tx-bay{
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "plate send"
+            "plate label";
+        align-items: center;
+        column-gap: 40px;
         padding-top: 24px;
     }
+    .social-bay{
+        grid-area: plate;
+        justify-self: start;
+        margin-bottom: 0;
+    }
+    .tx-btn{ grid-area: send; }
+    .tx-label{ grid-area: label; align-self: start; }
 
     .social-grille{
-        grid-template-columns: repeat(4, 54px);   /* 1x4 */
+        grid-template-columns: repeat(4, 104px);   /* 1x4 */
+        gap: 16px;
+        padding: 12px 18px 18px 12px;
+    }
+    .social-btn{
+        width: 104px;
+        height: 104px;
+        border-radius: 22px;
+        border-width: 3px;
+    }
+    .social-btn svg{
+        width: 50px;
+        height: 50px;
     }
 
 }
